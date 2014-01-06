@@ -1,0 +1,50 @@
+Readme
+=================================
+1/1/2014
+* Added fullscreen - can set from a variable on startup or can press F2
+* Fixed a few bugs with fullscreen, buttons now resize with screen
+* Fixed bugs with bridges showing up as a house
+* Added a "center map" fuction in case you scroll into the void, press "c"
+
+12/31/2013
+* Added families.  Villagers can now be the spouse of another, and the "scion" of a husband/wife.
+* TODO: Families, now that there are families not every villager needs a house. "Families" will live together.
+* Added wildlife! Now rabbits roam the area!
+* Save/loading of wildlife also added
+* There is now buttons for save and exit, save without exit and load game
+
+12/30/2013
+* Savnig and loading now works! Currently save on exit or on pressing "s" load only on pressing "l" to fix later with buttons
+* Rivers and lakes are not randomly generated
+* Fixed bugs with adding more mines into inventory, or removing more resources from cost.
+* Added messages for not enough resources if attempting to build.
+* Costs for barns, homes and schools are now updated to be different than regular homes.
+* You can now build bridges through build roads menu.
+* Bridges now do not occour naturally.
+
+12/26/2013
+* Added Barns, which now stack food on the right and prevent food from rotting.
+* Added graveyards! (idea is to stop ghosts from spawning, or unrest due to dead not being buried
+* Added ghost artwork! (idea if a villager dies he/she returns as a ghost unless burried)
+* Map is now 2x bigger!
+* Villagers start more in the middle of the larger map
+
+* Added scrolling to the game, and map is now 2x bigger.  The game.tilecount variable controls map size.
+* You can scroll with the mouse by clicking anywhere that is not a left icon.
+* You can scroll with the keyboard.
+* Scrollspeed is modable
+
+
+BIG TODOS:
+
+* Create an event log, for minor events.  Display whenver events are taking place.
+* Create a job queue
+* Make villagers congregate around the fire at night.
+* Make children congregate around the school at day.
+* Create a system of leveling up, for tasks like woodcuttnig, gardening and mining.
+* Create researchable concepts
+* Create bears and wildlife table.
+* Create conditions for ghost/spawning
+* Create a town details sheet to display 
+* Create a pause button if keyboardless
+* Add saving/loading
