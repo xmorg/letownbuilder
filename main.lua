@@ -36,6 +36,7 @@ kingdom_inventory = {wood = 0, sakura = 0, bamboo = 0, carrots = 0, sansai = 0,
 	mushrooms = 0, fish = 0, grain = 0, cherries = 0, rocks = 0, unrest = 0, 
 	hunger = 0, homes = 0, homeless = 0, mine = 0, barns = 0, farmplot = 0, 
 	chickenfarm = 0, inns = 0, bonfire = 0, schools = 0, graveyards = 0, 
+	tradepost = 0, sheriff = 0, fishinghut = 0,
 	villagers = 0, holyman = 0, dark_elves = 0, werewolves=0, families = 0
 }
 
@@ -404,8 +405,8 @@ function new_villager(migration)
 			  house_x = 0, 
 			  house_y = 0,
 			  spouse_of = "None",
-			  scion_of  = "None"
-			  
+			  scion_of  = "None",
+			  position = "peasant"			  
 	}
 	if migration == 0 then
 		a.age = math.random(18,50)
@@ -427,9 +428,35 @@ function new_villager(migration)
 	elseif a.villager_type == "holyman" then
 		kingdom_inventory.holyman=kingdom_inventory.holyman+1
 	end
-	
 	return a
 end
+function new_village_mayor(game_villagers)
+	adult_count = 0
+	--game_villagers[i].alive
+	for i, v in ipairs(game_villagers) do
+		if game_villagers[i].age > 17 then 
+			adult_count = adult_count+1 
+		end--count adults
+		if game_villagers[i].position == "mayor" then 
+			game_villagers[i].position = "peasant" 
+		end --clear mayor
+	end
+	random_mayor = math.random(1, adult_count)--select random mayor
+	adult_count = 0 --clear adult count
+	for i, v in ipairs(game_villagers) do --loop through game_villagers again
+		if game_villagers[i].age > 17 then -- if adult
+			if i == random_mayor then 
+				game_villagers[i].position = "mayor"
+				if game_villagers[i].sex == 1 then 
+					mself = "himself"
+				else mself = "herself"
+					game.event_text = game_villagers[i].name.." has declared "..mself.." 'defacto' mayor for life!"
+					game.message_box_timer = 200
+				end
+			end --endif
+		end--endif
+	end--endfor
+end -- endfunction
 
 function is_night()
 	hard_time = math.floor(game.day_time/1000)
@@ -459,6 +486,7 @@ function villagers_eat_food(num_villagers) -- eat food
 	local rot_flag = 0
 	game.event_text = "Its lunchtime!"  
 	game.message_box_timer = 300
+	game.message_box_icon  = 98
 	
 	kingdom_inventory.hunger=0
 	--bandits steal food first!
@@ -500,13 +528,29 @@ function villagers_eat_food(num_villagers) -- eat food
 	end
 end
 
+function tile_near_water( gtsy, gtsx ) --game.tile_selected_x )
+	if gtsy > 1 and game_map[gtsy -1][gtsx] == game.water_tile then
+		return 1
+	elseif gtsy < game.tilecount and game_map[gtsy +1][gtsx] == game.water_tile then
+		return 1
+	elseif gtsx > 1 and game_map[gtsy][gtsx-1] == game.water_tile then
+		return 1
+	elseif gtsx < game.tilecount and game_map[gtsy][gtsx+1] == game.water_tile then
+		return 1
+	else
+		return 0
+	end
+end
+
 function villagers_seek_shelter(num_villagers)--check how many homes are availible
 	local families = get_villager_families(game_villagers)
 	kingdom_inventory.families = families
 	game.event_text = "It is night." -- it is night message
+	game.message_box_icon = 102
 	if kingdom_inventory.bonfire < 1 then
 		game.event_text = "It is night.".."  It is dark and cold!"
 		-- + unrest if there is no bonfire
+		game.message_box_icon = 32
 		kingdom_inventory.unrest = kingdom_inventory.unrest+ table.getn(game_villagers)
 	end
 	game.message_box_timer = 300
@@ -743,6 +787,7 @@ function create_new_scene(file)
 	table.insert(game_wildlife,  new_wildlife(0) )
 
 	kingdom_inventory.villagers = 5
+	new_village_mayor(game_villagers)
 	new_game_map()
 	animationRate = 12
 	startTime = love.timer.getTime()
@@ -854,7 +899,8 @@ function update_directives()
 	--you finished researching
 	--game.research_timer = game.research_timer -1
 	--research_topics = { agriculture = 0, economy = 0, culture = 0, security = 0, industry = 0}
-	if game.research_timer == 0 then
+	if game.research_timer <= 0 then
+		game.research_timer = 0
 		if game_directives.research_type == "Research economy" then
 			game_directives.research_type = "None"
 			research_topics.economy = research_topics.economy+1 --level up econ
@@ -887,7 +933,11 @@ function update_directives()
 			game_directives.research_type = "None"
 			research_topics.industry = research_topics.industry+1 --level up econ
 			game.event_text = "You have reached industry Level "..research_topics.industry.."!"
-			game.message_box_timer = game.message_box_timer+ 100
+			if research_topics.industry == 1 then
+				game.event_text2 = "You have unlocked the fishing hut"
+				game.message_box_icon = 22
+			end
+			game.message_box_timer = game.message_box_timer+ 200
 		end
 	else
 		game.research_timer = game.research_timer - 1 - kingdom_inventory.dark_elves
@@ -950,10 +1000,27 @@ function update_directives()
       		kingdom_inventory.rocks = kingdom_inventory.rocks -5
 				kingdom_inventory.mine = kingdom_inventory.mine +1
 			elseif game.house_to_build >= 61 and game.house_to_build <= 64 then
-				kingdom_inventory.wood = kingdom_inventory.sakura -5
+				kingdom_inventory.sakura = kingdom_inventory.sakura -5
       		kingdom_inventory.rocks = kingdom_inventory.bamboo -5
 				kingdom_inventory.homes = kingdom_inventory.homes+1
 				update_villager_assign_house(game_directives.location_x, game_directives.location_y)
+			elseif game.house_to_build == 67 then
+				if game.biome == "japan" then
+					kingdom_inventory.bamboo = kingdom_inventory.bamboo -5
+				elseif game.biome == "forest" then
+					kingdom_inventory.wood = kingdom_inventory.wood -5
+				end
+				kingdom_inventory.tradepost = kingdom_inventory.tradepost+1
+			elseif game.house_to_build == 68 then
+				kingdom_inventory.rocls = kingdom_inventory.rocks -35
+				kingdom_inventory.sheriff = kingdom_inventory.sheriff+1
+			elseif game.house_to_build == 70 then
+				if game.biome == "japan" then
+					kingdom_inventory.bamboo = kingdom_inventory.bamboo -5
+				elseif game.biome == "forest" then
+					kingdom_inventory.wood = kingdom_inventory.wood -5
+				end
+				kingdom_inventory.fishinghut = kingdom_inventory.fishinghut+1
 			elseif game.house_to_build >= 23 and game.house_to_build <= 26 then 
 				kingdom_inventory.wood = kingdom_inventory.wood -5
       		kingdom_inventory.rocks = kingdom_inventory.rocks -5
@@ -1216,6 +1283,9 @@ function draw_research_icons()
 		love.graphics.draw(game_icons[113], 64*4, 64*5) --research civics!		
 		love.graphics.print("Civics", 64*4+5, 64*5  )
 		love.graphics.print("Lv "..research_topics.agriculture, 64*4+5, ybutton_level  ) 
+		love.graphics.draw(game_icons[113], 64*5, 64*5) --research industry!		
+		love.graphics.print("Industry", 64*5+5, 64*5  )
+		love.graphics.print("Lv "..research_topics.agriculture, 64*5+5, ybutton_level  ) 
 	end
 end
 function draw_night(y, x)  --code for night and fire glow
@@ -1349,6 +1419,15 @@ function draw_select_house_to_build()
 			else
 				row_2_xi=row_2_xi+1 --advance anyways so we know what we are clicking on
 			end
+			row_2_xi=row_2_xi+1 -- agriculture
+			row_2_xi=row_2_xi+1 -- civics
+			if research_topics.industry >= 1 then
+				love.graphics.draw(game_tiles[70],  64*row_2_xi, row_2)
+				love.graphics.print("Fishing hut",64*row_2_xi, row_2+64) row_2_xi=row_2_xi+1
+			else
+				row_2_xi=row_2_xi+1 --advance anyways so we know what we are clicking on
+			end
+			
 		else
 			love.graphics.draw(game_tiles[23],  64*xi, 54*3)xi=xi+1
 			love.graphics.draw(game_tiles[24],  64*xi, 54*3)xi=xi+1
@@ -1370,6 +1449,14 @@ function draw_select_house_to_build()
 			if research_topics.security >= 1 then
 				love.graphics.draw(game_tiles[68],  64*row_2_xi, row_2)
 				love.graphics.print("Sheriff Office",64*row_2_xi, row_2+64)row_2_xi=row_2_xi+1
+			end
+			row_2_xi=row_2_xi+1
+			row_2_xi=row_2_xi+1
+			row_2_xi=row_2_xi+1
+			row_2_xi=row_2_xi+1
+			if research_topics.industry >= 1 then
+				love.graphics.draw(game_tiles[70],  64*row_2_xi, row_2)
+				love.graphics.print("Fishing hut",64*row_2_xi, row_2+64)row_2_xi=row_2_xi+1
 			end
 		end
 	end
@@ -1531,6 +1618,10 @@ function love.mousepressed(x, y, button)
      		game.give_direction = "Research civics"
      		game_directives.research_type = "Research civics"
      		game.research_timer = 5000
+     	elseif x >= 64*5 and x <= 64*6 and y >=64*5 and y <= 64*5+64 and game.give_direction == "Research" then
+     		game.give_direction = "Research industry"
+     		game_directives.research_type = "Research industry"
+     		game.research_timer = 5000
      	end
       elseif game.give_direction == "Gather Food" then
       	if game.tile_selected_y > 1 and game.tile_selected_x > 1 and game_map[game.tile_selected_y][game.tile_selected_x] == game.water_tile then
@@ -1655,6 +1746,10 @@ function love.mousepressed(x, y, button)
       		if research_topics.security >= 1 then
       			build_house_directive("Build house", 68, 68)
       		end
+      	elseif mouse_clicked_in64(x, y, 63*5, 288) == 1 then
+      		if research_topics.industry >= 1 then
+      			build_house_directive("Build house", 70, 70)
+      		end
       	end
       ------------------SELCT ROAD TO BUILD -----------------------
       elseif game.give_direction == "Select road to build" then --28,36
@@ -1775,13 +1870,39 @@ function love.mousepressed(x, y, button)
       	elseif game.house_to_build == 67 then
       		if game.biome == "japan" and kingdom_inventory.bamboo < 10 then
       			game_directives.job_type = "Not Resources(bamboo 10 or wood 10)" --Trade Post
-      		else
+      		elseif   game.biome == "forrest" and kingdom_inventory.wood < 10 then
       			game_directives.job_type = "Not Resources(bamboo 10 or wood 10)" --Trade Post
       		end
       		game_directives.active = 0
       		game.give_direction = "None"
       		game.event_text = "Not Resources for a trade post(bamboo 10 or wood 10)"
       		game.message_box_timer = 80
+      	elseif game.house_to_build == 70 then
+      		if game.biome == "japan" and kingdom_inventory.bamboo < 10 then
+      			game_directives.job_type = "Not Resources(bamboo 10 or wood 10)" --Trade Post
+      			game.event_text = "Not Resources for a fishing hut(bamboo 10 or wood 10)"
+      			game.message_box_timer = 80
+      		elseif  game.biome == "forrest" and kingdom_inventory.wood < 10 then
+      			game_directives.job_type = "Not Resources(bamboo 10 or wood 10)" --Trade Post
+      			game.event_text = "Not Resources for a fishing hut(bamboo 10 or wood 10)"
+      			game.message_box_timer = 80
+      		elseif tile_near_water( game.tile_selected_y, game.tile_selected_x ) == 0 then
+      			game_directives.job_type = "Must build near water."
+      			game.event_text = "Must build near water."
+      			game.message_box_timer = 80
+      			game.event_text = "Must build near water."
+      			game.message_box_timer = 80
+      		else
+      			game_directives.active = 1
+      			game_directives.timer = 300
+      			game_directives.location_x = game.tile_selected_x
+      			game_directives.location_y = game.tile_selected_y
+      			game_directives.job_type = game.give_direction
+      			game.give_direction = "None"
+      			love.audio.play(sound_build_house)
+      		end
+      		game_directives.active = 0
+      		game.give_direction = "None"
       	elseif game.house_to_build == 68 and kingdom_inventory.rocks < 35  then --jail/sheriff office
       		game_directives.job_type = "Not Resources(stone 35)"
       		game_directives.active = 0
@@ -1925,7 +2046,7 @@ function love.draw()
 				end
 			end
 
-			if game_map[y][x] == 68 then
+			if game_map[y][x] == 68 or game_map[y][x] == 70 then
 				love.graphics.draw(game_tiles[ 32 ], lx+game.draw_x, ly+game.draw_y)
 			end
 			love.graphics.draw(game_tiles[ game_map[y][x] ], lx+game.draw_x, ly+game.draw_y)
