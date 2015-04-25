@@ -3,13 +3,13 @@
 function display_game_event(mque) --puts a messagebox with a game event of "text"
    --sets a game timer for the messagebox
    love.graphics.setColor(50, 50, 50, 255)
-   love.graphics.rectangle("fill", 20, love.graphics.getHeight()-210, 500, 200)
+   love.graphics.rectangle("fill", 20, love.graphics.getHeight()-160, 500, 150)
    love.graphics.setColor(150, 150, 150, 255)
-   love.graphics.rectangle("fill", 23, love.graphics.getHeight()-210, 494, 194)
+   love.graphics.rectangle("fill", 23, love.graphics.getHeight()-157, 494, 144)
    love.graphics.setColor(255, 255, 255, 255)
-   love.graphics.printf(mque.mtext, 53+64, love.graphics.getHeight()-210 +25, 380, "left")
+   love.graphics.printf(mque.mtext, 53+64, love.graphics.getHeight()-150 +25, 380, "left")
    --put an icon! (thats really a tile! because we dont know... we need tiles!
-   love.graphics.draw(game_icons[mque.micon], 45, love.graphics.getHeight()-210)
+   love.graphics.draw(game_icons[mque.micon], 45, love.graphics.getHeight()-150)
 end
 
 function set_villager_unrest()
