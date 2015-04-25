@@ -1,5 +1,41 @@
 Readme
 =================================
+4/1/2015  
+*Tile 65, watchtower (TODO) tower provides light at night up to 2 squares.(TODO) Make watchtower a 
+ security upgrade 1 and shift everything else up by one.
+* moved to sprite atlas to fix memory problems
+* animal propagation
+* job queue, but still using debug
+* added earthquake catastrophe (1/1000 per day)
+* added zombie appacalypse? untested, (1/1000 per day)
+
+
+12/21/2014 Added weather, and rioting caused fires.
+
+12/8/2014 Added more research topics. (no art yet)  can now research melting, smithing, tools and weapons.
+
+1/21/2014
+* message que finally works, plays messages one after the other
+* added diseases! villagers can get a disease from eating contaminated food!  This will provide an incentive to use farms, and cooking later on.
+* other possibilities could be rabid rabbits, etc!
+
+1/16/2014
+* split main.lua file to make it more manageable.
+* Added male dark elves
+* Dark Elf children now appears as children (todo should not be a scion of a normal)
+* Added Sheriff sprite, sheriffs talk.
+* Graveyards now show in both biomes correctly(todo, make a max bodies per gy
+* Ghosts now appear, move around, but dont talk...why?
+* Message log now shows up if you press r (with date/time of message)
+* fixed house save/load bug with game_road_map table
+* Villagers tasked wtih a job will move toward job area
+* Fishing huts now produce fish!
+* Villagers talk for less time.
+
+1/14/2014
+* Building animations work now
+* (previous) now there is a roster of villagers
+=================================
 1/1/2014
 * Added fullscreen - can set from a variable on startup or can press F2
 * Fixed a few bugs with fullscreen, buttons now resize with screen
@@ -36,15 +72,17 @@ Readme
 
 
 BIG TODOS:
-
+=================================
+* [DONE]Make werewolves show up as werewolves in roster at night
+* Make more opionions, like "saw so-and-so change into a werewolf"
 * Create an event log, for minor events.  Display whenver events are taking place.
 * Create a job queue
 * Make villagers congregate around the fire at night.
 * Make children congregate around the school at day.
 * Create a system of leveling up, for tasks like woodcuttnig, gardening and mining.
-* Create researchable concepts
+* [DONE]Create researchable concepts
 * Create bears and wildlife table.
 * Create conditions for ghost/spawning
-* Create a town details sheet to display 
+* [DONE - Roster]Create a town details sheet to display 
 * Create a pause button if keyboardless
-* Add saving/loading
+* [DONE]Add saving/loading
