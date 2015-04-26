@@ -641,6 +641,7 @@ function love.load()
    game_menu_miniload() --miniload to add graphics to the menu before resources are loaded.
    biome_forest_img = love.graphics.newImage("data/images/icon_074.png")
    biome_japan_img = love.graphics.newImage("data/images/icon_075.png")
+   biome_desert_img = love.graphics.newImage("data/images/icon_076.png")
    sound_build_house = love.audio.newSource("data/sounds/cut_pumpkin_02.ogg", "static")
    sound_light_breeze = love.audio.newSource("data/sounds/wind_1.ogg", "static")
    sound_daytime     = love.audio.newSource("data/sounds/wind_1.ogg", "static")

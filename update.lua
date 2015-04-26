@@ -51,23 +51,23 @@ function villagers_complete_jobs_by_buildings()
 end --endfunction
 
 function update_run_daytimer() 
-	if game.day_time < 24000 then
+   if game.day_time < 24000 then
       game.day_time = game.day_time+1
       --sound_daytime     = love.audio.newSource("data/sounds/wind_1_wbirds.ogg", "static")
       --sound_nighttime = love.audio.newSource("data/sounds/wind_2_night.ogg", "static")
       if is_night() == 0 then --daytime
-      	if music_townbg1:isPlaying() == false then music_townbg1:play() end
-      	if music_nightbg1:isPlaying() == true then music_nightbg1:stop() end
+	 if music_townbg1:isPlaying() == false then music_townbg1:play() end
+	 if music_nightbg1:isPlaying() == true then music_nightbg1:stop() end
       else --its night
-      	if music_townbg1:isPlaying() == true then music_townbg1:stop() end
-      	if music_nightbg1:isPlaying() == false then music_nightbg1:play() end
+	 if music_townbg1:isPlaying() == true then music_townbg1:stop() end
+	 if music_nightbg1:isPlaying() == false then music_nightbg1:play() end
       end
       if is_night() == 0 and math.random(1,240) == 1 then --daytime   
-      	play_sound(sound_light_breeze)
+	 play_sound(sound_light_breeze)
       elseif is_night() == 0 and math.random(1,240) == 2 then
-      	play_sound(sound_daytime)
+	 play_sound(sound_daytime)
       elseif is_night() == 1 and math.random(1,240) == 1 then
-      	play_sound(sound_nighttime)
+	 play_sound(sound_nighttime)
       end
       --kingdom_inventory.villagers = table.getn(game_v
       --loop through villagers and loop thround villager timers
@@ -500,7 +500,7 @@ function love.update(dt)
 	 end
       end
       mouse_x, mouse_y = love.mouse.getPosition()
-      if game.show_menu ~= 1 then
+      if game.show_menu ~= 1 and game.show_menu ~= 2 then
 	 update_run_daytimer() -- run the clock
 	 update_directives()
       end

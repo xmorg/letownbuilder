@@ -106,11 +106,11 @@ function game_menu_mouse(x,y,button)
 end
 
 function select_biome_mouse(x,y,click)
-   if mouse_clicked_inrect(x,y, 250,200,64,148) == 1 then
+   if mouse_clicked_inrect(x,y, 150,200,64,148) == 1 then
       game.biome = "forest"
       load_game_res() --load map
       game.show_menu = 0
-   elseif mouse_clicked_inrect(x,y, 350,200,64,148) == 1 then
+   elseif mouse_clicked_inrect(x,y, 250,200,64,148) == 1 then
       game.biome = "japan"
       load_game_res() --load map
       game.show_menu = 0
@@ -119,7 +119,10 @@ end
 
 function draw_biome_select() -- select your biome!
    love.graphics.print("Letownbuilder: Select your biome", 100,100)
-   love.graphics.draw(biome_forest_img, 250, 200)
-   love.graphics.draw(biome_japan_img, 350, 200)
+   love.graphics.draw(biome_forest_img, 150, 200)
+   love.graphics.draw(biome_japan_img, 250, 200)
+   love.graphics.setColor(100,100,100,150)
+   love.graphics.draw(biome_desert_img, 350, 200)
+   love.graphics.setColor(255,255,255,255)
    --love.graphics.draw(biome_desert_img, 450, 200)
 end
