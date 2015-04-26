@@ -82,7 +82,8 @@ function love_crude_load()
    --to avoid errors check to see if there are files???
    e = love.filesystem.exists( "game.lua" )
    if e == true then
-      load_game_res()
+      load_game_res() --create new scene dupes villagers and maybe other stuff.
+      
       chunk = love.filesystem.load( "game.lua" )
       chunk()
       --note you can still get errors if files are missing
@@ -92,6 +93,9 @@ function love_crude_load()
       chunk()
       chunk = love.filesystem.load( "research_topics.lua" )
       chunk()  -- research_topics
+
+      --game_villagers = {} -- clear it out.
+      --for k,v in pairs(game_villagers) do game_villagers[k]=nil end
       chunk = love.filesystem.load( "game_villagers.lua" )
       chunk()  --
       chunk = love.filesystem.load( "game_map.lua" )

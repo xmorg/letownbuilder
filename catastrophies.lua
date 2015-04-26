@@ -24,10 +24,6 @@
 --function run_catastrophies_trigger()
 function run_weather_trigger()
   dice = math.random(1,table.getn(weather)) -- roll a dice 1-13
-  --if dice < 3 then
-  --messageque.add()
-  --current_weather = weather[dice]
-  --message_que_add(message, timer, icon)
   return dice
 end
 function on_update_bandit_raid()

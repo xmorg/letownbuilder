@@ -594,6 +594,8 @@ function draw_villagers()
       elseif kingdom_inventory.watchtower > 0 then
 	 print_talk_text(">"..game_villagers[i].name.."<", game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
       end--endif
+
+       love.graphics.draw(game_sprites[40], 400+game.draw_x, 400+game.draw_y)
    end--endfor
 end
 
@@ -735,34 +737,37 @@ function draw_task_icons()
 end
 
 function draw_weather(w)
+   --love.graphics.getWidth(), love.graphics.getHeight()
+   sw = love.graphics.getWidth()
+   sh = love.graphics.getHeight()
    if w == 1 then
       f = math.random(180,185)
       love.graphics.setColor(f,f,f,100)
-      love.graphics.rectangle("fill", 0, 0, game.screen_width, game.screen_height ) --top border
+      love.graphics.rectangle("fill", 0, 0, sw, sh ) --top border
    end
    if w > 10 and w < 14 then
-      love.graphics.draw(weather_image,weather_quads[1],  math.random(1,640), math.random(1,480) )
+      love.graphics.draw(weather_image,weather_quads[1],  math.random(1,sw), math.random(1, sh) )
    end
    if w > 11 and w < 14 then 
-      love.graphics.draw(weather_image,weather_quads[1],  math.random(1,640), math.random(1,480) )
-      love.graphics.draw(weather_image,weather_quads[1],  math.random(1,640), math.random(1,480) )
+      love.graphics.draw(weather_image,weather_quads[1],  math.random(1,sw), math.random(1, sh) )
+      love.graphics.draw(weather_image,weather_quads[1],  math.random(1,sw), math.random(1, sh) )
    end
    if w > 12 and w < 14 then
-      love.graphics.draw(weather_image,weather_quads[1],  math.random(1,640), math.random(1,480) )
-      love.graphics.draw(weather_image,weather_quads[1],  math.random(1,640), math.random(1,480) )
+      love.graphics.draw(weather_image,weather_quads[1],  math.random(1,sw), math.random(1, sh) )
+      love.graphics.draw(weather_image,weather_quads[1],  math.random(1,sw), math.random(1, sh) )
    end
    if w >= 14 then
-      love.graphics.draw(weather_image,weather_quads[2],  math.random(1,640), math.random(1,480) )
+      love.graphics.draw(weather_image,weather_quads[2],  math.random(1,sw), math.random(1, sh) )
    end
    if w == 15 then
-      love.graphics.draw(weather_image,weather_quads[2],  math.random(1,640), math.random(1,480) )
-      love.graphics.draw(weather_image,weather_quads[2],  math.random(1,640), math.random(1,480) )
-      love.graphics.draw(weather_image,weather_quads[2],  math.random(1,640), math.random(1,480) )
+      love.graphics.draw(weather_image,weather_quads[2],  math.random(1,sw), math.random(1, sh) )
+      love.graphics.draw(weather_image,weather_quads[2],  math.random(1,sw), math.random(1, sh) )
+      love.graphics.draw(weather_image,weather_quads[2],  math.random(1,sw), math.random(1, sh) )
    end
    --sweltering color? 255,216,34
    if w == 8 then
       love.graphics.setColor(255,216,34,100)
-      love.graphics.rectangle("fill", 0, 0, game.screen_width, game.screen_height ) --top border
+      love.graphics.rectangle("fill", 0, 0, sw, sh ) --top border
    end
 end
 

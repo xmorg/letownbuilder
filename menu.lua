@@ -109,10 +109,12 @@ function select_biome_mouse(x,y,click)
    if mouse_clicked_inrect(x,y, 150,200,64,148) == 1 then
       game.biome = "forest"
       load_game_res() --load map
+      create_new_scene(file)
       game.show_menu = 0
    elseif mouse_clicked_inrect(x,y, 250,200,64,148) == 1 then
       game.biome = "japan"
       load_game_res() --load map
+      create_new_scene(file) --no longer in load_game_res because it breaks restore from save
       game.show_menu = 0
    end
 end

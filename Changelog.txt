@@ -1,5 +1,19 @@
 Readme
 =================================
+
+4/25/2015
+* rain fills full screen
+* fixed loading villager duplication
+* added dwarves, enables smithy and smelter if one migrates.
+* added disabled menu item for desert biome
+* added day and night music
+* added donkey cart at "center" of town?
+* message box shows up at bottom of the screen even in full screen
+
+BIG Todos
+* make roads buildable again
+* mushrooms, saltwort, sandstone not showing up on resources icons.
+
 4/1/2015  
 *Tile 65, watchtower (TODO) tower provides light at night up to 2 squares.(TODO) Make watchtower a 
  security upgrade 1 and shift everything else up by one.

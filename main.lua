@@ -88,10 +88,10 @@ game_adults = {}
 game_wildlife = {}
 game_villager_pets = {}
 kingdom_inventory = {wood = 0, sakura = 0, bamboo = 0, carrots = 0, sansai = 0,
-		     raw_meat =0, smoked_meat = 0, tomatoes = 0,
+		     raw_meat =0, smoked_meat = 0, tomatoes = 0, saltwort = 0,
 		     mushrooms = 0, fish = 0, smoked_fish = 0, grain = 0, cherries = 0,
 		     fishwine = 0, paleale=0, apples = 0,
-		     rocks = 0, iron_ore = 0,
+		     rocks = 0, iron_ore = 0, rocksalt = 0, sandstone = 0,
 	iron_ingots = 0, gold_ore = 0, gold_ingots = 0, unrest = 0, 
 	hunger = 0, homes = 0, homeless = 0, mine = 0, barns = 0, farmplot = 0, 
 	chickenfarm = 0, inns = 0, bonfire = 0, schools = 0, graveyards = 0, 
@@ -611,7 +611,7 @@ function load_game_res() --- load game resources after a love version has been s
    end
    --if save file exists then load save file	--else
    
-   create_new_scene(file)
+   --create_new_scene(file) --move to right when new game is pressed.
    --end
    if fullscreen_hack == "yes" then
       if game.version == "0.8.0" then 
