@@ -72,15 +72,18 @@ function update_research_directives()
 		research_topics.civics = research_topics.civics+1 --level up econ
 		message_que_add("You have reached civics Level "..research_topics.civics.."!", 100, 9)
 		if research_topics.civics == 1 then
-			message_que_add("You have unlocked elections!"..research_topics.civics.."!", 100, 9)
+			message_que_add("You have unlocked elections!", 100, 9)
 			research_topics.elections = 1
 			--held once a week, random new mayor, +happiness
 		elseif research_topics.civics == 2 then
-			message_que_add("You have unlocked the town hall!"..research_topics.civics.."!", 100, 9)
+			message_que_add("You have unlocked the town hall!", 100, 9)
 			research_topics.townhall = 1
 		elseif research_topics.civics == 3 then
-			message_que_add("You have unlocked propaganda!"..research_topics.civics.."!", 100, 9)
+			message_que_add("You have unlocked propaganda!", 100, 9)
 			research_topics.propaganda = 1
+		elseif research_topics.civics == 3 then
+			message_que_add("You have unlocked the mayors mansion!", 100, 9)
+			research_topics.townhall = 1
 		end
 	elseif game_directives.research_type == "Research industry" then
 		research_topics.industry = research_topics.industry+1 --level up econ
