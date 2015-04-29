@@ -1,20 +1,21 @@
 Planned features
 
-
+bugs: (unverified) grain shows up as tomatoes if tomatoes is researched.
+fixed: House count no longer updates/stays updated. [FIXED]
+fixed?: fire spreads where no trees are, cant build trade post even with enough wood
+fixed?: wood shows -15(minus) in japanese biome (something subtracting wood not sakura)
+fixed?: forward slash roads do not connect. Needs pixel correct.
+fixed?: Too much talking! decrease by increasing the chance of text by random (1, table.getn(game_villagers)*100)
 fixed?: zombie shows when animal is bagged in hunting.
+fixed?: you can hunt already killed animals (and they can kill you!)
+fixed: message log flows offscreen with prolonged play. - [FIXED]
 fixed: Sharif's office shows vandalized monument, and claims debug "barn"
 fixed: tradepost shows up as shariff's office
 fixed: graveyard shows "debug tried to build a barn" but builds.
-fixed?: you can hunt already killed animals (and they can kill you!)
 fixed: check fireproof now should work.
 
 plans: working gardens (not giving food?)
-bugs: House count no longer updates/stays updated. [FIXED]
-bugs: fire spreads where no trees are, cant build trade post even with enough wood
-bugs: message log flows offscreen with prolonged play. - [FIXED]
-bugs: wood shows -15(minus) in japanese biome (something subtracting wood not sakura)
-bugs: forward slash roads do not connect. Needs pixel correct.
-bugs: Too much talking! decrease by increasing the chance of text by random (1, table.getn(game_villagers)*100)
+
 
 
 TODOS: 
