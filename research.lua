@@ -37,10 +37,10 @@ function update_research_directives()
 			message_que_add("You have unlocked trade caravans.", 100, 114)
 			--TODO: set outbound resources. how to?
 		elseif research_topics.economy == 3 then
-			message_que_add("You have unlocked banks.", 100, 114)
-			--move, ignots to banks
+			message_que_add("You have unlocked trade ships.", 100, 114)
+			--draw ships!
 		elseif research_topics.economy == 4 then
-			message_que_add("You have unlocked coinage.", 100, 114)
+			message_que_add("You have banks.", 100, 114)
 			--coins, but why?
 		end
 	elseif game_directives.research_type == "Research security" then
