@@ -33,6 +33,15 @@ function update_research_directives()
 		message_que_add("You have reached economy Level "..research_topics.economy.."!", 100, 114)
 		if research_topics.economy == 1 then
 			message_que_add("You have unlocked the Trade post.", 100, 114)
+		elseif research_topics.economy == 2 then
+			message_que_add("You have unlocked trade caravans.", 100, 114)
+			--TODO: set outbound resources. how to?
+		elseif research_topics.economy == 3 then
+			message_que_add("You have unlocked banks.", 100, 114)
+			--move, ignots to banks
+		elseif research_topics.economy == 4 then
+			message_que_add("You have unlocked coinage.", 100, 114)
+			--coins, but why?
 		end
 	elseif game_directives.research_type == "Research security" then
 		research_topics.security = research_topics.security+1 --level up econ
