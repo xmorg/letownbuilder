@@ -36,53 +36,58 @@ Current villager roles
 Research types
 ===============================
 Agriculture - the upgrading of farms and providing various new farms.
-	* Level 1 Garden Fencing.  Decrease the chance of crows stealing crops.
-	* Level 2 (tbd) Tomato farms. Adding food variety increases villager happiness.
-	* Level 3 (tbd) Chicken farms.  Add pultry to your diet.
-	* Level 4 (tbd) Cooking.  Cook your food to reduce the risk of food contamination. 
-	* Level 5 (tbd) Treefarms. Get fruit.
-	* Level 6 (tbd) Fishfarms. Make use out of all those holes you dug.
+* Level 1 Garden Fencing.  Decrease the chance of crows stealing crops.
+* Level 2 (tbd) Tomato farms. Adding food variety increases villager happiness.
+* Level 3 (tbd) Chicken farms.  Add pultry to your diet.
+* Level 4 (tbd) Cooking.  Cook your food to reduce the risk of food contamination. 
+* Level 5 (tbd) Treefarms. Get fruit.
+* Level 6 (tbd) Fishfarms. Make use out of all those holes you dug.
+
 Economy - the establishment of tarde and markets
-	* Level 1 Trade Post. (Tbd) will be able to accept merchants.
-	* Level 2 (tbd) Traders. Can send out traders to other towns.
-	* Level 3 (tbd) Riverboating (tbd - if no water just better prices)
-	* Level 4 (tbd) Trade treaties.  You can now garentee goods and services for better prices.
-	* Level 5 (tbd) Currency. You can now buy and sell with coin.
-	* Level 6 (tbd) Banks. Reposses your homes, knowing that your economy will improve in the long run?
-	* Level 7 (tbd) Shipping. Mass moving of product.
-	* Level 8 (tbd)
+* Level 1 Trade Post. (Tbd) will be able to accept merchants.
+* Level 2 (tbd) Traders. Can send out traders to other towns.
+* Level 3 (tbd) Riverboating (tbd - if no water just better prices)
+* Level 4 (tbd) Trade treaties.  You can now garentee goods and services for better prices.
+* Level 5 (tbd) Currency. You can now buy and sell with coin.
+* Level 6 (tbd) Banks. Reposses your homes, knowing that your economy will improve in the long run?
+* Level 7 (tbd) Shipping. Mass moving of product.
+* Level 8 (tbd)
+
 Security - With a growing number of dangers being added to the game, security will play a larger role in keeping your town safe
-	* Level 1 Sheriff's Office/sheriff You can now catch food thieves.
-	* Level 2 (tbd) militia. The Sheriff will be able to call on the militia for emergancies.
-	* Level 3 (tbd) hunters. cull the local wildlife and get food for doing it.
-	* Level 4 (tbd) Palasade - build walls around your town.
-	* Level 5 (tbd) Deputies - Reduce the need for militia with full time sub-sheriffs.
-	* Level 6 (tbd) Rangers - Bane of werewolves, and bandits.
-	* Level 7 (tbd) Punishments - Make an example of evildoers.(decrease unrest)
+* Level 1 Sheriff's Office/sheriff You can now catch food thieves.
+* Level 2 (tbd) militia. The Sheriff will be able to call on the militia for emergancies.
+* Level 3 (tbd) hunters. cull the local wildlife and get food for doing it.
+* Level 4 (tbd) Palasade - build walls around your town.
+* Level 5 (tbd) Deputies - Reduce the need for militia with full time sub-sheriffs.
+* Level 6 (tbd) Rangers - Bane of werewolves, and bandits.
+* Level 7 (tbd) Punishments - Make an example of evildoers.(decrease unrest)
+
 Industry - Industry allows you to build more advanced building which produce more.
-	* Level 1 fishermans hut - Now provides a fresh catch daily without manual fishing.
-	* Level 2 (tbd) inns - inns/innkeepers provide extra town stability by allowing tourism and family/friends.
-	* Level 3 (tbd) hospital - doctors heal the sick...sometimes.
-	* Level 4 (tbd) Improved Mining. You now can mine metals and precious metals.
-	* Level 5 (tbd) Workshops.  Make things to export!
-	* Level 6 (tbd) Alchemist.  Make medicinces, perfumes and poisons!
-	* Level 7 (tbd) Smelting. Make metal!
+* Level 1 fishermans hut - Now provides a fresh catch daily without manual fishing.
+* Level 2 (tbd) inns - inns/innkeepers provide extra town stability by allowing tourism and family/friends.
+* Level 3 (tbd) hospital - doctors heal the sick...sometimes.
+* Level 4 (tbd) Improved Mining. You now can mine metals and precious metals.
+* Level 5 (tbd) Workshops.  Make things to export!
+* Level 6 (tbd) Alchemist.  Make medicinces, perfumes and poisons!
+* Level 7 (tbd) Smelting. Make metal!
+
 Civics - Civics will allow you to manage a town more effectivly by making the town more stable.  Things like town halls, council, city planning, and more are planned for the civics line of research.
-	* Level 1 (tbd) Mayor's monument. A symbol of the mayers grandure, or pomposity? It ups the happiness of the town, yet is the first to get defaced if things go bad.
-	* Level 2 (tbd) Town Hall.
-	* Level 3 (tbd) Free elections.  Finally choose your own mayor!
-	* Level 4 (tbd) Town council.  Someone else makes the smaller decisions and gives the mayor culpible denyability.
-	* Level 5 (tbd) Propaganda! When the going gets bad, the bad start lying...
-	* Level 6 (tbd) Palace.  The mayor gets his own house finally!
-	* Level 7 (tbd) Upper class. Nobles; another annoying person to bow to.
+* Level 1 (tbd) Mayor's monument. A symbol of the mayers grandure, or pomposity? It ups the happiness of the town, yet is the first to get defaced if things go bad.
+* Level 2 (tbd) Town Hall.
+* Level 3 (tbd) Free elections.  Finally choose your own mayor!
+* Level 4 (tbd) Town council.  Someone else makes the smaller decisions and gives the mayor culpible denyability.
+* Level 5 (tbd) Propaganda! When the going gets bad, the bad start lying...
+* Level 6 (tbd) Palace.  The mayor gets his own house finally!
+* Level 7 (tbd) Upper class. Nobles; another annoying person to bow to.
 	
 Research Combos (tbd)
 ================================
-	* Agriculture(1), Security(1) (tbd) Scarecrow - Further reduce bird raids.
-	* Civics(2) Security(2) Militia House, a permanent place for your citizen army, reduces unrest and allows for a longer militia muster time.
-	* Industry(1) Economy(3) Fisherboats! Catch more fish out in the middle of a lake.
-	* Agriculture(4) Economy(5) Restaurants. Eat out in style.  Comfort food for massive unrest reduction.
-	* Agriculture(1) Industry(1) Civics(1) Waterforming.  Fill holes with water.
+* Agriculture(1), Security(1) (tbd) Scarecrow - Further reduce bird raids.
+* Civics(2) Security(2) Militia House, a permanent place for your citizen army, reduces unrest and allows for a longer militia muster time.
+* Industry(1) Economy(3) Fisherboats! Catch more fish out in the middle of a lake.
+* Agriculture(4) Economy(5) Restaurants. Eat out in style.  Comfort food for massive unrest reduction.
+* Agriculture(1) Industry(1) Civics(1) Waterforming.  Fill holes with water.
+
 Wildlife types (tbd) wildlife will provide wild animales which can be hunted or, in some cases WILL HUNT YOU!
 ================================
 rabbit - little vermin that taste good if cooked properly(tbd)  (tbd rabid rabits) can bite villagers and give you rabbies!
