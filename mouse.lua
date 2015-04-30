@@ -348,6 +348,7 @@ function love.mousepressed(x, y, button)
 	    end
 	 end
 	 ------------------SELCT ROAD TO BUILD -----------------------
+	 --on_build_road()  buildings.lua
       elseif game.give_direction == "Select road to build" then --28,36
 	 for i = 0, 10 do
 	    if y >= 64*4 and y <= 64*4+64 and x >= 64*i and x <= 64*(i+1) then
