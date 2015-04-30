@@ -197,7 +197,8 @@ function update_job_que()
 	       game_fire_map[game_job_que[i].location_y][game_job_que[i].location_x] = 1
 	       kingdom_inventory.bonfire = kingdom_inventory.bonfire+1
 	    elseif game_job_que[i].job_type == "Build road" then
-	       game_road_map[game_job_que[i].location_y][game_job_que[i].location_x] = game.road_to_build
+	       --game_road_map[game_job_que[i].location_y][game_job_que[i].location_x] = game.road_to_build
+	       game_road_map[game_job_que[i].location_y][game_job_que[i].location_x] = game.house_to_build
 	    elseif game_job_que[i].job_type == "Dig hole" then
 	       game_map[game_job_que[i].location_y][game_job_que[i].location_x] = game.hole_tile --math.random(24,27)
 	       instant_update_map()
