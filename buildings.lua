@@ -351,6 +351,14 @@ function on_build_house() --check for resources and conditions, if ok start buil
 end
 
 function on_build_road()
+   function start_build_road_job()
+      update_directives_loc(300, 1)
+      game_directives.job_type = game.give_direction
+      game.give_direction = "None"
+      villagers_do_job(game_directives.location_x, game_directives.location_y, "builder")
+      create_job_forque()
+      play_sound(sound_build_house)
+   end
    if game_map[game.tile_selected_y][game.tile_selected_x] == game.water_tile then
       game_directives.job_type = "Cant build on water"
       game_directives.active = 0
@@ -371,9 +379,10 @@ function on_build_road()
       message_que_add( "Not enough stone to build a road.(1 Stone)", 80, 41)
    else
       kingdom_inventory.rocks = kingdom_inventory.rocks -1 --stone
-      update_directives_loc(100, 1)
-      game_directives.job_type = game.give_direction
-      game.give_direction = "None"
+      --update_directives_loc(100, 1)
+      --game_directives.job_type = game.give_direction
+      --game.give_direction = "None"
+      start_build_road_job()
    end--if game_map[game.tile_selected_y][game.tile_selected_x] == game.water_tile then
 end
 

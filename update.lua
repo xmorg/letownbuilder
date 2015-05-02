@@ -134,7 +134,10 @@ function update_job_que()
 	 and building == 0 then
 	    on_game_directives_buildhouse(i)
 	    game_job_que[i].timer = game_job_que[i].timer -1
-	    building = 1  
+	    building = 1
+	 elseif game_job_que[i].job_type == "Build road" and building == 0 then
+	    game_job_que[i].timer = game_job_que[i].timer -1
+	    building = 1
 	 elseif (game_job_que[i].job_type == "Cut trees") and get_availible_worker(game_job_que[i].job_type) == true and woodcutting == 0 then
 	    on_sucessful_cut_trees(game_job_que[i].job_type, sucessful) -- trees, sakura, or bamboo
 	    game_job_que[i].timer = game_job_que[i].timer -1
@@ -198,7 +201,7 @@ function update_job_que()
 	       kingdom_inventory.bonfire = kingdom_inventory.bonfire+1
 	    elseif game_job_que[i].job_type == "Build road" then
 	       --game_road_map[game_job_que[i].location_y][game_job_que[i].location_x] = game.road_to_build
-	       game_road_map[game_job_que[i].location_y][game_job_que[i].location_x] = game.house_to_build
+	       game_road_map[game_job_que[i].location_y][game_job_que[i].location_x] = game.road_to_build
 	    elseif game_job_que[i].job_type == "Dig hole" then
 	       game_map[game_job_que[i].location_y][game_job_que[i].location_x] = game.hole_tile --math.random(24,27)
 	       instant_update_map()

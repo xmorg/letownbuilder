@@ -118,6 +118,14 @@ function on_dig_where_click()
    end -- if game_map[game.tile_selected_y][game.tile_selected_x] > 2 then
 end
 
+function mouse_clicked_in32(x, y, icon_x, icon_y)
+   if y >= icon_y and y <= icon_y +32 and x >= icon_x and x <= icon_x+32 then
+      return 1
+   else
+      return 0
+   end
+end
+
 
 
 function love.mousepressed(x, y, button)
@@ -128,22 +136,6 @@ function love.mousepressed(x, y, button)
 	 game_menu_mouse(x,y,"l")
       elseif game.show_menu == 2 then
 	 select_biome_mouse(x,y,"l")
-      end
-      
-      function mouse_clicked_in32(x, y, icon_x, icon_y)
-	 if y >= icon_y and y <= icon_y +32 and x >= icon_x and x <= icon_x+32 then
-	    return 1
-	 else
-	    return 0
-	 end
-      end
-      
-      if mouse_clicked_in32(x, y, 600,0) == 1 then  --show records
-	 if game.game_roster == 0 then 
-	    game.game_roster = 1
-	 else 
-	    game.game_roster = 0
-	 end
       end
       if mouse_clicked_in32(x, y, 632,0) == 1 then
 	 love_crude_load()
@@ -167,7 +159,13 @@ function love.mousepressed(x, y, button)
 	    return 0
 	 end
       end
-      
+      if mouse_clicked_in32(x, y, 600,0) == 1 then  --show records
+	 if game.game_roster == 0 then 
+	    game.game_roster = 1
+	 else 
+	    game.game_roster = 0
+	 end
+      end
       if mouse_clicked_in64(x, y, 0, 64*1) == 1 then --Select job
 	 if game.give_direction == "Select job" then
 	    game.give_direction = "None"
@@ -194,12 +192,6 @@ function love.mousepressed(x, y, button)
 	 elseif get_kingdom_researchable() == 1 then
 	    game.give_direction = "Research" -- check for researchables
 	 end
-      --elseif mouse_clicked_in64(x, y, game.screen_width -64, 64*1) == 1 then --roster
-	 --if game.game_roster == 0 then 
-	    --game.game_roster = 1
-	 --else 
-	    --game.game_roster = 0
-	 --end
       elseif game.game_roster == 1 then
 	 col_one = 80
 	 col_two = 160
@@ -347,8 +339,7 @@ function love.mousepressed(x, y, button)
 	       build_house_directive("Build house", 64, 64)--smithy 
 	    end
 	 end
-	 ------------------SELCT ROAD TO BUILD -----------------------
-	 --on_build_road()  buildings.lua
+	 ------------------SELCT ROAD TO BUILD -------on_build_road()  buildings.lua
       elseif game.give_direction == "Select road to build" then --28,36
 	 for i = 0, 10 do
 	    if y >= 64*4 and y <= 64*4+64 and x >= 64*i and x <= 64*(i+1) then
@@ -368,8 +359,8 @@ function love.mousepressed(x, y, button)
 		  game.give_direction = "Build bridge"
 		  game.house_to_build = 20+i
 	       end --endif
-	    end-- endif
-	 end--endfor
+	    end -- endif
+	 end --endfor
 	 ------------------MAKE GARDEN-----------------------------
       elseif game.give_direction == "Make garden" then --Garden
 	 on_build_garden()
@@ -390,10 +381,11 @@ function love.mousepressed(x, y, button)
 	 on_build_bridge() --buildings.lua
       elseif game.give_direction == "Build road" then
 	 on_build_road()   --buildings.lua
+	 --message_que_add("on_build_road()", 80, 41)
       else
 	 game.mouse_last_x =  love.mouse.getX()
 	 game.mouse_last_y =  love.mouse.getY()
 	 game.give_direction = "Scrolling" 
-      end--elseif game.give_direction == "Build road" then
+      end --elseif game.give_direction == "Build road" then
    end
 end
