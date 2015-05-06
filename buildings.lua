@@ -373,10 +373,12 @@ function on_build_road()
       game_directives.active = 0
       game.give_direction = "None"
       message_que_add("Clear this area first", 80, 41)
-   elseif kingdom_inventory.rocks < 1 then
-      game_directives.job_type = "Not enough stone." --stone?
-      game_directives.active = 0
-      message_que_add( "Not enough stone to build a road.(1 Stone)", 80, 41)
+   --NOTE: dirt roads do not require stone.
+   --however rain can wash out roads!
+   --elseif kingdom_inventory.rocks < 1 then
+   --   game_directives.job_type = "Not enough stone." --stone?
+   --   game_directives.active = 0
+   --   message_que_add( "Not enough stone to build a road.(1 Stone)", 80, 41)
    else
       kingdom_inventory.rocks = kingdom_inventory.rocks -1 --stone
       --update_directives_loc(100, 1)
