@@ -551,6 +551,7 @@ function load_game_res() --- load game resources after a love version has been s
    local tile_dir = "data/tiles/"
    local forest_tile_dir = "data/tiles/forest"
    local japan_tile_dir = "data/tiles/japan"
+   local desert_tile_dir = "data/tiles/desert"
    
    local icon_dir = "data/icons/"
    local sprite_dir = "data/sprites/"
@@ -567,6 +568,9 @@ function load_game_res() --- load game resources after a love version has been s
       	weather_image = love.graphics.newImage("data/tiles/japan/weather01.png")
       elseif game.biome == "japan" then
       	tiles_image = love.graphics.newImage("data/tiles/japan/tiles01.png")
+      	weather_image = love.graphics.newImage("data/tiles/japan/weather01.png")
+      elseif game.biome == "desert" then
+      	tiles_image = love.graphics.newImage("data/tiles/desert/tiles01.png")
       	weather_image = love.graphics.newImage("data/tiles/japan/weather01.png")
       else
       	tiles_image = love.graphics.newImage("data/tiles/japan/tiles01.png")
@@ -585,6 +589,9 @@ function load_game_res() --- load game resources after a love version has been s
       	weather_image = love.graphics.newImage("data/tiles/japan/weather01.png")
       elseif game.biome == "japan" then
       	japan_tiles = love.graphics.newImage("data/tiles/forest/tiles01.png")
+      	weather_image = love.graphics.newImage("data/tiles/japan/weather01.png")
+      elseif game.biome == "desert" then
+      	japan_tiles = love.graphics.newImage("data/tiles/desert/tiles01.png")
       	weather_image = love.graphics.newImage("data/tiles/japan/weather01.png")
       end
       --end new code
