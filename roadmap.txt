@@ -1,5 +1,14 @@
 Planned features
 
+Deserts
+ DONE: Gathering food in green tiles yields ?what?, and tiles turn back to sand.
+ TODO: Cutting trees in the tree tiles should yield wood.
+ TODO: Digging a hole should yield sand/sandstone.
+ TODO: Fishing in water should yield (fewer) fish.
+ TODO: (bug?) Should gardens work in sand?
+ TODO: Houses/mines should cost 1 wood, 6 sandstone
+ TODO: 
+
 bugs: (unverified) grain shows up as tomatoes if tomatoes is researched.
 fixed: House count no longer updates/stays updated. [FIXED]
 fixed?: fire spreads where no trees are, cant build trade post even with enough wood
@@ -13,22 +22,19 @@ fixed: Sharif's office shows vandalized monument, and claims debug "barn"
 fixed: tradepost shows up as shariff's office
 fixed: graveyard shows "debug tried to build a barn" but builds.
 fixed: check fireproof now should work.
-
-plans: working gardens (not giving food?)
-
+fixed: working gardens (not giving food?)
 
 
 TODOS: 
 
-Crops - Needs to harvest crops
 
 Weather
-  * Snow - create ice flakes falling down, requires at least 1 fire per 5 villagers to avoid freezing.[DONE]
-   * Snow - create snow on the ground, tiles get whiter...
-  * Rain - causes  1/100th chance of causing flooding, 1/50th chance of putting out fires.
-   * Rain - Flood trenches
-  * Draught - lack of rain for 14+ days, causes a loss in plant life.  Green areas become dirt. Dirt does not regenerate until it rains. Drought has a 1/50 chance of ending.
-  * Locusts! - all of your food are belong to us!  Locust has a 1/1000 chance of happening, and each green tile has a 9/10 chance of being eaten.  All gardens reset to 0. Barns are untouched.  Any food not in a barn is eaten.
+ DONE: Snow - create ice flakes falling down, requires at least 1 fire per 5 villagers to avoid freezing.[DONE]
+ * Snow - create snow on the ground, tiles get whiter...
+ * Rain - causes  1/100th chance of causing flooding, 1/50th chance of putting out fires.
+ * Rain - Flood trenches
+ * Draught - lack of rain for 14+ days, causes a loss in plant life.  Green areas become dirt. Dirt does not regenerate until it rains. Drought has a 1/50 chance of ending.
+ * Locusts! - all of your food are belong to us!  Locust has a 1/1000 chance of happening, and each green tile has a 9 /10 chance of being eaten.  All gardens reset to 0. Barns are untouched.  Any food not in a barn is eaten.
   
 Bandit Raids - TBD
   * 1/500th chance of a bandit raid per day.
