@@ -477,7 +477,23 @@ function on_build_garden()
 end
 
 function on_gather_food()
-   if game.tile_selected_y > 1 and game.tile_selected_x > 1 and game_map[game.tile_selected_y][game.tile_selected_x] == game.water_tile then
+   if game.biome = "desert" then
+      if game_map[game.tile_selected_y][game.tile_selected_x] >= 3 and game_map[game.tile_selected_y][game.tile_selected_x] <= 8 and
+      game_map[game.tile_selected_y][game.tile_selected_x] ~= 5 then --there is food except for 5
+	 game_directives.active = 1
+	 game_directives.timer = 300
+	 game_directives.location_x = game.tile_selected_x
+	 game_directives.location_y = game.tile_selected_y
+	 game_directives.job_type = game.give_direction
+	 game.give_direction = "None"
+	 create_job_forque() -- make a job for the queue
+	 --wait! how do we go back to sand!
+      else
+	 game_directives.job_type = "None."
+	 game_directives.active = 0
+	 game.give_direction = "No food here."
+      end
+   elseif game.tile_selected_y > 1 and game.tile_selected_x > 1 and game_map[game.tile_selected_y][game.tile_selected_x] == game.water_tile then
       game_directives.active = 1
       game_directives.timer = 300
       game_directives.location_x = game.tile_selected_x

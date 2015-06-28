@@ -185,7 +185,9 @@ function update_job_que()
 	       kingdom_inventory.wood = kingdom_inventory.wood -5
 	       game_map[game_job_que[i].location_y][game_job_que[i].location_x] = game.house_to_build
 	    elseif game_job_que[i].job_type == "Gather Food" then
-	       if  game_map[game_job_que[i].location_y][game_job_que[i].location_x] == 2 then
+	       if game.biome == "desert" then
+		  game_map[game_job_que[i].location_y][game_job_que[i].location_x] = 2
+	       elseif  game_map[game_job_que[i].location_y][game_job_que[i].location_x] == 2 then
 		  game_map[game_job_que[i].location_y][game_job_que[i].location_x] = 1
 	       end
 	    elseif game_job_que[i].job_type == "Make garden" then  --GARDEN
