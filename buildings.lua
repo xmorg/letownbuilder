@@ -477,7 +477,7 @@ function on_build_garden()
 end
 
 function on_gather_food()
-   if game.biome = "desert" then
+   if game.biome == "desert" then
       if game_map[game.tile_selected_y][game.tile_selected_x] >= 3 and game_map[game.tile_selected_y][game.tile_selected_x] <= 8 and
       game_map[game.tile_selected_y][game.tile_selected_x] ~= 5 then --there is food except for 5
 	 game_directives.active = 1
