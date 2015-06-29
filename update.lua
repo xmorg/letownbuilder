@@ -234,9 +234,14 @@ end
 
 function on_sucessful_cut_trees(woodtype, sucessrate)
    if woodtype == "Cut trees" and sucessrate == 1 then
-      kingdom_inventory.wood = kingdom_inventory.wood+1
+      if game.biome == "desert" then -- wood is VERY rare.
+      	addwood = math.random(0,1)
+      else
+      	addwood = 1
+      end
+      kingdom_inventory.wood = kingdom_inventory.wood+addwood
       bonus = math.random(1,100)
-      if bonus == 1 then
+      if bonus == 1 and game.biome ~= "desert" then
 	 kingdom_inventory.cherries = kingdom_inventory.cherries+1
       end
    elseif woodtype == "Cut sakura" and sucessrate == 1 then
