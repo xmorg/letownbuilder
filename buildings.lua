@@ -97,12 +97,15 @@ end
 
 function build_house_complete(i) -- house is complete, remove resources used, and run update_add_building
    if game.house_to_build >= 23 and game.house_to_build <= 26 then --house
-      if game.biome == "forest" then
-	 kingdom_inventory.wood = kingdom_inventory.wood -5
-	 kingdom_inventory.rocks = kingdom_inventory.rocks -5
-      elseif game.biome == "japan" then
-	 kingdom_inventory.sakura = kingdom_inventory.sakura -5
-	 kingdom_inventory.bamboo = kingdom_inventory.bamboo -5
+      	if game.biome == "forest" then
+		kingdom_inventory.wood = kingdom_inventory.wood -5
+		kingdom_inventory.rocks = kingdom_inventory.rocks -5
+      	elseif game.biome == "japan" then
+		kingdom_inventory.sakura = kingdom_inventory.sakura -5
+		kingdom_inventory.bamboo = kingdom_inventory.bamboo -5
+	elseif game.biome == "desert" then
+      		kingdom_inventory.sandstone = kingdom_inventory.sandstone -6
+      		kingdom_inventory.wood = kingdom_inventory.wood -1
       end
       villagers_do_job(game_directives.location_x, game_directives.location_y, "builder")
       update_add_building(game_job_que[i].location_y, game_job_que[i].location_x, "house")
@@ -123,12 +126,15 @@ function build_house_complete(i) -- house is complete, remove resources used, an
       end
       kingdom_inventory.rocks = kingdom_inventory.rocks -15
       update_add_building(game_job_que[i].location_y, game_job_que[i].location_x, "school")
-   elseif game.house_to_build == 52 then--barn
-      if game.biome == "japan" then
-	 kingdom_inventory.sakura = kingdom_inventory.sakura -5
-	 kingdom_inventory.bamboo = kingdom_inventory.bamboo -3
-      else
-	 kingdom_inventory.wood = kingdom_inventory.wood -8
+      elseif game.house_to_build == 52 then--barn
+      	if game.biome == "japan" then
+		kingdom_inventory.sakura = kingdom_inventory.sakura -5
+		kingdom_inventory.bamboo = kingdom_inventory.bamboo -3
+	elseif game.biome == "desert" then
+		kingdom_inventory.sandstone = kingdom_inventory.sandstone -6
+		kingdom_inventory.wood = kingdom_inventory.wood -2
+      	else
+		kingdom_inventory.wood = kingdom_inventory.wood -8
       end
       update_add_building(game_job_que[i].location_y, game_job_que[i].location_x, "barn")
    elseif game.house_to_build == 53 then
