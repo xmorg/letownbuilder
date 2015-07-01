@@ -284,9 +284,14 @@ function on_sucessful_gather_dojob(biome, job_type, weather,sucessrate)
 	    kingdom_inventory.carrots = kingdom_inventory.carrots+1
 	 elseif game.biome == "japan" then
 	    kingdom_inventory.sansai = kingdom_inventory.sansai+1
+	 elseif game.biome == "desert" then
+	    kindom_inventory.desert_onions = kindom_inventory.desert_onions+1
 	 end
-      elseif job_type == "Fishing" then
-	 kingdom_inventory.fish = kingdom_inventory.fish+1
+elseif job_type == "Fishing" then
+      	if game.biome == "desert" then
+      	   kingdom_inventory.fish = kingdom_inventory.fish+math.random(0,1)
+      	else
+	   kingdom_inventory.fish = kingdom_inventory.fish+1
       end--endif
    elseif sucessrate == 2 and halfdice == 1 then
       if job_type == "Gather Food" then
