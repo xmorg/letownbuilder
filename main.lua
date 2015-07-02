@@ -24,7 +24,7 @@ game = {state = 1, give_direction = "None", day_time = 6000, day_count = 1,
 	water_tile = 38, hole_tile = 37, fish_icon = 16, bridge_tile1 = 21,
 	bridge_tile2 = 22, axe_icon = 52, shovel_icon = 15, green_selected = 39, 
 	yellow_selected = 40, house_to_build = 0, road_to_build = 0, day_ttl = 1200,
-	
+	nightwolf = 42, --night wolves!
 	current_weather = 2, days_without_rain = 0, days_rained = 0, days_snowed = 0,
 	current_catastrophy = 0, days_since_regrowth = 0,
 
