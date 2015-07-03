@@ -314,7 +314,16 @@ function munch_food(villager)
       else
 	 villager.opinion = "Ate carrots today."
       end
-      return
+      return 1
+   elseif kingdom_inventory.wild_onions > 0 then
+      kingdom_inventory.wild_onions = kingdom_inventory.wild_onions -1
+      if contract_disease(villager, 1, 10) == false then
+	 villager.opinion = "Feels bad after eating onions."
+	 message_que_add(villager.name.."'s onions were contaminated!", 100, 9)
+      else
+	 villager.opinion = "Ate wild onions today."
+      end
+      return 1
    elseif kingdom_inventory.grain > 0 then kingdom_inventory.grain = kingdom_inventory.grain -1
       villager.opinion = "Ate grain today."
       return 1
@@ -449,7 +458,10 @@ function villagers_do_job(x, y, specialist)
    local lx = 0
    local lx = 0
    for i, v in ipairs(game_villagers) do
-      if game_villagers[i].age > 14 and game_villagers[i].position == specialist and game_villagers[i].alive == 1 then --can work
+      if game_villagers[i].age > 14 and
+	 game_villagers[i].position == specialist and
+      game_villagers[i].alive == 1 then --can work
+	 -------------------------
 	 lx = 300+(y - x) * 32 + 64
 	 ly = -100+(y + x) * 32 / 2 + 50
 	 game_villagers[i].dx = lx+30
@@ -462,7 +474,9 @@ function villagers_do_job(x, y, specialist)
    end
    if found_worker == "false" then
       for i, v in ipairs(game_villagers) do
-	 if game_villagers[i].age > 14 and game_villagers[i].position == "peasant" and game_villagers[i].alive == 1 then --can work
+	 if game_villagers[i].age > 14 and
+	    game_villagers[i].position == "peasant" and
+	 game_villagers[i].alive == 1 then --can work
 	    lx = 300+(y - x) * 32 + 64
 	    ly = -100+(y + x) * 32 / 2 + 50
 	    game_villagers[i].dx = lx+30

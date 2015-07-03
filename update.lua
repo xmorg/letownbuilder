@@ -50,18 +50,37 @@ function villagers_complete_jobs_by_buildings()
    end --endif
 end --endfunction
 
+function debug_negatives() --?
+   if kingdom_inventory.rocks < 0 then
+      kingdom_inventory.rocks = 0
+   end
+end
+
 function update_run_daytimer() 
    if game.day_time < 24000 then
       game.day_time = game.day_time+1
       --sound_daytime     = love.audio.newSource("data/sounds/wind_1_wbirds.ogg", "static")
       --sound_nighttime = love.audio.newSource("data/sounds/wind_2_night.ogg", "static")
-      if is_night() == 0 then --daytime
-	 if music_townbg1:isPlaying() == false then music_townbg1:play() end
-	 if music_nightbg1:isPlaying() == true then music_nightbg1:stop() end
-      else --its night
-	 if music_townbg1:isPlaying() == true then music_townbg1:stop() end
-	 if music_nightbg1:isPlaying() == false then music_nightbg1:play() end
-      end
+      if game.togglesound == "on" then --play music if sound was on.
+	 if is_night() == 0 then --daytime
+	    if music_townbg1:isPlaying() == false then music_townbg1:play() end
+	    if music_nightbg1:isPlaying() == true then music_nightbg1:stop() end
+	 else --its night
+	    if music_townbg1:isPlaying() == true then music_townbg1:stop() end
+	    if music_nightbg1:isPlaying() == false then music_nightbg1:play() end
+	 end
+      else -- sound is off
+	 if is_night() == 0 then --daytime
+	    if music_townbg1:isPlaying() == true then music_townbg1:stop() end
+	    if music_nightbg1:isPlaying() == true then music_nightbg1:stop() end
+	 else --its night
+	    if music_townbg1:isPlaying() == true then music_townbg1:stop() end
+	    if music_nightbg1:isPlaying() == true then music_nightbg1:stop() end
+	 end	 
+      end  --end sound
+      --debug kingdom inventory to prevent negatives!
+      debug_negatives()
+      --end debug
       if is_night() == 0 and math.random(1,240) == 1 then --daytime   
 	 play_sound(sound_light_breeze)
       elseif is_night() == 0 and math.random(1,240) == 2 then
@@ -138,19 +157,25 @@ function update_job_que()
 	 elseif game_job_que[i].job_type == "Build road" and building == 0 then
 	    game_job_que[i].timer = game_job_que[i].timer -1
 	    building = 1
-	 elseif (game_job_que[i].job_type == "Cut trees") and get_availible_worker(game_job_que[i].job_type) == true and woodcutting == 0 then
+	 elseif (game_job_que[i].job_type == "Cut trees") and
+	 get_availible_worker(game_job_que[i].job_type) == true and woodcutting == 0 then
+	    
 	    on_sucessful_cut_trees(game_job_que[i].job_type, sucessful) -- trees, sakura, or bamboo
 	    game_job_que[i].timer = game_job_que[i].timer -1
 	    woodcutting = 1
-	 elseif (game_job_que[i].job_type == "Cut bamboo") and get_availible_worker(game_job_que[i].job_type) == true and woodcutting == 0 then
+	 elseif (game_job_que[i].job_type == "Cut bamboo") and
+	 get_availible_worker(game_job_que[i].job_type) == true and woodcutting == 0 then
 	    on_sucessful_cut_trees(game_job_que[i].job_type, sucessful) -- trees, sakura, or bamboo
 	    game_job_que[i].timer = game_job_que[i].timer -1
 	    woodcutting = 1
-	 elseif (game_job_que[i].job_type == "Cut sakura") and get_availible_worker(game_job_que[i].job_type) == true and woodcutting == 0 then
+	 elseif (game_job_que[i].job_type == "Cut sakura") and
+	    get_availible_worker(game_job_que[i].job_type) == true and
+	 woodcutting == 0 then
 	    on_sucessful_cut_trees(game_job_que[i].job_type, sucessful) -- trees, sakura, or bamboo
 	    game_job_que[i].timer = game_job_que[i].timer -1
 	    woodcutting = 1
-	 elseif game_job_que[i].job_type == "Dig hole" and get_availible_worker(game_job_que[i].job_type)==true and digging == 0 then
+	 elseif game_job_que[i].job_type == "Dig hole" and
+	 get_availible_worker(game_job_que[i].job_type)==true and digging == 0 then
 	    on_sucessful_dig_hole(game_job_que[i].job_type, sucessful) -- check for dig hole
 	    game_job_que[i].timer = game_job_que[i].timer -1
 	    digging = 1
@@ -162,10 +187,12 @@ function update_job_que()
 	    on_sucessful_gather_dojob(game.biome, game_job_que[i].job_type, game.current_weather,sucessful) -- fish, gathering
 	    game_job_que[i].timer = game_job_que[i].timer -1
 	    fishing = 1
-	 elseif  game_job_que[i].job_type == "Make garden" and get_availible_worker(game_job_que[i].job_type)==true and farming == 0 then
+	 elseif  game_job_que[i].job_type == "Make garden" and
+	 get_availible_worker(game_job_que[i].job_type)==true and farming == 0 then
 	    game_job_que[i].timer = game_job_que[i].timer -1
 	    farming = 1
-	 elseif  game_job_que[i].job_type == "Plant tomatoes" and get_availible_worker(game_job_que[i].job_type)==true and farming == 0 then
+	 elseif  game_job_que[i].job_type == "Plant tomatoes" and
+	 get_availible_worker(game_job_que[i].job_type)==true and farming == 0 then
 	    game_job_que[i].timer = game_job_que[i].timer -1
 	    farming = 1
 	 elseif game_job_que[i].job_type == "Make bonfire" and firebuilding == 0 then
@@ -173,7 +200,7 @@ function update_job_que()
 	    firebuilding = 1
 	 end
 	 --count job types and only decrement timer if we havent decremented a timer on a job.	 
-      else --game_job_que[i].timer > 0 then
+      else --game_job_que[i].timer > 0 then --JOBS FINISHED HERE!
 	 if game_job_que[i].timer == 0 then --Building Complete
 	    if game_job_que[i].job_type == "Demolish building" then
 	       update_destroy_building(game_job_que[i].location_y, game_job_que[i].location_x)
@@ -205,10 +232,24 @@ function update_job_que()
 	       --game_road_map[game_job_que[i].location_y][game_job_que[i].location_x] = game.road_to_build
 	       game_road_map[game_job_que[i].location_y][game_job_que[i].location_x] = game.road_to_build
 	    elseif game_job_que[i].job_type == "Dig hole" then
-	       game_map[game_job_que[i].location_y][game_job_que[i].location_x] = game.hole_tile --math.random(24,27)
+	       if game.biome == "desert" then
+		  --some digs will just level, 7, 11, 12,18
+		  gm = game_map[game_job_que[i].location_y][game_job_que[i].location_x]
+		  if gm == 7 or gm == 11 or gm == 12 or gm == 18 then
+		     game_map[game_job_que[i].location_y][game_job_que[i].location_x] = 2 --leveled tile
+		  else
+		     game_map[game_job_que[i].location_y][game_job_que[i].location_x] = game.hole_tile
+		  end		  
+	       else
+		  game_map[game_job_que[i].location_y][game_job_que[i].location_x] = game.hole_tile
+	       end
 	       instant_update_map()
 	    elseif game_job_que[i].job_type == "Cut trees" then
-	       game_map[game_job_que[i].location_y][game_job_que[i].location_x] = math.random(1,2)
+	       if game.biome == "desert" then
+		  game_map[game_job_que[i].location_y][game_job_que[i].location_x] = 2
+	       else
+		  game_map[game_job_que[i].location_y][game_job_que[i].location_x] = math.random(1,2)
+	       end
 	    elseif game_job_que[i].job_type == "Cut bamboo" or game_job_que[i].job_type == "Cut sakura"  then
 	       game_map[game_job_que[i].location_y][game_job_que[i].location_x] = math.random(1,2) --change the map
 	    end--endif game_job_que[i].job_type == "Demolish building" then
@@ -261,7 +302,11 @@ end
 
 function on_sucessful_dig_hole(job_type, sucessrate)
    if sucessrate == 1 and job_type == "Dig hole" then
-      kingdom_inventory.rocks = kingdom_inventory.rocks+1
+      if game.biome == "desert" then
+	 kingdom_inventory.sandstone = kingdom_inventory.sandstone+1
+      else
+	 kingdom_inventory.rocks = kingdom_inventory.rocks+1
+      end
    elseif sucessrate == 2 and job_type == "Dig hole" then
       kingdom_inventory.carrots = kingdom_inventory.carrots+1
    elseif sucessrate == 3 and job_type == "Dig hole" then
@@ -277,23 +322,23 @@ function on_sucessful_dig_hole(job_type, sucessrate)
 end
 
 function on_sucessful_gather_dojob(biome, job_type, weather,sucessrate)
-	local halfdice = math.random(1,2)
-	if sucessrate == 1 then --test the random for sucess on a number of directives.
-		if job_type == "Gather Food" and halfdice == 1 then
-			if is_night() == 0 and game.biome == "forest" then --you cannot find carrots at night! :)
-	    		kingdom_inventory.carrots = kingdom_inventory.carrots+1
-	 		elseif game.biome == "japan" then
-	    		kingdom_inventory.sansai = kingdom_inventory.sansai+1
-	 		elseif game.biome == "desert" then
-	    		kindom_inventory.desert_onions = kindom_inventory.desert_onions+1
-	 		end
-		elseif job_type == "Fishing" then
-      		if game.biome == "desert" then
-      	   		kingdom_inventory.fish = kingdom_inventory.fish+math.random(0,1)
-      		else
-	   			kingdom_inventory.fish = kingdom_inventory.fish+1
-  			end--endif
-  		end
+   local halfdice = math.random(1,2)
+   if sucessrate == 1 then --test the random for sucess on a number of directives.
+      if job_type == "Gather Food" and halfdice == 1 then
+	 if is_night() == 0 and game.biome == "forest" then --you cannot find carrots at night! :)
+	    kingdom_inventory.carrots = kingdom_inventory.carrots+1
+	 elseif game.biome == "japan" then
+	    kingdom_inventory.sansai = kingdom_inventory.sansai+1
+	 elseif game.biome == "desert" then
+	    kingdom_inventory.desert_onions = kingdom_inventory.desert_onions+1
+	 end
+      elseif job_type == "Fishing" then
+	 if game.biome == "desert" then
+	    kingdom_inventory.fish = kingdom_inventory.fish+math.random(0,1)
+	 else
+	    kingdom_inventory.fish = kingdom_inventory.fish+1
+	 end--endif
+      end
    elseif sucessrate == 2 and halfdice == 1 then
       if job_type == "Gather Food" then
 	 kingdom_inventory.mushrooms = kingdom_inventory.mushrooms+1
@@ -368,92 +413,92 @@ function on_update_fires(x,y) -- per tile do a fire update.
    local fs = 0
    local catch_trees = 0
    if game_map[y][x] == 47 then
-	if game_map[y][x-1] >=3 and game_map[y][x-1] <=20 then
-		catch_trees = math.random(1,20)
-	elseif game_map[y][x-1] >=57 and game_map[y][x-1] <=60 then
-		catch_trees = math.random(1,20)
-	else
-		catch_trees = 0
-	end
+      if game_map[y][x-1] >=3 and game_map[y][x-1] <=20 then
+	 catch_trees = math.random(1,20)
+      elseif game_map[y][x-1] >=57 and game_map[y][x-1] <=60 then
+	 catch_trees = math.random(1,20)
+      else
+	 catch_trees = 0
+      end
    else
-	catch_trees = 0
+      catch_trees = 0
    end --endif
    if on_fire(game_fire_map[y][x]) == true and catch_trees == 1 then
-	if check_fireproof(game_map[y][x-1], game_fire_map[y][x-1]) == false 
-	    and on_fire(game_fire_map[y][x-1]) == false	and fs < fire_limit then
-		fs = fs+1
-	       	game_fire_map[y][x-1] = 1
-	       	message_que_add("The fire is spreading!", 300, 1)
-	elseif check_fireproof(game_map[y][x+1], game_fire_map[y][x+1]) == false 
-	    and on_fire(game_fire_map[y][x+1]) == false and fs < fire_limit then
-	       fs = fs+1
-	       game_fire_map[y][x+1] = 1
-	       message_que_add("The fire is spreading!", 300, 1)
-	elseif check_fireproof(game_map[y-1][x], game_fire_map[y-1][x]) == false 
-	    and on_fire(game_fire_map[y-1][x]) == false and fs < fire_limit then
-	       fs = fs+1
-	       game_fire_map[y-1][x] = 1
-	       message_que_add("The fire is spreading!", 300, 1)
-	elseif check_fireproof(game_map[y+1][x], game_fire_map[y+1][x]) == false 
-	    and on_fire(game_fire_map[y+1][x]) == false and fs < fire_limit then
-	       fs = fs+1
-	       game_fire_map[y+1][x] = 1
-	       message_que_add("The fire is spreading!", 300, 1)
-	end--endif
-	    --elseif on_fire(game_fire_map[y][x]) == true and game_map[y][x] ~= 47 then
-    end--endif
-	 --items alreay on fire
-    if game_map[y][x] ~= 47 and on_fire(game_fire_map[y][x]) == true then
-	game_map[y][x] = fire_ravage_tile(game_map[y][x]) --burn it up
-	local fire_complete = math.random(0,10)
-	if fire_complete == 1 then --it burnt itself out
-		game_fire_map[y][x] = 0 
-	    end
-	    if game_map[y][x] == 1 then
-	       game_fire_map[y][x] = 0
-	       if game_road_map[y][x] == 51 or game_road_map[y][x] == 52 or
-	       game_road_map[y][x] == 70	then
-		  game_road_map[y][x] = 73
-	       elseif (game_road_map[y][x] >= 23 and game_road_map[y][x] <=26) or
-	       (game_road_map[y][x] >= 61 and game_road_map[y][x] <= 68) then
-		  game_road_map[y][x] = 73
-		  kingdom_inventory.homes = kingdom_inventory.homes -1
-	       elseif game_road_map[y][x] == 27 then
-		  game_road_map[y][x] = 0
-		  kingdom_inventory.mine = kingdom_inventory.mine -1
-	       end
-	    end
-	 end--endif
-	 --do rioting
-	 --homes & mines(23-27) school,barn 51,52, 61-68 buildings, 70 fishing hut, 
-	 --75 militia house, 80 smelter
-	 if kingdom_inventory.unrest >= 70 then --rioting, randomly set fire to a building.
-	    if game_road_map[y][x] >= 23 and game_road_map[y][x] <=27 then
-	       riot_fire_chance = math.random(1,15)
-	       if on_fire(game_fire_map[y][x]) == false and riot_fire_chance == 1 then
-		  game_fire_map[y][x] = 1
-		  message_que_add("Rioters have set a fire!".."("..x.."X"..y..")", 300, 1)
-	       end
-	    elseif game_road_map[y][x] == 51 or game_road_map[y][x] == 52 then
-	       riot_fire_chance = math.random(1,15)
-	       if on_fire(game_fire_map[y][x]) == false and riot_fire_chance == 1 then
-		  game_fire_map[y][x] = 1
-		  message_que_add("Rioters have set a fire!".."("..x.."X"..y..")", 300, 1)
-	       end
-	    elseif game_road_map[y][x] >= 61 and game_road_map[y][x] <= 68 then
-	       riot_fire_chance = math.random(1,15)
-	       if on_fire(game_fire_map[y][x]) == false and riot_fire_chance == 1 then
-		  game_fire_map[y][x] = 1
-		  message_que_add("Rioters have set a fire!".."("..x.."X"..y..")", 300, 1)
-	       end
-	    elseif game_road_map[y][x] == 70 then
-	       riot_fire_chance = math.random(1,15)
-	       if on_fire(game_fire_map[y][x]) == false and riot_fire_chance == 1 then
-		  game_fire_map[y][x] = 1
-		  message_que_add("Rioters have set a fire!".."("..x.."X"..y..")", 300, 1)
-	       end
-	    end
+      if check_fireproof(game_map[y][x-1], game_fire_map[y][x-1]) == false 
+      and on_fire(game_fire_map[y][x-1]) == false	and fs < fire_limit then
+	 fs = fs+1
+	 game_fire_map[y][x-1] = 1
+	 message_que_add("The fire is spreading!", 300, 1)
+      elseif check_fireproof(game_map[y][x+1], game_fire_map[y][x+1]) == false 
+      and on_fire(game_fire_map[y][x+1]) == false and fs < fire_limit then
+	 fs = fs+1
+	 game_fire_map[y][x+1] = 1
+	 message_que_add("The fire is spreading!", 300, 1)
+      elseif check_fireproof(game_map[y-1][x], game_fire_map[y-1][x]) == false 
+      and on_fire(game_fire_map[y-1][x]) == false and fs < fire_limit then
+	 fs = fs+1
+	 game_fire_map[y-1][x] = 1
+	 message_que_add("The fire is spreading!", 300, 1)
+      elseif check_fireproof(game_map[y+1][x], game_fire_map[y+1][x]) == false 
+      and on_fire(game_fire_map[y+1][x]) == false and fs < fire_limit then
+	 fs = fs+1
+	 game_fire_map[y+1][x] = 1
+	 message_que_add("The fire is spreading!", 300, 1)
+      end--endif
+      --elseif on_fire(game_fire_map[y][x]) == true and game_map[y][x] ~= 47 then
+   end--endif
+   --items alreay on fire
+   if game_map[y][x] ~= 47 and on_fire(game_fire_map[y][x]) == true then
+      game_map[y][x] = fire_ravage_tile(game_map[y][x]) --burn it up
+      local fire_complete = math.random(0,10)
+      if fire_complete == 1 then --it burnt itself out
+	 game_fire_map[y][x] = 0 
+      end
+      if game_map[y][x] == 1 then
+	 game_fire_map[y][x] = 0
+	 if game_road_map[y][x] == 51 or game_road_map[y][x] == 52 or
+	 game_road_map[y][x] == 70	then
+	    game_road_map[y][x] = 73
+	 elseif (game_road_map[y][x] >= 23 and game_road_map[y][x] <=26) or
+	 (game_road_map[y][x] >= 61 and game_road_map[y][x] <= 68) then
+	    game_road_map[y][x] = 73
+	    kingdom_inventory.homes = kingdom_inventory.homes -1
+	 elseif game_road_map[y][x] == 27 then
+	    game_road_map[y][x] = 0
+	    kingdom_inventory.mine = kingdom_inventory.mine -1
 	 end
+      end
+   end--endif
+   --do rioting
+   --homes & mines(23-27) school,barn 51,52, 61-68 buildings, 70 fishing hut, 
+   --75 militia house, 80 smelter
+   if kingdom_inventory.unrest >= 70 then --rioting, randomly set fire to a building.
+      if game_road_map[y][x] >= 23 and game_road_map[y][x] <=27 then
+	 riot_fire_chance = math.random(1,15)
+	 if on_fire(game_fire_map[y][x]) == false and riot_fire_chance == 1 then
+	    game_fire_map[y][x] = 1
+	    message_que_add("Rioters have set a fire!".."("..x.."X"..y..")", 300, 1)
+	 end
+      elseif game_road_map[y][x] == 51 or game_road_map[y][x] == 52 then
+	 riot_fire_chance = math.random(1,15)
+	 if on_fire(game_fire_map[y][x]) == false and riot_fire_chance == 1 then
+	    game_fire_map[y][x] = 1
+	    message_que_add("Rioters have set a fire!".."("..x.."X"..y..")", 300, 1)
+	 end
+      elseif game_road_map[y][x] >= 61 and game_road_map[y][x] <= 68 then
+	 riot_fire_chance = math.random(1,15)
+	 if on_fire(game_fire_map[y][x]) == false and riot_fire_chance == 1 then
+	    game_fire_map[y][x] = 1
+	    message_que_add("Rioters have set a fire!".."("..x.."X"..y..")", 300, 1)
+	 end
+      elseif game_road_map[y][x] == 70 then
+	 riot_fire_chance = math.random(1,15)
+	 if on_fire(game_fire_map[y][x]) == false and riot_fire_chance == 1 then
+	    game_fire_map[y][x] = 1
+	    message_que_add("Rioters have set a fire!".."("..x.."X"..y..")", 300, 1)
+	 end
+      end
+   end
 end --end fuction
 
 function hourly_update_map()
@@ -527,7 +572,10 @@ function love.update(dt)
 	    lx = 300+(y - x) * 32 + 64
 	    ly = -100+(y + x) * 32 / 2 + 50
 	    -- function -----  game tiles map table ---- isometric loc
-	    if(mouse_x >= lx+game.draw_x and mouse_x <= lx+game.draw_x+64 and mouse_y >= ly+game.draw_y+60 and mouse_y <= ly+game.draw_y+100) then
+	    if(mouse_x >= lx+game.draw_x and
+		  mouse_x <= lx+game.draw_x+64 and
+		  mouse_y >= ly+game.draw_y+60 and
+	       mouse_y <= ly+game.draw_y+100) then
 	       --put the number of the selected tile
 	       game.tile_selected_x = x
 	       game.tile_selected_y = y

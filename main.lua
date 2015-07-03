@@ -123,6 +123,12 @@ function play_sound(sound)
    end
 end
 
+function play_music(sound)
+   if game.togglesound == "on" then
+      ---huh?
+   end
+end
+
 -------------------MESSAGE QUE PROTOTYPE --------------
 --add a message to the que
 function message_que_add(message, timer, icon)

@@ -110,21 +110,29 @@ function on_cut_where_click()
 end
 
 function on_dig_where_click()
-	if game_map[game.tile_selected_y][game.tile_selected_x] > 17 and
-		game.biome == "desert" then
-    		game_directives.job_type = "None."
-      		game_directives.active = 0
-      		game.give_direction = "Clear this area first"
-	elseif game_map[game.tile_selected_y][game.tile_selected_x] > 2 and
-    	game_map[game.tile_selected_y][game.tile_selected_x] ~= 55 and
-   		game_map[game.tile_selected_y][game.tile_selected_x] ~= 56 then
-    	game_directives.job_type = "None."
-      	game_directives.active = 0
-      	game.give_direction = "Clear this area first"
-   	else
+   if game.biome == "desert" then --you can dig almost anywhere in a desert.
+      if game_map[game.tile_selected_y][game.tile_selected_x] > 17 then
+	 game_directives.job_type = "None."
+	 game_directives.active = 0
+	 game.give_direction = "Clear this area first"
+      else
+	 update_directives_loc(300, 1)
+	 game_directives.job_type = "Dig hole"
+	 game.give_direction = "Dig where?"
+	 villagers_do_job(game_directives.location_x, game_directives.location_y, "miner")
+	 create_job_forque()
+	 play_sound(sound_click)
+      end --desert
+   elseif game_map[game.tile_selected_y][game.tile_selected_x] > 2 and
+      game_map[game.tile_selected_y][game.tile_selected_x] ~= 55 and
+   game_map[game.tile_selected_y][game.tile_selected_x] ~= 56 then
+      
+      game_directives.job_type = "None."
+      game_directives.active = 0
+      game.give_direction = "Clear this area first"
+   else
       update_directives_loc(300, 1)
       game_directives.job_type = "Dig hole"
-      --game.give_direction = "None"
       game.give_direction = "Dig where?"
       villagers_do_job(game_directives.location_x, game_directives.location_y, "miner")
       create_job_forque()

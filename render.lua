@@ -227,6 +227,7 @@ function draw_roster_list_food()
    love.graphics.print("Cherries ("..kingdom_inventory.cherries..")", col_one, row_num *20+88)row_num = row_num + 1
    love.graphics.print("Raw Meat ("..kingdom_inventory.raw_meat..")", col_one, row_num *20+88)row_num = row_num + 1
    love.graphics.print("Smoked Meat ("..kingdom_inventory.smoked_meat..")", col_one, row_num *20+88)row_num = row_num + 1
+   love.graphics.print("Desert Onions ("..kingdom_inventory.desert_onions..")", col_one, row_num *20+88)row_num = row_num + 1
 end
 
 --new code to put message list in roster/records
@@ -253,6 +254,7 @@ function draw_roster_list_resources()
    love.graphics.print("Sakura ("..kingdom_inventory.sakura..")", col_one, row_num *20+88)row_num = row_num + 1
    love.graphics.print("Bamboo ("..kingdom_inventory.bamboo..")", col_one, row_num *20+88)row_num = row_num + 1
    love.graphics.print("Stone ("..kingdom_inventory.rocks..")", col_one, row_num *20+88)row_num = row_num + 1
+   love.graphics.print("Sandstone ("..kingdom_inventory.sandstone..")", col_one, row_num *20+88)row_num = row_num + 1
    love.graphics.print("Iron Ore ("..kingdom_inventory.iron_ore..")", col_one, row_num *20+88)row_num = row_num + 1
    love.graphics.print("Iron Ingots ("..kingdom_inventory.iron_ingots..")", col_one, row_num *20+88)row_num = row_num + 1
    love.graphics.print("Gold Ore ("..kingdom_inventory.gold_ore..")", col_one, row_num *20+88)row_num = row_num + 1
@@ -396,6 +398,9 @@ function draw_inventory_numbers() --erased lot of code
 
    love.graphics.print(kingdom_inventory.fishwine, love.graphics.getWidth()-50, 256+16)
    love.graphics.print(kingdom_inventory.paleale, love.graphics.getWidth()-24, 256+16)
+
+   love.graphics.print(kingdom_inventory.sandstone, love.graphics.getWidth()-50, 256+16+32)
+   love.graphics.print(kingdom_inventory.desert_onions, love.graphics.getWidth()-24, 256+16+32)
    
 end--draw_inventory_icons()
 function draw_resource_bar() --replace draw_inventory_icons()

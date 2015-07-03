@@ -13,6 +13,7 @@ Deserts
  TODO: 
 
 bugs: (unverified) grain shows up as tomatoes if tomatoes is researched.
+BUGS: currently smelter and smithy are confused in some situations (like starting dwarves)
 fixed: House count no longer updates/stays updated. [FIXED]
 fixed?: fire spreads where no trees are, cant build trade post even with enough wood
 fixed?: wood shows -15(minus) in japanese biome (something subtracting wood not sakura)
