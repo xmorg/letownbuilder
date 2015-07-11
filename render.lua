@@ -623,83 +623,26 @@ function draw_select_house_to_build()
       local row_3 = 64*5
       local row_2_xi = 1
       
-      love.graphics.draw(game_icons[blank_icon],  64*xi, 54*3+30)
-      love.graphics.draw(tiles_image,game_tiles[23],  64*xi, 54*3)xi=xi+1 --house1
-
-      love.graphics.draw(game_icons[blank_icon],  64*xi, 54*3+30)
-      love.graphics.draw(tiles_image,game_tiles[24],  64*xi, 54*3)xi=xi+1 --house2
-
-      love.graphics.draw(game_icons[blank_icon],  64*xi, 54*3+30)
-      love.graphics.draw(tiles_image,game_tiles[25],  64*xi, 54*3)xi=xi+1 --house3
-
-      love.graphics.draw(game_icons[blank_icon],  64*xi, 54*3+30)
-      love.graphics.draw(tiles_image,game_tiles[26],  64*xi, 54*3)xi=xi+1 --house4
-
-      love.graphics.draw(game_icons[blank_icon],  64*xi, 54*3+30)
-      love.graphics.draw(tiles_image,game_tiles[27],  64*xi, 54*3)  --mine
-      love.graphics.print("Mine", 64*xi+10,     64*3)xi=xi+1
+      quick_task_icon64(64*1,64*3, 23, "house", 1, "game_tiles")
+      quick_task_icon64(64*2,64*3, 24, "house", 1, "game_tiles")
+      quick_task_icon64(64*3,64*3, 25, "house", 1, "game_tiles")
+      quick_task_icon64(64*4,64*3, 26, "house", 1, "game_tiles")
+      quick_task_icon64(64*5,64*3, 27, "mine", 1, "game_tiles")
+      quick_task_icon64(64*6,64*3, 51, "school", 1, "game_tiles")
+      quick_task_icon64(64*7,64*3, 52, "barn", 1, "game_tiles")
+      quick_task_icon64(64*8,64*3, 53, "graveyard", 1, "game_tiles")
       
-      love.graphics.draw(game_icons[blank_icon],  64*xi, 54*3+30)
-      love.graphics.draw(tiles_image,game_tiles[51],  64*xi, 64*3-20) --school
-      love.graphics.print("School",64*xi+10,    64*3)xi=xi+1
-      
-      love.graphics.draw(game_icons[blank_icon],  64*xi, 54*3+30)
-      love.graphics.draw(tiles_image,game_tiles[52],  64*xi, 64*3-20) --barn
-      love.graphics.print("Barn",64*xi+10,      64*3)xi=xi+1
-      
-      love.graphics.draw(game_icons[blank_icon],  64*xi, 54*3+30)
-      love.graphics.draw(tiles_image,game_tiles[53],  64*xi, 64*3-20) --graveyard
-      love.graphics.print("Graveyard",64*xi+10, 64*3)xi=xi+1
-      
-      --watchtower == 65, research == 1
-      if research_topics.economy >= 1 then --tradepost
-	 love.graphics.draw(game_icons[blank_icon],  64, row_2) 
-	 love.graphics.draw(tiles_image,game_tiles[66], 64, row_2-20) --tradepost
-	 love.graphics.print("Tradepost",64, row_2+44) 
-      end
-      if research_topics.security >= 1 then
-	 love.graphics.draw(game_icons[blank_icon],  64*2, row_2)
-	 love.graphics.draw(tiles_image,game_tiles[67],  64*2, row_2-10) --shariff's office
-	 love.graphics.print(" Sheriff ",64*2, row_2+44)
-	 row_2_xi=row_2_xi+1
-      end
-      if research_topics.industry >= 1 then
-	 love.graphics.draw(game_icons[blank_icon],  64*3, row_2)
-	 love.graphics.draw(tiles_image,game_tiles[55],  64*3, row_2-20) --fishing hut
-	 love.graphics.print(" Fish hut ",64*3, row_2+44)
-      end
-      if research_topics.militia_house >= 1 then  --Militia house, research == 1
-	 love.graphics.draw(game_icons[blank_icon],  64*4, row_2) 
-	 love.graphics.draw(tiles_image,game_tiles[60],  64*4, row_2-10)
-	 love.graphics.print("militia hse",64*4, row_2+44)
-	end
-     if research_topics.mayors_monument >= 1 then
-	 love.graphics.draw(game_icons[blank_icon],  64*5, row_2) 
-	 love.graphics.draw(tiles_image,game_tiles[game.mayor_sex],  64*5, row_2-10)
-	 love.graphics.print("Monument",64*5, row_2+44)
-     end
-      if research_topics.watchtower >= 1 then  --watchtower == 65, research == 1
-	 love.graphics.draw(game_icons[blank_icon],  64*6, row_2) 
-	 love.graphics.draw(tiles_image,game_tiles[65],  64*6, row_2-10) --watchtower
-	 love.graphics.print("Watchtower",64*6, row_2+44)
-      end
-      if research_topics.smelter >= 1 then
-	 love.graphics.draw(game_icons[blank_icon],  64*7, row_2) 
-	 love.graphics.draw(tiles_image,game_tiles[70],  64*7, row_2-20) --smelter
-	 love.graphics.print("Smelter",64*7+10, row_2+44)
-      end
-      if research_topics.brewery >= 1 then
-	 love.graphics.draw(game_icons[blank_icon],  64*8, row_2) 
-	 love.graphics.draw(tiles_image,game_tiles[71],  64*8, row_2-20) --brewery
-	 love.graphics.print("Brewery",64*8, row_2+44)
-      end
-      --------------------------row 3 ------------------------------------------------
-      if research_topics.smithy >= 1 then --smithy
-	 love.graphics.draw(game_icons[blank_icon],  64, row_3) 
-	 love.graphics.draw(tiles_image,game_tiles[64], 64, row_3-20) --smithy
-	 love.graphics.print("Smithy",64, row_3+44) 
-      end
-      
+      --row 2
+      if research_topics.economy >= 1 then quick_task_icon64(64*1,64*4, 66, "trade post", 1, "game_tiles") end
+      if research_topics.security >= 1 then quick_task_icon64(64*2,64*4, 67, "shariff", 1, "game_tiles") end
+      if research_topics.industry >= 1 then quick_task_icon64(64*3,64*4, 55, "fish hut", 1, "game_tiles") end
+      if research_topics.militia_house >= 1 then quick_task_icon64(64*4,64*4, 60, "militia", 1, "game_tiles") end
+      if research_topics.mayors_monument >= 1 then quick_task_icon64(64*5,64*4, game.mayor_sex, "monument", 1, "game_tiles") end
+      if research_topics.watchtower >= 1 then quick_task_icon64(64*6,64*4, 65, "watchtower", 1, "game_tiles") end
+      if research_topics.smelter >= 1 then quick_task_icon64(64*7,64*4, 70, "smelter", 1, "game_tiles") end
+      if research_topics.brewery >= 1 then quick_task_icon64(64*8,64*4, 71, "brewery", 1, "game_tiles") end
+      --row 3 ---
+      if research_topics.smithy >= 1 then quick_task_icon64(64*1,64*5, 64, "smithy", 1, "game_tiles") end 
    end
 end
 
