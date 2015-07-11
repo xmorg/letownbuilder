@@ -323,40 +323,52 @@ function love.mousepressed(x, y, button)
 	       end -- if i*64 == 0 then
 	    end -- if x >= 64*i and x <= 64*(i+1) and y >=64*3 and y <= 64*3+64 then
 	 end -- for i = 0, 7 do
-	 if mouse_clicked_in64(x, y, 64*1, 288) == 1 then
-	    if research_topics.economy >= 1 then
-	       build_house_directive("Build house", 66, 66)--trade post
+	 
+      if research_topics.economy >= 1 then quick_task_icon64(64*1,64*4, 66, "trade post", 1, "game_tiles") end
+      if research_topics.security >= 1 then quick_task_icon64(64*2,64*4, 67, "shariff", 1, "game_tiles") end
+      if research_topics.industry >= 1 then quick_task_icon64(64*3,64*4, 55, "fish hut", 1, "game_tiles") end
+      if research_topics.militia_house >= 1 then quick_task_icon64(64*4,64*4, 60, "militia", 1, "game_tiles") end
+      if research_topics.mayors_monument >= 1 then quick_task_icon64(64*5,64*4, game.mayor_sex, "monument", 1, "game_tiles") end
+      if research_topics.watchtower >= 1 then quick_task_icon64(64*6,64*4, 65, "watchtower", 1, "game_tiles") end
+      if research_topics.smelter >= 1 then quick_task_icon64(64*7,64*4, 70, "smelter", 1, "game_tiles") end
+      if research_topics.brewery >= 1 then quick_task_icon64(64*8,64*4, 71, "brewery", 1, "game_tiles") end
+      --row 3 ---
+      if research_topics.smithy >= 1 then quick_task_icon64(64*1,64*5, 64, "smithy", 1, "game_tiles") end 
+	 
+	if mouse_clicked_in64(x, y, 64*1, 64*4) == 1 then
+		if research_topics.economy >= 1 then
+	    	build_house_directive("Build house", 66, 66)--trade post
 	    end
-	 elseif mouse_clicked_in64(x, y, 64*2, 288) == 1 then
+	elseif mouse_clicked_in64(x, y, 64*2, 64*4) == 1 then
 	    if research_topics.security >= 1 then
 	       build_house_directive("Build house", 67, 67)--sharrifs office
 	    end
-	 elseif mouse_clicked_in64(x, y, 64*3, 288) == 1 then
+	 elseif mouse_clicked_in64(x, y, 64*3, 64*4) == 1 then
 	    if research_topics.industry >= 1 then
 	       build_house_directive("Build house", 55, 55)--fishing hut
 	    end
-	 elseif mouse_clicked_in64(x, y, 64*4, 288) == 1 then
+	 elseif mouse_clicked_in64(x, y, 64*4, 64*4) == 1 then
 	    if research_topics.militia_house >= 1 then
 	       build_house_directive("Build house", 60,60)--militia house
 	    end
-	 elseif mouse_clicked_in64(x, y, 64*5, 288) == 1 then
+	 elseif mouse_clicked_in64(x, y, 64*5, 64*4) == 1 then
 	    if research_topics.mayors_monument >= 1 then
 	       build_house_directive("Build house", game.mayor_sex, game.mayor_sex)--mayors monument
 	    end
-	 elseif mouse_clicked_in64(x, y, 64*6, 288) == 1 then
+	 elseif mouse_clicked_in64(x, y, 64*6, 64*4) == 1 then
 	    if research_topics.watchtower >= 1 then
 	       build_house_directive("Build house", 65, 65)--watchtower
 	    end
 	    ---------------row 3-------------------------------
-	 elseif mouse_clicked_in64(x, y, 64*7, 288) == 1 then
+	 elseif mouse_clicked_in64(x, y, 64*7, 64*5) == 1 then
 	    if research_topics.smelter >= 1 then
-	       build_house_directive("Build house", 70, 70)--smelter (CHANGE ME)
+	       build_house_directive("Build house", 70, 70)--smelter
 	    end
-	 elseif mouse_clicked_in64(x, y, 64*8, 288) == 1 then
+	 elseif mouse_clicked_in64(x, y, 64*8, 64*5) == 1 then
 	    if research_topics.brewery >= 1 then
 	       build_house_directive("Build house", 71, 71)--brewery(CHANGE ME)
 	    end
-	 elseif mouse_clicked_in64(x, y, 64*1, 288+(64)) == 1 then
+	 elseif mouse_clicked_in64(x, y, 64*1, 64*6) == 1 then
 	    if research_topics.smithy  >= 1 then
 	       build_house_directive("Build house", 64, 64)--smithy 
 	    end
