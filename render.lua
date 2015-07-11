@@ -604,6 +604,18 @@ function draw_villagers()
    end--endfor
 end
 
+function quick_task_icon64(x, y, icon, text, blankicon, tileset)
+   if blankicon == 1 then
+      love.graphics.draw(game_icons[blank_icon], x, y)
+   end
+   if tileset == "game_tiles" then
+      love.graphics.draw(tiles_image, game_tiles[icon], x, y-32)
+   else
+      love.graphics.draw(game_icons[icon], x, y)
+   end
+   love.graphics.print(text, x+3, y+40)
+end
+
 function draw_select_house_to_build()
    if game.give_direction == "Select house to build" then
       local xi = 1
@@ -692,52 +704,49 @@ function draw_select_house_to_build()
 end
 
 
+
+
 function draw_task_icons()
    love.graphics.setColor(255,255,255,255)
    love.graphics.draw(game_icons[9], 0, 64) --new labor icon
    love.graphics.draw(game_icons[40], 0, 64*2) --bag, gather food
    love.graphics.print("Gather Food", 5, 64*2  )
    love.graphics.draw(game_icons[2],  0, 64*3) -- build house
-   draw_select_house_to_build()
+   
    if game.give_direction == "Select job" then
-      love.graphics.draw(game_icons[game.axe_icon], 64*1, 64) --axe, cut wood
-      love.graphics.draw(game_icons[game.shovel_icon], 64*2, 64*1)
-      
-      love.graphics.draw(game_icons[27], 64*3, 64*1)--build garden
+      quick_task_icon64(64*1,64, game.axe_icon, "Cut trees", 0, "game_icons")
+      quick_task_icon64(64*2,64, game.shovel_icon, "Dig hole", 0, "game_icons")
+      quick_task_icon64(64*3,64, 27, "Garden", 0, "game_icons")
+      quick_task_icon64(64*4,64, 73, "Hunt", 0, "game_icons")
+      quick_task_icon64(64*5,64, 55, "Fire", 0, "game_icons")
+      quick_task_icon64(64*6,64, 69, "Demolish", 0, "game_icons")     
       if research_topics.tomatoes == 1 then
-	 love.graphics.draw(game_icons[4],  64*3, 64*2)--tomatoes
-	 love.graphics.print("Tomatoes", 5+64*3, 64*2 ) --we shall use unrealistic numbers in road map!
+	 quick_task_icon64(64*7,64, 4, "Tomatoes", 0, "game_icons")    -- change mouse click.
+	 --love.graphics.draw(game_icons[4],  64*3, 64*2)--tomatoes
+	 --love.graphics.print("Tomatoes", 5+64*3, 64*2 ) --we shall use unrealistic numbers in road map!
       end
-      
-      love.graphics.draw(game_icons[73], 64*4, 64*1) --hunting! --fix clicking!
-      love.graphics.draw(game_icons[55], 64*5, 64*1) --build bonfire
-      love.graphics.draw(game_icons[69], 64*6, 64*1) --deconstruct structure
-      
-      love.graphics.print("Cut trees", 5+64, 64  )
-      love.graphics.print("Dig hole", 5+64*2, 64 )
-      love.graphics.print("Garden", 5+64*3, 64 )
-      
-      love.graphics.print("Hunt", 5+64*4, 64 )
-      love.graphics.print("Fire",   5+64*5, 64 )
-      love.graphics.print("Demolish",   5+64*6, 64 )
    else
       love.graphics.print("Labor", 5, 64  )
    end
+
    love.graphics.print("Build", 5, 64*3  )
+   draw_select_house_to_build()
+   
+   
    love.graphics.draw(game_icons[54],  0, 64*4) --build roads
    love.graphics.print("Build Roads", 5, 64*4  )
    if game.give_direction == "Select road to build" then
-      love.graphics.draw(game_icons[blank_icon],  64*1, 64*3+40) love.graphics.draw(tiles_image,game_tiles[28],  64*1, 64*3)
-      love.graphics.draw(game_icons[blank_icon],  64*2, 64*3+40) love.graphics.draw(tiles_image,game_tiles[29],  64*2, 64*3)
-      love.graphics.draw(game_icons[blank_icon],  64*3, 64*3+40) love.graphics.draw(tiles_image,game_tiles[30],  64*3, 64*3)
-      love.graphics.draw(game_icons[blank_icon],  64*4, 64*3+40) love.graphics.draw(tiles_image,game_tiles[31],  64*4, 64*3)
-      love.graphics.draw(game_icons[blank_icon],  64*5, 64*3+40) love.graphics.draw(tiles_image,game_tiles[32],  64*5, 64*3)
-      love.graphics.draw(game_icons[blank_icon],  64*6, 64*3+40) love.graphics.draw(tiles_image,game_tiles[33],  64*6, 64*3) 
-      love.graphics.draw(game_icons[blank_icon],  64*7, 64*3+40) love.graphics.draw(tiles_image,game_tiles[34],  64*7, 64*3) 
-      love.graphics.draw(game_icons[blank_icon],  64*8, 64*3+40) love.graphics.draw(tiles_image,game_tiles[35],  64*8, 64*3)
-      love.graphics.draw(game_icons[blank_icon],  64*9, 64*3+40) love.graphics.draw(tiles_image,game_tiles[36],  64*9, 64*3)
-      love.graphics.draw(game_icons[blank_icon],  64*1, 64*4+40) love.graphics.draw(tiles_image,game_tiles[21],  64*1, 64*4)
-      love.graphics.draw(game_icons[blank_icon],  64*2, 64*4+40) love.graphics.draw(tiles_image,game_tiles[22],  64*2, 64*4)
+      quick_task_icon64(64*1,64*3+40, 28, "road", 1, "game_tiles")
+      quick_task_icon64(64*2,64*3+40, 29, "road", 1, "game_tiles")
+      quick_task_icon64(64*3,64*3+40, 30, "road", 1, "game_tiles")
+      quick_task_icon64(64*4,64*3+40, 31, "road", 1, "game_tiles")
+      quick_task_icon64(64*5,64*3+40, 32, "road", 1, "game_tiles")
+      quick_task_icon64(64*6,64*3+40, 33, "road", 1, "game_tiles")
+      quick_task_icon64(64*7,64*3+40, 34, "road", 1, "game_tiles")
+      quick_task_icon64(64*8,64*3+40, 35, "road", 1, "game_tiles")
+      quick_task_icon64(64*9,64*3+40, 36, "road", 1, "game_tiles")
+      quick_task_icon64(64*1,64*4+40, 21, "road", 1, "game_tiles")
+      quick_task_icon64(64*2,64*4+40, 22, "road", 1, "game_tiles")
    end
 end
 
