@@ -356,7 +356,7 @@ function on_build_house() --check for resources and conditions, if ok start buil
 	 message_que_add("Not Resources for a Sheriff office (stone 35)", 80, 9)
 	 --go to end
       end
-   elseif game.house_to_build == 75 then
+   elseif game.house_to_build == 60 then
       if (game.biome == "forest" and kingdom_inventory.rocks < 20 ) or
 	 (game.biome == "japan" and (kingdom_inventory.rocks < 20)) or
       (game.biome == "desert" and (kingdom_inventory.sandstone < 20)) then	 
@@ -370,11 +370,10 @@ function on_build_house() --check for resources and conditions, if ok start buil
       if (game.biome == "forest" and kingdom_inventory.rocks < 10 ) or
 	 (game.biome == "japan" and (kingdom_inventory.rocks < 10)) or
       (game.biome == "desert" and (kingdom_inventory.sandstone < 10)) then
-      --and kingdom_inventory.rocks < 10  then --smelter
 	 game_directives.job_type = "Not Resources(stone 10)"
 	 game_directives.active = 0
 	 game.give_direction = "None"
-	 message_que_add("Not Resources for a Smelter (stone 10)", 80, 9)
+	 message_que_add("Not Resources for a Smithy (stone 10)", 80, 9)
       end
    elseif game.house_to_build == game.mayor_sex then
      if (game.biome == "forest" and kingdom_inventory.rocks < 20 ) or
