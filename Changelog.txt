@@ -5,14 +5,16 @@ Planned features
 
 Deserts
  DONE: Gathering food in green tiles yields ?what?, and tiles turn back to sand.
- TODO: Cutting trees in the tree tiles should yield wood.
+ DONE: Cutting trees in the tree tiles should yield wood.
  TODO: Digging a hole should yield sand/sandstone.
  TODO: Fishing in water should yield (fewer) fish.
  TODO: (bug?) Should gardens work in sand?
  TODO: Houses/mines should cost 1 wood, 6 sandstone
  TODO: 
 
-bugs: (unverified) grain shows up as tomatoes if tomatoes is researched.
+bugs: (verified) grain shows up as tomatoes if tomatoes is researched.
+bugs: (verified) grain at stage one shows up as tomatoes fully grown.
+
 BUGS: currently smelter and smithy are confused in some situations (like starting dwarves)
 fixed: House count no longer updates/stays updated. [FIXED]
 fixed?: fire spreads where no trees are, cant build trade post even with enough wood
