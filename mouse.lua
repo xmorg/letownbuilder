@@ -170,10 +170,10 @@ function love.mousepressed(x, y, button)
 	 love_crude_save() --save/quit autosave feature
 	 love.event.quit()
       end
-
       if game.give_direction == "Hunt what?" then
 	 on_hunt_something(x,y) --buildings.lua
       end
+      
       function mouse_clicked_in64(x, y, icon_x, icon_y)
 	 if y >= icon_y and y <= icon_y +64 and x >= icon_x and x <= icon_x+64 then
 	    return 1
@@ -222,15 +222,12 @@ function love.mousepressed(x, y, button)
 	 col_five = 428
 	 row_num = 1
 	 if mouse_clicked_inrect(x,y, col_one-3, 20+68, 60, 23) == 1 then
-	    --villagers
 	    game.records_tab = 1
 	    game.roster_selected = "villagers"
-	 elseif mouse_clicked_inrect(x,y, col_two-3, 20+68, 60, 23) == 1 then
-	    -- food?
+	 elseif mouse_clicked_inrect(x,y, col_two-3, 20+68, 60, 23) == 1 then  -- food?
 	    game.records_tab = 2
 	    game.roster_selected = "food"
-	 elseif mouse_clicked_inrect(x,y, col_three-3, 20+68, 60, 23) == 1 then
-	    -- resources?
+	 elseif mouse_clicked_inrect(x,y, col_three-3, 20+68, 60, 23) == 1 then  -- resources?
 	    game.records_tab = 3
 	    game.roster_selected = "resources"
 	 elseif mouse_clicked_inrect(x,y, col_four-3, 20+68, 60, 23) == 1 then
@@ -265,7 +262,7 @@ function love.mousepressed(x, y, button)
       elseif game.give_direction == "Demolish what?" then
 	 on_demolish_structure()
       elseif game.give_direction == "Hunt What?" then
-	 on_hunt_something(x,y) --buildings.lua
+	 on_hunt_something(x,y)
       elseif game.give_direction == "Gather Food" then
 	 on_gather_food()
       elseif game.give_direction == "Cut where?" then
@@ -277,24 +274,24 @@ function love.mousepressed(x, y, button)
       elseif game.give_direction == "Dig where?" then
       	on_dig_where_click()
       elseif game.give_direction == "Select job" then	 
-	 if x >= 64*0 and x <= 64*1 and y >=64 and y <= 64+64 then
-      		game.give_direction = "None"
-	 elseif x >= 64*1 and x <= 64*2 and y >=64 and y <= 64+64 then 
+	 if  mouse_clicked_in64(x,y, 0, 64) == 1 then 
+	    game.give_direction = "None"
+	 elseif mouse_clicked_in64(x,y, 64*1, 64) == 1 then
 	    game.give_direction = "Cut where?" --pressed axe
-	 elseif x >= 64*2 and x <= 64*3 and y >=64 and y <= 64+64 then
+	 elseif mouse_clicked_in64(x,y, 64*2, 64) == 1 then
 	    game.give_direction = "Dig where?" --spressed shovel
-	 elseif x >= 64*3 and x <= 64*4 and y >=64 and y <= 64+64 then
+	 elseif mouse_clicked_in64(x,y, 64*3, 64) == 1 then
 	    game.give_direction = "Plow where?" --farming!
-	 elseif x >= 64*3 and x <= 64*4 and y >=64*2 and y <= 64*2+64 then
-	 	if research_topics.tomatoes == 1 then
-	 		game.give_direction = "Plant tomatoes"
-	 	end
-	 elseif x >= 64*4 and x <= 64*5 and y >=64 and y <= 64+64 then
+	 elseif mouse_clicked_in64(x,y, 64*4, 64) == 1 then
 	    game.give_direction = "Hunt what?" -- hunting
-	 elseif x >= 64*4 and x <= 64*6 and y >=64 and y <= 64+64 then
+	 elseif mouse_clicked_in64(x,y, 64*5, 64) == 1 then
 	    game.give_direction = "Make fire where?"
-	 elseif x >= 64*5 and x <= 64*7 and y >=64 and y <= 64+64 then
+	 elseif mouse_clicked_in64(x,y, 64*6, 64) == 1 then
 	    game.give_direction = "Demolish what?"
+	 elseif mouse_clicked_in64(x,y, 64*7, 64) == 1 then
+	    if research_topics.tomatoes == 1 then
+	       game.give_direction = "Plant tomatoes"
+	    end
 	 end --if x >= 64*0 and x <= 64*1 and y >=64 and y <= 64+64 then
       -------------- SELECT HOUSE TO BUILD ------------------------
       elseif game.give_direction == "Select house to build" then
@@ -323,17 +320,6 @@ function love.mousepressed(x, y, button)
 	       end -- if i*64 == 0 then
 	    end -- if x >= 64*i and x <= 64*(i+1) and y >=64*3 and y <= 64*3+64 then
 	 end -- for i = 0, 7 do
-	 
-	 --if research_topics.economy >= 1 then quick_task_icon64(64*1,64*4, 66, "trade post", 1, "game_tiles") end
-	 --if research_topics.security >= 1 then quick_task_icon64(64*2,64*4, 67, "shariff", 1, "game_tiles") end
-	 --if research_topics.industry >= 1 then quick_task_icon64(64*3,64*4, 55, "fish hut", 1, "game_tiles") end
-	 --if research_topics.militia_house >= 1 then quick_task_icon64(64*4,64*4, 60, "militia", 1, "game_tiles") end
-	 --if research_topics.mayors_monument >= 1 then quick_task_icon64(64*5,64*4, game.mayor_sex, "monument", 1, "game_tiles") end
-	 --if research_topics.watchtower >= 1 then quick_task_icon64(64*6,64*4, 65, "watchtower", 1, "game_tiles") end
-	 --if research_topics.smelter >= 1 then quick_task_icon64(64*7,64*4, 70, "smelter", 1, "game_tiles") end
-	 --if research_topics.brewery >= 1 then quick_task_icon64(64*8,64*4, 71, "brewery", 1, "game_tiles") end
-	 --row 3 ---
-	 --if research_topics.smithy >= 1 then quick_task_icon64(64*1,64*5, 64, "smithy", 1, "game_tiles") end 
 	 
 	 if mouse_clicked_in64(x, y, 64*1, 64*4) == 1 then
 	    if research_topics.economy >= 1 then
@@ -397,9 +383,9 @@ function love.mousepressed(x, y, button)
 	 end --endfor
 	 ------------------MAKE GARDEN-----------------------------
       elseif game.give_direction == "Make garden" then --Garden
-	 on_build_garden()
+	 on_build_garden("wheat")
       elseif game.give_direction == "Plant tomatoes" then
-         on_build_garden()
+         on_build_garden("tomatoes")
 	 ------------------HUNT WHAT--------------------------------
       elseif game.give_direction == "Hunt What?" then
 	 on_hunt_something(x,y) --buildings.lua

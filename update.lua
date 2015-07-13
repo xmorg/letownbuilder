@@ -222,7 +222,7 @@ function update_job_que()
 	       kingdom_inventory.farmplot = kingdom_inventory.farmplot+1
 	    elseif game_job_que[i].job_type == "Plant tomatoes" then  --GARDEN (Tomatoes
 	       game_map[game_job_que[i].location_y][game_job_que[i].location_x] = 42 
-	       game_road_map[game_job_que[i].location_y][game_job_que[i].location_x] = 1000
+	       game_road_map[game_job_que[i].location_y][game_job_que[i].location_x] = 1001
 	       --kingdom_inventory.farmplot = kingdom_inventory.farmplot+1 --update me!
 	    elseif game_job_que[i].job_type == "Make bonfire" then
 	       game_map[game_job_que[i].location_y][game_job_que[i].location_x] = 47

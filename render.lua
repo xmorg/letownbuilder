@@ -188,11 +188,17 @@ function draw_game_tiles()
 	 -- function -----  game tiles map table ---- isometric loc
 	 draw_bridge_tiles(x,y)
 	 --here we dont show tomatoes!
+	 --   elseif game_job_que[i].job_type == "Plant tomatoes" then  --GARDEN (Tomatoes
+	 --      game_map[game_job_que[i].location_y][game_job_que[i].location_x] = 42 
+	 --      game_road_map[game_job_que[i].location_y][game_job_que[i].location_x] = 1000
+	 
 	 if game_road_map[y][x] == 1001 and game_map[y][x] == 46 then ---hack
 	    love.graphics.draw(tiles_image,game_tiles[ 69 ],  lx+game.draw_x, ly+game.draw_y)
 	 else
 	    love.graphics.draw(tiles_image,game_tiles[ game_map[y][x] ], lx+game.draw_x, ly+game.draw_y) --draw ground
 	 end
+	 
+	 
 	 if game_road_map[y][x] > 0 then
 	    draw_mayor_statue(x,y)
 	    --draw road_map additions

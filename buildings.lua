@@ -495,7 +495,7 @@ function on_demolish_structure()
    end
 end
 
-function on_build_garden()
+function on_build_garden(garden_type)
    if game_map[game.tile_selected_y][game.tile_selected_x] == game.water_tile then
       game_directives.job_type = "Cant build on water"
       game_directives.active = 0
@@ -508,7 +508,12 @@ function on_build_garden()
       kingdom_inventory.wood = kingdom_inventory.wood -1
       update_directives_loc(300, 1)
       game_directives.job_type = game.give_direction
-      game.house_to_build = 42
+      --do tomatoes here.
+      if garden_type == "wheat" then
+	 game.house_to_build = 42
+      elseif garden_type == "tomatoes" then
+	 game.house_to_build = 142
+      end
       game.give_direction = "None"
       villagers_do_job(game_directives.location_x, game_directives.location_y, "farmer")
       create_job_forque()
