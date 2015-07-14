@@ -512,7 +512,7 @@ function on_build_garden(garden_type)
       if garden_type == "wheat" then
 	 game.house_to_build = 42
       elseif garden_type == "tomatoes" then
-	 game.house_to_build = 142
+	 game.house_to_build = 1042 --are we using 1000?
       end
       game.give_direction = "None"
       villagers_do_job(game_directives.location_x, game_directives.location_y, "farmer")
