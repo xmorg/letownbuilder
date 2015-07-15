@@ -98,16 +98,16 @@ function update_run_daytimer()
 	 if kingdom_inventory.unrest >= 70 then
 	    villagers_rioting_report(game_villagers)
 	 end
-      elseif game.day_time == 11000 then
-	 daily_update_map()
       elseif game.day_time == 8000 then
 	 merchants_arrive()
+      elseif game.day_time % 1000 == 0 then
+	 hourly_update_map()
+      elseif game.day_time == 11000 then
+	 daily_update_map()
       elseif game.day_time == 17000 then
 	 villagers_complete_jobs_by_buildings() --check for buildings and, apply resources.
       elseif game.day_time == 21000 then
-	 villagers_seek_shelter(table.getn(game_villagers))
-      elseif game.day_time % 1000 == 0 then
-	 hourly_update_map()
+	 villagers_seek_shelter(table.getn(game_villagers))      
       end
    else -- reset timer
       game.day_time = 0
@@ -222,7 +222,7 @@ function update_job_que()
 	       kingdom_inventory.farmplot = kingdom_inventory.farmplot+1
 	    elseif game_job_que[i].job_type == "Plant tomatoes" then  --GARDEN (Tomatoes
 	       game_map[game_job_que[i].location_y][game_job_que[i].location_x] = 42 
-	       game_road_map[game_job_que[i].location_y][game_job_que[i].location_x] = 1001
+	       game_road_map[game_job_que[i].location_y][game_job_que[i].location_x] = 1042
 	       --kingdom_inventory.farmplot = kingdom_inventory.farmplot+1 --update me!
 	    elseif game_job_que[i].job_type == "Make bonfire" then
 	       game_map[game_job_que[i].location_y][game_job_que[i].location_x] = 47

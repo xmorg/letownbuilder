@@ -327,7 +327,7 @@ function vandalize_monument() --map update
    end
 end
 
-function daily_update_map() --update the map, actually its "daily"
+function daily_update_map() --happens at 11 oclock
    --provide resources from producing buildings
    --wildlife_proliferation() -- breed the wildlife!
    table.insert(game_wildlife, new_wildlife(0, "random") )
@@ -348,34 +348,46 @@ function daily_update_map() --update the map, actually its "daily"
 	    end
 	 end
 	 ---------------------------------
-	 
 	 if game_map[y][x] == 1 and game.days_since_regrowth == 7 then --dirt
 	    game_map[y][x] = 2 --grass
 	 elseif game_map[y][x] == 42 then --garden
-	    game_map[y][x] = 43
+	    game_map[y][x] = 43 -- sprouts
+	    if game_road_map[y][x] == 1042 then
+	       game_road_map[y][x] = 1043
+	    end
 	 elseif game_map[y][x] == 43 then --sprouts
 	    if game.days_without_rain >=7 or game.days_snowed >= 7 then
 	       game_map[y][x] = 42
 	    else
 	       game_map[y][x] = 44
 	    end
+	    if game_road_map[y][x] == 1043 then
+	       game_road_map[y][x] = 1044
+	    end
 	 elseif game_map[y][x] == 44 then --plants
+	    if game_road_map[y][x] == 1044 then
+	       game_road_map[y][x] = 1045
+	    end
 	    if game.days_without_rain >=7 or game.days_snowed >= 7  then
 	       game_map[y][x] = 42
 	    else
 	       game_map[y][x] = 45
 	    end
 	 elseif game_map[y][x] == 45 then --almost ready
+	    if game_road_map[y][x] == 1045 then
+	       game_road_map[y][x] = 1046
+	    end
 	    if game.days_without_rain >=7 or game.days_snowed >= 7  then
 	       game_map[y][x] = 42
 	    else
 	       game_map[y][x] = 46 --ready to harvest
 	    end
 	 elseif game_map[y][x] == 46 then --next day harvest and replant
-	    if game_road_map[y][x] == 1001 then
+	    if game_road_map[y][x] == 1046 then
 	       kingdom_inventory.tomatoes = kingdom_inventory.tomatoes+10	
 	    else
 	       kingdom_inventory.grain = kingdom_inventory.grain+10
+	       game_road_map[y][x] = 1042
 	    end
 	    game_map[y][x] = 42
 	 elseif game_road_map[y][x] >= 23 and game_road_map[y][x] <= 26 then

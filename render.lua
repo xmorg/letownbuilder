@@ -140,18 +140,17 @@ function draw_message_que()
 end
 
 function draw_farm_garden_additions(x,y, garden_type)
-   if research_topics.agriculture > 0 and game_map[y][x] >= 42 and game_map[y][x] <= 46 and game_road_map[y][x] < 1000 then
+   if research_topics.agriculture > 0 and game_map[y][x] >= 42 and game_map[y][x] <= 46 then
       if research_topics.scarecrow == 1 then
 	 love.graphics.draw(tiles_image,game_tiles[ 74 ], lx+game.draw_x, ly+game.draw_y)
       end
-      love.graphics.draw(tiles_image,game_tiles[ 69 ], lx+game.draw_x, ly+game.draw_y)
+      --love.graphics.draw(tiles_image,game_tiles[ 69 ], lx+game.draw_x, ly+game.draw_y)
    end	
 end  --function draw_farm_garden_additions()
 
 function draw_bridge_tiles(x,y)
    if game_map[y][x] == game.bridge_tile1 or game_map[y][x] == game.bridge_tile2 then
       if xdraw == 1 then --draw_x, draw_y,
-	 --love.graphics.draw(tiles_image,game_tiles[54], lx+game.draw_x, ly+game.draw_y)
 	 love.graphics.draw(tiles_image,game_tiles[game.water_tile], lx+game.draw_x, ly+game.draw_y, 0, game.zoom_level, game.zoom_level)
       else
 	 love.graphics.draw(tiles_image,game_tiles[game.water_tile], lx+game.draw_x, ly+game.draw_y, 0, game.zoom_level, game.zoom_level) 
@@ -186,19 +185,12 @@ function draw_game_tiles()
 	    draw_night(y,x)
 	 end
 	 -- function -----  game tiles map table ---- isometric loc
-	 draw_bridge_tiles(x,y)
-	 --here we dont show tomatoes!
-	 --   elseif game_job_que[i].job_type == "Plant tomatoes" then  --GARDEN (Tomatoes
-	 --      game_map[game_job_que[i].location_y][game_job_que[i].location_x] = 42 
-	 --      game_road_map[game_job_que[i].location_y][game_job_que[i].location_x] = 1000
-	 
-	 if game_road_map[y][x] == 1001 and game_map[y][x] == 46 then ---hack
-	    love.graphics.draw(tiles_image,game_tiles[ 69 ],  lx+game.draw_x, ly+game.draw_y)
+	 draw_bridge_tiles(x,y) 
+	 if game_road_map[y][x] == 1046 and game_map[y][x] == 46 then --tomatoes are full grown
+	    love.graphics.draw(tiles_image,game_tiles[ 69 ],  lx+game.draw_x, ly+game.draw_y) --draw tomatoes not wheat
 	 else
-	    love.graphics.draw(tiles_image,game_tiles[ game_map[y][x] ], lx+game.draw_x, ly+game.draw_y) --draw ground
+	    love.graphics.draw(tiles_image,game_tiles[ game_map[y][x] ], lx+game.draw_x, ly+game.draw_y) --draw ground tiles
 	 end
-	 
-	 
 	 if game_road_map[y][x] > 0 then
 	    draw_mayor_statue(x,y)
 	    --draw road_map additions

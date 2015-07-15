@@ -87,7 +87,8 @@ function on_cut_where_click()
       villagers_do_job(game_directives.location_x, game_directives.location_y , "woodcutter")
       create_job_forque()
       play_sound(sound_treecutting)
-   elseif game.biome == "japan" and game_map[game.tile_selected_y][game.tile_selected_x] >= 3 and game_map[game.tile_selected_y][game.tile_selected_x] <= 9 then
+   elseif game.biome == "japan" and game_map[game.tile_selected_y][game.tile_selected_x] >= 3 and
+   game_map[game.tile_selected_y][game.tile_selected_x] <= 9 then
       --japan 3-9 sakura, 10-20 bamboo
       update_directives_loc(300, 1)
       game_directives.job_type = "Cut sakura"
@@ -95,7 +96,8 @@ function on_cut_where_click()
       villagers_do_job(game_directives.location_x, game_directives.location_y, "woodcutter")
       create_job_forque()
       play_sound(sound_treecutting)
-   elseif game.biome == "japan" and game_map[game.tile_selected_y][game.tile_selected_x] >= 10 and game_map[game.tile_selected_y][game.tile_selected_x] <= 20 then
+   elseif game.biome == "japan" and game_map[game.tile_selected_y][game.tile_selected_x] >= 10 and
+   game_map[game.tile_selected_y][game.tile_selected_x] <= 20 then
       update_directives_loc(300, 1)
       game_directives.job_type = "Cut bamboo"
       game.give_direction = "Cut where?"
