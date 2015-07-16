@@ -1,5 +1,13 @@
 --move pure drawing functions here :)
 
+function show_tooltop_message(text, x,y) -- show text on mouseover
+	love.graphics.setColor(255,255,255,255)
+	love.graphics.rectangle("fill" x,y, 90, 26)
+	love.graphics.setColor(80,80,80,80)
+	love.graphics.rectangle("fill" x+2,y+2, 90-2, 26-2)
+	love.graphics.printf(text, x+3,y+3) --print the text on mouse over.
+end
+
 function display_game_event(mque) --puts a messagebox with a game event of "text"
    --sets a game timer for the messagebox
    love.graphics.setColor(50, 50, 50, 255)
