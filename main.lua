@@ -273,7 +273,7 @@ function instant_update_map() -- check map after an event and update accordingly
 	       game_map[y][x] = 38
 	    elseif y > 1 and x > 1 and game_map[y][x-1] and game_map[y][x-1] == 38 then
 	       game_map[y][x] = 38
-	    elseif y > 1 and x > 1 and game_map[y+1][x] and game_map[y+1][x] == 38 then
+	    elseif y > 1 and x > 1 and game_map[y+1][x] and game_map[y+1][x] == 38 then --threw an error (was digging map edge)
 	       game_map[y][x] = 38
 	    elseif y > 1 and x > 1 and game_map[y-1][x] and game_map[y-1][x] == 38 then
 	       game_map[y][x] = 38
@@ -326,171 +326,6 @@ function vandalize_monument() --map update
       end
    end
 end
-
-function daily_update_map() --happens at 11 oclock
-   --provide resources from producing buildings
-   --wildlife_proliferation() -- breed the wildlife!
-   table.insert(game_wildlife, new_wildlife(0, "random") )
-   table.insert(game_wildlife, new_wildlife(0, "random") )
-   table.insert(game_wildlife, new_wildlife(0, "random") )
-   table.insert(game_wildlife, new_wildlife(0, "random") )
-   table.insert(game_wildlife, new_wildlife(0, "random") )
-   --kingdom_inventory.grain = kingdom_inventory.grain + kingdom_inventory.farmplot *10
-   kingdom_inventory.homes = 0 --clear for recount
-   for y = 1, game.tilecount do --this updates weekly but for purposes
-      for x = 1, game.tilecount do
-	 if game_map[y][x] >= 43 and game_map[y][x] <= 46 then --43, 44, 45
-	    local birds_ravage_garden = math.random(1,20-research_topics.agriculture)
-	    if birds_ravage_garden == 1 and 
-	    unlock_addition("scarecrow") == true then
-	       game_map[y][x] = 42
-	       message_que_add("Crows have ravaged your garden at "..y.."x"..x, 80, 1)
-	    end
-	 end
-	 ---------------------------------
-	 if game_map[y][x] == 1 and game.days_since_regrowth == 7 then --dirt
-	    game_map[y][x] = 2 --grass
-	 elseif game_map[y][x] == 42 then --garden
-	    game_map[y][x] = 43 -- sprouts
-	    if game_road_map[y][x] == 1042 then
-	       game_road_map[y][x] = 1043
-	    end
-	 elseif game_map[y][x] == 43 then --sprouts
-	    if game.days_without_rain >=7 or game.days_snowed >= 7 then
-	       game_map[y][x] = 42
-	    else
-	       game_map[y][x] = 44
-	    end
-	    if game_road_map[y][x] == 1043 then
-	       game_road_map[y][x] = 1044
-	    end
-	 elseif game_map[y][x] == 44 then --plants
-	    if game_road_map[y][x] == 1044 then
-	       game_road_map[y][x] = 1045
-	    end
-	    if game.days_without_rain >=7 or game.days_snowed >= 7  then
-	       game_map[y][x] = 42
-	    else
-	       game_map[y][x] = 45
-	    end
-	 elseif game_map[y][x] == 45 then --almost ready
-	    if game_road_map[y][x] == 1045 then
-	       game_road_map[y][x] = 1046
-	    end
-	    if game.days_without_rain >=7 or game.days_snowed >= 7  then
-	       game_map[y][x] = 42
-	    else
-	       game_map[y][x] = 46 --ready to harvest
-	    end
-	 elseif game_map[y][x] == 46 then --next day harvest and replant
-	    if game_road_map[y][x] == 1046 then
-	       kingdom_inventory.tomatoes = kingdom_inventory.tomatoes+10	
-	    else
-	       kingdom_inventory.grain = kingdom_inventory.grain+10
-	       game_road_map[y][x] = 1042
-	    end
-	    game_map[y][x] = 42
-	 elseif game_road_map[y][x] >= 23 and game_road_map[y][x] <= 26 then
-	    kingdom_inventory.homes = kingdom_inventory.homes+1
-	 elseif game_road_map[y][x] == 55 then --fishing hut
-	    kingdom_inventory.fish = kingdom_inventory.fish+ math.random(1,5)
-	 end
-
-	 game.days_since_regrowth = game.days_since_regrowth+1
-	 if game.days_since_regrowth >= 7 then
-	    game.days_since_regrowth = 0
-	 end
-	 
-	 if game_fire_map[y][x] == 1 then
-	    fire_rand = math.random(1,4)
-	    if (fire_rand == 1) then		-- spread the fire!			
-	       fire_spread = math.random(1,4)
-	       if fire_spread == 1 and check_fireproof(game_map[y][x-1], game_fire_map[y][x-1]) == false and game_fire_map[y][x-1] ~= nil then 
-		  game_fire_map[y][x-1] = 1
-		  message_que_add("The fire is spreading!", 300, 1)
-	       elseif fire_spread == 2 and check_fireproof(game_map[y][x+1],game_fire_map[y][x+1] ) == false and game_fire_map[y][x+1] ~= nil then 
-		  game_fire_map[y][x+1] = 1
-		  message_que_add("The fire is spreading!", 300, 1)
-	       elseif fire_spread == 3 and check_fireproof(game_map[y-1][x], game_fire_map[y-1][x]) == false and game_fire_map[y-1][x] ~= nil then 
-		  game_fire_map[y-1][x] = 1
-		  message_que_add("The fire is spreading!", 300, 1)
-	       elseif fire_spread == 4 and check_fireproof(game_map[y+1][x],game_fire_map[y+1][x] ) == false and game_fire_map[y+1][x] ~= nil then 
-		  game_fire_map[y+1][x] = 1
-		  message_que_add("The fire is spreading!", 300, 1)
-	       end --endif
-	    end--endif
-	 end --endif
-      end
-   end
-   --more villagers arrive!
-   migrants = math.random(1, 5)
-   migrants_tab = {}
-   for t=1, migrants do
-      table.insert(migrants_tab, new_villager(1) )--put in a temp table		
-   end
-   update_migration_relations(migrants_tab)--update their relations
-   game_families = get_villager_famgroups()
-   if kingdom_inventory.dwarves > 0 then
-   	research_topics.smelter = 1
-   	research_topics.smithy = 1
-   end
-   
-   --TODO update t
-   for t=1, migrants do --put them into the main table.
-      table.insert(game_villagers, migrants_tab[t]) 
-      kingdom_inventory.villagers =  kingdom_inventory.villagers +1
-   end
-   --look for vacant positions
-   if kingdom_inventory.sheriff > 0 then
-      villagers_do_job(400, 400, "sheriff")
-   end
-   kingdom_inventory.families = get_villager_families(game_villagers)
-   message_que_add(migrants.." migrants have arrived.  Welcome." , 300, 7)
-   --kingdom_inventory.homeless = (kingdom_inventory.villagers - kingdom_inventory.homes)
-   --game.message_box_timer = 300
-   if kingdom_inventory.monument >= 1 then
-      if kingdom_inventory.unrest < 60 then
-	 kingdom_inventory.unrest = kingdom_inventory.unrest - kingdom_inventory.monument --monuments
-	 local vandalism = math.random(1,300)
-	 if vandalism ==1 then
-	    vandalize_monument()
-	 end--endif
-      elseif kingdom_inventory.unrest > 60 then
-	 kingdom_inventory.unrest = kingdom_inventory.unrest + kingdom_inventory.monument --monuments
-	 local vandalism = math.random(1,3)
-	 if vandalism ==1 then
-	    vandalize_monument()
-	 end
-      end
-   end
-   if kingdom_inventory.holyman > 0 and kingdom_inventory.unrest < 60 then
-      kingdom_inventory.unrest = kingdom_inventory.unrest - (kingdom_inventory.holyman*5)
-      message_que_add("The people are encouraged by the holyman's sermon" , 90, 1)
-      if kingdom_inventory.unrest < 0 then
-	 kingdom_inventory.unrest = 0
-      end
-   elseif kingdom_inventory.unrest >= 60 then
-      kingdom_inventory.unrest = kingdom_inventory.unrest + (kingdom_inventory.holyman*5)
-      message_que_add("The people are outraged by the holyman's sermon" , 90, 1)
-   end
-   --insert weather and catastrophies here! ha!
-   game.current_weather = run_weather_trigger()
-   message_que_add(weather[game.current_weather], 90,1)
-   --current_weather = 2, days_without_rain = 0, days_rained = 0, days_snowed = 0,
-   --current_catastrophy = 0,
-   run_catastrophies_trigger() -- check for  catastrophies.
-   if game.current_weather == 11 or game.current_weather == 12 or game.current_weather == 13 then
-      game.days_rained = game.days_rained+1
-      game.days_without_rain = 0
-   elseif game.current_weather >= 2 and game.current_weather <= 10 then --2 through 10
-      game.days_without_rain = game.days_without_rain+1
-      game.days_snowed = 0
-   elseif game.current_weather >= 14 then
-      game.days_snowed = game.days_snowed+1
-   else
-      game.days_snowed = 0
-   end
-end --daily_update_map()
 
 function create_new_scene(file)
    table.insert(game_villagers, new_villager(1) ) --make sure starting villagers are not
@@ -555,8 +390,6 @@ function go_fullscreen()
       end -- version == "0.8.0" then 
       fullscreen_hack = "no"
    end--fullscreen_hack == "no" then
-   --reset the screen_width/height to recalc the buttons
-   --game.screen_width = 800, game.screen_height = 600
    game.screen_height = love.graphics.getHeight()
    game.screen_width  = love.graphics.getWidth()
 end
