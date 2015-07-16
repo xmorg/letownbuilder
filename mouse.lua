@@ -10,9 +10,13 @@ function mouse_clicked_inrect(x,y, cx, cy, cw, ch) -- clicked in a rectangle
 end
 
 function get_tooltip_info_from_item() --ran in update?
-	--if mouse_clicked_inrect(x,y, cx, cy, cw, ch) == 1 then
-	--tooltip_text = "Something"
-	--else tooltip_text = "None"
+	mx = love.mouse.getX()
+	my = love.mouse.getY()
+	if mouse_clicked_inrect(mx,my, 1, 1, 1, 1) == 1 then
+		--tooltip_text = "Something"
+	else 
+		tooltip_text = "NONE"
+	end
 end
 
 function update_checkscrolling(mx, my)
