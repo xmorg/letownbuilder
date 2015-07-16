@@ -1,3 +1,5 @@
+--function show_tooltop_message(text, x,y) -- render.lua show text on mouseover 
+
 function mouse_clicked_inrect(x,y, cx, cy, cw, ch) -- clicked in a rectangle
    if y >= cy and y <= cy+ch and 
    x >= cx and x <= cx+cw then
