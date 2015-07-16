@@ -43,7 +43,8 @@ game = {state = 1, give_direction = "None", day_time = 6000, day_count = 1,
 	merchant_arrived = 0, --if to draw merchants
 	trading_timer = 0, -- how long they stay at the post
 	merchant_spawn_x=0, merchant_spawn_y=0, --start location of current merchants(randomly set on arrival)
-	merchant_target_x = 0, merchant_target_y = 0
+	merchant_target_x = 0, merchant_target_y = 0,
+	tooltip_text = "NONE"
 }
 
 weather = {
