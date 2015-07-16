@@ -9,6 +9,12 @@ function mouse_clicked_inrect(x,y, cx, cy, cw, ch) -- clicked in a rectangle
    end
 end
 
+function get_tooltip_info_from_item() --ran in update?
+	--if mouse_clicked_inrect(x,y, cx, cy, cw, ch) == 1 then
+	--tooltip_text = "Something"
+	--else tooltip_text = "None"
+end
+
 function update_checkscrolling(mx, my)
    if game.mouse_last_x > mx and love.mouse.isDown("l") and game.give_direction == "Scrolling" then
       game.draw_x = game.draw_x-game.scroll_speed
