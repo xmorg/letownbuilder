@@ -768,4 +768,5 @@ function love.update(dt)
    end --if game.game_paused == 0 then
    on_update_earthquake(5)
    update_merchant_location()
+   get_tooltip_info_from_item() --ran in update?
 end -- function love.update()
