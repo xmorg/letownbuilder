@@ -598,7 +598,8 @@ function love.draw()
 	 draw_roster_list()
       elseif game.game_mque == 1 then
 	 draw_message_que()
-      end
+	end
+	show_tooltop_message()
       ----------------------- END TOP UI Drawing ------------------------
    end--endif
 end--end function
