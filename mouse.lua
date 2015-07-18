@@ -15,9 +15,11 @@ function get_tooltip_info_from_item() --ran in update?
 	scrw = love.graphics.getWidth()
 	scrh = love.graphics.getHeight()
 	if mouse_clicked_inrect(mx,my, scrw-64, 8, scrw-32, 30) == 1 then --wood
-		tooltip_test = "wood"
+		game.tooltip_text = "wood"
+	elseif mouse_clicked_inrect(mx,my, scrw-32, 8, scrw, 30) == 1 then --wood
+		game.tooltip_text = "sakura"
 	else 
-		tooltip_text = "NONE"
+		game.tooltip_text = "NONE"
 	end
 end
 
