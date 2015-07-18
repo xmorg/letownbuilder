@@ -12,8 +12,10 @@ end
 function get_tooltip_info_from_item() --ran in update?
 	mx = love.mouse.getX()
 	my = love.mouse.getY()
-	if mouse_clicked_inrect(mx,my, 1, 1, 1, 1) == 1 then
-		--tooltip_text = "Something"
+	scrw = love.graphics.getWidth()
+	scrh = love.graphics.getHeight()
+	if mouse_clicked_inrect(mx,my, scrw-64, 8, scrw-32, 30) == 1 then --wood
+		tooltip_test = "wood"
 	else 
 		tooltip_text = "NONE"
 	end
