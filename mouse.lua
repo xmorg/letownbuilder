@@ -18,6 +18,8 @@ function get_tooltip_info_from_item() --ran in update?
 		game.tooltip_text = "wood"
 	elseif mouse_clicked_inrect(mx,my, scrw-32, 8, scrw, 30) == 1 then --sakura
 		game.tooltip_text = "sakura"
+	elseif mouse_clicked_inrect(mx,my, scrw-64, 8, scrw-33, 30) == 1 then --sakura
+		game.tooltip_text = "sakura"
 	else 
 		game.tooltip_text = "NONE"
 	end
