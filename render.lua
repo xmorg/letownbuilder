@@ -14,7 +14,7 @@ function show_tooltop_message()--text, x,y) -- show text on mouseover
 		love.graphics.rectangle("fill", mx-100+2,my+2, 90-4, 26-4) --gray rectangle
 		love.graphics.push()
 		love.graphics.setColor(255,255,255,255)
-		love.graphics.print(game.tooltip_text, mx-100,my+3) --print the text on mouse over.
+		love.graphics.print(game.tooltip_text, mx-95,my+3) --print the text on mouse over.
 		love.graphics.pop()
 		--love.graphics.setColor(255,255,255,255)
 		
