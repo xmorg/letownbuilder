@@ -4,9 +4,6 @@
 function daily_update_map() --happens at 11 oclock
    --provide resources from producing buildings
    --wildlife_proliferation() -- breed the wildlife!
-
-   
-   
    table.insert(game_wildlife, new_wildlife(0, "random") )
    table.insert(game_wildlife, new_wildlife(0, "random") )
    table.insert(game_wildlife, new_wildlife(0, "random") )
