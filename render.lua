@@ -1,6 +1,7 @@
 --move pure drawing functions here :)
 
 function show_tooltop_message()--text, x,y) -- show text on mouseover
+	love.graphics.push("all")
 	mx = love.mouse.getX()
 	my = love.mouse.getY()
 	if game.tooltip_text == "NONE" then
@@ -15,6 +16,7 @@ function show_tooltop_message()--text, x,y) -- show text on mouseover
 		love.graphics.setColor(255,255,255,255)
 		
 	end
+	love.graphics.pop()
 end
 
 function display_game_event(mque) --puts a messagebox with a game event of "text"
