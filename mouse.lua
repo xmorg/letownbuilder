@@ -10,10 +10,10 @@ function mouse_clicked_inrect(x,y, cx, cy, cw, ch) -- clicked in a rectangle
 end
 
 function get_tooltip_info_from_item() --ran in update?
-	mx = love.mouse.getX()
-	my = love.mouse.getY()
-	scrw = love.graphics.getWidth()
-	scrh = love.graphics.getHeight()
+	mx = love.mouse.getX() --mouse x coord
+	my = love.mouse.getY() --mouse y coord
+	scrw = love.graphics.getWidth() --screen width
+	scrh = love.graphics.getHeight() --screen height
 	if     mouse_clicked_inrect(mx,my, scrw-64, 8, scrw-33, 30) == 1 then --wood
 		game.tooltip_text = "wood"
 	elseif mouse_clicked_inrect(mx,my, scrw-32, 8, scrw, 30) == 1 then --sakura
