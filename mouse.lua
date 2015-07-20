@@ -14,13 +14,13 @@ function get_tooltip_info_from_item() --ran in update?
 	my = love.mouse.getY() --mouse y coord
 	scrw = love.graphics.getWidth() --screen width
 	scrh = love.graphics.getHeight() --screen height
-	if     mouse_clicked_inrect(mx,my, scrw-64, 1, scrw-33, 30) == 1 then --wood
+	if     mouse_clicked_inrect(mx,my, scrw-64, 1, 32, 32)== 1 then --wood
 		game.tooltip_text = "wood"
-	elseif mouse_clicked_inrect(mx,my, scrw-32, 1, scrw-1, 30) == 1 then --sakura
+	elseif mouse_clicked_inrect(mx,my, scrw-32, 1, 32,32) == 1 then --sakura
 		game.tooltip_text = "sakura"
-	elseif mouse_clicked_inrect(mx,my, scrw-64, 32, scrw-33, 30) == 1 then --sakura
+	elseif mouse_clicked_inrect(mx,my, scrw-64, 32, 32,32)== 1 then --sakura
 		game.tooltip_text = "rocks"
-	elseif mouse_clicked_inrect(mx,my, scrw-30, 32, scrw-1, 30) == 1 then --sakura
+	elseif mouse_clicked_inrect(mx,my, scrw-30, 32, 32,32) == 1 then --sakura
 		game.tooltip_text = "bamboo"
 	else 
 		game.tooltip_text = "NONE"
