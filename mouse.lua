@@ -14,14 +14,54 @@ function get_tooltip_info_from_item() --ran in update?
 	my = love.mouse.getY() --mouse y coord
 	scrw = love.graphics.getWidth() --screen width
 	scrh = love.graphics.getHeight() --screen height
-	if     mouse_clicked_inrect(mx,my, scrw-64, 1, 32, 32)== 1 then --wood
-		game.tooltip_text = "wood"
+	if mouse_clicked_inrect(mx,my, 600, 1, 32, 32)== 1 then --wood
+	   game.tooltip_text = "town records"
+	elseif mouse_clicked_inrect(mx,my, 632, 1, 32, 32)== 1 then --wood
+	   game.tooltip_text = "load game"
+	elseif mouse_clicked_inrect(mx,my, 664, 1, 32, 32)== 1 then --wood
+	   game.tooltip_text = "nosave exit"
+	elseif mouse_clicked_inrect(mx,my, 696, 1, 32, 32)== 1 then --wood
+	   game.tooltip_text = "save and exit"
+	elseif mouse_clicked_inrect(mx,my, scrw-64, 1, 32, 32)== 1 then --wood
+	   game.tooltip_text = "wood"
 	elseif mouse_clicked_inrect(mx,my, scrw-32, 1, 32,32) == 1 then --sakura
-		game.tooltip_text = "sakura"
+	   game.tooltip_text = "sakura"
 	elseif mouse_clicked_inrect(mx,my, scrw-64, 32, 32,32)== 1 then --sakura
-		game.tooltip_text = "rocks"
+	   game.tooltip_text = "rocks"
 	elseif mouse_clicked_inrect(mx,my, scrw-30, 32, 32,32) == 1 then --sakura
-		game.tooltip_text = "bamboo"
+	   game.tooltip_text = "bamboo"
+	elseif mouse_clicked_inrect(mx,my, scrw-64, 64, 32,32)== 1 then --sakura
+	   game.tooltip_text = "fish"
+	elseif mouse_clicked_inrect(mx,my, scrw-30, 64, 32,32) == 1 then --sakura
+	   game.tooltip_text = "iron ore"
+	elseif mouse_clicked_inrect(mx,my, scrw-64, 96, 32,32)== 1 then --sakura
+	   game.tooltip_text = "cherries"
+	elseif mouse_clicked_inrect(mx,my, scrw-30, 96, 32,32) == 1 then --sakura
+	   game.tooltip_text = "gold ore"
+	elseif mouse_clicked_inrect(mx,my, scrw-64, 128, 32,32)== 1 then --sakura
+	   game.tooltip_text = "carrots"
+	elseif mouse_clicked_inrect(mx,my, scrw-30, 128, 32,32) == 1 then --sakura
+	   game.tooltip_text = "iron bars"
+	elseif mouse_clicked_inrect(mx,my, scrw-64, 160, 32,32)== 1 then --sakura
+	   game.tooltip_text = "tomatoes"
+	elseif mouse_clicked_inrect(mx,my, scrw-30, 160, 32,32) == 1 then --sakura
+	   game.tooltip_text = "gold bars"
+	elseif mouse_clicked_inrect(mx,my, scrw-64, 192, 32,32)== 1 then --sakura
+	   game.tooltip_text = "meat"
+	elseif mouse_clicked_inrect(mx,my, scrw-30, 192, 32,32) == 1 then --sakura
+	   game.tooltip_text = "wheat"
+	elseif mouse_clicked_inrect(mx,my, scrw-64, 224, 32,32)== 1 then --sakura
+	   game.tooltip_text = "sansai"
+	elseif mouse_clicked_inrect(mx,my, scrw-30, 224, 32,32) == 1 then --sakura
+	   game.tooltip_text = "apples"
+	elseif mouse_clicked_inrect(mx,my, scrw-64, 256, 32,32)== 1 then --sakura
+	   game.tooltip_text = "fish wine"
+	elseif mouse_clicked_inrect(mx,my, scrw-30, 256, 32,32) == 1 then --sakura
+	   game.tooltip_text = "pale ale"
+	elseif mouse_clicked_inrect(mx,my, scrw-64, 288, 32,32)== 1 then --sakura
+	   game.tooltip_text = "sandstone"
+	elseif mouse_clicked_inrect(mx,my, scrw-30, 288, 32,32) == 1 then --sakura
+	   game.tooltip_text = "wild onions"
 	else 
 		game.tooltip_text = "NONE"
 	end
