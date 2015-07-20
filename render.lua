@@ -264,6 +264,9 @@ function draw_roster_list_mque()
    end
 end
 
+function draw_policies_list() --draw mayors policies
+	
+end
 function draw_roster_list_resources()
    love.graphics.setFont( base_font )
    love.graphics.print("Resource       Type           Stored in        Value", col_one, 20+88)
