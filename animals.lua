@@ -75,9 +75,16 @@ function new_wildlife(migration, name)
 	elseif a.wildlife_type == "lynx" then a.speed = 4 a.sprite = 35
 	elseif a.wildlife_type == "copperhead" then a.speed = 4 a.sprite = 36
 	elseif a.wildlife_type == "donkey" then a.speed = 4 a.sprite = 24
+	elseif a.wildlife_type == "night wolf" then a.speed = 4 a.sprite = 42
 	end
 	return a
 end
+
+function spawn_nightwolves() --put night wolves into game_nightwolves = {}
+	table.insert(game_nightwolves, new_wildlife(0, "night wolf") )
+	--game_nightwolves = {}
+end
+
 function wildlife_proliferation() --disabled because of memory bug
    --loop through current wildlife, and add wildlife based on type. some wildlife breed faster than others.
    for i,v in ipairs(game_wildlife) do
