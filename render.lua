@@ -543,6 +543,8 @@ function draw_night(y, x)  --code for night and fire glow
    else
       love.graphics.setColor(50,50,50,255)
    end
+   
+   draw_nightwolves() --draw them at night?
 end
 
 function draw_villagers()
