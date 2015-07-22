@@ -276,7 +276,7 @@ function update_run_daytimer()
       elseif game.day_time == 17000 then
 	 villagers_complete_jobs_by_buildings() --check for buildings and, apply resources.
       elseif game.day_time == 21000 then
-	villagers_seek_shelter(table.getn(game_villagers)
+	villagers_seek_shelter(table.getn(game_villagers))
 	spawn_nightwolves() --put wovloves in town (dont forget to random it)
       end
    else -- reset timer
