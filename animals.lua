@@ -81,8 +81,17 @@ function new_wildlife(migration, name)
 end
 
 function spawn_nightwolves() --put night wolves into game_nightwolves = {}
+	table.insert(game_nightwolves, new_wildlife(0, "night wolf") ) --need to set x,y based on screen edge.
+	table.insert(game_nightwolves, new_wildlife(0, "night wolf") )
+	table.insert(game_nightwolves, new_wildlife(0, "night wolf") )
+	table.insert(game_nightwolves, new_wildlife(0, "night wolf") )
 	table.insert(game_nightwolves, new_wildlife(0, "night wolf") )
 	--game_nightwolves = {}
+end
+function drop_nightwolves() --nights over wolves are gone.
+	for i,v in ipairs(game_nightwolves) do
+		table.remove(game_nightwolves)
+	end
 end
 
 function wildlife_proliferation() --disabled because of memory bug
