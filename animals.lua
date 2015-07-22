@@ -85,17 +85,17 @@ function spawn_nightwolves() --put night wolves into game_nightwolves = {}
    	--select a random tile on the edge of the map to place them
    	--note code, try spawn offscreen.
    	if nesw == 1 then --north
-    	wolf_spawn_x = 2000 --math.random(1,game.tilecount) --tiles
-    	wolf_spawn_y = -1000 --math.random(1,game.tilecount) --tiles
+    	wolf_spawn_x = 800 --math.random(1,game.tilecount) --tiles
+    	wolf_spawn_y = -800 --math.random(1,game.tilecount) --tiles
    	elseif nesw == 2 then --east
-    	wolf_spawn_x = 2000 --game.tilecount
-    	wolf_spawn_y = 1000 --math.random(1,game.tilecount)
+    	wolf_spawn_x = 800 --game.tilecount
+    	wolf_spawn_y = 800 --math.random(1,game.tilecount)
    	elseif newsw == 3 then --south
-    	wolf_spawn_x = -2000 --math.random(1,game.tilecount) --tiles
-    	wolf_spawn_y = 1000 --game.tilecount --math.random(1,game.tilecount) --tiles
+    	wolf_spawn_x = -800 --math.random(1,game.tilecount) --tiles
+    	wolf_spawn_y = 800 --game.tilecount --math.random(1,game.tilecount) --tiles
    	else --west
-    	wolf_spawn_x = -1000 --0 --tiles
-    	wolf_spawn_y = -2000 --math.random(1,game.tilecount) --math.random(1,game.tilecount) --tiles
+    	wolf_spawn_x = -800 --0 --tiles
+    	wolf_spawn_y = -800 --math.random(1,game.tilecount) --math.random(1,game.tilecount) --tiles
    	end
 	
 	table.insert(game_nightwolves, new_wildlife(0, "night wolf") ) --need to set x,y based on screen edge.
