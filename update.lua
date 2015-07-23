@@ -223,6 +223,29 @@ function debug_negatives() --?
    end
 end
 
+function check_for_events_in_timer()
+   if game.day_time == 12000 then
+      villagers_eat_food(table.getn(game_villagers))
+      if kingdom_inventory.unrest >= 70 then
+	 villagers_rioting_report(game_villagers)
+      end
+   elseif game.day_time == 11000 then
+      --message_que_add("DEBUG: Daily update map", 80, 109)
+      daily_update_map()
+   elseif game.day_time == 8000 then
+      merchants_arrive()
+   elseif game.day_time == 6000 then
+      drop_nightwolves()
+   elseif game.day_time % 1000 == 0 then
+      hourly_update_map()
+   elseif game.day_time == 17000 then
+      villagers_complete_jobs_by_buildings() --check for buildings and, apply resources.
+   elseif game.day_time == 21000 then
+      villagers_seek_shelter(table.getn(game_villagers))
+      spawn_nightwolves() --put wovloves in town (dont forget to random it)
+   end
+end
+
 function update_run_daytimer() 
    if game.day_time < 24000 then
       game.day_time = game.day_time+1
@@ -259,26 +282,7 @@ function update_run_daytimer()
       for i,v in ipairs(game_villagers) do
 	 check_for_disease(i) --run disease loop here.
       end--end for
-      if game.day_time == 12000 then
-	 villagers_eat_food(table.getn(game_villagers))
-	 if kingdom_inventory.unrest >= 70 then
-	    villagers_rioting_report(game_villagers)
-	 end
-      elseif game.day_time == 11000 then
-	 message_que_add("DEBUG: Daily update map", 80, 109)
-	 daily_update_map()
-      elseif game.day_time == 8000 then
-	 merchants_arrive()
- elseif game.day_time == 6000 then
- 	drop_nightwolves()
-      elseif game.day_time % 1000 == 0 then
-	 hourly_update_map()
-      elseif game.day_time == 17000 then
-	 villagers_complete_jobs_by_buildings() --check for buildings and, apply resources.
-      elseif game.day_time == 21000 then
-	villagers_seek_shelter(table.getn(game_villagers))
-	spawn_nightwolves() --put wovloves in town (dont forget to random it)
-      end
+      check_for_events_in_timer()
    else -- reset timer
       game.day_time = 0
       game.day_count = game.day_count+1
