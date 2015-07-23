@@ -491,6 +491,9 @@ function draw_wildlife()
 	 love.graphics.setColor(255,255,255,255)
       end--endif
    end--endfor
+   if is_night() == 1 then
+   	draw_nightwolves() --draw them at night?
+   end
 end
 
 function old_function()
@@ -543,8 +546,6 @@ function draw_night(y, x)  --code for night and fire glow
    else
       love.graphics.setColor(50,50,50,255)
    end
-   
-   draw_nightwolves() --draw them at night?
 end
 
 function draw_villagers()
