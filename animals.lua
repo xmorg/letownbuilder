@@ -115,6 +115,20 @@ function drop_nightwolves() --nights over wolves are gone.
 		table.remove(game_nightwolves)
 	end
 end
+
+function update_nightwolves()
+	for i, v in ipairs(game_nightwolves) do
+		if game_nightwolves[i].job == 0 and game_nightwolves[i].alive == 1 then -- The living!
+	    	game_nightwolves[i].job = math.random(1, 1000)
+	    	if game_nightwolves[i].job < 10 then -- movment
+	       		game_nightwolves[i].dx = game_nightwolves[i].dx + math.random(-30,30) --temp workaround
+	       		game_nightwolves[i].dy = game_nightwolves[i].dy + math.random(-30,30)
+	    	end--endif
+		end --endif
+		update_villager_new_destination(game_nightwolves[i], dt, game_nightwolves[i].speed)
+    end
+end
+
 function draw_nightwolves()
 	for i,v in ipairs(game_nightwolves) do
 		love.graphics.draw(game_sprites[42],
