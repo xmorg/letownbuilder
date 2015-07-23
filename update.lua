@@ -764,7 +764,8 @@ function love.update(dt)
 	    end--endif
 	 end --endif
 	 update_villager_new_destination(game_wildlife[i], dt, game_wildlife[i].speed)
-      end -- endfor (game_wildlife)
+	end -- endfor (game_wildlife)
+	update_nightwolves() --update nightwolves.
    end --if game.game_paused == 0 then
    on_update_earthquake(5)
    update_merchant_location()
