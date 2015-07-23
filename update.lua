@@ -1,6 +1,86 @@
 --main update functions, 
 --increment day time and
 
+function plant_regrowth(x,y)
+   if game_map[y][x] == 1 and game.days_since_regrowth == 7 then --dirt
+      game_map[y][x] = 2 --grass
+   elseif game_map[y][x] == 42 then --garden
+      game_map[y][x] = 43 -- sprouts
+      if game_road_map[y][x] == 1042 then
+	 game_road_map[y][x] = 1043
+      end
+   elseif game_map[y][x] == 43 then --sprouts
+      if game.days_without_rain >=7 or game.days_snowed >= 7 then
+	 game_map[y][x] = 42
+      else
+	 game_map[y][x] = 44
+      end
+      if game_road_map[y][x] == 1043 then
+	 game_road_map[y][x] = 1044
+      end
+   elseif game_map[y][x] == 44 then --plants
+      if game_road_map[y][x] == 1044 then
+	 game_road_map[y][x] = 1045
+      end
+      if game.days_without_rain >=7 or game.days_snowed >= 7  then
+	 game_map[y][x] = 42
+      else
+	 game_map[y][x] = 45
+      end
+   elseif game_map[y][x] == 45 then --almost ready
+      if game_road_map[y][x] == 1045 then
+	 game_road_map[y][x] = 1046
+      end
+      if game.days_without_rain >=7 or game.days_snowed >= 7  then
+	 game_map[y][x] = 42
+      else
+	 game_map[y][x] = 46 --ready to harvest
+      end
+   elseif game_map[y][x] == 46 then --next day harvest and replant
+      if game_road_map[y][x] == 1046 then
+	 kingdom_inventory.tomatoes = kingdom_inventory.tomatoes+10	
+      else
+	 kingdom_inventory.grain = kingdom_inventory.grain+10
+	 game_road_map[y][x] = 1042
+      end
+      game_map[y][x] = 42
+   elseif game_road_map[y][x] >= 23 and game_road_map[y][x] <= 26 then
+      kingdom_inventory.homes = kingdom_inventory.homes+1
+   elseif game_road_map[y][x] == 55 then --fishing hut
+      kingdom_inventory.fish = kingdom_inventory.fish+ math.random(1,5)
+   end
+   game.days_since_regrowth = game.days_since_regrowth+1
+   if game.days_since_regrowth >= 7 then
+      game.days_since_regrowth = 0
+   end
+end
+
+function spread_fires(x,y)
+   if game_fire_map[y][x] == 1 then
+      fire_rand = math.random(1,4)
+      if (fire_rand == 1) then		-- spread the fire!			
+	 fire_spread = math.random(1,4)
+	 if fire_spread == 1 and check_fireproof(game_map[y][x-1], game_fire_map[y][x-1]) == false and
+	 game_fire_map[y][x-1] ~= nil then 
+	    game_fire_map[y][x-1] = 1
+	    message_que_add("The fire is spreading!", 300, 1)
+	 elseif fire_spread == 2 and check_fireproof(game_map[y][x+1],game_fire_map[y][x+1] ) == false and
+	 game_fire_map[y][x+1] ~= nil then 
+	    game_fire_map[y][x+1] = 1
+	    message_que_add("The fire is spreading!", 300, 1)
+	 elseif fire_spread == 3 and check_fireproof(game_map[y-1][x], game_fire_map[y-1][x]) == false and
+	 game_fire_map[y-1][x] ~= nil then 
+	    game_fire_map[y-1][x] = 1
+	    message_que_add("The fire is spreading!", 300, 1)
+	 elseif fire_spread == 4 and check_fireproof(game_map[y+1][x],game_fire_map[y+1][x] ) == false and
+	 game_fire_map[y+1][x] ~= nil then 
+	    game_fire_map[y+1][x] = 1
+	    message_que_add("The fire is spreading!", 300, 1)
+	 end --endif
+      end--endif
+   end --endif
+end
+
 function daily_update_map() --happens at 11 oclock
    --provide resources from producing buildings
    --wildlife_proliferation() -- breed the wildlife!
@@ -22,80 +102,12 @@ function daily_update_map() --happens at 11 oclock
 	    end
 	 end
 	 ---------------------------------
-	 if game_map[y][x] == 1 and game.days_since_regrowth == 7 then --dirt
-	    game_map[y][x] = 2 --grass
-	 elseif game_map[y][x] == 42 then --garden
-	    game_map[y][x] = 43 -- sprouts
-	    if game_road_map[y][x] == 1042 then
-	       game_road_map[y][x] = 1043
-	    end
-	 elseif game_map[y][x] == 43 then --sprouts
-	    if game.days_without_rain >=7 or game.days_snowed >= 7 then
-	       game_map[y][x] = 42
-	    else
-	       game_map[y][x] = 44
-	    end
-	    if game_road_map[y][x] == 1043 then
-	       game_road_map[y][x] = 1044
-	    end
-	 elseif game_map[y][x] == 44 then --plants
-	    if game_road_map[y][x] == 1044 then
-	       game_road_map[y][x] = 1045
-	    end
-	    if game.days_without_rain >=7 or game.days_snowed >= 7  then
-	       game_map[y][x] = 42
-	    else
-	       game_map[y][x] = 45
-	    end
-	 elseif game_map[y][x] == 45 then --almost ready
-	    if game_road_map[y][x] == 1045 then
-	       game_road_map[y][x] = 1046
-	    end
-	    if game.days_without_rain >=7 or game.days_snowed >= 7  then
-	       game_map[y][x] = 42
-	    else
-	       game_map[y][x] = 46 --ready to harvest
-	    end
-	 elseif game_map[y][x] == 46 then --next day harvest and replant
-	    if game_road_map[y][x] == 1046 then
-	       kingdom_inventory.tomatoes = kingdom_inventory.tomatoes+10	
-	    else
-	       kingdom_inventory.grain = kingdom_inventory.grain+10
-	       game_road_map[y][x] = 1042
-	    end
-	    game_map[y][x] = 42
-	 elseif game_road_map[y][x] >= 23 and game_road_map[y][x] <= 26 then
-	    kingdom_inventory.homes = kingdom_inventory.homes+1
-	 elseif game_road_map[y][x] == 55 then --fishing hut
-	    kingdom_inventory.fish = kingdom_inventory.fish+ math.random(1,5)
-	 end
-
-	 game.days_since_regrowth = game.days_since_regrowth+1
-	 if game.days_since_regrowth >= 7 then
-	    game.days_since_regrowth = 0
-	 end
+	 plant_regrowth(x,y)
+	 ----------------------------------
+	 spread_fires(x,y)
 	 
-	 if game_fire_map[y][x] == 1 then
-	    fire_rand = math.random(1,4)
-	    if (fire_rand == 1) then		-- spread the fire!			
-	       fire_spread = math.random(1,4)
-	       if fire_spread == 1 and check_fireproof(game_map[y][x-1], game_fire_map[y][x-1]) == false and game_fire_map[y][x-1] ~= nil then 
-		  game_fire_map[y][x-1] = 1
-		  message_que_add("The fire is spreading!", 300, 1)
-	       elseif fire_spread == 2 and check_fireproof(game_map[y][x+1],game_fire_map[y][x+1] ) == false and game_fire_map[y][x+1] ~= nil then 
-		  game_fire_map[y][x+1] = 1
-		  message_que_add("The fire is spreading!", 300, 1)
-	       elseif fire_spread == 3 and check_fireproof(game_map[y-1][x], game_fire_map[y-1][x]) == false and game_fire_map[y-1][x] ~= nil then 
-		  game_fire_map[y-1][x] = 1
-		  message_que_add("The fire is spreading!", 300, 1)
-	       elseif fire_spread == 4 and check_fireproof(game_map[y+1][x],game_fire_map[y+1][x] ) == false and game_fire_map[y+1][x] ~= nil then 
-		  game_fire_map[y+1][x] = 1
-		  message_que_add("The fire is spreading!", 300, 1)
-	       end --endif
-	    end--endif
-	 end --endif
-      end
-   end
+      end --endfor
+   end--endfor
    --more villagers arrive!
    migrants = math.random(1, 5)
    migrants_tab = {}
@@ -234,15 +246,21 @@ function check_for_events_in_timer()
       daily_update_map()
    elseif game.day_time == 8000 then
       merchants_arrive()
-   elseif game.day_time == 6000 then
-      drop_nightwolves()
    elseif game.day_time % 1000 == 0 then
       hourly_update_map()
-   elseif game.day_time == 17000 then
+   end
+
+   if game.day_time == 17000 then
       villagers_complete_jobs_by_buildings() --check for buildings and, apply resources.
-   elseif game.day_time == 21000 then
+   end
+   
+   if game.day_time == 21000 then
       villagers_seek_shelter(table.getn(game_villagers))
       spawn_nightwolves() --put wovloves in town (dont forget to random it)
+   end
+
+   if game.day_time == 6000 then
+      drop_nightwolves()
    end
 end
 
@@ -282,7 +300,7 @@ function update_run_daytimer()
       for i,v in ipairs(game_villagers) do
 	 check_for_disease(i) --run disease loop here.
       end--end for
-      check_for_events_in_timer()
+      check_for_events_in_timer() --NEW
    else -- reset timer
       game.day_time = 0
       game.day_count = game.day_count+1
@@ -769,7 +787,7 @@ function love.update(dt)
 	 end --endif
 	 update_villager_new_destination(game_wildlife[i], dt, game_wildlife[i].speed)
 	end -- endfor (game_wildlife)
-	update_nightwolves() --update nightwolves.
+	update_nightwolves(dt) --update nightwolves.
    end --if game.game_paused == 0 then
    on_update_earthquake(5)
    update_merchant_location()

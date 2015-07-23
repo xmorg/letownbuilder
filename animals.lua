@@ -53,88 +53,88 @@ function new_wildlife(migration, name)
 	wildlife_type = wildlife_types[randtype],-- 1, normal, 2, dark elf, 3 bandit, 4 light elf
 	speed = 0
    }
-	if name == "random" then
-	   --nothing
-	else
-		a.wildlife_type = name
-	end
-	if migration == 0 then
-		a.age = math.random(18,50)
-		--a.wildlife_type = "rabbit"
-	else
-		a.age = math.random(1,70)
-	end --if migration == 0 then
-	if a.wildlife_type == "rabbit" then a.speed = 15 a.sprite = 17
-	elseif a.wildlife_type == "wild donkey" then	a.speed = 3	a.sprite = 23
-	elseif a.wildlife_type == "wild llama" then  a.speed = 3 a.sprite = 30
-	elseif a.wildlife_type == "wild sheep" then a.speed = 3 a.sprite = 28
-	elseif a.wildlife_type == "fox" then a.speed = 3 a.sprite = 31
-	elseif a.wildlife_type == "wild dog" then a.speed = 3 a.sprite = 32
-	elseif a.wildlife_type == "bear" then a.speed = 3 a.sprite = 33
-	elseif a.wildlife_type == "black bear" then a.speed = 3 a.sprite = 34
-	elseif a.wildlife_type == "lynx" then a.speed = 4 a.sprite = 35
-	elseif a.wildlife_type == "copperhead" then a.speed = 4 a.sprite = 36
-	elseif a.wildlife_type == "donkey" then a.speed = 4 a.sprite = 24
-	elseif a.wildlife_type == "night wolf" then a.speed = 4 a.sprite = 42
-	end
-	return a
+   if name == "random" then
+      --nothing
+   else
+      a.wildlife_type = name
+   end
+   if migration == 0 then
+      a.age = math.random(18,50)
+      --a.wildlife_type = "rabbit"
+   else
+      a.age = math.random(1,70)
+   end --if migration == 0 then
+   if a.wildlife_type == "rabbit" then a.speed = 15 a.sprite = 17
+   elseif a.wildlife_type == "wild donkey" then	a.speed = 3	a.sprite = 23
+   elseif a.wildlife_type == "wild llama" then  a.speed = 3 a.sprite = 30
+   elseif a.wildlife_type == "wild sheep" then a.speed = 3 a.sprite = 28
+   elseif a.wildlife_type == "fox" then a.speed = 3 a.sprite = 31
+   elseif a.wildlife_type == "wild dog" then a.speed = 3 a.sprite = 32
+   elseif a.wildlife_type == "bear" then a.speed = 3 a.sprite = 33
+   elseif a.wildlife_type == "black bear" then a.speed = 3 a.sprite = 34
+   elseif a.wildlife_type == "lynx" then a.speed = 4 a.sprite = 35
+   elseif a.wildlife_type == "copperhead" then a.speed = 4 a.sprite = 36
+   elseif a.wildlife_type == "donkey" then a.speed = 4 a.sprite = 24
+   elseif a.wildlife_type == "night wolf" then a.speed = 11 a.sprite = 42
+   end
+   return a
 end
 
 function spawn_nightwolves() --put night wolves into game_nightwolves = {}
-	local nesw = math.random(1,4)
-   	--select a random tile on the edge of the map to place them
-   	--note code, try spawn offscreen.
-   	if nesw == 1 then --north
-    	wolf_spawn_x = 600 --math.random(1,game.tilecount) --tiles
-    	wolf_spawn_y = -600 --math.random(1,game.tilecount) --tiles
-   	elseif nesw == 2 then --east
-    	wolf_spawn_x = 600 --game.tilecount
-    	wolf_spawn_y = 600 --math.random(1,game.tilecount)
-   	elseif newsw == 3 then --south
-    	wolf_spawn_x = -600 --math.random(1,game.tilecount) --tiles
-    	wolf_spawn_y = 600 --game.tilecount --math.random(1,game.tilecount) --tiles
-   	else --west
-    	wolf_spawn_x = -600 --0 --tiles
-    	wolf_spawn_y = -600 --math.random(1,game.tilecount) --math.random(1,game.tilecount) --tiles
-   	end
-	
-	table.insert(game_nightwolves, new_wildlife(0, "night wolf") ) --need to set x,y based on screen edge.
-	table.insert(game_nightwolves, new_wildlife(0, "night wolf") )
-	table.insert(game_nightwolves, new_wildlife(0, "night wolf") )
-	table.insert(game_nightwolves, new_wildlife(0, "night wolf") )
-	table.insert(game_nightwolves, new_wildlife(0, "night wolf") )
-	
-	for i,v in ipairs(game_nightwolves) do
-		game_nightwolves[i].x = wolf_spawn_x+math.random(1,64)
-		game_nightwolves[i].y = wolf_spawn_y+math.random(1,64)
-	end
-	--game_nightwolves = {}
+   local nesw = math.random(1,4)
+   --select a random tile on the edge of the map to place them
+   --note code, try spawn offscreen.
+   if nesw == 1 then --north
+      wolf_spawn_x = 600 --math.random(1,game.tilecount) --tiles
+      wolf_spawn_y = -600 --math.random(1,game.tilecount) --tiles
+   elseif nesw == 2 then --east
+      wolf_spawn_x = 600 --game.tilecount
+      wolf_spawn_y = 600 --math.random(1,game.tilecount)
+   elseif newsw == 3 then --south
+      wolf_spawn_x = -600 --math.random(1,game.tilecount) --tiles
+      wolf_spawn_y = 600 --game.tilecount --math.random(1,game.tilecount) --tiles
+   else --west
+      wolf_spawn_x = -600 --0 --tiles
+      wolf_spawn_y = -600 --math.random(1,game.tilecount) --math.random(1,game.tilecount) --tiles
+   end
+   
+   table.insert(game_nightwolves, new_wildlife(0, "night wolf") ) --need to set x,y based on screen edge.
+   table.insert(game_nightwolves, new_wildlife(0, "night wolf") )
+   table.insert(game_nightwolves, new_wildlife(0, "night wolf") )
+   table.insert(game_nightwolves, new_wildlife(0, "night wolf") )
+   table.insert(game_nightwolves, new_wildlife(0, "night wolf") )
+   
+   for i,v in ipairs(game_nightwolves) do
+      game_nightwolves[i].x = wolf_spawn_x+math.random(1,64)
+      game_nightwolves[i].y = wolf_spawn_y+math.random(1,64)
+   end
+   --game_nightwolves = {}
 end
 function drop_nightwolves() --nights over wolves are gone.
-	for i,v in ipairs(game_nightwolves) do
-		table.remove(game_nightwolves)
-	end
+   for i,v in ipairs(game_nightwolves) do
+      table.remove(game_nightwolves)
+   end
 end
 
-function update_nightwolves()
-	for i, v in ipairs(game_nightwolves) do
-		if game_nightwolves[i].job == 0 and game_nightwolves[i].alive == 1 then -- The living!
-	    	game_nightwolves[i].job = math.random(1, 1000)
-	    	if game_nightwolves[i].job < 10 then -- movment
-	       		game_nightwolves[i].dx = game_nightwolves[i].dx + math.random(-30,30) --temp workaround
-	       		game_nightwolves[i].dy = game_nightwolves[i].dy + math.random(-30,30)
-	    	end--endif
-		end --endif
-		update_villager_new_destination(game_nightwolves[i], dt, game_nightwolves[i].speed)
-    end
+function update_nightwolves(dt)
+   for i, v in ipairs(game_nightwolves) do
+      if game_nightwolves[i].job == 0 and game_nightwolves[i].alive == 1 then -- The living!
+	 game_nightwolves[i].job = math.random(1, 1000)
+	 if game_nightwolves[i].job < 10 then -- movment
+	    game_nightwolves[i].dx = game_nightwolves[i].dx + math.random(-30,30) --temp workaround
+	    game_nightwolves[i].dy = game_nightwolves[i].dy + math.random(-30,30)
+	 end--endif
+      end --endif
+      update_villager_new_destination(game_nightwolves[i], dt, game_nightwolves[i].speed)
+   end
 end
 
 function draw_nightwolves()
-	for i,v in ipairs(game_nightwolves) do
-		love.graphics.draw(game_sprites[42],
+   for i,v in ipairs(game_nightwolves) do
+      love.graphics.draw(game_sprites[42],
 			 game_nightwolves[i].x +game.draw_x,
 			 game_nightwolves[i].y +game.draw_y )
-	end
+   end
 end
 
 function wildlife_proliferation() --disabled because of memory bug
