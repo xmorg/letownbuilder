@@ -74,7 +74,7 @@ game_icons = {}
 game_map = {}
 game_fire_map =  {} --check if tile is on fire!
 game_road_map = {}
-game_sprites = {}
+game_sprites_table = {} --table of game_sprites
 weather_quads = {}
 game_directives = {active = 0, timer = 0, location_x = 0, location_y = 0, 
 		  job_type = "None", research_type = "None"
@@ -410,9 +410,20 @@ function load_game_res() --- load game resources after a love version has been s
    local sprite_dir = "data/sprites/"
    local tile_files = nil
    local icon_files = nil
-   local sprite_files = nil
+   --local sprite_files = nil
    --local biome_random = math.random(1,2) --bug!
    --if biome_random == 2 then game.biome = "japan" end --it was set to forest before
+   sprite_files = love.graphics.newImage("data/sprites/z_small_sprites.png")
+   sprite_files_big = love.graphics.newImage("data/sprites/z_big_sprites.png")
+   for x = 0,41 do -- make spritequads
+      x = x*10
+      y = 1
+      w = 10
+      h = 10
+      sw = 410
+      sh = 10
+      table.insert( game_sprites_table, love.graphics.newQuad(x,y,w,h,sw,sh) )
+   end
    if game.version == "0.9.0" then
       --tile_files = love.filesystem.getDirectoryItems(tile_dir)
       -- just load one biome?
@@ -433,7 +444,7 @@ function load_game_res() --- load game resources after a love version has been s
       table.insert(weather_quads, love.graphics.newQuad(200,0,200,200,  400,200))
       --end new code
       icon_files = love.filesystem.getDirectoryItems(icon_dir)
-      sprite_files = love.filesystem.getDirectoryItems(sprite_dir)
+      --sprite_files = love.filesystem.getDirectoryItems(sprite_dir)     
    else --lower than 0.9.0
       --tile_files = love.filesystem.enumerate(tile_dir)
       -- just load one biome?
@@ -449,7 +460,7 @@ function load_game_res() --- load game resources after a love version has been s
       end
       --end new code
       icon_files = love.filesystem.enumerate(icon_dir)
-      sprite_files = love.filesystem.enumerate(sprite_dir)
+      --sprite_files = love.filesystem.enumerate(sprite_dir)
    end
    --for k, file in ipairs(tile_files) do
    --   table.insert(game_tiles, love.graphics.newImage(tile_dir..file) )
@@ -466,9 +477,9 @@ function load_game_res() --- load game resources after a love version has been s
    for k, file in ipairs(icon_files) do
       table.insert(game_icons, love.graphics.newImage(icon_dir..file) )
    end
-   for k, file in ipairs(sprite_files) do
-      table.insert(game_sprites, love.graphics.newImage(sprite_dir..file))
-   end
+   --for k, file in ipairs(sprite_files) do
+   --   table.insert(game_sprites, love.graphics.newImage(sprite_dir..file))
+   --end
    --if save file exists then load save file	--else
    
    --create_new_scene(file) --move to right when new game is pressed.

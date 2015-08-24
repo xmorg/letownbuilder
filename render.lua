@@ -462,6 +462,16 @@ function draw_research_icons()
       love.graphics.print("Lv "..research_topics.industry, 64*5+5, ybutton_level  ) 
    end
 end
+
+function draw_small_sprite(spritenum, x,y)
+   --love.graphics.draw(game_sprites[game_villagers[i].sprite], blit_x, blit_y)
+   if g_version == "0.9.0" then
+      love.graphics.draw(sprite_files, game_sprites_table[spritenum], x, y)
+   else
+      love.graphics.drawq(sprite_files, game_sprites_table[spritenum], x, y)
+   end
+end
+
 function draw_wildlife()
    for i,v in ipairs(game_wildlife) do
       if game_wildlife[i].alive == 1 then
@@ -469,9 +479,11 @@ function draw_wildlife()
       else
 	 dead_flag = 1
       end
-      love.graphics.draw(game_sprites[game_wildlife[i].sprite],
-			 game_wildlife[i].x +game.draw_x,
-			 game_wildlife[i].y +game.draw_y )
+      -------INSERT NEW CODE HERE.
+      draw_small_sprite(game_wildlife[i].sprite, game_wildlife[i].x +game.draw_x,game_wildlife[i].y +game.draw_y)
+      --love.graphics.draw(game_sprites[game_wildlife[i].sprite],
+	--		 game_wildlife[i].x +game.draw_x,
+	--		 game_wildlife[i].y +game.draw_y )
       if game_wildlife[i].alive == 0 then
       	--fixed zombie bug, in the future each wl should have their own dead sprite.
 	 love.graphics.draw(game_sprites[31], game_wildlife[i].x +game.draw_x,game_wildlife[i].y +game.draw_y )
@@ -548,6 +560,8 @@ function draw_night(y, x)  --code for night and fire glow
    end
 end
 
+
+
 function draw_villagers()
    for i,v in ipairs(game_villagers) do
       if game_villagers[i].alive == 1 then
@@ -570,26 +584,28 @@ function draw_villagers()
 	 local ghost_flip = math.random(1,5)
 	 love.graphics.setColor(150,255,255,255)
 	 if ghost_flip == 1 then
-	    love.graphics.draw(game_sprites[13], ghostblit_x, ghostblit_y)
+	    --love.graphics.draw(game_sprites[13], ghostblit_x, ghostblit_y)
+	    draw_small_sprite(13, ghostblit_x, ghostblit_y)
 	 else
-	    love.graphics.draw(game_sprites[14], ghostblit_x, ghostblit_y)
+	    --love.graphics.draw(game_sprites[14], ghostblit_x, ghostblit_y)
+	    draw_small_sprite(14, ghostblit_x, ghostblit_y)
 	 end
 	 love.graphics.setColor(0,0,0,255)
       end
       if game_villagers[i].alive == -1 then --zombie?
-	 love.graphics.draw(game_sprites[37], blit_x, blit_y)
+	 draw_small_sprite(37, blit_x, blit_y)
       elseif game_villagers[i].villager_type == "werewolf" and is_night() == 1 then
 	 if game_villagers[i].alive == 1 then
-	    love.graphics.draw(game_sprites[11], blit_x, blit_y)
+	    draw_small_sprite(11, blit_x, blit_y)
 	 else
-	    love.graphics.draw(game_sprites[12], blit_x, blit_y)
+	    draw_small_sprite(12, blit_x, blit_y)
 	 end
       elseif game_villagers[i].position == "sheriff" and game_villagers[i].alive == 1 then
-	 love.graphics.draw(game_sprites[25], blit_x, blit_y)
+	 draw_small_sprite(game_sprites[25], blit_x, blit_y)
       elseif game_villagers[i].alive == 0 then --draw a dead.
-	 love.graphics.draw(game_sprites[game_villagers[i].dead_sprite], blit_x, blit_y)
+	 draw_small_sprite(game_villagers[i].dead_sprite, blit_x, blit_y)
       else
-	 love.graphics.draw(game_sprites[game_villagers[i].sprite], blit_x, blit_y)
+	 draw_small_sprite(game_villagers[i].sprite, blit_x, blit_y)
       end
       if game_villagers[i].talk_timer > 0 then --Need to setup this.
 	 love.graphics.setColor(255,255,255,255)
@@ -625,8 +641,8 @@ function draw_villagers()
       elseif kingdom_inventory.watchtower > 0 then
 	 print_talk_text(">"..game_villagers[i].name.."<", game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
       end--endif
-
-       love.graphics.draw(game_sprites[40], 400+game.draw_x, 400+game.draw_y)
+      --love.graphics.draw(game_sprites[40], 400+game.draw_x, 400+game.draw_y)
+      
    end--endfor
 end
 

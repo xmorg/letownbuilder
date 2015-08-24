@@ -131,9 +131,10 @@ end
 
 function draw_nightwolves()
    for i,v in ipairs(game_nightwolves) do
-      love.graphics.draw(game_sprites[42],
-			 game_nightwolves[i].x +game.draw_x,
-			 game_nightwolves[i].y +game.draw_y )
+      draw_small_sprite(game_sprites[42],game_nightwolves[i].x +game.draw_x, game_nightwolves[i].y +game.draw_y )
+      --love.graphics.draw(game_sprites[42],
+	--		 game_nightwolves[i].x +game.draw_x,
+	--		 game_nightwolves[i].y +game.draw_y )
    end
 end
 

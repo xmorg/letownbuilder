@@ -7,6 +7,7 @@ function game_menu_miniload()
    garden = love.graphics.newImage( "data/images/basic046.png")
    donkey = love.graphics.newImage( "data/sprites/s024.png")
    girl   = love.graphics.newImage( "data/sprites/s003.png")
+   logo3 = love.graphics.newImage( "data/images/logo3.png")
    minimap = { 
       {trees, trees, trees, trees, trees,trees},
       {trees, grass, grass, grass, grass,trees},
@@ -29,9 +30,10 @@ function game_menu_draw()
    love.graphics.rectangle( "fill", 5, 5, love.graphics.getWidth()-10, love.graphics.getHeight()-10 )
    love.graphics.setColor(150,150,150,255)--white lettering
    love.graphics.setFont( huge_font )
-   love.graphics.print("LeTownBuilder", col1-2+150, 10-2 )
-   love.graphics.setColor(255,255,255,255)--white lettering
-   love.graphics.print("LeTownBuilder", col1+150, 10  )
+   --love.graphics.print("LeTownBuilder", col1-2+150, 10-2 )
+   --love.graphics.setColor(255,255,255,255)--white lettering
+   --love.graphics.print("LeTownBuilder", col1+150, 10  )
+   love.graphics.draw(logo3, 100,0)
    --love.graphics.setFont(base_font)
    love.graphics.setFont( big_font )
    love.graphics.print("New Game", col1, 100 +row*1 )
@@ -56,14 +58,14 @@ function game_menu_draw()
    love.graphics.setColor(255,255,255,255)
    for y = 1, 6 do
       for x = 1, 6 do
-	 lx = 500+(y - x) * 32 + 64
-	 ly = 100+(y + x) * 32 / 2 + 50
+	 lx = 500+50+(y - x) * 32 + 64
+	 ly = 300+(y + x) * 32 / 2 + 50
 	 --love.graphics.draw(minimap[y][x], lx+game.draw_x, ly+game.draw_y)
 	 love.graphics.draw(minimap[y][x], lx-100, ly-100)
       end
    end
-   love.graphics.draw(girl, 460, 230)
-   love.graphics.draw(donkey, 470, 230)
+   love.graphics.draw(girl, 460+50, 430)
+   love.graphics.draw(donkey, 470+50, 430)
 end
 
 function game_menu_mouse(x,y,button)
