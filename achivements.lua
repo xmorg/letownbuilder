@@ -7,5 +7,6 @@ achivements = {
   {"G-g-g-ghost!", "Spot a departed loved one at night.", score = 0 },
   {"Who took my food!?", "Catch a bandit stealing your food.", score = 0 }, --villagers.lua,350+
   {"The howling.", "Survive a night with nightwolves", score = 0 },
-  {"Nightwolf slayer", "Hunter kills a nightwolf", score = 0 }
+  {"Nightwolf slayer", "Hunter kills a nightwolf", score = 0 },
+  {",owNow you make me mad.","Decend into rioting.", score = 0 }
   }
