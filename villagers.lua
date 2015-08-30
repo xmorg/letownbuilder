@@ -348,6 +348,8 @@ function villagers_eat_food(num_villagers) -- eat food
       if game_villagers[i].alive == 1 and game_villagers[i].villager_type == "bandit" then
 	 if kingdom_inventory.sheriff > 0 and sheriff_caught_bandit <= 1 then
 	    message_que_add("The Sheriff caught "..game_villagers[i].name.." trying to steal food.", 300, 3)
+	    --achivement
+	    achivements[6].score = 1
 	 elseif kingdom_inventory.sheriff > 0 then --this is a sheriff but he failed
 	    message_que_add("The Sheriff failed to catch the thieves!", 300, 3)
 	    munch_food(game_villagers[i])
