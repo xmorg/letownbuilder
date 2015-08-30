@@ -103,6 +103,7 @@ kingdom_inventory = {wood = 0, sakura = 0, bamboo = 0, carrots = 0, sansai = 0,
 	monument = 0, watchtower = 0, smelter = 0, brewery = 0, smithy = 0
 }
 
+require( "achivements")
 require( "villagers")
 require( "topics" )
 require( "filesave" )
@@ -116,6 +117,7 @@ require( "render" )
 require( "invaders" )
 require( "merchants")
 require( "animals")
+
 
 math.randomseed(os.time())
 
