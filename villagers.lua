@@ -666,6 +666,18 @@ function on_hunt_something(x, y) --is there an animal in x/y
    local animal = nil
    --message_que_add("DEBUG: started hunting at "..x.."x"..y, 80, 44)
    villagers_do_job(x, y, "hunter") --assign a hunter to do the work.
+   --game_nightwolves
+   for i, v in ipairs(game_nightwolves) do --hunt nightwolves and fail!(mostly)
+   	screenx = game_wildlife[i].x +game.draw_x
+   	screeny = game_wildlife[i].y +game.draw_y
+   	if ( x >= screenx -range and
+	      x <= screenx +range and
+	      y >= screeny -range and
+	   y <= screeny +range ) then
+	 found_wildlife = 1
+	 animal = game_nightwolves[i]
+	 -- do more tests.
+   end
    for i, v in ipairs(game_wildlife) do
       screenx = game_wildlife[i].x +game.draw_x
       screeny = game_wildlife[i].y +game.draw_y
