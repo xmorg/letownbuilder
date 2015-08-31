@@ -450,7 +450,7 @@ function love.mousepressed(x, y, button)
          on_build_garden("tomatoes")
 	 ------------------HUNT WHAT--------------------------------
       elseif game.give_direction == "Hunt What?" then
-	 on_hunt_something(x,y) --buildings.lua
+	 on_hunt_something(x,y) --villagers.lua
 	 ------------------MAKE BONFIRE-----------------------------
       elseif game.give_direction == "Make bonfire" then
 	 on_build_bonfire()
