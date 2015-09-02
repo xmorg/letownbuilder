@@ -777,62 +777,62 @@ riot_cod = {"Crushed in the press of the riot",
 	"was found dead after a stampeed"
 	}
 function assassinate_mayor(assassin)
-	for i,v in ipairs(game_villagers) do
-		if game_villagers[i].possition == "mayor" and game_villagers[i].alive == 1 then
-			local s = math.random(1,2+research_topics.security)
-			if s == 1 then
-				--kill mayor
-				kill_villager_by_name(game_villagers[i].name, "was assassinated!")
-			else
-				--kill assassin
-				kill_villager_by_name(assassin, "was killed while trying to assassinate the mayor!")
-			end
-		end
-	end
+   for i,v in ipairs(game_villagers) do
+      if game_villagers[i].possition == "mayor" and game_villagers[i].alive == 1 then
+	 local s = math.random(1,2+research_topics.security)
+	 if s == 1 then
+	    --kill mayor
+	    kill_villager_by_name(game_villagers[i].name, "was assassinated!")
+	 else
+	    --kill assassin
+	    kill_villager_by_name(assassin, "was killed while trying to assassinate the mayor!")
+	 end
+      end
+   end
 end
 function villagers_rioting_report(vil)
-	for i,v in ipairs(game_villagers) do
-      	--loop through villagers, analize job, pick random no of non-special for instadeath
-      	--sheriff can also die fighting rioters
-      	--bandits cannot die, but freely siphon supplies(1,2), especially gold, stone, wood, food
-      	--mayors can be assasinated chance(1,50) if darkelf-15, bandit(-15), shariff+(15) exist.
-      	--mayor assassination during a riot causes -30 to unrest.
-      	--possibility of a coup(1,100) if there is a militia house.  Sheriff, and Mayor both die. militia commander(TBD) becomes defactor mayor for life.
-      	--villager_type
-      		if game_villagers[i].position == "peasant" and game_villagers[i].alive == 1 then
-      			local instadeath = math.random(1,20)
-      			if instadeath == 1 then
-      				kill_villager_by_name( game_villagers[i].name, 
-      					riot_cod[math.random(1,6)] ) --look up villager name and slay them.
-      			end
-		end
-		if game_villagers[i].villager_type == "bandit" and game_villagers[i].alive == 1 then
-			--siphon any food,gold,ore availible.
-			--attempt to assassinate mayor?(1,200)
-			local bandithired = math.random(1,200)
-			if bandithired == 1 then
-				assassinate_mayor(game_villagers[i].name)
-			end
-		end
-		if game_villagers[i].villager_type == "dark elf" and game_villagers[i].alive == 1 then
-			--attempt to assassinate bandit? (1,100)
-			--fail (1,2)
-			--1 mayor dies, 2 bandit dies
-			local bandithired = math.random(1,2)
-			if bandithired == 1 then
-				assassinate_mayor(game_villagers[i].name)
-			end
-		end
-		if game_villagers[i].position == "sheriff" and game_villagers[i].alive == 1 then
-			local died = math.random(1,100)
-			if died == 1 then
-				kill_villager_by_name( game_villagers[i].name, 
-      					"died trying to quell the rioting.") --look up villager name and slay them.	
-			end
-		end
-	end --end loop through villagers
-	--check if there is a militia house
-	-- 1,10 chance of coupe.
+   for i,v in ipairs(game_villagers) do
+      --loop through villagers, analize job, pick random no of non-special for instadeath
+      --sheriff can also die fighting rioters
+      --bandits cannot die, but freely siphon supplies(1,2), especially gold, stone, wood, food
+      --mayors can be assasinated chance(1,50) if darkelf-15, bandit(-15), shariff+(15) exist.
+      --mayor assassination during a riot causes -30 to unrest.
+      --possibility of a coup(1,100) if there is a militia house.  Sheriff, and Mayor both die. militia commander(TBD) becomes defactor mayor for life.
+      --villager_type
+      if game_villagers[i].position == "peasant" and game_villagers[i].alive == 1 then
+	 local instadeath = math.random(1,20)
+	 if instadeath == 1 then
+	    kill_villager_by_name( game_villagers[i].name, 
+				   riot_cod[math.random(1,6)] ) --look up villager name and slay them.
+	 end
+      end
+      if game_villagers[i].villager_type == "bandit" and game_villagers[i].alive == 1 then
+	 --siphon any food,gold,ore availible.
+	 --attempt to assassinate mayor?(1,200)
+	 local bandithired = math.random(1,200)
+	 if bandithired == 1 then
+	    assassinate_mayor(game_villagers[i].name)
+	 end
+      end
+      if game_villagers[i].villager_type == "dark elf" and game_villagers[i].alive == 1 then
+	 --attempt to assassinate bandit? (1,100)
+	 --fail (1,2)
+	 --1 mayor dies, 2 bandit dies
+	 local bandithired = math.random(1,2)
+	 if bandithired == 1 then
+	    assassinate_mayor(game_villagers[i].name)
+	 end
+      end
+      if game_villagers[i].position == "sheriff" and game_villagers[i].alive == 1 then
+	 local died = math.random(1,100)
+	 if died == 1 then
+	    kill_villager_by_name( game_villagers[i].name, 
+				   "died trying to quell the rioting.") --look up villager name and slay them.	
+	 end
+      end
+   end --end loop through villagers
+   --check if there is a militia house
+   -- 1,10 chance of coupe.
 end
 
 

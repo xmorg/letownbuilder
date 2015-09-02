@@ -478,10 +478,6 @@ function draw_wildlife()
    end
 end
 
-function old_function()
-   
-end
-
 function draw_night(y, x)  --code for night and fire glow
    function is_lighted(lighty,lightx)
       if (lighty > 0 and lighty < game.tilecount and lightx > 0 and lightx < game.tilecount) and
