@@ -91,7 +91,7 @@ function show_job_que()
 	for i,v in ipairs(game_job_que) do
 		love.graphics.print(game_job_que[i].job_type.."("..game_job_que[i].timer..")", 5, 400 + (i*20))
 	end
-	love.graphics.pop
+	love.graphics.pop()
 end
 
 function draw_game_ui()
