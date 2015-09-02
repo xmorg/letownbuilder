@@ -116,8 +116,6 @@ function draw_game_ui()
    love.graphics.print("Time:"..math.floor(game.day_time/1000).." hrs", 400, font_row_1 )
    love.graphics.print("Day "..game.day_count, 550, font_row_1 )
    
-   
-   
    for i,v in ipairs(game_message_que) do -- play messages in order
       if game_message_que[i].mtimer > 0 then
 	 display_game_event(game_message_que[i])
@@ -125,7 +123,7 @@ function draw_game_ui()
       end
    end
 
-   show_job_que()
+   --show_job_que()
    
    if game.game_paused == 1 then
       love.graphics.setColor(255, 0, 0, 255)
