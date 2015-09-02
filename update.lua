@@ -311,6 +311,7 @@ end --update_run_daytimer()
 function new_job()
    a = {
       timer = game_directives.timer,
+      timer_max = game_directives.timer,
       location_x = game_directives.location_x,
       location_y = game_directives.location_y,
       job_type = game_directives.job_type
