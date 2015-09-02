@@ -255,7 +255,8 @@ function draw_game_tiles()
 		love.graphics.setColor(0,0,0,0)
 		love.graphics.rectangle("fill", lx+game.draw_x, ly+game.draw_y-30, 102, 6 )
 		love.graphics.setColor(0,255,0,0)
-		love.graphics.rectangle("fill", lx+game.draw_x+1, ly+game.draw_y-31, (game_job_que[i].timer ), 4 )
+		love.graphics.rectangle("fill", lx+game.draw_x+1, ly+game.draw_y-31, 
+			((game_job_que[i].timer_max-game_job_que[i].timer)/game_job_que[i].timer_max)*100, 4 )
 		end
 	end
 	love.graphics.pop()
