@@ -84,6 +84,16 @@ function get_discription_by_directive() --whatever the game.give_direction is, p
    end
 end
 
+--do squares
+function show_job_que()
+	love.graphics.push()
+	love.graphics.print("Job Queue Debug:", 5, 400 )
+	for i,v in ipairs(game_job_que) do
+		love.graphics.print(game_job_que[i].job_type.."("..game_job_que[i].timer..")", 5, 400 + (i*20))
+	end
+	love.graphics.pop
+end
+
 function draw_game_ui()
    local font_row_1 = 3
    local font_row_2 = 20
@@ -115,10 +125,7 @@ function draw_game_ui()
       end
    end
 
-   love.graphics.print("Job Queue Debug:", 5, 400 )
-   for i,v in ipairs(game_job_que) do
-      love.graphics.print(game_job_que[i].job_type.."("..game_job_que[i].timer..")", 5, 400 + (i*20))
-   end
+   show_job_que()
    
    if game.game_paused == 1 then
       love.graphics.setColor(255, 0, 0, 255)
