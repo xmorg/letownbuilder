@@ -245,21 +245,23 @@ function draw_game_tiles()
    	--}
    	--return a
 	--end
-	love.graphics.push()
+	
 	--love.graphics.print("Job Queue Debug:", 5, 400 )
 	for i,v in ipairs(game_job_que) do
 	--	love.graphics.print(game_job_que[i].job_type.."("..game_job_que[i].timer..")", 5, 400 + (i*20))
 		if game_job_que[i].location_x == x and game_job_que[i].location_y == y then
 		--love.graphics.print(game_job_que[i].job_type.."("..game_job_que[i].timer..")", lx+game.draw_x, 
 		--	ly+game.draw_y-30)
+		love.graphics.push()
 		love.graphics.setColor(0,0,0,255)
 		love.graphics.rectangle("fill", lx+game.draw_x, ly+game.draw_y-50, 102, 6 )
 		love.graphics.setColor(0,255,0,255)
 		love.graphics.rectangle("fill", lx+game.draw_x+1, ly+game.draw_y-49, 
 			((game_job_que[i].timer_max-game_job_que[i].timer)/game_job_que[i].timer_max)*100, 4 )
 		end
-	end
 	love.graphics.pop()
+	end
+	
       end --endfor x
    end --endfor y
 end --end draw_game_tiles()
