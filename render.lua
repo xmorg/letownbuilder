@@ -237,6 +237,26 @@ function draw_game_tiles()
 	 if game_fire_map[y][x] == 1 then --FIRE!
 	    love.graphics.draw(tiles_image,game_tiles[math.random(48,50)], lx+game.draw_x, ly+game.draw_y)
 	 end
+	 
+	 --function new_job() --for each tile put the job q status
+	--   a = {
+	--      timer = game_directives.timer,
+      	--location_x = game_directives.location_x,
+      	--location_y = game_directives.location_y,
+      	--job_type = game_directives.job_type
+   	--}
+   	--return a
+	--end
+	love.graphics.push()
+	--love.graphics.print("Job Queue Debug:", 5, 400 )
+	for i,v in ipairs(game_job_que) do
+	--	love.graphics.print(game_job_que[i].job_type.."("..game_job_que[i].timer..")", 5, 400 + (i*20))
+		if game_job_que[i].location_x == x and game_job_que[i].location_y == y then
+		love.graphics.print(game_job_que[i].job_type.."("..game_job_que[i].timer..")", lx+game.draw_x, 
+			ly+game.draw_y-30))	
+		end
+	end
+	love.graphics.pop()
       end --endfor x
    end --endfor y
 end --end draw_game_tiles()
