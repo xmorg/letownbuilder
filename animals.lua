@@ -64,18 +64,18 @@ function new_wildlife(migration, name)
    else
       a.age = math.random(1,70)
    end --if migration == 0 then
-   if a.wildlife_type == "rabbit" then a.speed = 15 a.sprite = 17
-   elseif a.wildlife_type == "wild donkey" then	a.speed = 3	a.sprite = 23
-   elseif a.wildlife_type == "wild llama" then  a.speed = 3 a.sprite = 30
-   elseif a.wildlife_type == "wild sheep" then a.speed = 3 a.sprite = 28
-   elseif a.wildlife_type == "fox" then a.speed = 3 a.sprite = 31
-   elseif a.wildlife_type == "wild dog" then a.speed = 3 a.sprite = 32
-   elseif a.wildlife_type == "bear" then a.speed = 3 a.sprite = 33
-   elseif a.wildlife_type == "black bear" then a.speed = 3 a.sprite = 34
-   elseif a.wildlife_type == "lynx" then a.speed = 4 a.sprite = 35
-   elseif a.wildlife_type == "copperhead" then a.speed = 4 a.sprite = 36
-   elseif a.wildlife_type == "donkey" then a.speed = 4 a.sprite = 24
-   elseif a.wildlife_type == "night wolf" then a.speed = 11 a.sprite = 42
+   if a.wildlife_type == "rabbit" then a.speed = 15 a.sprite = 17 a.dead_sprite = 18
+   elseif a.wildlife_type == "wild donkey" then	a.speed = 3 a.sprite = 23 a.dead_sprite = 29
+   elseif a.wildlife_type == "wild llama" then  a.speed = 3 a.sprite = 30 a.dead_sprite = 29
+   elseif a.wildlife_type == "wild sheep" then a.speed = 3 a.sprite = 28 a.dead_sprite = 29
+   elseif a.wildlife_type == "fox" then a.speed = 3 a.sprite = 31 a.dead_sprite = 29
+   elseif a.wildlife_type == "wild dog" then a.speed = 3 a.sprite = 32 a.dead_sprite = 29
+   elseif a.wildlife_type == "bear" then a.speed = 3 a.sprite = 33 a.dead_sprite = 29
+   elseif a.wildlife_type == "black bear" then a.speed = 3 a.sprite = 34 a.dead_sprite = 29
+   elseif a.wildlife_type == "lynx" then a.speed = 4 a.sprite = 35 a.dead_sprite = 29
+   elseif a.wildlife_type == "copperhead" then a.speed = 4 a.sprite = 36 a.dead_sprite = 29
+   elseif a.wildlife_type == "donkey" then a.speed = 4 a.sprite = 24 a.dead_sprite = 29
+   elseif a.wildlife_type == "night wolf" then a.speed = 11 a.sprite = 42 a.dead_sprite = 29
    end
    return a
 end

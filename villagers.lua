@@ -663,21 +663,9 @@ function on_hunt_something(x, y) --is there an animal in x/y
    local found_wildlife = 0 --check if you found wildlife
    local m = math.random(1,10)
    local s = math.random(1,10)
-   local animal = nil
+   --local animal = nil
    --message_que_add("DEBUG: started hunting at "..x.."x"..y, 80, 44)
    villagers_do_job(x, y, "hunter") --assign a hunter to do the work.
-   --game_nightwolves
-   for i, v in ipairs(game_nightwolves) do --hunt nightwolves and fail!(mostly)
-   	screenx = game_wildlife[i].x +game.draw_x
-   	screeny = game_wildlife[i].y +game.draw_y
-   	if ( x >= screenx -range and
-	      x <= screenx +range and
-	      y >= screeny -range and
-	   y <= screeny +range  and found_wildlife == 0) then
-	 found_wildlife = 1
-	 animal = game_nightwolves[i]
-	 -- do more tests.
-   end
    for i, v in ipairs(game_wildlife) do
       screenx = game_wildlife[i].x +game.draw_x
       screeny = game_wildlife[i].y +game.draw_y
@@ -686,35 +674,50 @@ function on_hunt_something(x, y) --is there an animal in x/y
 	      y >= screeny -range and
 	   y <= screeny +range and found_wildlife == 0 ) then
 	 found_wildlife = 1
-	 animal = game_wildlife[i]
+	 --on_hunt_found_wildlife(game_wildlife[i]) --why nil?
+	 if found_wildlife == 1 and s > 4 and game_wildlife[i].alive == 1 then
+	    message_que_add("You bagged a "..game_wildlife[i].wildlife_type.."!", 80, 44)
+	    kingdom_inventory.raw_meat = kingdom_inventory.raw_meat+ m
+	    game_wildlife[i].alive = 0
+	    game_wildlife[i].died_x = game_wildlife[i].x
+	    game_wildlife[i].died_y = game_wildlife[i].y
+	 else
+	    if s == 1 then
+	       if game_wildlife[i].wildlife_type == "copperhead" then
+		  message_que_add(get_villager_specialist_name("hunter").." was bitten by a "..game_wildlife[i].wildlife_type.." and died of snake poison!", 80, 44)
+		  kill_villager_by_name(get_villager_specialist_name("hunter"), "a hunting accident") --kill villager here.
+	       elseif game_wildlife[i].wildlife_type == "bear" or game_wildlife[i].wildlife_type == "black bear" then
+		  message_que_add(get_villager_specialist_name("hunter").." was mauled by a "..game_wildlife[i].wildlife_type.." and died of massive internal bleeding!",  80, 44)
+		  kill_villager_by_name(get_villager_specialist_name("hunter"), "a hunting accident") --kill villager here.
+	       end
+	    else --if s ==1
+	       message_que_add("You failed to killed a "..game_wildlife[i].wildlife_type, 80, 44)
+	    end --if s ==1
+	 end --if found_wildlife
       end --if screen
    end --end for
-   --check for nightwolves.
-   if s > 4 and animal.alive == 1 then
-   	message_que_add("You bagged a "..animal.wildlife_type.."!", 80, 44)
-	kingdom_inventory.raw_meat = kingdom_inventory.raw_meat+ m
-	--kill it
-	    animal.alive = 0
-	    animal.died_x = game_wildlife[i].x
-	    animal.died_y = game_wildlife[i].y
-	 else 	--here do a check on the actual roll and ...?
-	    if s == 1 then
-	       if animal.wildlife_type == "copperhead" then
-		  message_que_add(get_villager_specialist_name("hunter").." was bitten by a "..animal.wildlife_type.." and died of snake poison!",
-				  80, 44)
-		  --kill villager here.
-		  kill_villager_by_name(get_villager_specialist_name("hunter"), "a hunting accident")
-	       elseif animal.wildlife_type == "bear" or animal.wildlife_type == "black bear" then
-		  message_que_add(get_villager_specialist_name("hunter").." was mauled by a "..animal.wildlife_type.." and died of massive internal bleeding!",
-				  80, 44)
-		  --kill villager here.
-		  kill_villager_by_name(get_villager_specialist_name("hunter"), "a hunting accident")
-	       end
-	    else
-	       message_que_add("You failed to killed a "..animal.wildlife_type, 80, 44)
-	    end
-	 end --if s > 4 then
-   if found_wildlife < 1 then
+   for i, v in ipairs(game_nightwolves) do --hunt nightwolves and fail!(mostly)
+      screenx = game_wildlife[i].x +game.draw_x
+      screeny = game_wildlife[i].y +game.draw_y
+      if ( x >= screenx -range and
+	      x <= screenx +range and
+	      y >= screeny -range and
+	   y <= screeny +range  and found_wildlife == 0) then
+	 found_wildlife = 1
+	 if found_wildlife == 1 and s > 9 and game_nightwolves[i].alive == 1 then -- 10% chance of killing
+	    message_que_add("Your brave hunter has bagged a "..game_wildlife[i].wildlife_type.."!", 80, 44)
+	    kingdom_inventory.raw_meat = kingdom_inventory.raw_meat+ m
+	    game_nightwolves[i].alive = 0
+	    game_nightwolves[i].died_x = game_nightwolves[i].x
+	    game_nightwolves[i].died_y = game_nightwolves[i].y
+	 else --why did you even try?
+	    message_que_add(get_villager_specialist_name("hunter").." tried to kill a nightwolf and was torn to pieces. Foolish!", 80, 44)
+	    --kill villager here.
+	    kill_villager_by_name(get_villager_specialist_name("hunter"), "tried to kill a nightwolf.")
+	 end
+      end --endif
+   end --endfor  
+   if found_wildlife == 0 then
       message_que_add("You didnt find any game", 80, 2) --you didnt click on a wildlife?
    end
 end --end function

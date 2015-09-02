@@ -291,40 +291,9 @@ function draw_roster_list_villagers()
    love.graphics.print("---------------------------------------------------------------------------------------------------", col_one, 20+95)
    row_num = row_num + 1
    for i, v in ipairs(game_villagers) do
-      --non normal villagers
-      if game_villagers[i].villager_type == "dark elf" then
-	 if game_villagers[i].sex == 0 then
-	    love.graphics.draw(game_sprites[7],  col_one, row_num * 20+88)
-	 else
-	    love.graphics.draw(game_sprites[21],  col_one, row_num * 20+88)
-	 end
-      elseif game_villagers[i].villager_type == "werewolf" and is_night() == 1 then
-	 love.graphics.draw(game_sprites[11], col_one, row_num * 20+88)
-      elseif game_villagers[i].villager_type == "werewolf" then
-	 if game_villagers[i].sex == 0 then
-	    love.graphics.draw(game_sprites[3], col_one, row_num * 20+88)
-	 else
-	    love.graphics.draw(game_sprites[1], col_one, row_num * 20+88)
-	 end
-      elseif game_villagers[i].villager_type == "bandit" then
-	 love.graphics.draw(game_sprites[9],  col_one, row_num * 20+88)
-      elseif game_villagers[i].villager_type == "holyman" then
-	 love.graphics.draw(game_sprites[15], col_one, row_num * 20+88)
-      elseif game_villagers[i].age < 18 then
-	 love.graphics.draw(game_sprites[5],  col_one, row_num * 20+88)
-      end --end non normals
-      
-      -- Normal villagers
-      if game_villagers[i].villager_type == "normal" and game_villagers[i].age < 18 then --kids
-	 love.graphics.draw(game_sprites[5],  col_one, row_num * 20+88)
-      elseif game_villagers[i].villager_type == "normal" and game_villagers[i].sex == 0 then --female
-	 love.graphics.draw(game_sprites[3],  col_one, row_num * 20+88)
-      elseif  game_villagers[i].villager_type == "normal" and game_villagers[i].sex == 1 then --male
-	 love.graphics.draw(game_sprites[1],  col_one, row_num * 20+88)
-      end
-      love.graphics.print(game_villagers[i].name, col_one+20, row_num * 20+84)
-      --print the sex
-      if game_villagers[i].sex == 0 then
+      draw_small_sprite(game_villagers[i].sprite, col_one, row_num * 20+88) --draw the villager
+      love.graphics.print(game_villagers[i].name, col_one+20, row_num * 20+84) --print their name
+      if game_villagers[i].sex == 0 then  --print the sex
 	 love.graphics.print("female".."("..game_villagers[i].age..")", col_two, row_num * 20+84)
       else
 	 love.graphics.print("male".."("..game_villagers[i].age..")", col_two,  row_num * 20+84)
@@ -486,7 +455,8 @@ function draw_wildlife()
 	--		 game_wildlife[i].y +game.draw_y )
       if game_wildlife[i].alive == 0 then
       	--fixed zombie bug, in the future each wl should have their own dead sprite.
-	 love.graphics.draw(game_sprites[31], game_wildlife[i].x +game.draw_x,game_wildlife[i].y +game.draw_y )
+	 --love.graphics.draw(game_sprites[31], game_wildlife[i].x +game.draw_x,game_wildlife[i].y +game.draw_y )
+	 draw_small_sprite(game_wildlife[i].dead_sprite, game_wildlife[i].x +game.draw_x,game_wildlife[i].y +game.draw_y)
       end
       if kingdom_inventory.watchtower > 0 then
 	 if game_wildlife[i].wildlife_type == "copperhead" or
