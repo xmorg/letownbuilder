@@ -252,10 +252,10 @@ function draw_game_tiles()
 		if game_job_que[i].location_x == x and game_job_que[i].location_y == y then
 		--love.graphics.print(game_job_que[i].job_type.."("..game_job_que[i].timer..")", lx+game.draw_x, 
 		--	ly+game.draw_y-30)
-		love.graphics.setColor(0,0,0,0)
-		love.graphics.rectangle("fill", lx+game.draw_x, ly+game.draw_y-30, 102, 6 )
-		love.graphics.setColor(0,255,0,0)
-		love.graphics.rectangle("fill", lx+game.draw_x+1, ly+game.draw_y-29, 
+		love.graphics.setColor(0,0,0,255)
+		love.graphics.rectangle("fill", lx+game.draw_x, ly+game.draw_y-50, 102, 6 )
+		love.graphics.setColor(0,255,0,255)
+		love.graphics.rectangle("fill", lx+game.draw_x+1, ly+game.draw_y-49, 
 			((game_job_que[i].timer_max-game_job_que[i].timer)/game_job_que[i].timer_max)*100, 4 )
 		end
 	end
