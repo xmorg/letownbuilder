@@ -239,7 +239,7 @@ function draw_game_tiles()
 	--	love.graphics.print(game_job_que[i].job_type.."("..game_job_que[i].timer..")", 5, 400 + (i*20))
 		if game_job_que[i].location_x == x and game_job_que[i].location_y == y then
 			game_job_que[i].draw_x = lx+game.draw_x
-			game_job_que[i].draw_y = ly+game.draw_y-50 --set the locs
+			game_job_que[i].draw_y = ly+game.draw_y-30 --set the locs
 		end
 	end
 	
