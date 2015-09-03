@@ -312,8 +312,10 @@ function new_job()
    a = {
       timer = game_directives.timer,
       timer_max = game_directives.timer,
-      location_x = game_directives.location_x,
+      location_x = game_directives.location_x, --tile loc x/y
       location_y = game_directives.location_y,
+      draw_x = 0,
+      draw_y = 0,
       job_type = game_directives.job_type
    }
    return a
