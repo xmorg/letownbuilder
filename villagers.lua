@@ -634,6 +634,10 @@ function update_villager_jobs(dt) -- here is where timers should go down?
    ------- Now loop through villagers
    --function villager_collision_event(game_villagers) --loop through villagers and check for collisions
    for i, v in ipairs(game_villagers) do --loop through villagers
+   	--update_villager_killedby_nightwolf(i, j)
+      for n, m in ipairs(game_nightwolves) do
+      	update_villager_killedby_nightwolf(i, n) --loop through nightwolves and check for colisions.
+      end
       for j, w in ipairs(game_villagers) do --loop through villagers
 	 update_villager_killedby_werewolf(game_villagers[i], game_villagers[j])--- WEREWOLF COLLISION
 	 update_villager_zombiefied_by_zombie(game_villagers[i], game_villagers[j]) --zombie collision
