@@ -235,33 +235,12 @@ function draw_game_tiles()
 	 if game_fire_map[y][x] == 1 then --FIRE!
 	    love.graphics.draw(tiles_image,game_tiles[math.random(48,50)], lx+game.draw_x, ly+game.draw_y)
 	 end
-	 
-	 --function new_job() --for each tile put the job q status
-	--   a = {
-	--      timer = game_directives.timer,
-      	--location_x = game_directives.location_x,
-      	--location_y = game_directives.location_y,
-      	--job_type = game_directives.job_type
-   	--}
-   	--return a
-	--end
-	
-	--love.graphics.print("Job Queue Debug:", 5, 400 )
 	for i,v in ipairs(game_job_que) do
 	--	love.graphics.print(game_job_que[i].job_type.."("..game_job_que[i].timer..")", 5, 400 + (i*20))
 		if game_job_que[i].location_x == x and game_job_que[i].location_y == y then
 			game_job_que[i].draw_x = lx+game.draw_x
 			game_job_que[i].draw_y = ly+game.draw_y-50 --set the locs
-		--love.graphics.print(game_job_que[i].job_type.."("..game_job_que[i].timer..")", lx+game.draw_x, 
-		--	ly+game.draw_y-30)
-		--love.graphics.push()
-		--love.graphics.setColor(0,0,0,255)
-		--love.graphics.rectangle("fill", lx+game.draw_x, ly+game.draw_y-50, 102, 6 )
-		--love.graphics.setColor(0,255,0,255)
-		--love.graphics.rectangle("fill", lx+game.draw_x+1, ly+game.draw_y-49, 
-		--	((game_job_que[i].timer_max-game_job_que[i].timer)/game_job_que[i].timer_max)*100, 4 )
 		end
-	--love.graphics.pop()
 	end
 	
       end --endfor x
@@ -270,7 +249,7 @@ function draw_game_tiles()
    love.graphics.push()
    for i,v in ipairs(game_job_que) do
    	love.graphics.setColor(0,0,0,255)
-	love.graphics.rectangle("fill",game_job_que[i].draw_x , game_job_que[i].draw_x, 102, 6 )
+	love.graphics.rectangle("fill",game_job_que[i].draw_x , game_job_que[i].draw_y, 102, 6 )
 	love.graphics.setColor(0,255,0,255)
 	love.graphics.rectangle("fill", game_job_que[i].draw_x+1 , game_job_que[i].draw_y+1, 
 		-- lx+game.draw_x+1, ly+game.draw_y-49, 
