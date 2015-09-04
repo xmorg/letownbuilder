@@ -562,25 +562,25 @@ end --function
 
 function update_villager_killedby_nightwolf(i, j)
    if villager_touched(i, j) == 1 and i.type == "nightwolf" and is_night()==1 then
-      if i.villager_type == "werewolf" and j.villager_type == "werewolf" then
-	 if j.alive == 1 then
-	    j.alive = 0 -- Just got killed by a werewolf init death sequence
-	    j.villager_type = "Dead"
-	    j.opinion = "Died on Day"..game.day_count.." at "..game.day_time
-	    j.died_x = j.x
-	    j.died_y = j.y
-	    game.message_box_icons = 19
-	    set_family_opionions(j) --not yet tested
-	    if j.sex == 0 then
-	       message_que_add("You hear a blood curtling scream..."..j.name.."!", 100, 1)
-	       kingdom_inventory.unrest = kingdom_inventory.unrest+6 --girls dying unerves us more!
-	    else
-	       message_que_add("You hear a horrible scream..."..j.name.."!", 100, 1)
-	       kingdom_inventory.unrest = kingdom_inventory.unrest+5
-	    end
-	 end --game_villagers[j].alive == 1 then
+      --if i.villager_type == "werewolf" and j.villager_type == "werewolf" then
+      if j.alive == 1 then
+	 j.alive = 0 -- Just got killed by a werewolf init death sequence
+	 j.villager_type = "Dead"
+	 j.opinion = "Died on Day"..game.day_count.." at "..game.day_time
+	 j.died_x = j.x
+	 j.died_y = j.y
+	 game.message_box_icons = 19
+	 set_family_opionions(j) --not yet tested
+	 if j.sex == 0 then
+	    message_que_add("You hear a blood curtling scream..."..j.name.."!", 100, 1)
+	    kingdom_inventory.unrest = kingdom_inventory.unrest+6 --girls dying unerves us more!
+	 else
+	    message_que_add("You hear a horrible scream..."..j.name.."!", 100, 1)
+	    kingdom_inventory.unrest = kingdom_inventory.unrest+5
+	 end
+      end --game_villagers[j].alive == 1 then
       --end --if game_villagers[i].villager_type == "werewolf" and game_villagers[j].villager_type == "werewolf" then
-   --end--end if villager_touched(game_villagers[i], game_villagers[j]) 
+   end--end if villager_touched(game_villagers[i], game_villagers[j]) 
 end
 function update_villager_killedby_werewolf(i, j)
    if villager_touched(i, j) == 1 and i.villager_type == "werewolf" and is_night()==1 then
@@ -634,9 +634,9 @@ function update_villager_jobs(dt) -- here is where timers should go down?
    ------- Now loop through villagers
    --function villager_collision_event(game_villagers) --loop through villagers and check for collisions
    for i, v in ipairs(game_villagers) do --loop through villagers
-   	--update_villager_killedby_nightwolf(i, j)
+      --update_villager_killedby_nightwolf(i, j)
       for n, m in ipairs(game_nightwolves) do
-      	update_villager_killedby_nightwolf(i, n) --loop through nightwolves and check for colisions.
+	 update_villager_killedby_nightwolf(i, n) --loop through nightwolves and check for colisions.
       end
       for j, w in ipairs(game_villagers) do --loop through villagers
 	 update_villager_killedby_werewolf(game_villagers[i], game_villagers[j])--- WEREWOLF COLLISION
