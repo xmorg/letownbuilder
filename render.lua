@@ -102,7 +102,8 @@ function draw_game_ui()
    love.graphics.draw(game_icons[60], 0, 0) --?
    love.graphics.print(game.printx.."X"..game.printy, 10, font_row_1)--legacy printxy
    vunrest = set_villager_unrest()
-   love.graphics.print("Population: "..table.getn(game_villagers).."/"..kingdom_inventory.families.."   Village Happiness: "..vunrest.."(-"..kingdom_inventory.unrest..")", 10, font_row_2) 
+   love.graphics.print("Population: "..table.getn(game_villagers).."/"..kingdom_inventory.families..
+   	"   Village Happiness: "..vunrest.."("..(kingdom_inventory.unrest*-1)..")", 10, font_row_2) 
    love.graphics.setColor(255, 255, 255, 255)
    love.graphics.print(get_discription_by_directive(), 10, 37)
    if kingdom_inventory.hunger > 0 then  love.graphics.setColor(255, 255, 0, 255)
