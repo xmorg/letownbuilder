@@ -26,15 +26,13 @@ function game_menu_draw()
    --love.graphics.setFont( big_font )
    love.graphics.setColor(255,255,255,255)--outside white
    love.graphics.rectangle( "fill", 0, 0, love.graphics.getWidth(), love.graphics.getHeight() )
-   love.graphics.setColor(0,0,30,255)--inside black
-   love.graphics.rectangle( "fill", 5, 5, love.graphics.getWidth()-10, love.graphics.getHeight()-10 )
-   love.graphics.setColor(150,150,150,255)--white lettering
+   love.graphics.setColor(30,30,60,255)--inside black
+   --love.graphics.rectangle( "fill", 5, 5, love.graphics.getWidth()-10, love.graphics.getHeight()-10 )
+   love.graphics.draw(title3,0,0,0, love.graphics.getWidth( )/title3:getWidth(),love.graphics.getHeight( )/title3:getHeight() )
+   love.graphics.setColor(255,255,255,255)--white lettering
    love.graphics.setFont( huge_font )
-   --love.graphics.print("LeTownBuilder", col1-2+150, 10-2 )
-   --love.graphics.setColor(255,255,255,255)--white lettering
-   --love.graphics.print("LeTownBuilder", col1+150, 10  )
-   love.graphics.draw(logo3, 100,0)
-   --love.graphics.setFont(base_font)
+   love.graphics.print("LeTown Builder", col1-2+150, 10-2 )
+   love.graphics.setColor(255,255,255,255)--outside white
    love.graphics.setFont( big_font )
    love.graphics.print("New Game", col1, 100 +row*1 )
    love.graphics.print("Load Game", col1, 100 +row*2 )
@@ -56,16 +54,16 @@ function game_menu_draw()
    lx=0
    ly=0
    love.graphics.setColor(255,255,255,255)
-   for y = 1, 6 do
-      for x = 1, 6 do
-	 lx = 500+50+(y - x) * 32 + 64
-	 ly = 300+(y + x) * 32 / 2 + 50
-	 --love.graphics.draw(minimap[y][x], lx+game.draw_x, ly+game.draw_y)
-	 love.graphics.draw(minimap[y][x], lx-100, ly-100)
-      end
-   end
-   love.graphics.draw(girl, 460+50, 430)
-   love.graphics.draw(donkey, 470+50, 430)
+   --   for y = 1, 6 do
+   --      for x = 1, 6 do
+   --	 lx = 500+50+(y - x) * 32 + 64
+   --	 ly = 300+(y + x) * 32 / 2 + 50
+   --	 --love.graphics.draw(minimap[y][x], lx+game.draw_x, ly+game.draw_y)
+   --	 love.graphics.draw(minimap[y][x], lx-100, ly-100)
+   --   end
+   --end
+   --love.graphics.draw(girl, 460+50, 430)
+   --love.graphics.draw(donkey, 470+50, 430)
 end
 
 function game_menu_mouse(x,y,button)
