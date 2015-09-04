@@ -44,7 +44,9 @@ game = {state = 1, give_direction = "None", day_time = 6000, day_count = 1,
 	trading_timer = 0, -- how long they stay at the post
 	merchant_spawn_x=0, merchant_spawn_y=0, --start location of current merchants(randomly set on arrival)
 	merchant_target_x = 0, merchant_target_y = 0,
-	tooltip_text = "NONE"
+	tooltip_text = "NONE",
+	game_pricetag = "drm free" -- free, drm free, if you bought the game, you have access to more maps, and content that is
+	--custom made and not featured on opengameart.
 }
 
 weather = {
