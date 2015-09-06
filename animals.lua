@@ -84,9 +84,10 @@ function spawn_nightwolves() --put night wolves into game_nightwolves = {}
    local nesw = math.random(1,4)
    --select a random tile on the edge of the map to place them
    --note code, try spawn offscreen.
+nesw = 1
    if nesw == 1 then --north
-      wolf_spawn_x = 600 --math.random(1,game.tilecount) --tiles
-      wolf_spawn_y = -600 --math.random(1,game.tilecount) --tiles
+      wolf_spawn_x = 400 --math.random(1,game.tilecount) --tiles
+      wolf_spawn_y = -400 --math.random(1,game.tilecount) --tiles
    elseif nesw == 2 then --east
       wolf_spawn_x = 600 --game.tilecount
       wolf_spawn_y = 600 --math.random(1,game.tilecount)
