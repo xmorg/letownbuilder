@@ -233,7 +233,7 @@ function love.mousepressed(x, y, button)
 	 love.event.quit()
       end
       if game.give_direction == "Hunt what?" then
-	 on_hunt_something(x,y) --buildings.lua
+	 on_hunt_something(x,y) --villagers.lua
       end
       
       function mouse_clicked_in64(x, y, icon_x, icon_y)

@@ -561,7 +561,7 @@ function update_villager_poisonedby_snake(i, j)
 end --function
 
 function update_villager_killedby_nightwolf(i, j)
-   if villager_touched(i, j) == 1 and i.type == "nightwolf" and is_night()==1 then
+   if villager_touched(i, j) == 1 and i.wildlife_type == "night wolf" and is_night()==1 then
       --if i.villager_type == "werewolf" and j.villager_type == "werewolf" then
       if j.alive == 1 then
 	 j.alive = 0 -- Just got killed by a werewolf init death sequence
@@ -723,15 +723,15 @@ function on_hunt_something(x, y) --is there an animal in x/y
       end --if screen
    end --end for
    for i, v in ipairs(game_nightwolves) do --hunt nightwolves and fail!(mostly)
-      screenx = game_wildlife[i].x +game.draw_x
-      screeny = game_wildlife[i].y +game.draw_y
+      screenx = game_nightwolves[i].x +game.draw_x
+      screeny = game_nightwolves[i].y +game.draw_y
       if ( x >= screenx -range and
 	      x <= screenx +range and
 	      y >= screeny -range and
 	   y <= screeny +range  and found_wildlife == 0) then
 	 found_wildlife = 1
 	 if found_wildlife == 1 and s > 9 and game_nightwolves[i].alive == 1 then -- 10% chance of killing
-	    message_que_add("Your brave hunter has bagged a "..game_wildlife[i].wildlife_type.."!", 80, 44)
+	    message_que_add("Your brave hunter has bagged a "..game_nightwolves[i].wildlife_type.."!", 80, 44) --was wildlife_type
 	    kingdom_inventory.raw_meat = kingdom_inventory.raw_meat+ m
 	    game_nightwolves[i].alive = 0
 	    game_nightwolves[i].died_x = game_nightwolves[i].x
