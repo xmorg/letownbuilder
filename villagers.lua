@@ -99,10 +99,10 @@ function kill_villager_by_name(name, cause) --look up villager name and slay the
    for i, v in ipairs(game_villagers) do
       if game_villagers[i].name == name then
 	 game_villagers[i].alive = 0 -- Just died of disease
-	 game_villagers[i].villager_type = "Dead"
 	 if game_villagers[i].villager_type == "dark elf" then
 	 	kingdom_inventory.dark_elves = kingdom_inventory.dark_elves -1 --for research
 	 end
+	 game_villagers[i].villager_type = "Dead"
 	 kingdom_inventory.villagers = kingdom_inventory.villagers -1 --remove living villagers
 	 --game_villagers[i].opinion = "Died on Day"..game.day_count.." at "..game.day_time
 	 game_villagers[i].opinion = "died from "..cause.." on day "..game.day_count
