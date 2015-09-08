@@ -316,7 +316,7 @@ function munch_food(villager)
       end
       return 1
    elseif kingdom_inventory.desert_onions > 0 then
-      kingdom_inventory.wild_onions = kingdom_inventory.desert_onions -1
+      kingdom_inventory.desert_onions = kingdom_inventory.desert_onions -1
       if contract_disease(villager, 1, 10) == false then
 	 villager.opinion = "Feels bad after eating onions."
 	 message_que_add(villager.name.."'s onions were contaminated!", 100, 9)
