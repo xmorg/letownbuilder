@@ -557,6 +557,10 @@ function love.keypressed(key)
       elseif key == "c" then
 	 game.draw_x = 0--center the field of view
 	 game.draw_y = 0
+	elseif key == "j" then
+      game.rotate = 1
+	elseif key == "k" then
+      game.rotate = 2
       elseif key == "z" then
 	 game.zoom_level=game.zoom_level +0.2
       elseif key == "x" then
