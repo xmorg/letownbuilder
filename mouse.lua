@@ -326,7 +326,7 @@ function love.mousepressed(x, y, button)
       elseif game.give_direction == "Hunt What?" then
 	 on_hunt_something(x,y)
       elseif game.give_direction == "Gather Food" then
-	 on_gather_food()
+	 on_gather_food() --buildings.lua
       elseif game.give_direction == "Cut where?" then
 	 on_cut_where_click()
       elseif game.give_direction == "Plow where?" then
