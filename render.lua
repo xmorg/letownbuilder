@@ -210,7 +210,7 @@ function draw_game_tiles()
       		x = prerotate_x
       		y = prerotate_y
       	elseif game.rotate == 2 then
-      		x = game.tilecount - prerotate_y
+      		x = game.tilecount+1 - prerotate_y
       		y = prerotate_x
       	end
 	 lx = 300+(y - x) * 32 + 64      --create isometric
