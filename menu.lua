@@ -129,7 +129,7 @@ function draw_biome_select() -- select your biome!
    love.graphics.print("Letownbuilder: Select your biome", 100,100)
    love.graphics.draw(biome_forest_img, 150, 200)
    love.graphics.draw(biome_japan_img, 250, 200)
-   love.graphics.setColor(100,100,100,150)
+   --love.graphics.setColor(100,100,100,150)
    love.graphics.draw(biome_desert_img, 350, 200)
    love.graphics.setColor(255,255,255,255)
    --love.graphics.draw(biome_desert_img, 450, 200)
