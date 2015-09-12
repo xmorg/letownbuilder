@@ -129,7 +129,7 @@ function on_tomatoes_where_click()
 end
 
 function on_cut_where_click()
-   if game.biome == "forest" and
+   if (game.biome == "forest" or game.biome == "frost") and
       game_map[game.tile_selected_y][game.tile_selected_x] >= 3 and
    game_map[game.tile_selected_y][game.tile_selected_x] <= 20 then
       update_directives_loc(300, 1)

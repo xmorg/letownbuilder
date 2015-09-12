@@ -54,16 +54,6 @@ function game_menu_draw()
    lx=0
    ly=0
    love.graphics.setColor(255,255,255,255)
-   --   for y = 1, 6 do
-   --      for x = 1, 6 do
-   --	 lx = 500+50+(y - x) * 32 + 64
-   --	 ly = 300+(y + x) * 32 / 2 + 50
-   --	 --love.graphics.draw(minimap[y][x], lx+game.draw_x, ly+game.draw_y)
-   --	 love.graphics.draw(minimap[y][x], lx-100, ly-100)
-   --   end
-   --end
-   --love.graphics.draw(girl, 460+50, 430)
-   --love.graphics.draw(donkey, 470+50, 430)
 end
 
 function game_menu_mouse(x,y,button)
@@ -121,6 +111,11 @@ function select_biome_mouse(x,y,click)
       load_game_res() --load map
       create_new_scene(file) --no longer in load_game_res because it breaks restore from save
       game.show_menu = 0
+   elseif mouse_clicked_inrect(x,y, 450,200,64,148) == 1 then
+      game.biome = "frost"
+      load_game_res() --load map
+      create_new_scene(file) --no longer in load_game_res because it breaks restore from save
+      game.show_menu = 0
    end
    
 end
@@ -129,8 +124,8 @@ function draw_biome_select() -- select your biome!
    love.graphics.print("Letownbuilder: Select your biome", 100,100)
    love.graphics.draw(biome_forest_img, 150, 200)
    love.graphics.draw(biome_japan_img, 250, 200)
-   --love.graphics.setColor(100,100,100,150)
    love.graphics.draw(biome_desert_img, 350, 200)
+   love.graphics.draw(biome_frost_img, 450, 200)
    love.graphics.setColor(255,255,255,255)
    --love.graphics.draw(biome_desert_img, 450, 200)
 end
