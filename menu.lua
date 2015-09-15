@@ -43,7 +43,7 @@ function game_menu_draw()
    love.graphics.print("Save Game", col1, 100 +row*3 )
    love.graphics.setColor(255,255,255,255)
    --love.graphics.print("Love Version  (" ..game.version..")", col1, 100 +row*4 )
-   love.graphics.print("Full Screen (" ..game.version..")", col1, 100 +row*4 )
+   love.graphics.print("Full Screen (" ..game.fullscreen_mode..")", col1, 100 +row*4 )
    love.graphics.print("Sound  ("..game.togglesound..")", col1, 100 +row*5 )
    love.graphics.print("Quit Game Without Save", col1, 100 +row*6 )
    if game.map_generated == 0 then
@@ -77,8 +77,11 @@ function game_menu_mouse(x,y,button)
 	 end
       end
       if x >= col1 and x <= 500 and y >=100 +row*4 and y <= 100 +row*5 then --toggle version
-	 if game.version == "0.9.0" then game.version = "0.8.0" 
-	 else game.version = "0.9.0" end
+	 --if game.version == "0.9.0" then game.version = "0.8.0" 
+	 --else game.version = "0.9.0" end
+	if game.fullscreen_mode == "No" then game.fullscreen_mode = "Yes"
+      	else game.fullscreen_mode = "No" end
+      	go_fullscreen()
       end
       if x >= col1 and x <= 500 and y >=100 +row*5 and y <= 100 +row*6 then --toggle version
 	 if game.togglesound == "on" then game.togglesound = "off" 
