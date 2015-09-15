@@ -17,7 +17,8 @@ font_row_3 = 37
 blank_icon = 1
 
 game = {state = 1, give_direction = "None", day_time = 6000, day_count = 1,
-	tile_selected_x = 0,tile_selected_y = 0, mouse_last_x=0, mouse_last_y=0, 
+	tile_selected_x = 0,tile_selected_y = 0, mouse_last_x=0, mouse_last_y=0,
+	fullscreen_mode = "No",
 	draw_x=-100, draw_y=-100, screen_width = love.graphics.getWidth(), love.graphics.getHeight(),
 	scroll_speed=3, loc_selected_x = 0, loc_selected_y = 0, --lx+ 32 --ly+ 16
 	tilecount = 32, actor_speed = 2, printx = 0, printy = 0, -- 0  -62-- 536-600
