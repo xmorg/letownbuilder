@@ -204,15 +204,17 @@ end
 
 ---------------------- DRAW GAME TILES!!!! --------------------------------------
 function draw_game_tiles()
-   for prerotate_y = 1, game.tilecount do       --loop y
-      for prerotate_x = 1, game.tilecount do     --loop x
-      	if game.rotate == 1 then
-      		x = prerotate_x
-      		y = prerotate_y
-      	elseif game.rotate == 2 then
-      		x = game.tilecount+1 - prerotate_y
-      		y = prerotate_x
-      	end
+   --for prerotate_y = 1, game.tilecount do       --loop y
+      --for prerotate_x = 1, game.tilecount do     --loop x
+   for y = 1, game.tilecount do       --loop y
+      for x = 1, game.tilecount do     --loop x
+      	--if game.rotate == 1 then
+      	--	x = prerotate_x
+      	--	y = prerotate_y
+      	--elseif game.rotate == 2 then
+      	--	x = game.tilecount+1 - prerotate_y
+      	--	y = prerotate_x
+      	--end
 	 lx = 300+(y - x) * 32 + 64      --create isometric
 	 ly = -100+(y + x) * 32 / 2 + 50  --tile blit locations
 	 ---------- DRAWING TILES ----------------------------------------------
