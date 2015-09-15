@@ -42,7 +42,8 @@ function game_menu_draw()
       love.graphics.setColor(255,255,255,255) end
    love.graphics.print("Save Game", col1, 100 +row*3 )
    love.graphics.setColor(255,255,255,255)
-   love.graphics.print("Love Version  (" ..game.version..")", col1, 100 +row*4 )
+   --love.graphics.print("Love Version  (" ..game.version..")", col1, 100 +row*4 )
+   love.graphics.print("Full Screen (" ..game.version..")", col1, 100 +row*4 )
    love.graphics.print("Sound  ("..game.togglesound..")", col1, 100 +row*5 )
    love.graphics.print("Quit Game Without Save", col1, 100 +row*6 )
    if game.map_generated == 0 then
