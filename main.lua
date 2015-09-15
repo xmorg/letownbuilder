@@ -545,7 +545,9 @@ function love.keypressed(key)
 	 --love.event.quit()
 	 if game.show_menu == 0 then game.show_menu = 1
 	 else game.show_menu = 0 end
-      elseif key == "f2" then
+	elseif key == "f2" then
+      	if game.fullscreen_mode == "No" then game.fullscreen_mode = "Yes"
+      		else game.fullscreen_mode = "No" end
 	 go_fullscreen()
       elseif key == "s" then
 	 love_crude_save() -- crude saving
