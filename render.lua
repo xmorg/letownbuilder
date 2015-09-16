@@ -478,6 +478,14 @@ function draw_small_sprite(spritenum, x,y)
       love.graphics.drawq(sprite_files, game_sprites_table[spritenum], x, y)
    end
 end
+function draw_projectile_sprite(spritenum, x,y)
+   --love.graphics.draw(game_sprites[game_villagers[i].sprite], blit_x, blit_y)
+   if g_version == "0.9.0" then
+      love.graphics.draw(projectile_files, game_psrites_table[spritenum], x, y)
+   else
+      love.graphics.drawq(projectile_files, game_psrites_table[spritenum], x, y)
+   end
+end
 
 function draw_wildlife()
    for i,v in ipairs(game_wildlife) do
