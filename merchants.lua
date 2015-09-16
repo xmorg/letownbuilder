@@ -252,7 +252,9 @@ function draw_merchants()
    for i,v in ipairs(game_merchants) do
       local dx = game_merchants[i].x + game.draw_x
       local dy = game_merchants[i].y + game.draw_y
-      local msprite = game_sprites[game_merchants[i].sprite]
-      love.graphics.draw(msprite, dx, dy)
+      draw_small_sprite(game_merchants[i].sprite, dx,dy)
+   	--love.graphics.draw(game_sprites[game_villagers[i].sprite], blit_x, blit_y)
+      --local msprite = game_sprites[game_merchants[i].sprite]
+      --love.graphics.draw(msprite, dx, dy)
    end
 end
