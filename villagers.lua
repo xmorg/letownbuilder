@@ -35,7 +35,7 @@ function new_villager(migration)
 	 a.opinion = "Excited about moving to a new town."
       end
       --TODO: Decrease the chances of getting these.
-      troublemaker = math.random(1,2)
+      troublemaker = math.random(1,10)
       if troublemaker == 1 then -- create a troublemaker
 	 random_type = math.random(1, table.getn(villager_types))
 	 a.villager_type = villager_types[random_type]
