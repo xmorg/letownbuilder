@@ -95,6 +95,7 @@ game_map = {}
 game_fire_map =  {} --check if tile is on fire!
 game_road_map = {}
 game_sprites_table = {} --table of game_sprites
+game_psrites_table = {} --table for game projectile sprites, like arrows.
 weather_quads = {}
 game_directives = {active = 0, timer = 0, location_x = 0, location_y = 0, 
 		  job_type = "None", research_type = "None"
@@ -446,6 +447,16 @@ function load_game_res() --- load game resources after a love version has been s
       sh = 10
       table.insert( game_sprites_table, love.graphics.newQuad(x,y,w,h,sw,sh) )
    end
+   for x=0,9 do
+      x = x*10
+      y = 1
+      w = 10
+      h = 10
+      sw = 100
+      sh = 10
+      table.insert(game_psrites_table, love.graphics.newQuad(x,y,w,h,sw,sh) )
+   end
+   
    if game.version == "0.9.0" then
       --tile_files = love.filesystem.getDirectoryItems(tile_dir)
       -- just load one biome?
