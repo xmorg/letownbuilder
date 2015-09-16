@@ -496,24 +496,26 @@ function on_sucessful_cut_trees(woodtype, sucessrate)
 end
 
 function on_sucessful_dig_hole(job_type, sucessrate)
-   if sucessrate == 1 and job_type == "Dig hole" then
-      if game.biome == "desert" then
-	 kingdom_inventory.sandstone = kingdom_inventory.sandstone+1
-      else
-	 kingdom_inventory.rocks = kingdom_inventory.rocks+1
-      end
-   elseif sucessrate == 2 and job_type == "Dig hole" then
-      kingdom_inventory.carrots = kingdom_inventory.carrots+1
-   elseif sucessrate == 3 and job_type == "Dig hole" then
-      local found_iore = math.random(1,3)
-      local found_gore = math.random(1,100)
-      if found_iore == 1 and job_type == "Dig hole"  then
-	 kingdom_inventory.iron_ore = kingdom_inventory.iron_ore+1
-      end
-      if found_gore == 1 and job_type == "Dig hole" then
-	 kingdom_inventory.gold_ore = kingdom_inventory.gold_ore+1
-      end
-   end
+	if sucessrate == 1 and job_type == "Dig hole" then
+		if game.biome == "desert" then
+			kingdom_inventory.sandstone = kingdom_inventory.sandstone+1
+		else
+	 		kingdom_inventory.rocks = kingdom_inventory.rocks+1
+      	end
+    elseif sucessrate == 2 and job_type == "Dig hole" then
+   		if game.biome == "forest" then --only forests have carrots laying around!
+      		kingdom_inventory.carrots = kingdom_inventory.carrots+1
+      	end
+   	elseif sucessrate == 3 and job_type == "Dig hole" then
+    	local found_iore = math.random(1,3)
+    	local found_gore = math.random(1,100)
+    	if found_iore == 1 and job_type == "Dig hole"  then
+			kingdom_inventory.iron_ore = kingdom_inventory.iron_ore+1
+    	end
+    	if found_gore == 1 and job_type == "Dig hole" then
+			kingdom_inventory.gold_ore = kingdom_inventory.gold_ore+1
+    	end
+    end
 end
 
 function on_sucessful_gather_dojob(biome, job_type, weather,sucessrate)
