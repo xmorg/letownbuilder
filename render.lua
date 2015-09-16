@@ -359,24 +359,27 @@ function draw_roster_list()
    col_four = 328
    col_five = 428
    row_num = 1
-   if game.records_tab == 1 then b_villagers = 100 else b_villagers = 0 end
+	if game.records_tab == 1 then b_villagers = 100 else b_villagers = 0 end
 	if game.records_tab == 2 then b_food = 100 else b_food = 0 end
 	if game.records_tab == 3 then b_resources = 100 else b_resources = 0	end	
+	if game.records_tab == 4 then b_messages == 100 else b_messages = 0 end
 	
 	love.graphics.setColor(50+b_villagers,80,80,255)
 	love.graphics.rectangle("fill", col_one-3, 20+68, 60, 23 )
 	love.graphics.setColor(255,255,255,255)
 	love.graphics.print("Villagers", col_one, 20+68)
+	
 	love.graphics.setColor(50+b_food,80,80,255)
 	love.graphics.rectangle("fill", col_two-3, 20+68, 60, 23 )
 	love.graphics.setColor(255,255,255,255)
 	love.graphics.print("Food", col_two, 20+68)
+	
 	love.graphics.setColor(50+b_resources,80,80,255)
 	love.graphics.rectangle("fill", col_three-3, 20+68, 60, 23 )
 	love.graphics.setColor(255,255,255,255)
 	love.graphics.print("Resources", col_three, 20+68)
 
-	love.graphics.setColor(50+b_villagers,80,80,255)
+	love.graphics.setColor(50+b_messages,80,80,255)
 	love.graphics.rectangle("fill", col_four-3, 20+68, 60, 23 )
 	love.graphics.setColor(255,255,255,255)
 	love.graphics.print("Messages", col_four, 20+68)
