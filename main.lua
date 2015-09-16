@@ -440,7 +440,7 @@ function load_game_res() --- load game resources after a love version has been s
       	weather_image = love.graphics.newImage("data/tiles/japan/weather01.png")
       elseif game.biome == "desert" then
       	tiles_image = love.graphics.newImage("data/tiles/desert/tiles01.png")
-      	weather_image = love.graphics.newImage("data/tiles/japan/weather01.png")
+      	weather_image = love.graphics.newImage("data/tiles/desert/weather01.png")
       elseif game.biome == "frost" then
 	 tiles_image = love.graphics.newImage("data/tiles/frost/tiles01.png")
 	 weather_image = love.graphics.newImage("data/tiles/japan/weather01.png")
