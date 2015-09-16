@@ -362,7 +362,7 @@ function draw_roster_list()
 	if game.records_tab == 1 then b_villagers = 100 else b_villagers = 0 end
 	if game.records_tab == 2 then b_food = 100 else b_food = 0 end
 	if game.records_tab == 3 then b_resources = 100 else b_resources = 0	end	
-	if game.records_tab == 4 then b_messages == 100 else b_messages = 0 end
+	if game.records_tab == 4 then b_messages = 100 else b_messages = 0 end
 	
 	love.graphics.setColor(50+b_villagers,80,80,255)
 	love.graphics.rectangle("fill", col_one-3, 20+68, 60, 23 )
