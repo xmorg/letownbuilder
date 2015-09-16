@@ -67,6 +67,22 @@ weather = {
   "There has come a Heavy Downpour",
   "It is Snowing",   -- Greater than 13 snow
   "There is a Blizzard" }
+ desert_weather = {
+  "The sand is hot to the touch!", 
+  "The weather is clear", 
+  "Cool weather has come", 
+  "The Cold has come", 
+  "It is Hot", 
+  "It is Sunny", 
+  "It is Hot", 
+  "The heat is Sweltering", 
+  "Feel the Sunshine", 
+  "The weather is Cloudy", 
+  "It is Sprinkling", -- Greater than 10 (rain)
+  "There has come a Light Rain", 
+  "There has come a Light Rain",
+  "A sandstorm has come",   -- Greater than 13 snow
+  "A great sandstorm has come!" }
 
 
 --function run_weather_trigger()
@@ -441,6 +457,9 @@ function load_game_res() --- load game resources after a love version has been s
       elseif game.biome == "desert" then
       	tiles_image = love.graphics.newImage("data/tiles/desert/tiles01.png")
       	weather_image = love.graphics.newImage("data/tiles/desert/weather01.png")
+      	for i, v in ipairs(weather) do
+      		weather[i] = desert_weather[i]
+      	end
       elseif game.biome == "frost" then
 	 tiles_image = love.graphics.newImage("data/tiles/frost/tiles01.png")
 	 weather_image = love.graphics.newImage("data/tiles/japan/weather01.png")
