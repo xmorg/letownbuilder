@@ -111,6 +111,7 @@ function love_crude_load()
       
       a = love.filesystem.exists( "achivements.lua" )
       if a == true then --we have a saved file
+      	chunk = love.filesystem.load( "achivements.lua" )
       else
       	--use a blank file.
       end
