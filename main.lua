@@ -110,6 +110,7 @@ game_adults = {}
 game_wildlife = {}
 game_nightwolves = {} -- appears nightly?
 game_villager_pets = {}
+achivements = {}
 kingdom_inventory = {wood = 0, sakura = 0, bamboo = 0, carrots = 0, sansai = 0,
 		     raw_meat =0, smoked_meat = 0, tomatoes = 0, saltwort = 0,
 		     mushrooms = 0, fish = 0, smoked_fish = 0, grain = 0, cherries = 0,
