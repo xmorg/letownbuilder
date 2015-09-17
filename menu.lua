@@ -63,6 +63,14 @@ function game_menu_mouse(x,y,button)
    if button == "l" then
       if x >= col1 and x <= 500 and y >=100 +row*1 and y <= 100 +row*2 then --new game
 	 game.show_menu = 2
+	 a = love.filesystem.exists( "achivements.lua" )
+      	if a == true then --we have a saved file
+      		chunk = love.filesystem.load( "achivements.lua" )
+      	else
+      		--use a blank file.
+      		load_new_achivements() --achivements.lua
+      	end
+	 
       end
       if x >= col1 and x <= 500 and y >=100 +row*2 and y <= 100 +row*3 then --load game
 	 
