@@ -523,10 +523,13 @@ function on_sucessful_gather_dojob(biome, job_type, weather,sucessrate)
    if sucessrate == 1 then --test the random for sucess on a number of directives.
       if job_type == "Gather Food" and halfdice == 1 then
 	 if is_night() == 0 and (game.biome == "forest" or game.biome == "frost") then --you cannot find carrots at night! :)
+	 	kingdom_inventory.seeds = kingdom_inventory.seeds+1
 	    kingdom_inventory.carrots = kingdom_inventory.carrots+1
 	 elseif game.biome == "japan" then
+	 	kingdom_inventory.seeds = kingdom_inventory.seeds+1
 	    kingdom_inventory.sansai = kingdom_inventory.sansai+1
 	 elseif game.biome == "desert" then
+	 	kingdom_inventory.seeds = kingdom_inventory.seeds+1
 	    kingdom_inventory.desert_onions = kingdom_inventory.desert_onions+1
 	 end
       elseif job_type == "Fishing" then
