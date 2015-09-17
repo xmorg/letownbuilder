@@ -63,13 +63,13 @@ function get_tooltip_info_from_item() --ran in update?
 	elseif mouse_clicked_inrect(mx,my, scrw-30, 288, 32,32) == 1 then --wild onions
 	   game.tooltip_text = "wild onions"
 	elseif mouse_clicked_inrect(mx,my, scrw-30, 320, 32,32) == 1 then --sakura
-	   game.tooltip_text = "seeds"
-	elseif mouse_clicked_inrect(mx,my, scrw-64, 320, 32,32) == 1 then --pelts
 	   game.tooltip_text = "pelts"
+	elseif mouse_clicked_inrect(mx,my, scrw-64, 320, 32,32) == 1 then --pelts
+	   game.tooltip_text = "seeds"
 	elseif mouse_clicked_inrect(mx,my, scrw-30, 352, 32,32) == 1 then --sakura
-	   game.tooltip_text = "tools"
-	elseif mouse_clicked_inrect(mx,my, scrw-64, 352, 32,32) == 1 then --pelts
 	   game.tooltip_text = "weapons"
+	elseif mouse_clicked_inrect(mx,my, scrw-64, 352, 32,32) == 1 then --pelts
+	   game.tooltip_text = "tools"
 	else 
 		game.tooltip_text = "NONE"
 	end
