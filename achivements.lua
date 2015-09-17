@@ -1,5 +1,5 @@
 --stuff
-achivements = {
+base_achivements = {
   {"Tree Puncher.", "Cut down your first tree.", score=0}
   {"Food horder.", "Collect 100 food.", score = 0 },
   {"Nice buffet", "Have more than 5 types of food", score=0},
@@ -13,3 +13,12 @@ achivements = {
   {"Thriller night", "Everyone becomes a zombie", score = 0 },
   {"Epic Hunter", "Hunter kills a nightwolf", score = 0}
   }
+
+achivements = {}
+
+function load_new_achivements()
+  for i,v in ipairs(base_achivements) do
+    table.insert(achivements, base_achivements[i])
+  end
+end
+
