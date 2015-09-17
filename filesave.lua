@@ -148,5 +148,7 @@ function love_crude_save()
 		
 	game_families = get_villager_famgroups()
 	love.filesystem.write( "game_families.lua", 
-		table.show(game_families, "game_families"))	
+		table.show(game_families, "game_families"))
+	love.filesystem.write( "achivements.lua", 
+		table.show(achivements, "achivements"))
 end
