@@ -692,6 +692,7 @@ function on_hunt_something(x, y) --is there an animal in x/y
    local found_wildlife = 0 --check if you found wildlife
    local m = math.random(1,10)
    local s = math.random(1,10)
+   local peltdice = math.random(1,3)
    --local animal = nil
    --message_que_add("DEBUG: started hunting at "..x.."x"..y, 80, 44)
    villagers_do_job(x, y, "hunter") --assign a hunter to do the work.
@@ -706,6 +707,7 @@ function on_hunt_something(x, y) --is there an animal in x/y
 	 --on_hunt_found_wildlife(game_wildlife[i]) --why nil?
 	 if found_wildlife == 1 and s > 4 and game_wildlife[i].alive == 1 then
 	    message_que_add("You bagged a "..game_wildlife[i].wildlife_type.."!", 80, 44)
+	    if peltdice == 1 then kingdom_inventory.pelts = kingdom_inventory_pelts+1 end
 	    kingdom_inventory.raw_meat = kingdom_inventory.raw_meat+ m
 	    game_wildlife[i].alive = 0
 	    game_wildlife[i].died_x = game_wildlife[i].x
