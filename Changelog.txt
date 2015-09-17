@@ -6,14 +6,20 @@ Planned features
 Deserts
  DONE: Gathering food in green tiles yields ?what?, and tiles turn back to sand.
  DONE: Cutting trees in the tree tiles should yield wood.
- TODO: Digging a hole should yield sand/sandstone.
- TODO: Fishing in water should yield (fewer) fish.
+ DONE: Digging a hole should yield sand/sandstone.
+ DONE: Fishing in water should yield (fewer) fish.
  TODO: (bug?) Should gardens work in sand?
- TODO: Houses/mines should cost 1 wood, 6 sandstone
+ DONE: Houses/mines should cost 1 wood, 6 sandstone
  TODO: 
 
+issue: display dead villagers as red in records
+bugs: (Fixed)carrots can be collected by mining in deserts.
+bugs: (Fixed)messages button does not highlight in records, but food highlights it.
 bugs: (verified) grain shows up as tomatoes if tomatoes is researched.
 bugs: (verified) grain at stage one shows up as tomatoes fully grown.
+bugs: (to verify)merchants.lua 255 (use of game_sprites) -added draw_small_sprite
+bugs: nightwolves do not kill
+bigs: too many werewolves(lowered troublemaker chance)
 
 BUGS: currently smelter and smithy are confused in some situations (like starting dwarves)
 fixed: House count no longer updates/stays updated. [FIXED]
@@ -36,6 +42,7 @@ TODOS:
 
 Weather
  DONE: Snow - create ice flakes falling down, requires at least 1 fire per 5 villagers to avoid freezing.[DONE]
+ issue: create weather for snow and desert levels.
  * Snow - create snow on the ground, tiles get whiter...
  * Rain - causes  1/100th chance of causing flooding, 1/50th chance of putting out fires.
  * Rain - Flood trenches
