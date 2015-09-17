@@ -114,8 +114,8 @@ function on_plow_where_click()
  	elseif kingdom_inventory.seeds < 3 then
 		game_directives.job_type = "None"
 		game_directives.active = 0
-		game.give_direction = "Not enought seeds"
-		message_que_add("Not enought seeds (Seeds: 3)", 80, 41)
+		game.give_direction = "Not enough seeds"
+		message_que_add("Not enough seeds (Seeds: 3)", 80, 41)
    else
       update_directives_loc(300, 1)
       game_directives.job_type = "Make garden"
@@ -131,6 +131,11 @@ function on_tomatoes_where_click()
       game_directives.job_type = "None."
       game_directives.active = 0
       game.give_direction = "Clear this area first"
+   elseif kingdom_inventory.seeds < 5 then
+		game_directives.job_type = "None"
+		game_directives.active = 0
+		game.give_direction = "Not enough seeds"
+		message_que_add("Not enough seeds (Seeds: 5)", 80, 41)
    else
       update_directives_loc(300, 1)
       game_directives.job_type = "Plant tomatoes"
