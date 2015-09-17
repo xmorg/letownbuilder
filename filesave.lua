@@ -109,6 +109,12 @@ function love_crude_load()
       chunk = love.filesystem.load( "game_wildlife.lua" )
       chunk()
       
+      a = love.filesystem.exists( "achivements.lua" )
+      if a == true then --we have a saved file
+      else
+      	--use a blank file.
+      end
+      
       --now make sure that resources are properly reloaded!
       
    else
