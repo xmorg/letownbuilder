@@ -115,7 +115,7 @@ function on_plow_where_click()
 		game_directives.job_type = "None"
 		game_directives.active = 0
 		game.give_direction = "Not enought seeds"
-		message_que_add("Cant build on water", 80, 41)
+		message_que_add("Not enought seeds (Seeds: 3)", 80, 41)
    else
       update_directives_loc(300, 1)
       game_directives.job_type = "Make garden"
