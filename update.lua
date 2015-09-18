@@ -280,7 +280,7 @@ function update_run_daytimer()
       update_achivements("Food horder", 100)
    end
    --check for food types
-   
+	if kingdom_inventory.villagers <= 0 then game.show_menu = 99 end   
    if game.day_time < 24000 then
       game.day_time = game.day_time+1
       --sound_daytime     = love.audio.newSource("data/sounds/wind_1_wbirds.ogg", "static")
