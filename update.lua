@@ -354,7 +354,6 @@ function update_job_que()
 	    building = 1
 	 elseif (game_job_que[i].job_type == "Cut trees") and
 	 get_availible_worker(game_job_que[i].job_type) == true and woodcutting == 0 then
-	    
 	    on_sucessful_cut_trees(game_job_que[i].job_type, sucessful) -- trees, sakura, or bamboo
 	    game_job_que[i].timer = game_job_que[i].timer -1
 	    woodcutting = 1
