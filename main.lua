@@ -599,6 +599,7 @@ function love.keypressed(key)
       elseif key == "escape" then
 	 if game.show_menu == 0 then game.show_menu = 1
 	 elseif game.show_menu == 7 then game.show_menu = 1
+	 elseif game.show_menu == 99 then game.show_menu = 1
 	 else if game.started == 1 then game.show_menu = 0 end end
       elseif key == "f2" then
 	 if game.fullscreen_mode == "No" then game.fullscreen_mode = "Yes"
