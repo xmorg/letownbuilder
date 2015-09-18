@@ -125,6 +125,11 @@ function draw_game_ui()
    end
 
    --show_job_que()
+   if game.show_menu = 99 then
+   	love.graphics.setColor(255, 0, 0, 255)
+      love.graphics.setFont( big_font )
+      love.graphics.print("GAME OVER", 350, 300)
+   end
    
    if game.game_paused == 1 then
       love.graphics.setColor(255, 0, 0, 255)
