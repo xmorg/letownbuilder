@@ -63,16 +63,9 @@ function game_menu_mouse(x,y,button)
    if button == "l" then
       if x >= col1 and x <= 500 and y >=100 +row*1 and y <= 100 +row*2 then --new game
 	game.show_menu = 2
-	--a = love.filesystem.exists( "achivements.lua" )
-    	--if a == true then --we have a saved file
-    	--	chunk = love.filesystem.load( "achivements.lua" )
-    	--	chunk()
-    	--else
-    	--	load_new_achivements() --achivements.lua, --use a blank file.
-    	--end
       end
       if x >= col1 and x <= 500 and y >=100 +row*2 and y <= 100 +row*3 then --load game
-	 
+	 game.started = 1
 	 love_crude_load()
 	 load_game_res()
 	 game.show_menu = 0
@@ -110,21 +103,25 @@ function select_biome_mouse(x,y,click)
    if mouse_clicked_inrect(x,y, 150,200,64,148) == 1 then
       game.biome = "forest"
       load_game_res() --load map
+      game.started = 1
       create_new_scene(file)
       game.show_menu = 0
    elseif mouse_clicked_inrect(x,y, 250,200,64,148) == 1 then
       game.biome = "japan"
       load_game_res() --load map
+      game.started = 1
       create_new_scene(file) --no longer in load_game_res because it breaks restore from save
       game.show_menu = 0
    elseif mouse_clicked_inrect(x,y, 350,200,64,148) == 1 then
       game.biome = "desert"
       load_game_res() --load map
+      game.started = 1
       create_new_scene(file) --no longer in load_game_res because it breaks restore from save
       game.show_menu = 0
    elseif mouse_clicked_inrect(x,y, 450,200,64,148) == 1 then
       game.biome = "frost"
       load_game_res() --load map
+      game.started = 1
       create_new_scene(file) --no longer in load_game_res because it breaks restore from save
       game.show_menu = 0
    end
