@@ -1,6 +1,9 @@
 --main update functions, 
 --increment day time and
 
+
+require( "achivements")
+
 function plant_regrowth(x,y)
    if game_map[y][x] == 1 and game.days_since_regrowth == 7 then --dirt
       game_map[y][x] = 2 --grass
@@ -267,7 +270,17 @@ function check_for_events_in_timer()
    end
 end
 
-function update_run_daytimer() 
+function update_run_daytimer()
+   local total_food = 0
+   total_food = kingdom_inventory.carrots+kingdom_inventory.sansai+kingdom_inventory.raw_meat+kingdom_inventory.smoked_meat+
+      kingdom_inventory.tomatoes+kingdom_inventory.saltwort+kingdom_inventory.mushrooms+kingdom_inventory.fish+
+      kingdom_inventory.smoked_fish+kingdom_inventory.grain+kingdom_inventory.cherries+kingdom_inventory.apples+
+      kingdom_inventory.desert_onions
+   if total_food >= 100 then
+      update_achivements("Food horder", 100)
+   end
+   --check for food types
+   
    if game.day_time < 24000 then
       game.day_time = game.day_time+1
       --sound_daytime     = love.audio.newSource("data/sounds/wind_1_wbirds.ogg", "static")
@@ -708,6 +721,7 @@ end --end fuction
 
 function hourly_update_map()
    local fire_limit = 4
+   local total_food = 0
    local fs = 0
    local catch_trees = 0
    --on_update_fires(x,y)
@@ -716,7 +730,9 @@ function hourly_update_map()
 	 on_update_fires(x,y) --- check to see if teh fire is spreading, also if rioters are starting fires.
       end--end for
    end--end for
-end --function hourly_update_map()
+   --check for food
+   
+end --function hourly_update_map()kingdom_inventory
 
 function update_villager_new_destination(i, dt, custom_speed)
    --if i.x < i.dx
@@ -802,6 +818,7 @@ function love.update(dt)
 	end -- endfor (game_wildlife)
 	update_nightwolves(dt) --update nightwolves.
    end --if game.game_paused == 0 then
+   
    on_update_earthquake(5)
    update_merchant_location()
    get_tooltip_info_from_item() --ran in update?

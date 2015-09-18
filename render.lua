@@ -599,6 +599,8 @@ function draw_villagers()
 	 blit_y = game_villagers[i].y+game.draw_y
       end
       if game_villagers[i].alive == 0 and is_night() == 1 and kingdom_inventory.graveyards < 1 then
+	 --{"G-g-g-ghost!", "Spot a departed loved one at night.", score = 0, win=1, icon=6 },
+	 update_achivements("G-g-g-ghost!", 1)
 	 local ghost_flip = math.random(1,5)
 	 love.graphics.setColor(150,255,255,255)
 	 if ghost_flip == 1 then

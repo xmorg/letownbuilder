@@ -126,7 +126,7 @@ kingdom_inventory = {wood = 0, sakura = 0, bamboo = 0, carrots = 0, sansai = 0,
 	monument = 0, watchtower = 0, smelter = 0, brewery = 0, smithy = 0
 }
 
-require( "achivements")
+require( "achivements" )
 require( "villagers")
 require( "topics" )
 require( "filesave" )
@@ -156,13 +156,27 @@ function play_music(sound)
    end
 end
 
+function update_achivements(a, score) --add to the scrore of a, and if it meants the required score set teh achievement
+   for i,v in ipairs(achivements) do
+      if achivements[i][1] == a and achivements[i].score < achivements[i].win then
+	 achivements[i].score = achivements[i].score+1
+	 -- now check if we got the achivement
+	 if achivements[i].score >= achivements[i].win then -- we won
+	    message_que_add("Achivement: "..achivements[i][1], 300, achivements[i].icon)
+	 end
+      end
+   end --end loop through.
+end
+
+
+
 -------------------MESSAGE QUE PROTOTYPE --------------
 --add a message to the que
 function message_que_add(message, timer, icon)
    game.message_num = game.message_num+1
    game.message_box_text = message
    game.message_box_timer = timer
-   if icon > 55 then
+   if icon > 78 then
       game.message_box_icon = 3
    else
       game.message_box_icon = icon
@@ -431,12 +445,9 @@ function load_game_res() --- load game resources after a love version has been s
    local japan_tile_dir = "data/tiles/japan"
    local desert_tile_dir = "data/tiles/desert"
    local frost_tile_dir = "data/tiles/frost"
-   
-   local icon_dir = "data/icons/"
    local sprite_dir = "data/sprites/"
    local tile_files = nil
-   local icon_files = nil
-
+   
    sprite_files = love.graphics.newImage("data/sprites/z_small_sprites.png")
    sprite_files_big = love.graphics.newImage("data/sprites/z_big_sprites.png")
    projectile_files = love.graphics.newImage("data/sprites/projectiles.png")
@@ -484,7 +495,7 @@ function load_game_res() --- load game resources after a love version has been s
       table.insert(weather_quads, love.graphics.newQuad(0,0,  200,200,  400,200))
       table.insert(weather_quads, love.graphics.newQuad(200,0,200,200,  400,200))
       --end new code
-      icon_files = love.filesystem.getDirectoryItems(icon_dir)
+      
       --sprite_files = love.filesystem.getDirectoryItems(sprite_dir)     
    else --lower than 0.9.0
       if game.biome == "forest" then
@@ -501,7 +512,7 @@ function load_game_res() --- load game resources after a love version has been s
 	 weather_image = love.graphics.newImage("data/tiles/japan/weather01.png")
       end
       --end new code
-      icon_files = love.filesystem.enumerate(icon_dir)
+      --icon_files = love.filesystem.enumerate(icon_dir)
       --sprite_files = love.filesystem.enumerate(sprite_dir)
    end
    for j = 0,9 do
@@ -513,9 +524,7 @@ function load_game_res() --- load game resources after a love version has been s
       end
    end -- end quad loop
    
-   for k, file in ipairs(icon_files) do
-      table.insert(game_icons, love.graphics.newImage(icon_dir..file) )
-   end
+   
    if fullscreen_hack == "yes" then
       if game.version == "0.8.0" then 
 	 love.graphics.setMode(0, 0, true, false)  -- 0.8.0
@@ -539,6 +548,8 @@ end
 -- the love.functions!
 ---------------------------------------
 function love.load()
+   local icon_dir = "data/icons/"
+   local icon_files = nil
    title3 = love.graphics.newImage("data/images/title3.png")
    resource_bar = love.graphics.newImage("data/images/resource_bar.png")
    records_button = love.graphics.newImage("data/images/records_button.png")
@@ -557,6 +568,12 @@ function love.load()
    music_townbg1:setLooping( true )
    music_nightbg1 = love.audio.newSource("data/sounds/un_com_night.ogg")
    music_nightbg1:setLooping( true )
+
+   icon_files = love.filesystem.getDirectoryItems(icon_dir) --0.9
+
+   for k, file in ipairs(icon_files) do
+      table.insert(game_icons, love.graphics.newImage(icon_dir..file) )
+   end
    
    a = love.filesystem.exists( "achivements.lua" )
    if a == true then --we have a saved file
@@ -584,10 +601,16 @@ function love.keypressed(key)
 	 --love.event.quit()
 	 if game.show_menu == 0 then game.show_menu = 1
 	 else game.show_menu = 0 end
-	elseif key == "f2" then
-      	if game.fullscreen_mode == "No" then game.fullscreen_mode = "Yes"
-      		else game.fullscreen_mode = "No" end
+      elseif key == "f2" then
+	 if game.fullscreen_mode == "No" then game.fullscreen_mode = "Yes"
+	 else game.fullscreen_mode = "No" end
 	 go_fullscreen()
+      elseif key == "a" then
+	 if game.show_menu == 7 then
+	    game.show_menu = 1
+	 else
+	    game.show_menu = 7
+	 end
       elseif key == "s" then
 	 love_crude_save() -- crude saving
       elseif key == "c" then
@@ -622,10 +645,13 @@ end
 
 ---------------------------------------
 function love.draw()
+   --local game_achivements_draw = achivements.game_achivements_draw
    if game.show_menu == 1 then
       game_menu_draw()
    elseif game.show_menu == 2 then
       draw_biome_select() -- select which biome.
+   elseif game.show_menu == 7 then
+      game_achivements_draw()
    else	
       game.screen_height = love.graphics.getHeight()
       game.screen_width  = love.graphics.getWidth()
