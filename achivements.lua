@@ -1,5 +1,5 @@
 --stuff
-base_achivements = {
+achivements = {
   {"Tree Puncher.", "Cut down your first tree.", score=0},
   {"Food horder.", "Collect 100 food.", score = 0 },
   {"Nice buffet", "Have more than 5 types of food", score=0},
