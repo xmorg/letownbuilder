@@ -104,6 +104,12 @@ function kill_villager_by_name(name, cause) --look up villager name and slay the
 	 end
 	 game_villagers[i].villager_type = "Dead"
 	 kingdom_inventory.villagers = kingdom_inventory.villagers -1 --remove living villagers
+	 --Is it game over?
+	 if kingdom_inventory.villagers <= 0 then
+	 	--GAME OVER!
+	 	message_que_add("All of your villagers have died.", 100, 6)
+	 	--game.show_menu = 99
+	 end
 	 --game_villagers[i].opinion = "Died on Day"..game.day_count.." at "..game.day_time
 	 game_villagers[i].opinion = "died from "..cause.." on day "..game.day_count
 	 game_villagers[i].died_x = game_villagers[i].x
