@@ -1,4 +1,5 @@
 --move pure drawing functions here :)
+require( "achivements" ) --stop the bugs!
 
 function show_tooltop_message()--text, x,y) -- show text on mouseover
 	love.graphics.push("all")
