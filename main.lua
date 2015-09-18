@@ -562,8 +562,6 @@ function love.load()
    if a == true then --we have a saved file
    	chunk = love.filesystem.load( "achivements.lua" )
    	chunk()
-   else
-  	load_new_achivements() --achivements.lua, --use a blank file.
    end
 end
 
