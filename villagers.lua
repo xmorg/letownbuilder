@@ -108,6 +108,8 @@ function kill_villager_by_name(name, cause) --look up villager name and slay the
 	 if kingdom_inventory.villagers <= 0 then
 	 	--GAME OVER!
 	 	message_que_add("All of your villagers have died.", 100, 6)
+	 	--{"Everybody's dead", "Let everyone die.", score = 0, win=1 , icon=5},
+	 	update_achivements("Everybody's dead", 1) 
 	 	--game.show_menu = 99
 	 end
 	 --game_villagers[i].opinion = "Died on Day"..game.day_count.." at "..game.day_time
