@@ -55,11 +55,7 @@ function game_achivements_draw() --draw the achivements
 	 love.graphics.setColor(255,255,255,255)
       end
       love.graphics.draw(game_icons[achivements[i].icon], 45, i*65) --put the icon
-      if achivements[i].score < achivements[i].win then
-	 love.graphics.setColor(80,80,80,255)
-      else
-	 love.graphics.setColor(255,255,255,255)
-      end
+	 love.graphics.setColor(255,255,255,255) --make text white
       love.graphics.print(achivements[i][1], 45+64+5, i*65) --achivement title
       love.graphics.print(achivements[i][2], 45+64+5, i*65+16) --achivement description
    end 
