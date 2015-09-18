@@ -783,7 +783,7 @@ function love.update(dt)
 	 end
       end
       mouse_x, mouse_y = love.mouse.getPosition()
-      if game.show_menu ~= 1 and game.show_menu ~= 2 then
+      if game.show_menu ~= 1 and game.show_menu ~= 2 and game.show_menu ~= 7 then
 	 update_run_daytimer() -- run the clock
 	 update_directives()
       end
