@@ -557,6 +557,14 @@ function love.load()
    music_townbg1:setLooping( true )
    music_nightbg1 = love.audio.newSource("data/sounds/un_com_night.ogg")
    music_nightbg1:setLooping( true )
+   
+   a = love.filesystem.exists( "achivements.lua" )
+   if a == true then --we have a saved file
+   	chunk = love.filesystem.load( "achivements.lua" )
+   	chunk()
+   else
+  	load_new_achivements() --achivements.lua, --use a blank file.
+   end
 end
 
 function get_kingdom_researchable()
