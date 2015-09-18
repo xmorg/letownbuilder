@@ -108,7 +108,9 @@ function love_crude_load()
       
       chunk = love.filesystem.load( "game_wildlife.lua" )
       chunk()
-      
+
+      chunk = love.filesystem.load( "law.lua")
+      chunk()
       --a = love.filesystem.exists( "achivements.lua" )
       --if a == true then --we have a saved file
      -- 	chunk = love.filesystem.load( "achivements.lua" )
@@ -152,4 +154,5 @@ function love_crude_save()
 		table.show(game_families, "game_families"))
 	love.filesystem.write( "achivements.lua", 
 		table.show(achivements, "achivements"))
+	love.filesystem.write( "law.lua", table.show(laws, "laws"))
 end

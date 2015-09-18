@@ -260,6 +260,9 @@ function check_for_events_in_timer()
    end
 
    if game.day_time == 6000 then
+      if table.getn(game_nightwolves) > 0 then
+	 update_achivements("The howling", 1)
+      end
       drop_nightwolves()
    end
 end
@@ -439,6 +442,8 @@ function update_job_que()
 	       end
 	       instant_update_map()
 	    elseif game_job_que[i].job_type == "Cut trees" then
+	       update_achivements("Tree Puncher", 1)
+	       update_achivements("Pro logger", 1)
 	       if game.biome == "desert" then
 		  game_map[game_job_que[i].location_y][game_job_que[i].location_x] = 2
 	       else
