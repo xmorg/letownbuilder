@@ -37,6 +37,7 @@ function game_achivements_draw() --draw the achivements
    local row = 45
    local col1 = 100
    local acol = 0
+   local brow = 0
    --big_font = love.graphics.newFont("data/newscycle-bold.ttf", 24 )
    --love.graphics.setFont( big_font )
    love.graphics.setColor(255,255,255,255)--outside white
@@ -50,16 +51,16 @@ function game_achivements_draw() --draw the achivements
    love.graphics.setColor(255,255,255,255)--outside white
    love.graphics.setFont( base_font )
    for i,v in ipairs(achivements) do
-   	if i > 7 then acol = 300 else acol = 0 end
+   	if i > 7 then acol = 300 brow = -7*65 else acol = 0 brow = 0 end
       if achivements[i].score < achivements[i].win then
 	 love.graphics.setColor(80,80,80,255)
       else
 	 love.graphics.setColor(255,255,255,255)
       end
-      love.graphics.draw(game_icons[achivements[i].icon], 45+acol, i*65) --put the icon
+      love.graphics.draw(game_icons[achivements[i].icon], 45+acol, i*65+brow) --put the icon
 	 love.graphics.setColor(255,255,255,255) --make text white
-      love.graphics.print(achivements[i][1], 45+64+5+acol, i*65) --achivement title
-      love.graphics.print(achivements[i][2], 45+64+5+acol, i*65+16) --achivement description
+      love.graphics.print(achivements[i][1], 45+64+5+acol, i*65+brow) --achivement title
+      love.graphics.print(achivements[i][2], 45+64+5+acol, i*65+16+brow) --achivement description
    end 
    love.graphics.setColor(255,255,255,255)
 
