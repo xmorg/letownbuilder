@@ -550,6 +550,11 @@ end
 function love.load()
    local icon_dir = "data/icons/"
    local icon_files = nil
+   a = love.filesystem.exists( "achivements.lua" )
+   if a == true then --we have a saved file
+   	chunk = love.filesystem.load( "achivements.lua" )
+   	chunk()
+   end
    title3 = love.graphics.newImage("data/images/title3.png")
    resource_bar = love.graphics.newImage("data/images/resource_bar.png")
    records_button = love.graphics.newImage("data/images/records_button.png")
@@ -573,12 +578,6 @@ function love.load()
 
    for k, file in ipairs(icon_files) do
       table.insert(game_icons, love.graphics.newImage(icon_dir..file) )
-   end
-   
-   a = love.filesystem.exists( "achivements.lua" )
-   if a == true then --we have a saved file
-   	chunk = love.filesystem.load( "achivements.lua" )
-   	chunk()
    end
 end
 
