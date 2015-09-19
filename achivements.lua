@@ -3,8 +3,8 @@ achivements = {
   {"Tree Puncher", "Cut down your first tree.", score=0, win=1, icon=76},
   {"Food horder", "Collect 100 food.", score = 0, win=100 , icon=77},
   {"Nice buffet", "Have more than 5 types of food", score=0, win=5, icon=78},
-  {"Worlds biggest BBQ", "Barn catches on fire.", score = 0, win=1 , icon=4},
-  {"Everybody's dead", "Let everyone die.", score = 0, win=1 , icon=5},
+  {"Worlds biggest BBQ", "Barn catches on fire.", score = 0, win=1 , icon=79},
+  {"Everybody's dead", "Let everyone die.", score = 0, win=1 , icon=80},
   {"G-g-g-ghost!", "Spot a departed loved one at night.", score = 0, win=1, icon=6 },
   {"Who took my food!?", "Catch a bandit stealing your food.", score = 0, win=1 , icon=7}, --villagers.lua,350+
   {"The howling", "Survive a night with nightwolves", score = 0, win=1 , icon=8},
