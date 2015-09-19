@@ -596,7 +596,8 @@ function love.keypressed(key)
 	 screenshot:encode("screenie"..game.lastscreenshot..".jpg")
 	 game.lastscreenshot = game.lastscreenshot+1
       elseif key == "escape" then
-	 if game.show_menu == 0 then game.show_menu = 1
+	 if game.show_menu == 0 then game.show_menu = 1 --
+	 elseif game.show_menu == 7 and game.started == 1 then game.show_menu = 0
 	 elseif game.show_menu == 7 then game.show_menu = 1
 	 elseif game.show_menu == 99 then game.show_menu = 1
 	 else if game.started == 1 then game.show_menu = 0 end end
@@ -605,9 +606,13 @@ function love.keypressed(key)
 	 else game.fullscreen_mode = "No" end
 	 go_fullscreen()
       elseif key == "a" then
-	 if game.show_menu == 7 then
-	    game.show_menu = 1
-	 else
+	 if game.show_menu == 7 and game.started == 0 then
+	    game.show_menu = 1 --back to first menu
+	 elseif game.showmenu == 7 and game.started == 1 then
+	    game.show_menu = 0 -- back to the game.
+	 elseif game.show_menu == 1 and game.started == 0 then
+	    game.show_menu = 7
+	 elseif game.show_menu == 0 and game.started == 1 then
 	    game.show_menu = 7
 	 end
       elseif key == "s" then
@@ -615,10 +620,6 @@ function love.keypressed(key)
       elseif key == "c" then
 	 game.draw_x = 0--center the field of view
 	 game.draw_y = 0
-	--elseif key == "j" then
-      --game.rotate = 1
-	--elseif key == "k" then
-      --game.rotate = 2
       elseif key == "z" then
 	 game.zoom_level=game.zoom_level +0.2
       elseif key == "x" then
@@ -645,11 +646,11 @@ end
 ---------------------------------------
 function love.draw()
    --local game_achivements_draw = achivements.game_achivements_draw
-   if game.show_menu == 1 then
+   if game.show_menu == 1 then --draw menu
       game_menu_draw()
-   elseif game.show_menu == 2 then
+   elseif game.show_menu == 2 then --biome menu
       draw_biome_select() -- select which biome.
-   elseif game.show_menu == 7 then
+   elseif game.show_menu == 7 then --achivements
       game_achivements_draw()
    else	
       game.screen_height = love.graphics.getHeight()

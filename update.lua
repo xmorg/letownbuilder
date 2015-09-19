@@ -536,32 +536,32 @@ function on_sucessful_dig_hole(job_type, sucessrate)
 end
 
 function on_sucessful_gather_dojob(biome, job_type, weather,sucessrate)
-	local halfdice = math.random(1,2)
-	if sucessrate == 1 then --test the random for sucess on a number of directives.
-		if job_type == "Gather Food" then 
-			kingdom_inventory.seeds = kingdom_inventory.seeds+1 
-		end
-		if job_type == "Gather Food" and halfdice == 1 then
-			if is_night() == 0 and (game.biome == "forest" or game.biome == "frost") then --you cannot find carrots at night! :)
-	    	kingdom_inventory.carrots = kingdom_inventory.carrots+1
-	 	elseif game.biome == "japan" then
-	    	kingdom_inventory.sansai = kingdom_inventory.sansai+1
-	 	elseif game.biome == "desert" then
-	 		kingdom_inventory.seeds = kingdom_inventory.seeds+1
-		    kingdom_inventory.desert_onions = kingdom_inventory.desert_onions+1
-		end
-      	elseif job_type == "Fishing" then
-	 		if game.biome == "desert" then
-	    		kingdom_inventory.fish = kingdom_inventory.fish+math.random(0,1)
-	 	else
-	    	kingdom_inventory.fish = kingdom_inventory.fish+1
-	 	end--endif
-    end
-   	elseif sucessrate == 2 and halfdice == 1 then
-    	if job_type == "Gather Food" then
-			kingdom_inventory.mushrooms = kingdom_inventory.mushrooms+1
-      	end
-   	end   
+   local halfdice = math.random(1,2)
+   if sucessrate == 1 then --test the random for sucess on a number of directives.
+      if job_type == "Gather Food" then 
+	 kingdom_inventory.seeds = kingdom_inventory.seeds+1 
+      end
+      if job_type == "Gather Food" and halfdice == 1 then
+	 if is_night() == 0 and (game.biome == "forest" or game.biome == "frost") then --you cannot find carrots at night! :)
+	    kingdom_inventory.carrots = kingdom_inventory.carrots+1
+	 elseif game.biome == "japan" then
+	    kingdom_inventory.sansai = kingdom_inventory.sansai+1
+	 elseif game.biome == "desert" then
+	    kingdom_inventory.seeds = kingdom_inventory.seeds+1
+	    kingdom_inventory.desert_onions = kingdom_inventory.desert_onions+1
+	 end
+      elseif job_type == "Fishing" then
+	 if game.biome == "desert" then
+	    kingdom_inventory.fish = kingdom_inventory.fish+math.random(0,1)
+	 else
+	    kingdom_inventory.fish = kingdom_inventory.fish+1
+	 end--endif
+      end
+   elseif sucessrate == 2 and halfdice == 1 then
+      if job_type == "Gather Food" then
+	 kingdom_inventory.mushrooms = kingdom_inventory.mushrooms+1
+      end
+   end   
 end
 
 function update_directives()   
@@ -665,6 +665,22 @@ function on_update_fires(x,y) -- per tile do a fire update.
       end--endif
       --elseif on_fire(game_fire_map[y][x]) == true and game_map[y][x] ~= 47 then
    end--endif
+   if on_fire(game_fire_map[y][x]) == true and game_road_map[y][x] == 52 then -- the barn is on fire!
+      update_achivements("Worlds biggest BBQ", 1) --omg! you lost all your food!
+      kingdom_inventory.carrots = 0
+      kingdom_inventory.sansai = 0
+      kingdom_inventory.raw_meat = 0
+      kingdom_inventory.smoked_meat = 0
+      kingdom_inventory.mushrooms = 0
+      kingdom_inventory.fish = 0
+      kingdom_inventory.smoked_fish = 0
+      kingdom_inventory.grain = 0
+      kingdom_inventory.cherries = 0
+      kingdom_inventory.fishwine = 0
+      kingdom_inventory.paleale = 0
+      kingdom_inventory.apples = 0
+      kingdom_inventory.desert_onions = 0	 
+   end
    --items alreay on fire
    if game_map[y][x] ~= 47 and on_fire(game_fire_map[y][x]) == true then
       game_map[y][x] = fire_ravage_tile(game_map[y][x]) --burn it up
@@ -714,9 +730,10 @@ function on_update_fires(x,y) -- per tile do a fire update.
 	 if on_fire(game_fire_map[y][x]) == false and riot_fire_chance == 1 then
 	    game_fire_map[y][x] = 1
 	    message_que_add("Rioters have set a fire!".."("..x.."X"..y..")", 300, 1)
-	 end
-      end
-   end
+	 end --endif  game_road_map[y][x] == 70 then
+      end --endif game_road_map[y][x] >= 23 and game_road_map[y][x] <=27 then
+   end --endif  kingdom_inventory.unrest >= 70 then
+   --check if the barns on fire?
 end --end fuction
 
 function hourly_update_map()
