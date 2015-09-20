@@ -176,7 +176,7 @@ function message_que_add(message, timer, icon)
    game.message_num = game.message_num+1
    game.message_box_text = message
    game.message_box_timer = timer
-   if icon > 78 then
+   if icon > 80 then
       game.message_box_icon = 3
    else
       game.message_box_icon = icon
