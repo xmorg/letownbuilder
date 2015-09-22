@@ -359,7 +359,7 @@ function update_job_que()
    local firebuilding = 0
    for i,v in ipairs(game_job_que) do
       if game_job_que[i].timer > 0 then
-	 if game_job_que[i].job_type == "Build house" and
+	 if (game_job_que[i].job_type == "Build house" or game_job_que[i].job_type == "Demolish building") and
 	    (get_availible_worker(game_job_que[i].job_type)==true or get_availible_worker(game_job_que[i].job_type)==true)
 	 and building == 0 then
 	    on_game_directives_buildhouse(i)
