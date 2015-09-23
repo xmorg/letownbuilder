@@ -516,7 +516,6 @@ function draw_research_icons()
 end
 
 function draw_small_sprite(spritenum, x,y)
-   --love.graphics.draw(game_sprites[game_villagers[i].sprite], blit_x, blit_y)
    if g_version == "0.9.0" then
       love.graphics.draw(sprite_files, game_sprites_table[spritenum], x, y)
    else
@@ -524,7 +523,6 @@ function draw_small_sprite(spritenum, x,y)
    end
 end
 function draw_projectile_sprite(spritenum, x,y)
-   --love.graphics.draw(game_sprites[game_villagers[i].sprite], blit_x, blit_y)
    if g_version == "0.9.0" then
       love.graphics.draw(projectile_files, game_psrites_table[spritenum], x, y)
    else
@@ -541,12 +539,8 @@ function draw_wildlife()
       end
       -------INSERT NEW CODE HERE.
       draw_small_sprite(game_wildlife[i].sprite, game_wildlife[i].x +game.draw_x,game_wildlife[i].y +game.draw_y)
-      --love.graphics.draw(game_sprites[game_wildlife[i].sprite],
-	--		 game_wildlife[i].x +game.draw_x,
-	--		 game_wildlife[i].y +game.draw_y )
       if game_wildlife[i].alive == 0 then
       	--fixed zombie bug, in the future each wl should have their own dead sprite.
-	 --love.graphics.draw(game_sprites[31], game_wildlife[i].x +game.draw_x,game_wildlife[i].y +game.draw_y )
 	 draw_small_sprite(game_wildlife[i].dead_sprite, game_wildlife[i].x +game.draw_x,game_wildlife[i].y +game.draw_y)
       end
       if kingdom_inventory.watchtower > 0 then
@@ -641,10 +635,8 @@ function draw_villagers()
 	 local ghost_flip = math.random(1,5)
 	 love.graphics.setColor(150,255,255,255)
 	 if ghost_flip == 1 then
-	    --love.graphics.draw(game_sprites[13], ghostblit_x, ghostblit_y)
 	    draw_small_sprite(13, ghostblit_x, ghostblit_y)
 	 else
-	    --love.graphics.draw(game_sprites[14], ghostblit_x, ghostblit_y)
 	    draw_small_sprite(14, ghostblit_x, ghostblit_y)
 	 end
 	 love.graphics.setColor(0,0,0,255)
@@ -700,8 +692,6 @@ function draw_villagers()
       elseif kingdom_inventory.watchtower > 0 then
 	 print_talk_text(">"..game_villagers[i].name.."<", game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
       end--endif
-      --love.graphics.draw(game_sprites[40], 400+game.draw_x, 400+game.draw_y)
-      
    end--endfor
 end
 
