@@ -22,7 +22,8 @@ function new_villager(migration)
 	opinion = "Excited about founding new town.",
 	disease = "healthy",
 	disease_timer = 0,
-	sprite = 0, dead_sprite = 0
+	sprite = 0, dead_sprite = 0,
+	selected = 0
    }
 
    if migration == 0 then
