@@ -239,8 +239,8 @@ function love.mousepressed(x, y, button)
 		elseif game.show_menu == 2 then
 			select_biome_mouse(x,y,"l")
       	end
-      	if mouse_clicked_in32(x, y, 632,0) == 1 then
-      		love_crude_load()
+		if mouse_clicked_in32(x, y, 632,0) == 1 then
+			love_crude_load()
       		load_game_res()
       	end
       	if mouse_clicked_in32(x, y, 664,0) == 1 then
