@@ -661,6 +661,8 @@ function draw_villagers()
 	 end
       elseif game_villagers[i].position == "sheriff" and game_villagers[i].alive == 1 then
 	 draw_small_sprite(game_sprites[25], blit_x, blit_y)
+	elseif game_villagers[i].position == "militia captain" and game_villagers[i].alive == 1 then
+	 draw_small_sprite(game_sprites[25], blit_x, blit_y)
       elseif game_villagers[i].alive == 0 then --draw a dead.
 	 draw_small_sprite(game_villagers[i].dead_sprite, blit_x, blit_y)
       else
