@@ -231,29 +231,28 @@ end
 
 
 function love.mousepressed(x, y, button)
-   if button == "l" then
-      game.printx = x		--game.printx = 0 -- 0  -62
-      game.printy = y      --game.printy = 0 -- 536-600 --0, 64
-      if game.show_menu == 1 then
-	 game_menu_mouse(x,y,"l")
-      elseif game.show_menu == 2 then
-	 select_biome_mouse(x,y,"l")
-      end
-      if mouse_clicked_in32(x, y, 632,0) == 1 then
-	 love_crude_load()
-	 load_game_res()
-      end
-      if mouse_clicked_in32(x, y, 664,0) == 1 then
-	 love.event.quit()
-      end
-      if mouse_clicked_in32(x, y, 696,0) == 1 then
-	 love_crude_save() --save/quit autosave feature
-	 love.event.quit()
-      end
+	if button == "l" then
+		game.printx = x		--game.printx = 0 -- 0  -62
+		game.printy = y      --game.printy = 0 -- 536-600 --0, 64
+		if game.show_menu == 1 then
+			game_menu_mouse(x,y,"l")
+		elseif game.show_menu == 2 then
+			select_biome_mouse(x,y,"l")
+      	end
+      	if mouse_clicked_in32(x, y, 632,0) == 1 then
+      		love_crude_load()
+      		load_game_res()
+      	end
+      	if mouse_clicked_in32(x, y, 664,0) == 1 then
+      		love.event.quit()
+      	end
+      	if mouse_clicked_in32(x, y, 696,0) == 1 then
+      		love_crude_save() --save/quit autosave feature
+      		love.event.quit()
+      	end
       if game.give_direction == "Hunt what?" then
 	 on_hunt_something(x,y) --villagers.lua
       end
-      
       function mouse_clicked_in64(x, y, icon_x, icon_y)
 	 if y >= icon_y and y <= icon_y +64 and x >= icon_x and x <= icon_x+64 then
 	    return 1
@@ -486,6 +485,13 @@ function love.mousepressed(x, y, button)
 	 game.mouse_last_x =  love.mouse.getX()
 	 game.mouse_last_y =  love.mouse.getY()
 	 game.give_direction = "Scrolling" 
-      end --elseif game.give_direction == "Build road" then
-   end
-end
+	end --elseif game.give_direction == "Build road" then
+	for i,v in ipairs(game_villagers) do
+		if mouse_clicked_inrect(x,y,game_villagers[i].x, game_villagers[i].y, 10, 10) == 1 then
+			game_villagers[i].selected = 1
+		else
+			game_villagers[i].selected = 0
+		end
+	end --end for i,v in ipairs(game_villagers) do
+   end --end left click
+end --end function
