@@ -167,6 +167,7 @@ function build_house_complete(i) -- house is complete, remove resources used, an
       kingdom_inventory.rocks = kingdom_inventory.rocks -20
       villagers_do_job(game_directives.location_x, game_directives.location_y, "builder")
       update_add_building(game_job_que[i].location_y, game_job_que[i].location_x, "militia house")
+      villagers_do_job(game_directives.location_x, game_directives.location_y, "militia captain")
    elseif game.house_to_build == 64 then --smithy
       if game.biome == "japan" then
 	 kingdom_inventory.bamboo = kingdom_inventory.bamboo -10
@@ -176,6 +177,7 @@ function build_house_complete(i) -- house is complete, remove resources used, an
 	 kingdom_inventory.rocks = kingdom_inventory.rocks -10
       end
       update_add_building(game_job_que[i].location_y, game_job_que[i].location_x, "smithy")
+      villagers_do_job(game_directives.location_x, game_directives.location_y, "blacksmith")
    elseif game.house_to_build == 66 then --tradepost
       if game.biome == "japan" then
 	 kingdom_inventory.bamboo = kingdom_inventory.bamboo -5
@@ -200,7 +202,7 @@ function build_house_complete(i) -- house is complete, remove resources used, an
       elseif game.biome == "japan" then
 	 kingdom_inventory.sakura = kingdom_inventory.sakura -15
       end
-      villagers_do_job(game_directives.location_x, game_directives.location_y, "brewery")
+      villagers_do_job(game_directives.location_x, game_directives.location_y, "brewer")
       update_add_building(game_job_que[i].location_y, game_job_que[i].location_x, "brewery")
    end
 end
