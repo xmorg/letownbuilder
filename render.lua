@@ -636,7 +636,7 @@ function draw_villagers()
 			game_villagers[i].y+5+game.draw_y, 12, 8); 
 		love.graphics.setColor(255,255,255,255)
 		love.graphics.print(game_villagers[i].name, game_villagers[i].x+game.draw_x, 
-			game_villagers[i].y+game.draw_x-5)
+			game_villagers[i].y+game.draw_x-50)
 	end
       if game_villagers[i].alive == 0 and is_night() == 1 and kingdom_inventory.graveyards < 1 then
 	 --{"G-g-g-ghost!", "Spot a departed loved one at night.", score = 0, win=1, icon=6 },
