@@ -575,7 +575,6 @@ end --function
 
 function update_villager_killedby_nightwolf(nightwolf, villager)
    if villager_touched(nightwolf, villager) == 1 and nightwolf.wildlife_type == "night wolf" and is_night()==1 then
-      --if i.villager_type == "werewolf" and j.villager_type == "werewolf" then
       if villager.alive == 1 then
 	 villager.alive = 0 -- Just got killed by a werewolf init death sequence
 	 villager.villager_type = "Dead"
@@ -649,7 +648,7 @@ function update_villager_jobs(dt) -- here is where timers should go down?
    for i, v in ipairs(game_villagers) do --loop through villagers
       --update_villager_killedby_nightwolf(i, j)
       for n, m in ipairs(game_nightwolves) do
-	 update_villager_killedby_nightwolf(game_villagers[i], game_nightwolves[n]) --loop through nightwolves and check for colisions.
+	 update_villager_killedby_nightwolf(game_nightwolves[n], game_villagers[i]) --loop through nightwolves and check for colisions.
       end
       for j, w in ipairs(game_villagers) do --loop through villagers
 	 update_villager_killedby_werewolf(game_villagers[i], game_villagers[j])--- WEREWOLF COLLISION

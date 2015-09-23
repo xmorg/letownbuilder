@@ -185,6 +185,7 @@ function debug_negatives() --?
 end
 
 function check_for_events_in_timer()
+   local nightwolves_night = math.random(1,20)
    if game.day_time == 12000 then
       villagers_eat_food(table.getn(game_villagers))
       if kingdom_inventory.unrest >= 70 then
@@ -205,7 +206,9 @@ function check_for_events_in_timer()
    
    if game.day_time == 21000 then
       villagers_seek_shelter(table.getn(game_villagers))
-      spawn_nightwolves() --put wovloves in town (dont forget to random it)
+      if nightwolves_night == 1 then
+	 spawn_nightwolves() --put wovloves in town (dont forget to random it)
+      end
    end
 
    if game.day_time == 6000 then
@@ -759,10 +762,8 @@ function love.update(dt)
 	    lx = 300+(y - x) * 32 + 64
 	    ly = -100+(y + x) * 32 / 2 + 50
 	    -- function -----  game tiles map table ---- isometric loc
-	    if(mouse_x >= lx+game.draw_x and
-		  mouse_x <= lx+game.draw_x+64 and
-		  mouse_y >= ly+game.draw_y+60 and
-	       mouse_y <= ly+game.draw_y+100) then
+	    if(mouse_x >= lx+game.draw_x and mouse_x <= lx+game.draw_x+64 and
+		  mouse_y >= ly+game.draw_y+60 and mouse_y <= ly+game.draw_y+100) then
 	       --put the number of the selected tile
 	       game.tile_selected_x = x
 	       game.tile_selected_y = y
@@ -781,8 +782,8 @@ function love.update(dt)
 	    end--endif
 	 end --endif
 	 update_villager_new_destination(game_wildlife[i], dt, game_wildlife[i].speed)
-	end -- endfor (game_wildlife)
-	update_nightwolves(dt) --update nightwolves.
+      end -- endfor (game_wildlife)
+      update_nightwolves(dt) --update nightwolves.
    end --if game.game_paused == 0 then
    
    on_update_earthquake(5)
