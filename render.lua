@@ -633,7 +633,7 @@ function draw_villagers()
 	if game_villagers[i].selected == 1 then
 		love.graphics.setColor(0,0,255,100)
 		love.graphics.circle("fill", game_villagers[i].x-5+game.draw_x, 
-			game_villagers[i].y+5+game.draw_5, 15, 3); 
+			game_villagers[i].y+5+game.draw_y, 15, 3); 
 		love.graphics.setColor(255,255,255,255)
 	end
       if game_villagers[i].alive == 0 and is_night() == 1 and kingdom_inventory.graveyards < 1 then
