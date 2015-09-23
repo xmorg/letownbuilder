@@ -580,8 +580,8 @@ function update_villager_killedby_nightwolf(nightwolf, villager)
 	 villager.alive = 0 -- Just got killed by a werewolf init death sequence
 	 villager.villager_type = "Dead"
 	 villager.opinion = "Died on Day"..game.day_count.." at "..game.day_time
-	 villager.died_x = j.x
-	 villager.died_y = j.y
+	 villager.died_x = villager.x
+	 villager.died_y = villager.y
 	 game.message_box_icons = 19
 	 set_family_opionions(villager) --not yet tested
 	 if villager.sex == 0 then
