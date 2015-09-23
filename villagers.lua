@@ -511,6 +511,8 @@ function get_availible_worker(job_type) -- is a worker availible for the job?
    for i, v in ipairs(game_villagers) do
       if job_type == "Build house" and game_villagers[i].position == "builder" then
 	 return true
+      elseif job_type == "Demolish building" and game_villagers[i].position == "builder" then
+	 return true
       elseif (job_type == "Cut trees" or job_type == "Cut bamboo" or job_type == "Cut sakura") and game_villagers[i].position == "woodcutter" then
 	 return true 
       elseif job_type == "Dig hole" and game_villagers[i].position == "miner" then
@@ -571,22 +573,22 @@ function update_villager_poisonedby_snake(i, j)
    end --if game_villagers[i].villager_type == "werewolf" and game_villagers[j].villager_type == "werewolf" then
 end --function
 
-function update_villager_killedby_nightwolf(i, j)
-   if villager_touched(i, j) == 1 and i.wildlife_type == "night wolf" and is_night()==1 then
+function update_villager_killedby_nightwolf(nightwolf, villager)
+   if villager_touched(nightwolf, villager) == 1 and nightwolf.wildlife_type == "night wolf" and is_night()==1 then
       --if i.villager_type == "werewolf" and j.villager_type == "werewolf" then
-      if j.alive == 1 then
-	 j.alive = 0 -- Just got killed by a werewolf init death sequence
-	 j.villager_type = "Dead"
-	 j.opinion = "Died on Day"..game.day_count.." at "..game.day_time
-	 j.died_x = j.x
-	 j.died_y = j.y
+      if villager.alive == 1 then
+	 villager.alive = 0 -- Just got killed by a werewolf init death sequence
+	 villager.villager_type = "Dead"
+	 villager.opinion = "Died on Day"..game.day_count.." at "..game.day_time
+	 villager.died_x = j.x
+	 villager.died_y = j.y
 	 game.message_box_icons = 19
-	 set_family_opionions(j) --not yet tested
-	 if j.sex == 0 then
-	    message_que_add("You hear a blood curtling scream..."..j.name.."!", 100, 1)
+	 set_family_opionions(villager) --not yet tested
+	 if villager.sex == 0 then
+	    message_que_add("You hear a blood curtling scream..."..villager.name.."!", 100, 1)
 	    kingdom_inventory.unrest = kingdom_inventory.unrest+6 --girls dying unerves us more!
 	 else
-	    message_que_add("You hear a horrible scream..."..j.name.."!", 100, 1)
+	    message_que_add("You hear a horrible scream..."..villager.name.."!", 100, 1)
 	    kingdom_inventory.unrest = kingdom_inventory.unrest+5
 	 end
       end --game_villagers[j].alive == 1 then

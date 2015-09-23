@@ -488,9 +488,10 @@ function on_demolish_structure()
       game.give_direction = "None"
    else
       update_directives_loc(300, 1)
-      game_directives.job_type = game.give_direction
+      --game_directives.job_type = game.give_direction
       game_directives.job_type = "Demolish building"
       game.give_direction = "None"
+      play_sound(sound_build_house)
       create_job_forque()
    end
 end

@@ -4,60 +4,6 @@
 
 require( "achivements")
 
-function plant_regrowth(x,y)
-   if game_map[y][x] == 1 and game.days_since_regrowth == 7 then --dirt
-      game_map[y][x] = 2 --grass
-   elseif game_map[y][x] == 42 then --garden
-      game_map[y][x] = 43 -- sprouts
-      if game_road_map[y][x] == 1042 then
-	 game_road_map[y][x] = 1043
-      end
-   elseif game_map[y][x] == 43 then --sprouts
-      if game.days_without_rain >=7 or game.days_snowed >= 7 then
-	 game_map[y][x] = 42
-      else
-	 game_map[y][x] = 44
-      end
-      if game_road_map[y][x] == 1043 then
-	 game_road_map[y][x] = 1044
-      end
-   elseif game_map[y][x] == 44 then --plants
-      if game_road_map[y][x] == 1044 then
-	 game_road_map[y][x] = 1045
-      end
-      if game.days_without_rain >=7 or game.days_snowed >= 7  then
-	 game_map[y][x] = 42
-      else
-	 game_map[y][x] = 45
-      end
-   elseif game_map[y][x] == 45 then --almost ready
-      if game_road_map[y][x] == 1045 then
-	 game_road_map[y][x] = 1046
-      end
-      if game.days_without_rain >=7 or game.days_snowed >= 7  then
-	 game_map[y][x] = 42
-      else
-	 game_map[y][x] = 46 --ready to harvest
-      end
-   elseif game_map[y][x] == 46 then --next day harvest and replant
-      if game_road_map[y][x] == 1046 then
-	 kingdom_inventory.tomatoes = kingdom_inventory.tomatoes+10	
-      else
-	 kingdom_inventory.grain = kingdom_inventory.grain+10
-	 game_road_map[y][x] = 1042
-      end
-      game_map[y][x] = 42
-   elseif game_road_map[y][x] >= 23 and game_road_map[y][x] <= 26 then
-      kingdom_inventory.homes = kingdom_inventory.homes+1
-   elseif game_road_map[y][x] == 55 then --fishing hut
-      kingdom_inventory.fish = kingdom_inventory.fish+ math.random(1,5)
-   end
-   game.days_since_regrowth = game.days_since_regrowth+1
-   if game.days_since_regrowth >= 7 then
-      game.days_since_regrowth = 0
-   end
-end
-
 function spread_fires(x,y)
    if game_fire_map[y][x] == 1 then
       fire_rand = math.random(1,4)
@@ -359,10 +305,13 @@ function update_job_que()
    local firebuilding = 0
    for i,v in ipairs(game_job_que) do
       if game_job_que[i].timer > 0 then
-	 if (game_job_que[i].job_type == "Build house" or game_job_que[i].job_type == "Demolish building") and
+	 if game_job_que[i].job_type == "Build house"  and
 	    (get_availible_worker(game_job_que[i].job_type)==true or get_availible_worker(game_job_que[i].job_type)==true)
 	 and building == 0 then
 	    on_game_directives_buildhouse(i)
+	    game_job_que[i].timer = game_job_que[i].timer -1
+	    building = 1
+	 elseif game_job_que[i].job_type == "Demolish building" and (get_availible_worker(game_job_que[i].job_type)==true) and building == 0 then
 	    game_job_que[i].timer = game_job_que[i].timer -1
 	    building = 1
 	 elseif game_job_que[i].job_type == "Build road" and building == 0 then
@@ -840,3 +789,58 @@ function love.update(dt)
    update_merchant_location()
    get_tooltip_info_from_item() --ran in update?
 end -- function love.update()
+
+
+function plant_regrowth(x,y)
+   if game_map[y][x] == 1 and game.days_since_regrowth == 7 then --dirt
+      game_map[y][x] = 2 --grass
+   elseif game_map[y][x] == 42 then --garden
+      game_map[y][x] = 43 -- sprouts
+      if game_road_map[y][x] == 1042 then
+	 game_road_map[y][x] = 1043
+      end
+   elseif game_map[y][x] == 43 then --sprouts
+      if game.days_without_rain >=7 or game.days_snowed >= 7 then
+	 game_map[y][x] = 42
+      else
+	 game_map[y][x] = 44
+      end
+      if game_road_map[y][x] == 1043 then
+	 game_road_map[y][x] = 1044
+      end
+   elseif game_map[y][x] == 44 then --plants
+      if game_road_map[y][x] == 1044 then
+	 game_road_map[y][x] = 1045
+      end
+      if game.days_without_rain >=7 or game.days_snowed >= 7  then
+	 game_map[y][x] = 42
+      else
+	 game_map[y][x] = 45
+      end
+   elseif game_map[y][x] == 45 then --almost ready
+      if game_road_map[y][x] == 1045 then
+	 game_road_map[y][x] = 1046
+      end
+      if game.days_without_rain >=7 or game.days_snowed >= 7  then
+	 game_map[y][x] = 42
+      else
+	 game_map[y][x] = 46 --ready to harvest
+      end
+   elseif game_map[y][x] == 46 then --next day harvest and replant
+      if game_road_map[y][x] == 1046 then
+	 kingdom_inventory.tomatoes = kingdom_inventory.tomatoes+10	
+      else
+	 kingdom_inventory.grain = kingdom_inventory.grain+10
+	 game_road_map[y][x] = 1042
+      end
+      game_map[y][x] = 42
+   elseif game_road_map[y][x] >= 23 and game_road_map[y][x] <= 26 then
+      kingdom_inventory.homes = kingdom_inventory.homes+1
+   elseif game_road_map[y][x] == 55 then --fishing hut
+      kingdom_inventory.fish = kingdom_inventory.fish+ math.random(1,5)
+   end
+   game.days_since_regrowth = game.days_since_regrowth+1
+   if game.days_since_regrowth >= 7 then
+      game.days_since_regrowth = 0
+   end
+end
