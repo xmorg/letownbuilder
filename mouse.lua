@@ -487,7 +487,9 @@ function love.mousepressed(x, y, button)
 	 game.give_direction = "Scrolling" 
 	end --elseif game.give_direction == "Build road" then
 	for i,v in ipairs(game_villagers) do
-		if mouse_clicked_inrect(x,y,game_villagers[i].x+game.draw_x, game_villagers[i].y+game.draw_y, 10, 10) == 1 then
+		if mouse_clicked_inrect(x,y,game_villagers[i].x+game.draw_x, 
+			game_villagers[i].y+game.draw_y, 
+			10, 10) == 1 then
 			game_villagers[i].selected = 1
 		else
 			game_villagers[i].selected = 0
