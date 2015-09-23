@@ -663,7 +663,10 @@ function update_villager_jobs(dt) -- here is where timers should go down?
 	    elseif game_villagers[i].job == 50 then -- talk!
 	       update_villager_talking(i)
 	    end
+	    
 	    -- The LIVING!-------------------------------------
+	 elseif game_villagers[i].position == "militia captain" and (game_villagers[i].alive == 1) then
+	 	-- do militia captain stuff!
 	 elseif game_villagers[i].job == 0 and (game_villagers[i].alive == 1 or game_villagers[i].alive == -1) then -- The living!
 	    game_villagers[i].job = math.random(1, 1000)
 	    if game_villagers[i].job < 10 then -- movment
