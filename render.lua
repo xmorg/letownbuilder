@@ -628,7 +628,14 @@ function draw_villagers()
       else
 	 blit_x = game_villagers[i].x+game.draw_x
 	 blit_y = game_villagers[i].y+game.draw_y
-      end
+	end
+
+	if game_villagers[i].selected == 1 then
+		love.graphics.setColor(0,0,255,100)
+		love.graphics.circle("fill", game_villagers[i].x-5+game.draw_x, 
+			game_villagers[i].y+5+game.draw_5, 15, 3); 
+		love.graphics.setColor(255,255,255,255)
+	end
       if game_villagers[i].alive == 0 and is_night() == 1 and kingdom_inventory.graveyards < 1 then
 	 --{"G-g-g-ghost!", "Spot a departed loved one at night.", score = 0, win=1, icon=6 },
 	 update_achivements("G-g-g-ghost!", 1)
