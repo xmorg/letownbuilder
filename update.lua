@@ -207,7 +207,7 @@ function check_for_events_in_timer()
    if game.day_time == 21000 then
       villagers_seek_shelter(table.getn(game_villagers))
       if nightwolves_night == 1 then
-	 spawn_nightwolves() --put wovloves in town (dont forget to random it)
+	 spawn_nightwolves() --put wolves in town
       end
    end
 

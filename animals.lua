@@ -94,7 +94,7 @@ function spawn_nightwolves() --put night wolves into game_nightwolves = {}
    elseif newsw == 3 then --south
       wolf_spawn_x = -600 --math.random(1,game.tilecount) --tiles
       wolf_spawn_y = 600 --game.tilecount --math.random(1,game.tilecount) --tiles
-   elseif newsw == 4 --west
+   elseif newsw == 4 then --west
       wolf_spawn_x = -600 --0 --tiles
       wolf_spawn_y = -600 --math.random(1,game.tilecount) --math.random(1,game.tilecount) --tiles
    end
