@@ -313,15 +313,20 @@ function draw_roster_list_food()
    love.graphics.print("Food       Type           Stored in         Disease Chance", col_one, 20+88)
    row_num = row_num + 1
    love.graphics.print("---------------------------------------------------------------------------", col_one, 20+95)
+   love.graphics.print("Seeds ("..kingdom_inventory.seeds..")", col_one, row_num *20+88)row_num = row_num + 1
    love.graphics.print("Carrots ("..kingdom_inventory.carrots..")", col_one, row_num *20+88)row_num = row_num + 1
    love.graphics.print("Sansai ("..kingdom_inventory.sansai..")", col_one, row_num *20+88)row_num = row_num + 1
    love.graphics.print("Mushrooms ("..kingdom_inventory.mushrooms..")", col_one, row_num *20+88)row_num = row_num + 1
    love.graphics.print("Fish ("..kingdom_inventory.fish..")", col_one, row_num *20+88)row_num = row_num + 1
+   love.graphics.print("Smoked Fish ("..kingdom_inventory.smoked_fish..")", col_one, row_num *20+88)row_num = row_num + 1
    love.graphics.print("Grain ("..kingdom_inventory.grain..")", col_one, row_num *20+88)row_num = row_num + 1
    love.graphics.print("Cherries ("..kingdom_inventory.cherries..")", col_one, row_num *20+88)row_num = row_num + 1
    love.graphics.print("Raw Meat ("..kingdom_inventory.raw_meat..")", col_one, row_num *20+88)row_num = row_num + 1
    love.graphics.print("Smoked Meat ("..kingdom_inventory.smoked_meat..")", col_one, row_num *20+88)row_num = row_num + 1
    love.graphics.print("Desert Onions ("..kingdom_inventory.desert_onions..")", col_one, row_num *20+88)row_num = row_num + 1
+   love.graphics.print("Apples ("..kingdom_inventory.apples..")", col_one, row_num *20+88)row_num = row_num + 1
+   love.graphics.print("Tomatos ("..kingdom_inventory.tomatoes..")", col_one, row_num *20+88)row_num = row_num + 1
+   love.graphics.print("Saltwort ("..kingdom_inventory.saltwort..")", col_one, row_num *20+88)row_num = row_num + 1
 end
 
 --new code to put message list in roster/records
