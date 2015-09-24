@@ -361,6 +361,13 @@ function draw_roster_list_resources()
    love.graphics.print("Iron Ingots ("..kingdom_inventory.iron_ingots..")", col_one, row_num *20+88)row_num = row_num + 1
    love.graphics.print("Gold Ore ("..kingdom_inventory.gold_ore..")", col_one, row_num *20+88)row_num = row_num + 1
    love.graphics.print("Gold Ingots ("..kingdom_inventory.gold_ingots..")", col_one, row_num *20+88)row_num = row_num + 1
+   love.graphics.print("Pelts ("..kingdom_inventory.pelts..")", col_one, row_num *20+88)row_num = row_num + 1
+   love.graphics.print("Weapons ("..kingdom_inventory.weapons..")", col_one, row_num *20+88)row_num = row_num + 1
+   love.graphics.print("Tools ("..kingdom_inventory.tools..")", col_one, row_num *20+88)row_num = row_num + 1
+   love.graphics.print("Gold Treasures ("..kingdom_inventory.gold_treasures..")", col_one, row_num *20+88)row_num = row_num + 1
+   love.graphics.print("Iron Treasures ("..kingdom_inventory.iron_treasures..")", col_one, row_num *20+88)row_num = row_num + 1
+   love.graphics.print("Gold Coins ("..kingdom_inventory.gold_coins..")", col_one, row_num *20+88)row_num = row_num + 1
+   love.graphics.print("Iron Coins ("..kingdom_inventory.iron_coins..")", col_one, row_num *20+88)row_num = row_num + 1
 end
 
 function draw_roster_list_villagers()
