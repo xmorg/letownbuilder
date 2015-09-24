@@ -501,9 +501,11 @@ function love.mousepressed(x, y, button)
 		end
 	end --end for i,v in ipairs(game_villagers) do
 	elseif button == "r" then -- right mousoe button?
-		if game_villagers[i].position == "militia captain" then
-			game_villagers[i].dx = x
-			game_villagers[i].dy = y
+		for i,v in ipairs(game_villagers) do
+			if game_villagers[i].position == "militia captain" then
+				game_villagers[i].dx = x
+				game_villagers[i].dy = y
+			end
 		end
    	end --end left/right click
 end --end function
