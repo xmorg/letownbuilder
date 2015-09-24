@@ -231,7 +231,7 @@ end
 
 
 function love.mousepressed(x, y, button)
-	if button == "l" then
+	if button == "l" then -- 1 l
 		game.printx = x		--game.printx = 0 -- 0  -62
 		game.printy = y      --game.printy = 0 -- 536-600 --0, 64
 		if game.show_menu == 1 then
@@ -492,8 +492,18 @@ function love.mousepressed(x, y, button)
 			10, 10) == 1 then
 			game_villagers[i].selected = 1
 		else
-			game_villagers[i].selected = 0
+			--if game_villagers[i].position == "militia captain" then
+			--	game_villagers[i].dx = x
+			--	game_villagers[i].dy = y
+			--else
+				game_villagers[i].selected = 0
+			--end
 		end
 	end --end for i,v in ipairs(game_villagers) do
-   end --end left click
+	elseif button == "r" then -- right mousoe button?
+		if game_villagers[i].position == "militia captain" then
+			game_villagers[i].dx = x
+			game_villagers[i].dy = y
+		end
+   	end --end left/right click
 end --end function
