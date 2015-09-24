@@ -16,12 +16,12 @@ Deserts
  TODO: 
 
 issue: display dead villagers as red in records
-bugs: (Fixed)carrots can be collected by mining in deserts.
-bugs: (Fixed)messages button does not highlight in records, but food highlights it.
+DONE: (Fixed)carrots can be collected by mining in deserts.
+DONE: (Fixed)messages button does not highlight in records, but food highlights it.
 bugs: (verified) grain shows up as tomatoes if tomatoes is researched.
 bugs: (verified) grain at stage one shows up as tomatoes fully grown.
-bugs: (to verify)merchants.lua 255 (use of game_sprites) -added draw_small_sprite
-bugs: nightwolves do not kill
+DONE: (to verify)merchants.lua 255 (use of game_sprites) -added draw_small_sprite
+DONE: nightwolves do not kill
 bigs: too many werewolves(lowered troublemaker chance)
 
 BUGS: currently smelter and smithy are confused in some situations (like starting dwarves)
@@ -35,9 +35,9 @@ fixed?: you can hunt already killed animals (and they can kill you!)
 fixed: message log flows offscreen with prolonged play. - [FIXED]
 fixed: Sharif's office shows vandalized monument, and claims debug "barn"
 fixed: tradepost shows up as shariff's office
-fixed: graveyard shows "debug tried to build a barn" but builds.
+DONE: graveyard shows "debug tried to build a barn" but builds.
 fixed: check fireproof now should work.
-fixed: working gardens (not giving food?)
+DONE: working gardens (not giving food?)
 
 
 TODOS: 
