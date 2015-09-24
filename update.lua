@@ -206,8 +206,34 @@ function villagers_complete_jobs_by_buildings()
    					kingdom_inventory.iron_ingots = kingdom_inventory.iron_ingots-1
    					kingdom_inventory.iron_coins  = kingdom_inventory.iron_coins+1
    				end
+   			end--endif autorand
+   		elseif game.smithing_production == "weapons" then
+   			if kingdom_inventory.iron_ingots > 0 then 
+   				kingdom_inventory.iron_ingots = kingdom_inventory.iron_ingots-1
+   				kingdom_inventory.weapons  = kingdom_inventory.weapons+1
    			end
-   		end
+   		elseif game.smithing_production == "tools" then
+   			if kingdom_inventory.iron_ingots > 0 then 
+   				kingdom_inventory.iron_ingots = kingdom_inventory.iron_ingots-1
+   				kingdom_inventory.tools  = kingdom_inventory.tools+1
+   			end
+   		elseif game.smithing_production == "treasures" then
+   			if kingdom_inventory.gold_ingots > 0 then 
+   				kingdom_inventory.gold_ingots = kingdom_inventory.gold_ingots-1
+   				kingdom_inventory.gold_treasures  = kingdom_inventory.gold_treasures+1
+   			elseif kingdom_inventory.iron_ingots > 0 then 
+   				kingdom_inventory.iron_ingots = kingdom_inventory.iron_ingots-1
+   				kingdom_inventory.iron_treasures  = kingdom_inventory.iron_treasures+1
+   			end
+   		elseif game.smithing_production == "coins" then
+   			if kingdom_inventory.gold_ingots > 0 then 
+   				kingdom_inventory.gold_ingots = kingdom_inventory.gold_ingots-1
+   				kingdom_inventory.gold_coinds  = kingdom_inventory.gold_coins+1
+   			elseif kingdom_inventory.iron_ingots > 0 then 
+   				kingdom_inventory.iron_ingots = kingdom_inventory.iron_ingots-1
+   				kingdom_inventory.iron_coins  = kingdom_inventory.iron_coins+1
+   			end
+   		end--endif game.smithing_production == auto
    	end
    end
 end --endfunction
