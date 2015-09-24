@@ -3,6 +3,9 @@ Readme
 
 Planned features
 
+BUGS: merchants keep moving even if paused.
+BUGS: Cannot build a smithy, select house to build, choose smithy, select where, and nothing happens.
+
 Deserts
  DONE: Gathering food in green tiles yields ?what?, and tiles turn back to sand.
  DONE: Cutting trees in the tree tiles should yield wood.
