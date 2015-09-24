@@ -165,17 +165,27 @@ function villagers_complete_jobs_by_buildings()
    end--if mine > 0
    if kingdom_inventory.smelter > 0 then
       for x = 1, kingdom_inventory.smelter do
-	 for y = 1, 5 do
+	 for y = 1, 5 do --each smelter does between one and 5 smelts?
 	    if kingdom_inventory.gold_ore > 0 then
 	       kingdom_invetory.gold_ingots = kingdom_inventory.gold_ingots+1
 	       kingdom_inventory.gold_ore = kingdom_inventory.gold_ore -1
 	    elseif kingdom_inventory.iron_ore > 0 then
 	       kingdom_inventory.iron_ingots = kingdom_inventory.iron_ingots+1
 	       kingdom_inventory.iron_ore = kingdom_inventory.iron_ore -1
-	    end
+	    end --endif
 	 end --endfor
       end --endfor
-   end --endif
+   end --endif kingdom_inventory.smelter > 0 then
+   if kingdom_inventory.smithy > 0 then --multiple smithies
+   	for x=1, kingdom_inventory.smithy do --smithing_production = "auto" -- weapons, tools, treasures, coins
+   		if game.smithing_production == "auto" then
+   			autorand = math.random(1,4)
+   			if autorand == 1 then --do weapon
+   			elseif autorand == 2 then
+   			end
+   		end
+   	end
+   end
 end --endfunction
 
 function debug_negatives() --?
