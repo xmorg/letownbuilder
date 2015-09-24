@@ -19,6 +19,9 @@ function game_menu_miniload()
    
 end
 
+--function draw_merchant_sale_menu()
+--end
+
 function game_menu_draw()
    local row = 45
    local col1 = 100
