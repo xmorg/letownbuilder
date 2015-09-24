@@ -180,8 +180,32 @@ function villagers_complete_jobs_by_buildings()
    	for x=1, kingdom_inventory.smithy do --smithing_production = "auto" -- weapons, tools, treasures, coins
    		if game.smithing_production == "auto" then
    			autorand = math.random(1,4)
-   			if autorand == 1 then --do weapon
-   			elseif autorand == 2 then
+   			if autorand == 1 then --do weapon (iron ore only.)
+   				if kingdom_inventory.iron_ingots > 0 then 
+   					kingdom_inventory.iron_ingots = kingdom_inventory.iron_ingots-1
+   					kingdom_inventory.weapons  = kingdom_inventory.weapons+1
+   				end
+   			elseif autorand == 2 then --tools (iron only)
+   				if kingdom_inventory.iron_ingots > 0 then 
+   					kingdom_inventory.iron_ingots = kingdom_inventory.iron_ingots-1
+   					kingdom_inventory.tools  = kingdom_inventory.tools+1
+   				end
+   			elseif autorand == 3 then --treasures --iron or gold
+   				if kingdom_inventory.gold_ingots > 0 then 
+   					kingdom_inventory.gold_ingots = kingdom_inventory.gold_ingots-1
+   					kingdom_inventory.gold_treasures  = kingdom_inventory.gold_treasures+1
+   				elseif kingdom_inventory.iron_ingots > 0 then 
+   					kingdom_inventory.iron_ingots = kingdom_inventory.iron_ingots-1
+   					kingdom_inventory.iron_treasures  = kingdom_inventory.iron_treasures+1
+   				end
+   			elseif autorand == 4 then --coins  --gold
+   				if kingdom_inventory.gold_ingots > 0 then 
+   					kingdom_inventory.gold_ingots = kingdom_inventory.gold_ingots-1
+   					kingdom_inventory.gold_coinds  = kingdom_inventory.gold_coins+1
+   				elseif kingdom_inventory.iron_ingots > 0 then 
+   					kingdom_inventory.iron_ingots = kingdom_inventory.iron_ingots-1
+   					kingdom_inventory.iron_coins  = kingdom_inventory.iron_coins+1
+   				end
    			end
    		end
    	end
