@@ -171,30 +171,29 @@ function build_house_complete(i) -- house is complete, remove resources used, an
 		villagers_do_job(game_directives.location_x, game_directives.location_y, "builder")
 		update_add_building(game_job_que[i].location_y, game_job_que[i].location_x, "militia house")
 		villagers_do_job(game_directives.location_x, game_directives.location_y, "militia captain")
-   	elseif game.house_to_build == 64 then --smithy
-    	if game.biome == "japan" then
-	 kingdom_inventory.bamboo = kingdom_inventory.bamboo -10
-	 kingdom_inventory.rocks = kingdom_inventory.rocks -10
-      elseif game.biome == "forest" then
-	 kingdom_inventory.wood = kingdom_inventory.wood -10
-	 kingdom_inventory.rocks = kingdom_inventory.rocks -10
-      end
-      update_add_building(game_job_que[i].location_y, game_job_que[i].location_x, "smithy")
-      villagers_do_job(game_directives.location_x, game_directives.location_y, "blacksmith")
-   elseif game.house_to_build == 66 then --tradepost
-      if game.biome == "japan" then
-	 kingdom_inventory.bamboo = kingdom_inventory.bamboo -5
-      elseif game.biome == "forest" then
-	 kingdom_inventory.wood = kingdom_inventory.wood -5
-      end
-      --kingdom_inventory.tradepost = kingdom_inventory.tradepost+1
-      villagers_do_job(game_directives.location_x, game_directives.location_y, "trader")
-      update_add_building(game_job_que[i].location_y, game_job_que[i].location_x, "tradepost")
-   elseif game.house_to_build == 67 then --sheriff
-      kingdom_inventory.rocks = kingdom_inventory.rocks -35
-      villagers_do_job(game_directives.location_x, game_directives.location_y, "sheriff")
-      update_add_building(game_job_que[i].location_y, game_job_que[i].location_x, "sheriff")
-   elseif game.house_to_build == 70 then --smelter
+	elseif game.house_to_build == 64 then --smithy
+		if game.biome == "japan" then
+			kingdom_inventory.bamboo = kingdom_inventory.bamboo -10
+			kingdom_inventory.rocks = kingdom_inventory.rocks -10
+		else --game.biome == "forest" then
+			kingdom_inventory.wood = kingdom_inventory.wood -10
+			kingdom_inventory.rocks = kingdom_inventory.rocks -10
+		end
+		update_add_building(game_job_que[i].location_y, game_job_que[i].location_x, "smithy")
+		villagers_do_job(game_directives.location_x, game_directives.location_y, "blacksmith")
+	elseif game.house_to_build == 66 then --tradepost
+		if game.biome == "japan" then
+			kingdom_inventory.bamboo = kingdom_inventory.bamboo -5
+		else -- game.biome == "forest" then
+			kingdom_inventory.wood = kingdom_inventory.wood -5
+		end--kingdom_inventory.tradepost = kingdom_inventory.tradepost+1
+		villagers_do_job(game_directives.location_x, game_directives.location_y, "trader")
+		update_add_building(game_job_que[i].location_y, game_job_que[i].location_x, "tradepost")
+	elseif game.house_to_build == 67 then --sheriff
+		kingdom_inventory.rocks = kingdom_inventory.rocks -35
+		villagers_do_job(game_directives.location_x, game_directives.location_y, "sheriff")
+		update_add_building(game_job_que[i].location_y, game_job_que[i].location_x, "sheriff")
+	elseif game.house_to_build == 70 then --smelter
       kingdom_inventory.rocks = kingdom_inventory.rocks -30
       kingdom_inventory.iron_ore = kingdom_inventory.iron_ore -2
       villagers_do_job(game_directives.location_x, game_directives.location_y, "smelter")
