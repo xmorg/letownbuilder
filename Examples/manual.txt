@@ -1,1 +1,33 @@
 manual.txt
+
+
+A Fantasy Town building simulator - With no in app purchasing!
+
+Ever played an adictive online game where you build your kingdom or town and realized that it was taking too long to do anything unless you spent real money? LeTownbuilder allows you to scrach that "building and managing" itch while not burdening you with microtransations, or massive hardware requirements.
+
+Your town begins in a vacant, unsettled area. Your start location is randomized and there are different possible biomes, so no 2 times you play are the same. You start with 5 villagers. Start by collecting resources and building houses and specialized buildings. Villagers have moods, and can become happy or angry based many factors. Keep them fed, and housed. Also make sure that there is a bonfire at night, or they will get cold. You can increase happiness by always having food at lunchtime and by adding other advanced upgrades to your village.
+
+
+Workers
+----------------------------
+Towns are made by hard work.  As the town begins to take shape, people will start to take on specialized roles.  These roles are responsible for completing various assigned tasks.
+
+Mayor - Mayors are the source to blame for all things aray in your village. Often villagers will proclaim themselves to be mayor at the founding of your village. If this does not occour, you can later elect one after researching civics.
+
+Farmer - farmers are responsible for planting and caring for farm plots
+
+Fisherman - Professional food gatherer if there is a body of water nearby.  This is the only type of food gathering which requires a worker.
+
+Woodcutter - Cuts wood for resource gathering.
+
+Minor - Minor's dig holes in the ground and work the mines once they are built atop the holes.  They produce stone, ore and the occasional jewel.
+
+Builder - Builders build.
+
+Sheriff - The sheriff deals with riff/raff.
+
+Militia Captain - The leader of the local militia. He can be directly controlled by the player.
+
+Undertaker - Manages the graveyards.
+
+
