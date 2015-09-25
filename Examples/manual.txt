@@ -18,6 +18,14 @@ Farmer - farmers are responsible for planting and caring for farm plots
 
 Fisherman - Professional food gatherer if there is a body of water nearby.  This is the only type of food gathering which requires a worker.
 
+Hunter - Hunters, hunt local wildlife.  Hunting reduces dangerous wildlife, as well as produces meat and pelts.
+
+Brewer - for those tired of drinking water.
+
+Smelter - Smelter smelts gold and iron ore, into bars.
+
+Smithy - Blacksmiths make tools, weapons, treasures and coins.
+
 Woodcutter - Cuts wood for resource gathering.
 
 Minor - Minor's dig holes in the ground and work the mines once they are built atop the holes.  They produce stone, ore and the occasional jewel.
@@ -29,5 +37,7 @@ Sheriff - The sheriff deals with riff/raff.
 Militia Captain - The leader of the local militia. He can be directly controlled by the player.
 
 Undertaker - Manages the graveyards.
+
+Holyman(not a attainable job?) Holymen, preach sermons which raise or lower the general unrest in your town, depending on how happy or angry the people already are.
 
 
