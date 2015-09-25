@@ -219,7 +219,7 @@ function on_build_house() --check for resources and conditions, if ok start buil
       game_directives.job_type = "Cant build on water"
       game_directives.active = 0
       game.give_direction = "None"
-      message_que_add("Cant build on water", 80, 41)
+      message_que_add("Cant build on water", 80, 56)
    elseif (game.house_to_build >= 23 and game.house_to_build <= 26) then  --house
       if
 	 (game.biome == "japan" and (kingdom_inventory.sakura < 5 or kingdom_inventory.bamboo < 5)) or
@@ -230,11 +230,11 @@ function on_build_house() --check for resources and conditions, if ok start buil
 	 game_directives.active = 0
 	 game.give_direction = "None"
 	 if game.biome == "japan" then
-	    message_que_add("Not Resources for a house(sakura 5, bamboo 5)", 80, 109)
+	    message_que_add("Not Resources for a house(sakura 5, bamboo 5)", 80, 62)
 	 elseif game.biome == "desert" then
-	    message_que_add("Not Resources for a house(wood 1, sandstone 5)", 80, 109)
+	    message_que_add("Not Resources for a house(wood 1, sandstone 5)", 80, 61)
 	 else
-	    message_que_add("Not Resources for a house(wood 5, stone 5)", 80, 109)
+	    message_que_add("Not Resources for a house(wood 5, stone 5)", 80, 61)
 	 end
       else
 	 start_build_house_job()
