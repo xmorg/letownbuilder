@@ -97,15 +97,15 @@ end
 
 function build_house_complete(i) -- house is complete, remove resources used, and run update_add_building
    if game.house_to_build >= 23 and game.house_to_build <= 26 then --house
-      	if game.biome == "forest" then
-			kingdom_inventory.wood = kingdom_inventory.wood -5
-			kingdom_inventory.rocks = kingdom_inventory.rocks -5
-      	elseif game.biome == "japan" then
+	if game.biome == "japan" then
 			kingdom_inventory.sakura = kingdom_inventory.sakura -5
 			kingdom_inventory.bamboo = kingdom_inventory.bamboo -5
 		elseif game.biome == "desert" then
 			kingdom_inventory.sandstone = kingdom_inventory.sandstone -6
 			kingdom_inventory.wood = kingdom_inventory.wood -1
+		else --start standardizing other biomes
+			kingdom_inventory.wood = kingdom_inventory.wood -5
+			kingdom_inventory.rocks = kingdom_inventory.rocks -5
 		end
 		villagers_do_job(game_directives.location_x, game_directives.location_y, "builder")
 		update_add_building(game_job_que[i].location_y, game_job_que[i].location_x, "house")
@@ -141,7 +141,7 @@ function build_house_complete(i) -- house is complete, remove resources used, an
 			kingdom_inventory.wood = kingdom_inventory.wood -8
 		end
 		update_add_building(game_job_que[i].location_y, game_job_que[i].location_x, "barn")
-	elseif game.house_to_build == 53 then
+	elseif game.house_to_build == 53 then --graveyard --?no wood? a few rocks?
 		villagers_do_job(game_directives.location_x, game_directives.location_y, "undertaker")
 		update_add_building(game_job_que[i].location_y, game_job_que[i].location_x, "graveyard")
 	elseif game.house_to_build == game.mayor_sex then -- mayors monument.
@@ -158,17 +158,21 @@ function build_house_complete(i) -- house is complete, remove resources used, an
 	elseif game.house_to_build == 55 then --fishinghut (15 wood/bamboo)
 		if game.biome == "japan" then
 			kingdom_inventory.bamboo = kingdom_inventory.bamboo -15
-		elseif game.biome == "forest" then
+		else --if game.biome == "forest" then
 			kingdom_inventory.wood = kingdom_inventory.wood -15
 		end
 		update_add_building(game_job_que[i].location_y, game_job_que[i].location_x, "fishinghut")
 	elseif game.house_to_build == 60 then --militia house
-		kingdom_inventory.rocks = kingdom_inventory.rocks -20
+		if game.biome == "desert" then
+			kingdom_inventory.sandstone = kingdom_inventory.sandstone -20
+		else
+			kingdom_inventory.rocks = kingdom_inventory.rocks -20
+		end
 		villagers_do_job(game_directives.location_x, game_directives.location_y, "builder")
 		update_add_building(game_job_que[i].location_y, game_job_que[i].location_x, "militia house")
 		villagers_do_job(game_directives.location_x, game_directives.location_y, "militia captain")
-   elseif game.house_to_build == 64 then --smithy
-      if game.biome == "japan" then
+   	elseif game.house_to_build == 64 then --smithy
+    	if game.biome == "japan" then
 	 kingdom_inventory.bamboo = kingdom_inventory.bamboo -10
 	 kingdom_inventory.rocks = kingdom_inventory.rocks -10
       elseif game.biome == "forest" then
