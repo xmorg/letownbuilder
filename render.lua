@@ -2,37 +2,7 @@
 require( "achivements" ) --stop the bugs!
 
 
-function game_achivements_draw() --draw the achivements
-   local row = 45
-   local col1 = 100
-   local acol = 0
-   local brow = 0
-   --big_font = love.graphics.newFont("data/newscycle-bold.ttf", 24 )
-   --love.graphics.setFont( big_font )
-   love.graphics.setColor(255,255,255,255)--outside white
-   love.graphics.rectangle( "fill", 0, 0, love.graphics.getWidth(), love.graphics.getHeight() )
-   love.graphics.setColor(30,30,60,255)--inside black
-   --love.graphics.rectangle( "fill", 5, 5, love.graphics.getWidth()-10, love.graphics.getHeight()-10 )
-   love.graphics.draw(title3,0,0,0, love.graphics.getWidth( )/title3:getWidth(),love.graphics.getHeight( )/title3:getHeight() )
-   love.graphics.setColor(255,255,255,255)--white lettering
-   love.graphics.setFont( huge_font )
-   love.graphics.print("LeTown Builder", col1-2+150, 10-2 )
-   love.graphics.setColor(255,255,255,255)--outside white
-   love.graphics.setFont( base_font )
-   for i,v in ipairs(achivements) do
-   	if i > 7 then acol = 300 brow = -7*65 else acol = 0 brow = 0 end
-      if achivements[i].score < achivements[i].win then
-	 love.graphics.setColor(80,80,80,255)
-      else
-	 love.graphics.setColor(255,255,255,255)
-      end
-      love.graphics.draw(game_icons[achivements[i].icon], 45+acol, i*65+brow) --put the icon
-	 love.graphics.setColor(255,255,255,255) --make text white
-      love.graphics.print(achivements[i][1], 45+64+5+acol, i*65+brow) --achivement title
-      love.graphics.print(achivements[i][2], 45+64+5+acol, i*65+16+brow) --achivement description
-   end 
-   love.graphics.setColor(255,255,255,255)
-end
+
 
 function show_tooltop_message()--text, x,y) -- show text on mouseover
 	love.graphics.push("all")
