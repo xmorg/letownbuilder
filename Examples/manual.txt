@@ -19,9 +19,20 @@ Build Fire - Create a bonfire to create light at night, and to cook meat and fis
 Building Types
 ---------------------------
 House - prevents homelessness
+Barn - Stores food, and reduces the chance of rot.
 Mine - Allows for the daily production of ore.
 Smelter - Allows you to smelt ore into bars
 Smithy - Allows a blacksmith to create tools, weapons, and other items out of bars.
+School - Start researching technology.
+Brewery - Make drinks
+Tradepost - allows for merchant trading
+Graveyard - Bury your dead and prevent ghosts
+Watchtower - Creates a lightsource and allows the watchman to watch for danger
+Fisherman's hut - allows for automatic fishing.
+Mayor's monument - Show how great your mayor is.
+Sheriff's office - Allows you to hire a shariff to catch bandits
+Militia Headquarters - Allows you to recruit a militia captain
+
 
 Workers
 ----------------------------
