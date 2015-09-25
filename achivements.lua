@@ -6,8 +6,8 @@ achivements = {
   {"Worlds biggest BBQ", "Barn catches on fire.", score = 0, win=1 , icon=79}, --done
   {"Everybody's dead", "Let everyone die.", score = 0, win=1 , icon=80}, --done
   {"G-g-g-ghost!", "Spot a departed loved one at night.", score = 0, win=1, icon=81 }, --done
-  {"Who took my food!?", "Catch a bandit stealing your food.", score = 0, win=1 , icon=44}, --villagers.lua,350+
-  {"The howling", "Survive a night with nightwolves", score = 0, win=1 , icon=8},
+  {"Who took my food!?", "Catch a bandit stealing your food.", score = 0, win=1 , icon=82}, --villagers.lua,350+
+  {"The howling", "Survive a night with nightwolves", score = 0, win=1 , icon=83},
   {"Nightwolf slayer", "Hunter kills a nightwolf", score = 0, win=1 , icon=9},
   {"Now you make me mad","Decend into rioting.", score = 0, win=1 , icon=79},
   {"Thriller night", "Everyone becomes a zombie", score = 0, win=1 , icon=11},
