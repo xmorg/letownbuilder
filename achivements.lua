@@ -5,7 +5,7 @@ achivements = {
   {"Nice buffet", "Have more than 5 types of food", score=0, win=5, icon=78}, 
   {"Worlds biggest BBQ", "Barn catches on fire.", score = 0, win=1 , icon=79}, --done
   {"Everybody's dead", "Let everyone die.", score = 0, win=1 , icon=80}, --done
-  {"G-g-g-ghost!", "Spot a departed loved one at night.", score = 0, win=1, icon=6 }, --done
+  {"G-g-g-ghost!", "Spot a departed loved one at night.", score = 0, win=1, icon=81 }, --done
   {"Who took my food!?", "Catch a bandit stealing your food.", score = 0, win=1 , icon=44}, --villagers.lua,350+
   {"The howling", "Survive a night with nightwolves", score = 0, win=1 , icon=8},
   {"Nightwolf slayer", "Hunter kills a nightwolf", score = 0, win=1 , icon=9},
