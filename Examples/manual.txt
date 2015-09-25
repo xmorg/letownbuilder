@@ -7,6 +7,21 @@ Ever played an adictive online game where you build your kingdom or town and rea
 
 Your town begins in a vacant, unsettled area. Your start location is randomized and there are different possible biomes, so no 2 times you play are the same. You start with 5 villagers. Start by collecting resources and building houses and specialized buildings. Villagers have moods, and can become happy or angry based many factors. Keep them fed, and housed. Also make sure that there is a bonfire at night, or they will get cold. You can increase happiness by always having food at lunchtime and by adding other advanced upgrades to your village.
 
+Jobs - Basic
+---------------------------
+Gather Food/Cleaer area - the basic emergancy food source is scouring the land for food.  Gathering produces low quality food, that fills bellys but does little else.
+Cut Wood - clear out trees
+Dig hole - Dig a hole to find stone and ore, and produce a place to put a mine.
+Plant Garden - Plow out a field for growing grain and other stuff.
+Plant Tomatoes(requires agriculture research) Plant tomatoes!
+Build Fire - Create a bonfire to create light at night, and to cook meat and fish.
+
+Building Types
+---------------------------
+House - prevents homelessness
+Mine - Allows for the daily production of ore.
+Smelter - Allows you to smelt ore into bars
+Smithy - Allows a blacksmith to create tools, weapons, and other items out of bars.
 
 Workers
 ----------------------------
