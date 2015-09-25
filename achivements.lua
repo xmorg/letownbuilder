@@ -8,8 +8,8 @@ achivements = {
   {"G-g-g-ghost!", "Spot a departed loved one at night.", score = 0, win=1, icon=81 }, --done
   {"Who took my food!?", "Catch a bandit stealing your food.", score = 0, win=1 , icon=82}, --villagers.lua,350+
   {"The howling", "Survive a night with nightwolves", score = 0, win=1 , icon=83},
-  {"Nightwolf slayer", "Hunter kills a nightwolf", score = 0, win=1 , icon=9},
-  {"Now you make me mad","Decend into rioting.", score = 0, win=1 , icon=79},
+  {"Nightwolf slayer", "Hunter kills a nightwolf", score = 0, win=1 , icon=84},
+  {"Now you make me mad","Decend into rioting.", score = 0, win=1 , icon=85},
   {"Thriller night", "Everyone becomes a zombie", score = 0, win=1 , icon=11},
   {"Epic Hunter", "Hunter kills 5 nightwolves", score = 0, win=5, icon=12},
   {"Snake Eater", "Hunter kills 5 snakes", score=0, win=5, icon=13},
