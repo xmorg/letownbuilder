@@ -71,9 +71,9 @@ function get_tooltip_info_from_item() --ran in update?
 	elseif mouse_clicked_inrect(mx,my, scrw-64, 352, 32,32) == 1 then --pelts
 	   game.tooltip_text = "tools"
 	elseif mouse_clicked_inrect(mx,my, scrw-30, 352+32, 32,32) == 1 then --sakura
-	   game.tooltip_text = "treasures"
-	elseif mouse_clicked_inrect(mx,my, scrw-64, 352+32, 32,32) == 1 then --pelts
 	   game.tooltip_text = "coins"
+	elseif mouse_clicked_inrect(mx,my, scrw-64, 352+32, 32,32) == 1 then --pelts
+	   game.tooltip_text = "treasures"
 	else 
 		game.tooltip_text = "NONE"
 	end
