@@ -38,6 +38,10 @@ Militia Captain - The leader of the local militia. He can be directly controlled
 
 Undertaker - Manages the graveyards.
 
+Merchant - The Merchant manages the trade of goods to traveling caravans.
+
+Watchman - Watchmen man the watchtowers and keep an eye out for danger.
+
 Holyman(not a attainable job?) Holymen, preach sermons which raise or lower the general unrest in your town, depending on how happy or angry the people already are.
 
 
