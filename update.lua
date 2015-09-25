@@ -245,7 +245,12 @@ function debug_negatives() --?
 end
 
 function check_for_events_in_timer()
+	
    local nightwolves_night = math.random(1,20)
+   --update_achivements("The howling", 1)
+   if kingdom_inventory.unrest >= 70 then
+   	update_achivements("Now you make me mad", 1)
+   end
    if game.day_time == 12000 then
       villagers_eat_food(table.getn(game_villagers))
       if kingdom_inventory.unrest >= 70 then
