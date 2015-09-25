@@ -16,13 +16,29 @@ You may also want to build fires before it gets dark.  When darkneses falls, it 
 
 As your village starts to take shape, you can begin to build a school and start researching out new technologies.  This will unlock new buildings, and provide security features to prevent disaster.
 
-Known Dangers: Not all is rosy and quiet in the world of letown builder, disasters lurk at every turn.
+Known Dangers: Not all is rosy and quiet in the world of Letown Builder, disasters lurk at every turn.
+---------------------------
 Wildlife: Snakes, bears, and other nasties can hurt your vilagers.
-Contaminated food: You're villagers could get deathly sick from food, you found just lying around.  Fish, meat, and gathered food are usually the culprets.  Build a barn, and cook your meat thoroughly!
+
+Contaminated food: You're villagers could get deathly sick from food, you found just lying around.  Fish, meat, and gathered food are usually the culprets.  Build a barn, and cook your meat thoroughly!  Try to survive soling on grain and other prepared food in the long run.
+
 Bandits: The local rif/raff may mingle in with your other villagers, and even become productive members of society, but they have sticky fingers, especially at the dinner table.
 
+Fires: Fires provide warmth and light.  But, out of control, they can burn down your forrests, and homes.
+
+Earthquakes: Rare but devistating, the whole world shakes, until your houses flatten.
+
+Adverse weather:  Too much rain or snow can cause flooding, or stop crops from growing, not enough can cause drought.
+
+Crows: Birds have a nasty habit ot destroying your garden.
+
+Dark Elves: They come to your town, and give it a research boost, they might even survive a werewolf attack, but are they really all that good?
+
 Werewovles: A perfectly normal villager by day, a slavering beast by night!
-Zombies: It is unknown what, or how these things come into being, but they spread like the plague.
+
+Nightwolves: The dreaded nightwolf!  They come in packs, and slaughter everything in sight.
+
+Zombies: It is unknown what, or how these things come into being, but they spread like the plague when they do.
 
 
 
