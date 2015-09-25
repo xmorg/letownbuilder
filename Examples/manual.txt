@@ -7,6 +7,25 @@ Ever played an adictive online game where you build your kingdom or town and rea
 
 Your town begins in a vacant, unsettled area. Your start location is randomized and there are different possible biomes, so no 2 times you play are the same. You start with 5 villagers. Start by collecting resources and building houses and specialized buildings. Villagers have moods, and can become happy or angry based many factors. Keep them fed, and housed. Also make sure that there is a bonfire at night, or they will get cold. You can increase happiness by always having food at lunchtime and by adding other advanced upgrades to your village.
 
+Game Basics, Day 1.
+On the first day your first priorities should be securing enough food for your villagers and anyone else who may migrate in on day 1.  Food can be gathered, hunted fished or planted depending on the environment.  A Town without food is a town header for disaster.  You will also want to make sure that you plant fields to help sustain your villagers in the long run.
+
+Your next order of business should be shelter.   Collect enough resources to build homes for your existing villagers.  Each night, villagers are counted out by families, and if there is not enought homes to go around, villagers will start to get restless for being made to sleep on the ground.  Cut wood and dig holes to provide enough wood and stone for shelters.  Some environments, like Arashi require bamboo for buildings.
+
+You may also want to build fires before it gets dark.  When darkneses falls, it gets hard to see properly, and fires will gather your villagers together, and keep them warm.  Beware! do not build a fire next to a tree, or another structure.
+
+As your village starts to take shape, you can begin to build a school and start researching out new technologies.  This will unlock new buildings, and provide security features to prevent disaster.
+
+Known Dangers: Not all is rosy and quiet in the world of letown builder, disasters lurk at every turn.
+Wildlife: Snakes, bears, and other nasties can hurt your vilagers.
+Contaminated food: You're villagers could get deathly sick from food, you found just lying around.  Fish, meat, and gathered food are usually the culprets.  Build a barn, and cook your meat thoroughly!
+Bandits: The local rif/raff may mingle in with your other villagers, and even become productive members of society, but they have sticky fingers, especially at the dinner table.
+
+Werewovles: A perfectly normal villager by day, a slavering beast by night!
+Zombies: It is unknown what, or how these things come into being, but they spread like the plague.
+
+
+
 Jobs - Basic
 ---------------------------
 Gather Food/Cleaer area - the basic emergancy food source is scouring the land for food.  Gathering produces low quality food, that fills bellys but does little else.
@@ -15,6 +34,7 @@ Dig hole - Dig a hole to find stone and ore, and produce a place to put a mine.
 Plant Garden - Plow out a field for growing grain and other stuff.
 Plant Tomatoes(requires agriculture research) Plant tomatoes!
 Build Fire - Create a bonfire to create light at night, and to cook meat and fish.
+Hunt - call on your hunter to bring in the meat.
 
 Building Types
 ---------------------------
