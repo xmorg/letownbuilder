@@ -291,7 +291,7 @@ function on_build_house() --check for resources and conditions, if ok start buil
       else
 	 start_build_house_job() 
       end
-   elseif game.house_to_build == 66 then --trade post
+   elseif game.house_to_build == 66 then --trade post? assumed you had some kind of wood to build it?
       if game.biome == "japan" and kingdom_inventory.bamboo < 10 then
 	 game_directives.job_type = "Not Resources(bamboo 10 or wood 10)" --Trade Post
 	 game_directives.active = 0
