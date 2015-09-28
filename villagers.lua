@@ -648,6 +648,9 @@ function update_villager_jobs(dt) -- here is where timers should go down?
    --function villager_collision_event(game_villagers) --loop through villagers and check for collisions
    for i, v in ipairs(game_villagers) do --loop through villagers
       --update_villager_killedby_nightwolf(i, j)
+      if game_villagers[i].position = "militia captain" or game_villagers[i].position = "militia" then
+      	game_villagers[i].speed = 8
+      end
       for n, m in ipairs(game_nightwolves) do
 	 update_villager_killedby_nightwolf(game_nightwolves[n], game_villagers[i]) --loop through nightwolves and check for colisions.
       end
