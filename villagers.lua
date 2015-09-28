@@ -574,27 +574,55 @@ function update_villager_poisonedby_snake(i, j)
    end --if game_villagers[i].villager_type == "werewolf" and game_villagers[j].villager_type == "werewolf" then
 end --function
 
-function update_villager_killedby_nightwolf(nightwolf, villager)
-   if villager_touched(nightwolf, villager) == 1 and nightwolf.wildlife_type == "night wolf" and is_night()==1 then
-      if villager.alive == 1 then
-	 villager.alive = 0 -- Just got killed by a werewolf init death sequence
-	 villager.villager_type = "Dead"
-	 villager.opinion = "Died on Day"..game.day_count.." at "..game.day_time
-	 villager.died_x = villager.x
-	 villager.died_y = villager.y
-	 game.message_box_icons = 19
-	 set_family_opionions(villager) --not yet tested
-	 if villager.sex == 0 then
-	    message_que_add("You hear a blood curtling scream..."..villager.name.."!", 100, 1)
-	    kingdom_inventory.unrest = kingdom_inventory.unrest+6 --girls dying unerves us more!
-	 else
-	    message_que_add("You hear a horrible scream..."..villager.name.."!", 100, 1)
-	    kingdom_inventory.unrest = kingdom_inventory.unrest+5
-	 end
-      end --game_villagers[j].alive == 1 then
-      --end --if game_villagers[i].villager_type == "werewolf" and game_villagers[j].villager_type == "werewolf" then
-   end--end if villager_touched(game_villagers[i], game_villagers[j]) 
+function villager_combat(mob, villager)
+	villager_dice = math.random(1,6)
+	mob_dice = math.random(1,6)
+	if villager.position == "militia captain" or villager.position =="militia" then
+		if villager_dice >mob_dice then
+			return 1
+		else
+			return 0
+		end
+	elseif villager.position == "dark elf" or villager.position == "dwarf" then
+		if villager_dice >mob_dice then
+			return 1
+		else
+			return 0
+		end
+	else
+		return 0
+	end
 end
+
+function update_villager_killedby_nightwolf(nightwolf, villager)
+	if villager_touched(nightwolf, villager) == 1 and nightwolf.wildlife_type == "night wolf" and is_night()==1 then
+		if villager.alive == 1 and villager_combat(nightwolf, villager) == 0 then
+			villager.alive = 0 -- Just got killed by a werewolf init death sequence
+			villager.villager_type = "Dead"
+			villager.opinion = "Died on Day"..game.day_count.." at "..game.day_time
+			villager.died_x = villager.x
+			villager.died_y = villager.y
+			game.message_box_icons = 19
+			set_family_opionions(villager) --not yet tested
+			if villager.sex == 0 then
+				message_que_add("You hear a blood curtling scream..."..villager.name.."!", 100, 1)
+				kingdom_inventory.unrest = kingdom_inventory.unrest+6 --girls dying unerves us more!
+			else
+				message_que_add("You hear a horrible scream..."..villager.name.."!", 100, 1)
+				kingdom_inventory.unrest = kingdom_inventory.unrest+5
+			end
+		else
+			if nightwolf.alive == 1 then
+				nightwolf.alive = 0
+				villager.opinion = "Defeated a nightwolf in single combat"
+				nightwolf.died_x = nightwolf.x
+				nightwolf.died_y = nightwolf.y
+				message_que_add(villager.name.." has fought a nightwolf and lived!", 100, 1)
+			end
+		end --game_villagers[j].alive == 1 then
+	end--end if villager_touched(game_villagers[i], game_villagers[j]) 
+end
+
 function update_villager_killedby_werewolf(i, j)
    if villager_touched(i, j) == 1 and i.villager_type == "werewolf" and is_night()==1 then
       if i.villager_type == "werewolf" and j.villager_type == "werewolf" then
@@ -652,6 +680,7 @@ function update_villager_jobs(dt) -- here is where timers should go down?
       	game_villagers[i].speed = 8
       end
       for n, m in ipairs(game_nightwolves) do
+      	
 	 update_villager_killedby_nightwolf(game_nightwolves[n], game_villagers[i]) --loop through nightwolves and check for colisions.
       end
       for j, w in ipairs(game_villagers) do --loop through villagers
