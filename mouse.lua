@@ -504,12 +504,24 @@ function love.mousepressed(x, y, button)
 			--end
 		end
 	end --end for i,v in ipairs(game_villagers) do
-	elseif button == "r" then -- right mousoe button?
-		for i,v in ipairs(game_villagers) do
-			if game_villagers[i].position == "militia captain" and game_villagers[i].selected==1 then
-				game_villagers[i].dx = x+game.draw_x
-				game_villagers[i].dy = y+game.draw_y
+elseif button == "r" then -- right mousoe button?
+	local lx = 0
+	local ly = 0
+	for y = 1, game.tilecount do --loopy
+		for x = 1, game.tilecount do --loopx
+			lx = 300+(y - x) * 32 + 64      --create isometric
+			ly = -100+(y + x) * 32 / 2 + 50  --tile blit locations
+			if x == game.tile_selected_x and y == game.tile_selected_y then
+				game_villagers[i].dx = lx+game.draw_x
+				game_villagers[i].dy = ly+game.draw_y
 			end
 		end
+	end
+		--for i,v in ipairs(game_villagers) do
+		--	if game_villagers[i].position == "militia captain" and game_villagers[i].selected==1 then
+		--		game_villagers[i].dx = x+game.draw_x
+		--		game_villagers[i].dy = y+game.draw_y
+		--	end
+		--end
    	end --end left/right click
 end --end function
