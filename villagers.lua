@@ -644,16 +644,16 @@ function update_villager_killedby_werewolf(i, j)
 					message_que_add("You hear a horrible scream..."..j.name.."!", 100, 1)
 					kingdom_inventory.unrest = kingdom_inventory.unrest+5
 				end
-		else
-			if nightwolf.alive == 1 then
-				nightwolf.alive = 0
-				villager.opinion = "Defeated a nightwolf in single combat"
-				nightwolf.died_x = nightwolf.x
-				nightwolf.died_y = nightwolf.y
-				message_que_add(villager.name.." has fought a nightwolf and lived!", 100, 1)
-			end
-		end --game_villagers[j].alive == 1 then
-	--end --if game_villagers[i].villager_type == "werewolf" and game_villagers[j].villager_type == "werewolf" then
+			else
+				if nightwolf.alive == 1 then
+					nightwolf.alive = 0
+					villager.opinion = "Defeated a nightwolf in single combat"
+					nightwolf.died_x = nightwolf.x
+					nightwolf.died_y = nightwolf.y
+					message_que_add(villager.name.." has fought a nightwolf and lived!", 100, 1)
+				end
+			end --game_villagers[j].alive == 1 then
+		end --if game_villagers[i].villager_type == "werewolf" and game_villagers[j].villager_type == "werewolf" then
 	end--end if villager_touched(game_villagers[i], game_villagers[j]) 
 end
 
