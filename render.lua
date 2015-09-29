@@ -242,6 +242,8 @@ end
 
 ---------------------- DRAW GAME TILES!!!! --------------------------------------
 function draw_game_tiles()
+	--tilewidth_fx = 64,  --ground tile width/height, not actual height of tile in pixels
+	--tileheight_fx = 32, --but the w/h from tip to tip
    for y = 1, game.tilecount do       --loop y
       for x = 1, game.tilecount do     --loop x
 	 lx = 300+(y - x) * 32 + 64      --create isometric
