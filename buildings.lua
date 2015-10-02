@@ -355,9 +355,7 @@ function on_build_house() --check for resources and conditions, if ok start buil
 	 start_build_house_job() 
       end
    elseif game.house_to_build == 67 then --jail/sheriff office
-      if (game.biome == "forest" and kingdom_inventory.rocks < 35 ) or
-	 (game.biome == "japan" and (kingdom_inventory.rocks < 35)) or
-      (game.biome == "desert" and (kingdom_inventory.sandstone < 35)) then	 
+      if kingdom_inventory.rocks < 35 and kingdom_inventory.sandstone < 35 then
 	 game_directives.job_type = "Not Resources(stone 35)"
 	 game_directives.active = 0
 	 game.give_direction = "None"
