@@ -739,7 +739,7 @@ function draw_select_house_to_build()
       
       --row 2
       if research_topics.economy >= 1 then quick_task_icon64(64*1,64*4, 66, "trade post", 1, "game_tiles") end
-      if research_topics.security >= 1 then quick_task_icon64(64*2,64*4, 67, "shariff", 1, "game_tiles") end
+      if research_topics.security >= 1 then quick_task_icon64(64*2,64*4, 67, "sheriff", 1, "game_tiles") end
       if research_topics.industry >= 1 then quick_task_icon64(64*3,64*4, 55, "fish hut", 1, "game_tiles") end
       if research_topics.militia_house >= 1 then quick_task_icon64(64*4,64*4, 60, "militia", 1, "game_tiles") end
       if research_topics.mayors_monument >= 1 then quick_task_icon64(64*5,64*4, game.mayor_sex, "monument", 1, "game_tiles") end
