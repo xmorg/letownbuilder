@@ -190,7 +190,11 @@ function build_house_complete(i) -- house is complete, remove resources used, an
 		villagers_do_job(game_directives.location_x, game_directives.location_y, "trader")
 		update_add_building(game_job_que[i].location_y, game_job_que[i].location_x, "tradepost")
 	elseif game.house_to_build == 67 then --sheriff
-		kingdom_inventory.rocks = kingdom_inventory.rocks -35
+		if kingdom_inventory.rocks >= 35 then
+			kingdom_inventory.rocks = kingdom_inventory.rocks -35
+		elseif kingdom_inventory.sandstone >= 35 then
+			kingdom_inventory.sandstone = kingdom_inventory.sandstone -35
+		end
 		villagers_do_job(game_directives.location_x, game_directives.location_y, "sheriff")
 		update_add_building(game_job_que[i].location_y, game_job_que[i].location_x, "sheriff")
 	elseif game.house_to_build == 70 then --smelter
