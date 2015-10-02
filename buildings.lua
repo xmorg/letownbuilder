@@ -214,107 +214,102 @@ function build_house_complete(i) -- house is complete, remove resources used, an
 end
 
 function on_build_house() --check for resources and conditions, if ok start building.
-   function start_build_house_job()
-      update_directives_loc(300, 1)
-      game_directives.job_type = game.give_direction
-      game.give_direction = "None"
-      villagers_do_job(game_directives.location_x, game_directives.location_y, "builder")
-      create_job_forque()
-      play_sound(sound_build_house)
-   end
-   if game_map[game.tile_selected_y][game.tile_selected_x] == game.water_tile then
-      game_directives.job_type = "Cant build on water"
-      game_directives.active = 0
-      game.give_direction = "None"
-      message_que_add("Cant build on water", 80, 56)
-   elseif (game.house_to_build >= 23 and game.house_to_build <= 26) then  --house
-      if
-	 (game.biome == "japan" and (kingdom_inventory.sakura < 5 or kingdom_inventory.bamboo < 5)) or
-	 (game.biome == "forest" and (kingdom_inventory.wood < 5 or kingdom_inventory.rocks < 5)) or
-	 (game.biome == "desert" and (kingdom_inventory.wood < 1 or kingdom_inventory.sandstone < 5))
-      then --house
-	 game_directives.job_type = "Not Resources"
-	 game_directives.active = 0
-	 game.give_direction = "None"
-	 if game.biome == "japan" then
-	    message_que_add("Not Resources for a house(sakura 5, bamboo 5)", 80, 62)
-	 elseif game.biome == "desert" then
-	    message_que_add("Not Resources for a house(wood 1, sandstone 5)", 80, 61)
-	 else
-	    message_que_add("Not Resources for a house(wood 5, stone 5)", 80, 61)
-	 end
-      else
-	 start_build_house_job()
-      end
-   elseif game.house_to_build == 27 then --mine
-      if game_map[game.tile_selected_y][game.tile_selected_x] ~= 37 then --mine
-	 game_directives.job_type = "Must build at a dig site"
-	 game_directives.active = 0
-	 game.give_direction = "None"
-	 message_que_add("Must build a mine at a dig site", 80, 60)
-      elseif (game.biome == "japan" and (kingdom_inventory.sakura < 5 or kingdom_inventory.rocks < 5)) or
-      (game.biome == "forest" and (kingdom_inventory.wood < 5 or kingdom_inventory.rocks < 5)) then
-	 --not enough resources
-	 game_directives.job_type = "Not Resources"
-	 game_directives.active = 0
-	 game.give_direction = "None"
-	 message_que_add("Not Resources for a mine (wood/sakura 5, stone 5)", 80, 41)
-      else
-	 start_build_house_job()
-      end
-   elseif game.house_to_build == 51 then -- school
-      if (game.biome == "japan" and (kingdom_inventory.sakura < 15 or kingdom_inventory.rocks < 15)) or
-	 (game.biome == "forest" and (kingdom_inventory.wood < 15 or kingdom_inventory.rocks < 15)) or
-	 (game.biome == "desert" and (kingdom_inventory.wood < 15 or kingdom_inventory.sandstone < 15))
-      then --house
-	 game_directives.job_type = "Not Resources(sakura 15, stone 15)"
-	 game_directives.active = 0
-	 game.give_direction = "None"
-	 message_que_add("Not Resources for a school ((woodtype) 15, (stonetype) 15)", 80, 41)
-      else
-	 start_build_house_job() 
-      end
-   elseif game.house_to_build == 52 then --barn
-      if (game.biome == "japan" and (kingdom_inventory.sakura < 5 or kingdom_inventory.bamboo < 3 )) or
-	 (game.biome == "forest" and (kingdom_inventory.wood < 8)) or
-	 (game.biome == "desert" and (kingdom_inventory.wood < 8))
-      then --barn
-	 game_directives.job_type = "Not Resources(wood 8 / sakura 8)"
-	 game_directives.active = 0
-	 game.give_direction = "None"
-	 message_que_add( "Not Resources for a barn (wood 8)", 80, 41)
-      else
-	 start_build_house_job()
-      end
-   elseif game.house_to_build == 65 then
-      if (game.biome == "japan" and kingdom_inventory.bamboo < 30) or (game.biome == "forest" and kingdom_inventory.wood < 30) then
-       	 game_directives.job_type = "Not Resources(bamboo 30/wood 30)" --Watchtower
-	 game_directives.active = 0
-	 game.give_direction = "None"
-	 message_que_add( "Not Resources for a watchtower(bamboo 30 or wood 30)", 80, 41)
-      else
-	 start_build_house_job() 
-      end
-   elseif game.house_to_build == 66 then --trade post? assumed you had some kind of wood to build it?
-      if game.biome == "japan" and kingdom_inventory.bamboo < 10 then
-	 game_directives.job_type = "Not Resources(bamboo 10 or wood 10)" --Trade Post
-	 game_directives.active = 0
-	 game.give_direction = "None"
-	 message_que_add( "Not Resources for a tradepost(bamboo 10 or wood 10)", 80, 41)
-      elseif (game.biome == "forest" or game.biome == "desert") and kingdom_inventory.wood < 10 then
-	 game_directives.job_type = "Not Resources(bamboo 10 or wood 10)" --Trade Post
-	 game_directives.active = 0
-	 game.give_direction = "None"
-	 message_que_add( "Not Resources for a tradepost(bamboo 10 or wood 10)", 80, 41)
-      elseif game.biome == "desert" and kingdom_inventory.wood < 10 then
-	 game_directives.job_type = "Not Resources(bamboo 10 or wood 10)" --Trade Post
-	 game_directives.active = 0
-	 game.give_direction = "None"
-	 message_que_add( "Not Resources for a tradepost(bamboo 10 or wood 10)", 80, 41)
-      else
-	 start_build_house_job() 
-      end
-   elseif game.house_to_build == 70 then--smelter
+	function start_build_house_job()
+		update_directives_loc(300, 1)
+		game_directives.job_type = game.give_direction
+		game.give_direction = "None"
+		villagers_do_job(game_directives.location_x, game_directives.location_y, "builder")
+		create_job_forque()
+		play_sound(sound_build_house)
+	end
+	if game_map[game.tile_selected_y][game.tile_selected_x] == game.water_tile then
+		game_directives.job_type = "Cant build on water"
+		game_directives.active = 0
+		game.give_direction = "None"
+		message_que_add("Cant build on water", 80, 56)
+	elseif (game.house_to_build >= 23 and game.house_to_build <= 26) then  --house
+		if(game.biome == "japan" and (kingdom_inventory.sakura < 5 or kingdom_inventory.bamboo < 5)) or
+			(game.biome == "forest" and (kingdom_inventory.wood < 5 or kingdom_inventory.rocks < 5)) or
+				(game.biome == "desert" and (kingdom_inventory.wood < 1 or kingdom_inventory.sandstone < 5))then
+					game_directives.job_type = "Not Resources"
+					game_directives.active = 0
+					game.give_direction = "None"
+			if game.biome == "japan" then
+				message_que_add("Not Resources for a house(sakura 5, bamboo 5)", 80, 62)
+			elseif game.biome == "desert" then
+				message_que_add("Not Resources for a house(wood 1, sandstone 5)", 80, 61)
+			else
+				message_que_add("Not Resources for a house(wood 5, stone 5)", 80, 61)
+			end
+		else
+			start_build_house_job()
+		end
+	elseif game.house_to_build == 27 then --mine
+		if game_map[game.tile_selected_y][game.tile_selected_x] ~= 37 then --mine
+			game_directives.job_type = "Must build at a dig site"
+			game_directives.active = 0
+			game.give_direction = "None"
+			message_que_add("Must build a mine at a dig site", 80, 60)
+		elseif (game.biome == "japan" and (kingdom_inventory.sakura < 5 or kingdom_inventory.rocks < 5)) or
+			(game.biome == "forest" and (kingdom_inventory.wood < 5 or kingdom_inventory.rocks < 5)) then
+			game_directives.job_type = "Not Resources"
+			game_directives.active = 0
+			game.give_direction = "None"
+			message_que_add("Not Resources for a mine (wood/sakura 5, stone 5)", 80, 41)
+		else
+			start_build_house_job()
+		end
+	elseif game.house_to_build == 51 then -- school
+		if (game.biome == "japan" and (kingdom_inventory.sakura < 15 or kingdom_inventory.rocks < 15)) or
+			(game.biome == "forest" and (kingdom_inventory.wood < 15 or kingdom_inventory.rocks < 15)) or
+			(game.biome == "desert" and (kingdom_inventory.wood < 15 or kingdom_inventory.sandstone < 15))then --house
+				game_directives.job_type = "Not Resources(sakura 15, stone 15)"
+				game_directives.active = 0
+				game.give_direction = "None"
+				message_que_add("Not Resources for a school ((woodtype) 15, (stonetype) 15)", 80, 41)
+		else
+			start_build_house_job()
+		end
+	elseif game.house_to_build == 52 then --barn
+		if (game.biome == "japan" and (kingdom_inventory.sakura < 5 or kingdom_inventory.bamboo < 3 )) or
+			(game.biome == "forest" and (kingdom_inventory.wood < 8)) or
+				(game.biome == "desert" and (kingdom_inventory.wood < 8))then --barn
+			game_directives.job_type = "Not Resources(wood 8 / sakura 8)"
+			game_directives.active = 0
+			game.give_direction = "None"
+			message_que_add( "Not Resources for a barn (wood 8)", 80, 41)
+		else
+			start_build_house_job()
+		end
+	elseif game.house_to_build == 65 then
+		if (game.biome == "japan" and kingdom_inventory.bamboo < 30) or (game.biome == "forest" and kingdom_inventory.wood < 30) then
+			game_directives.job_type = "Not Resources(bamboo 30/wood 30)" --Watchtower
+			game_directives.active = 0
+			game.give_direction = "None"
+			message_que_add( "Not Resources for a watchtower(bamboo 30 or wood 30)", 80, 41)
+		else
+			start_build_house_job()
+		end
+	elseif game.house_to_build == 66 then --trade post? assumed you had some kind of wood to build it?
+		if game.biome == "japan" and kingdom_inventory.bamboo < 10 then
+			game_directives.job_type = "Not Resources(bamboo 10 or wood 10)" --Trade Post
+			game_directives.active = 0
+			game.give_direction = "None"
+			message_que_add( "Not Resources for a tradepost(bamboo 10 or wood 10)", 80, 41)
+		elseif (game.biome == "forest" or game.biome == "desert") and kingdom_inventory.wood < 10 then
+			game_directives.job_type = "Not Resources(bamboo 10 or wood 10)" --Trade Post
+			game_directives.active = 0
+			game.give_direction = "None"
+			message_que_add( "Not Resources for a tradepost(bamboo 10 or wood 10)", 80, 41)
+		elseif game.biome == "desert" and kingdom_inventory.wood < 10 then
+			game_directives.job_type = "Not Resources(bamboo 10 or wood 10)" --Trade Post
+			game_directives.active = 0
+			game.give_direction = "None"
+			message_que_add( "Not Resources for a tradepost(bamboo 10 or wood 10)", 80, 41)
+		else
+			start_build_house_job()
+		end
+	elseif game.house_to_build == 70 then--smelter
       --if kingdom_inventory.rocks < 30 or kingdom_inventory.iron_ore < 2 then
       if (game.biome == "desert" and (kingdom_inventory.sandstone < 15 or kingdom_inventory.iron_ore < 2)) or
 	 (game.biome == "forest" and (kingdom_inventory.rocks < 15 or kingdom_inventory.iron_ore < 2)) or
@@ -354,13 +349,16 @@ function on_build_house() --check for resources and conditions, if ok start buil
       else
 	 start_build_house_job() 
       end
-   elseif game.house_to_build == 67 then --jail/sheriff office
-      if kingdom_inventory.rocks < 35 and kingdom_inventory.sandstone < 35 then
-	 game_directives.job_type = "Not Resources(stone 35)"
-	 game_directives.active = 0
-	 game.give_direction = "None"
-	 message_que_add("Not Resources for a Sheriff office (stone 35)", 80, 9)
-	 --go to end
+    elseif game.house_to_build == 67 then --jail/sheriff office
+      if kingdom_inventory.rocks >= 35 then
+      	start_build_house_job() 
+      elseif kingdom_inventory.sandstone < 35 then
+      	start_build_house_job()
+      else
+	 	game_directives.job_type = "Not Resources(stone 35)"
+	 	game_directives.active = 0
+	 	game.give_direction = "None"
+	 	message_que_add("Not Resources for a Sheriff office (stone 35)", 80, 9)
       end
    elseif game.house_to_build == 60 then
       if (game.biome == "forest" and kingdom_inventory.rocks < 20 ) or
