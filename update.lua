@@ -167,7 +167,7 @@ function villagers_complete_jobs_by_buildings()
       for x = 1, kingdom_inventory.smelter do
 	 for y = 1, 5 do --each smelter does between one and 5 smelts?
 	    if kingdom_inventory.gold_ore > 0 then
-	       kingdom_invetory.gold_ingots = kingdom_inventory.gold_ingots+1
+	       kingdom_inventory.gold_ingots = kingdom_inventory.gold_ingots+1
 	       kingdom_inventory.gold_ore = kingdom_inventory.gold_ore -1
 	    elseif kingdom_inventory.iron_ore > 0 then
 	       kingdom_inventory.iron_ingots = kingdom_inventory.iron_ingots+1
