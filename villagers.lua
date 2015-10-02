@@ -629,7 +629,7 @@ function update_villager_killedby_werewolf(i, j)
 			i.alive = 1
 			i.alive = 1
 		elseif i.villager_type == "werewolf" and j.villager_type ~= "werewolf" then
-			if j.alive == 1 and villager_combat(nightwolf, villager) == 0 then
+			if j.alive == 1 and villager_combat(i, j) == 0 then
 				j.alive = 0 -- Just got killed by a werewolf init death sequence
 				j.villager_type = "Dead"
 				j.opinion = "Died on Day"..game.day_count.." at "..game.day_time
@@ -645,12 +645,12 @@ function update_villager_killedby_werewolf(i, j)
 					kingdom_inventory.unrest = kingdom_inventory.unrest+5
 				end
 			else
-				if nightwolf.alive == 1 then
-					nightwolf.alive = 0
-					villager.opinion = "Defeated a nightwolf in single combat"
-					nightwolf.died_x = nightwolf.x
-					nightwolf.died_y = nightwolf.y
-					message_que_add(villager.name.." has fought a nightwolf and lived!", 100, 1)
+				if i.alive == 1 then
+					i.alive = 0
+					j.opinion = "Defeated a nightwolf in single combat"
+					i.died_x = i.x
+					i.died_y = i.y
+					message_que_add(j.name.." has fought a werewolf and lived!", 100, 1)
 				end
 			end --game_villagers[j].alive == 1 then
 		end --if game_villagers[i].villager_type == "werewolf" and game_villagers[j].villager_type == "werewolf" then
