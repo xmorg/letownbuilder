@@ -332,7 +332,7 @@ function on_build_house() --check for resources and conditions, if ok start buil
 			start_build_house_job()
 		elseif kingdom_inventory.bamboo >= 15 then
 			start_build_house_job()
-		elseif kingdom_inventory.sakura >= 15
+		elseif kingdom_inventory.sakura >= 15 then
 			start_build_house_job()
 		else
 			game_directives.job_type = "Not Resources(wood 15)" --brewery
