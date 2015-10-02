@@ -310,36 +310,38 @@ function on_build_house() --check for resources and conditions, if ok start buil
 			start_build_house_job()
 		end
 	elseif game.house_to_build == 70 then--smelter
-      --if kingdom_inventory.rocks < 30 or kingdom_inventory.iron_ore < 2 then
-      if (game.biome == "desert" and (kingdom_inventory.sandstone < 15 or kingdom_inventory.iron_ore < 2)) or
-	 (game.biome == "forest" and (kingdom_inventory.rocks < 15 or kingdom_inventory.iron_ore < 2)) or
-      (game.biome == "japan" and (kingdom_inventory.rocks < 15 or kingdom_inventory.iron_ore < 2)) then
-	 game_directives.job_type = "Not Resources(stone 30, iron ore 2)" --smelter
-	 game_directives.active = 0
-	 game.give_direction = "None"
-	 message_que_add( "Not Resources for a smelter(stone 30, iron ore 2)", 80, 41)
-      else
-	 start_build_house_job() 
-      end
-   elseif game.house_to_build == 71 then--brewery
-      --if (game.biome == "forrest" or game.biome == "desert") and kingdom_inventory.wood < 15 then
-      if (game.biome == "desert" and kingdom_inventory.wood < 15 ) or
-	 (game.biome == "forest" and (kingdom_inventory.wood < 15)) or
-      (game.biome == "japan" and (kingdom_inventory.bamboo < 15)) then
-	 game_directives.job_type = "Not Resources(wood 15)" --brewery
-	 game_directives.active = 0
-	 game.give_direction = "None"
-	 message_que_add( "Not Resources for a brewery(wood 15)", 80, 41)
-      elseif game.biome == "japan" and kingdom_inventory.sakura < 15 then
-	 game_directives.job_type = "Not Resources(sakura 15)" --brewery
-	 game_directives.active = 0
-	 game.give_direction = "None"
-	 message_que_add( "Not Resources for a brewery(sakura 15)", 80, 41)
-      else
-	 start_build_house_job() 
-      end
-   elseif game.house_to_build == 55 then -- fishing hut
-      if (game.biome == "desert" and kingdom_inventory.wood < 10 ) or
+		if kingdom_inventory.iron_ore >= 2 then
+			if kingdom_inventory.rocks >= 30 then
+				start_build_house_job()
+			elseif kingdom_inventory.sandstone >= 30 then
+				start_build_house_job()
+			else
+				game_directives.job_type = "Not Resources(stone 30, iron ore 2)" --smelter
+				game_directives.active = 0
+				game.give_direction = "None"
+				message_que_add( "Not Resources for a smelter(stone 30, iron ore 2)", 80, 41)
+			end
+		else
+			game_directives.job_type = "Not Resources(stone 30, iron ore 2)" --smelter
+			game_directives.active = 0
+			game.give_direction = "None"
+			message_que_add( "Not Resources for a smelter(stone 30, iron ore 2)", 80, 41)
+		end
+	elseif game.house_to_build == 71 then--brewery
+		if kingdom_inventory.wood >= 15 then
+			start_build_house_job()
+		elseif kingdom_inventory.bamboo >= 15 then
+			start_build_house_job()
+		elseif kingdom_inventory.sakura >= 15
+			start_build_house_job()
+		else
+			game_directives.job_type = "Not Resources(wood 15)" --brewery
+			game_directives.active = 0
+			game.give_direction = "None"
+			message_que_add( "Not Resources for a brewery(wood 15)", 80, 41)
+		end
+	elseif game.house_to_build == 55 then -- fishing hut
+		if (game.biome == "desert" and kingdom_inventory.wood < 10 ) or
 	 (game.biome == "forest" and (kingdom_inventory.wood < 10)) or
       (game.biome == "japan" and (kingdom_inventory.bamboo < 10)) then
 	 message_que_add("Not Resources for a fishing hut(bamboo 10 or wood 10)", 80, 41)
