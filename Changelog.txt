@@ -5,6 +5,7 @@ Planned features
 
 BUGS: merchants keep moving even if paused.
 BUGS: Cannot build a smithy, select house to build, choose smithy, select where, and nothing happens.
+BUGS: Scarecrows dont show up.
 
 Deserts
  DONE: Gathering food in green tiles yields ?what?, and tiles turn back to sand.
