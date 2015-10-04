@@ -22,16 +22,17 @@ function new_villager(migration)
 	opinion = "Excited about founding new town.",
 	disease = "healthy",
 	disease_timer = 0,
-	sprite = 0, dead_sprite = 0,
+	sprite = 1, dead_sprite = 2,
 	selected = 0
    }
-
    if migration == 0 then
       a.age = math.random(18,50)
    else
       a.age = math.random(1,70)
       if a.age < 12 then
 	 a.opinion = "Running around wildly."
+	 --assign child sprite.
+	 a.sprite = 5
       else
 	 a.opinion = "Excited about moving to a new town."
       end
@@ -65,12 +66,13 @@ function new_villager(migration)
    elseif a.villager_type == "normal" and a.sex == 1 then
       a.sprite = 1
       a.dead_sprite = 2
-   elseif a.age < 12 then
+   end
+   if a.age < 12 then
       a.sprite = 5
       a.dead_sprite = 6
-   else
-      a.sprite = 5
-      a.dead_sprite = 6
+   --else
+   --   a.sprite = 5
+   --   a.dead_sprite = 6
    end
    
    if a.villager_type == "werewolf" then

@@ -34,25 +34,24 @@ function game_achivements_draw() --draw the achivements
 end
 
 function show_tooltop_message()--text, x,y) -- show text on mouseover
-	love.graphics.push("all")
-	mx = love.mouse.getX()
-	my = love.mouse.getY()
-	if game.tooltip_text == "NONE" then
-		--nothing
-		game.tooltip_text = "NONE"
-	else
-		love.graphics.setColor(255,255,255,255)
-		love.graphics.rectangle("fill", mx-100,my, 90, 26) --white rectangle
-		love.graphics.setColor(80,80,80,80) --set to gray
-		love.graphics.rectangle("fill", mx-100+2,my+2, 90-4, 26-4) --gray rectangle
-		love.graphics.push()
-		love.graphics.setColor(255,255,255,255)
-		love.graphics.print(game.tooltip_text, mx-95,my+3) --print the text on mouse over.
-		love.graphics.pop()
-		--love.graphics.setColor(255,255,255,255)
-		
-	end
-	love.graphics.pop()
+   love.graphics.push("all")
+   mx = love.mouse.getX()
+   my = love.mouse.getY()
+   if game.tooltip_text == "NONE" then
+      --nothing
+      game.tooltip_text = "NONE"
+   else
+      love.graphics.setColor(255,255,255,255)
+      love.graphics.rectangle("fill", mx-100,my, 90, 26) --white rectangle
+      love.graphics.setColor(80,80,80,80) --set to gray
+      love.graphics.rectangle("fill", mx-100+2,my+2, 90-4, 26-4) --gray rectangle
+      love.graphics.push()
+      love.graphics.setColor(255,255,255,255)
+      love.graphics.print(game.tooltip_text, mx-95,my+3) --print the text on mouse over.
+      love.graphics.pop()
+      --love.graphics.setColor(255,255,255,255)   
+   end
+   love.graphics.pop()
 end
 
 function display_game_event(mque) --puts a messagebox with a game event of "text"
@@ -119,12 +118,12 @@ end
 
 --do squares
 function show_job_que()
-	love.graphics.push()
-	love.graphics.print("Job Queue Debug:", 5, 400 )
-	for i,v in ipairs(game_job_que) do
-		love.graphics.print(game_job_que[i].job_type.."("..game_job_que[i].timer..")", 5, 400 + (i*20))
-	end
-	love.graphics.pop()
+   love.graphics.push()
+   love.graphics.print("Job Queue Debug:", 5, 400 )
+   for i,v in ipairs(game_job_que) do
+      love.graphics.print(game_job_que[i].job_type.."("..game_job_que[i].timer..")", 5, 400 + (i*20))
+   end
+   love.graphics.pop()
 end
 
 function draw_game_ui()
@@ -207,10 +206,12 @@ end
 
 function draw_farm_garden_additions(x,y, garden_type)
    if research_topics.agriculture > 0 and game_map[y][x] >= 42 and game_map[y][x] <= 46 then
-      if research_topics.scarecrow == 1 then
-	 love.graphics.draw(tiles_image,game_tiles[ 74 ], lx+game.draw_x, ly+game.draw_y)
+      if research_topics.fences == 1 then
+	 love.graphics.draw(tiles_image,game_tiles[ 41], lx+game.draw_x, ly+game.draw_y)--fences
       end
-      --love.graphics.draw(tiles_image,game_tiles[ 69 ], lx+game.draw_x, ly+game.draw_y)
+      if research_topics.scarecrow == 1 then
+	 love.graphics.draw(tiles_image,game_tiles[ 59 ], lx+game.draw_x, ly+game.draw_y)--scarcrows
+      end
    end	
 end  --function draw_farm_garden_additions()
 
