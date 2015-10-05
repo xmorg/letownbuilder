@@ -762,6 +762,9 @@ function on_hunt_something(x, y) --is there an animal in x/y
 	 --on_hunt_found_wildlife(game_wildlife[i]) --why nil?
 	 if found_wildlife == 1 and s > 4 and game_wildlife[i].alive == 1 then
 	    message_que_add("You bagged a "..game_wildlife[i].wildlife_type.."!", 80, 44)
+	    if game_wildlife[i].wildlife_type == "copperhead" then --snakeeater
+	    	update_achivements("Snake Eater", 1)
+	    end
 	    if peltdice == 1 then kingdom_inventory.pelts = kingdom_inventory.pelts+1 end
 	    kingdom_inventory.raw_meat = kingdom_inventory.raw_meat+ m
 	    game_wildlife[i].alive = 0
