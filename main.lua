@@ -459,7 +459,7 @@ function load_game_res() --- load game resources after a love version has been s
       y = 1
       w = 10
       h = 10
-      sw = 420
+      sw = 460
       sh = 10
       table.insert( game_sprites_table, love.graphics.newQuad(x,y,w,h,sw,sh) )
    end
