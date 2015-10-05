@@ -391,7 +391,7 @@ function on_build_house() --check for resources and conditions, if ok start buil
       if kingdom_inventory.rocks >= 20 then
 	 start_build_house_job()
       elseif kingdom_inventory.sandstone >= 20 then
-	 start_build_hosue_job()
+	 start_build_house_job()
       else
 	 --(game.biome == "forest" and kingdom_inventory.rocks < 20 ) or
 	 --(game.biome == "japan" and (kingdom_inventory.rocks < 20)) or
