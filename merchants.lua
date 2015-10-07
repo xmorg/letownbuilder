@@ -38,8 +38,12 @@ function show_transaction_menu() --allows you to choose what you are selling.
 	love.graphics.rectangle("fill", tx+10, ty+10, townframe_x, town_frame_y) --town window
 	love.graphics.rectangle("fill", tx+10+townframe_x+10, ty+10, townframe_x, town_frame_y) --merchants window
 	--now list the town items at tx+10
-	
-	--now list the merchant items at x+10+townframe_x+10
+	for i,v in ipairs(lookup_table) do
+		love.graphics.print(lookup_table[i], tx+10,ty+10)
+	end
+	for i,v in ipairs(lookup_table) do
+		love.graphics.print(lookup_table[i], tx+10+townframe_x+10,ty+10) --merchants window
+	end	--now list the merchant items at x+10+townframe_x+10
 end
 function add_merchant_inventory()
    merchant_inventory.wood = math.random(0,50)
