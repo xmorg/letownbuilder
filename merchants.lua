@@ -22,7 +22,20 @@ merchant_inventory = { --only includes tradeable items.
    men = 0
 }
 function show_transaction_menu() --allows you to choose what you are selling.
+	local tx = 64	local ty = 64
+	local tsx = 500	local tsy = 400
+	local townframe_x = 200 local townframe_y = 350
+	local merchantframe_x = 200 local merchantframe_y = 350
+	love.graphics.setColor(255,255,255,255)
+	love.graphics.rectangle("fill", tx, ty, tsx, tsy ) --make a white rectangle
+	love.graphics.setColor(80,80,80,255)
+	love.graphics.rectangle("fill", tx+2, ty+2 tsx-2, tsy-2 ) --make a grey rectangle
+	love.graphics.setColor(255,255,255,255)
+	love.graphics.rectangle("fill", tx+10, ty+10, townframe_x, town_frame_y) --town window
+	love.graphics.rectangle("fill", tx+10+townframe_x+10, ty+10, townframe_x, town_frame_y) --merchants window
+	--now list the town items at tx+10
 	
+	--now list the merchant items at x+10+townframe_x+10
 end
 function add_merchant_inventory()
    merchant_inventory.wood = math.random(0,50)
