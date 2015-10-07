@@ -3,16 +3,16 @@
 --merchant_spawn_x=0, merchant_spawn_y=0 --start location of current merchants(randomly set on arrival)
 
 game_merchants = {}
-lookup_table = {"wood", "sakura", "bamboo", "carrots", 
-		"sansai", "raw_meat", "smoked_meat", "tomatoes",
-		"mushrooms", "fish", "smoked_fish", "grain", 
-		"cherries", "fishwine", "paleale", "apples", "desert onions", 
-		"rocks", "iron_ore", "rocksalt", "sandstone", 
-		"tools", "weapons", "pelts", "seeds", 
-		"gold treasures", "iron treasures", "gold coins", "iron coins",
-		"iron_ingots", "gold_ore", "gold_ingots",
-		"women",
-		"men" }
+lookup_table = {"wood", "sakura", "bamboo", "carrots", "sansai", 
+	"raw_meat", "smoked_meat", "tomatoes", "saltwort",
+	"mushrooms", "fish", "smoked_fish", "grain", "cherries", 
+	"fishwine", "paleale", "apples", "desert onions", 
+	"rocks", "iron_ore", "rocksalt", "sandstone", 
+	"tools", "weapons", "pelts", "seeds", 
+	"gold treasures", "iron treasures", "gold coins", "iron coins",
+	"iron_ingots", "gold_ore", "gold_ingots",
+	"women",
+	"men" }
 merchant_inventory = { --only includes tradeable items.
 	wood = 0, sakura = 0, bamboo = 0, carrots = 0, sansai = 0,
 	raw_meat =0, smoked_meat = 0, tomatoes = 0, saltwort = 0,
