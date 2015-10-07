@@ -13,6 +13,16 @@ lookup_table = {"wood", "sakura", "bamboo", "carrots", "sansai",
 	"iron_ingots", "gold_ore", "gold_ingots",
 	"women",
 	"men" }
+price_table = {1, 1, 1, 1, 1, 
+	2, 3, 5, 2,
+	2, 4, 7, 5, 7, 
+	10, 9, 10, 1ions", 
+	"rocks", "iron_ore", "rocksalt", "sandstone", 
+	"tools", "weapons", "pelts", "seeds", 
+	"gold treasures", "iron treasures", "gold coins", "iron coins",
+	"iron_ingots", "gold_ore", "gold_ingots",
+	"women",
+	"men" }
 merchant_inventory = { --only includes tradeable items.
 	wood = 0, sakura = 0, bamboo = 0, carrots = 0, sansai = 0,
 	raw_meat =0, smoked_meat = 0, tomatoes = 0, saltwort = 0,
