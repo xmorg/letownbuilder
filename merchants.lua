@@ -21,6 +21,9 @@ merchant_inventory = { --only includes tradeable items.
    women = 0,
    men = 0
 }
+function show_transaction_menu() --allows you to choose what you are selling.
+	
+end
 function add_merchant_inventory()
    merchant_inventory.wood = math.random(0,50)
    merchant_inventory.sakura = math.random(0,50)
