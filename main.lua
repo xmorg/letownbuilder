@@ -658,6 +658,8 @@ function love.draw()
       draw_biome_select() -- select which biome.
    elseif game.show_menu == 7 then --achivements
       game_achivements_draw()
+   elseif game.show_menu = "trading" then
+   	show_transaction_menu()
    else	
       game.screen_height = love.graphics.getHeight()
       game.screen_width  = love.graphics.getWidth()
