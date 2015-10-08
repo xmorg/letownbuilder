@@ -68,7 +68,7 @@ function show_transaction_menu() --allows you to choose what you are selling.
 	--now list the town items at tx+10
 	love.graphics.setColor(0,0,0,255)
 	for i,v in ipairs(lookup_table) do
-		if i > merchant_window.scroll_offset and i < merchant_window.scroll_offset+18 then
+		if i > merchant_window.scroll_offset and i < merchant_window.scroll_offset+25 then
 			love.graphics.print(lookup_table[i].." ()", --..kingdom_inventory[i]..")",
 			tx+10,  ty-10+(15*i))
 		end
