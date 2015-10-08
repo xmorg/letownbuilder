@@ -25,7 +25,7 @@ price_table = {1, 1, 1, 1, 1,
 	2500 }
 
 merchant_window = {
-	merchants_name = "merchants"
+	merchants_name = "merchants",
 	scroll_offset = 0
 }
 
