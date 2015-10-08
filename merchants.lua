@@ -79,6 +79,7 @@ function show_transaction_menu() --allows you to choose what you are selling.
 		if i > merchant_window.scroll_offset and i < merchant_window.merchant_scroll_offset+merchant_window.scroll_offset_max_items then
 		love.graphics.print(lookup_table[i].." ("..merchant_inventory[i]..")",
 			tx+10+townframe_x+10, ty-10+(15*i)) --merchants window
+		end
 	end	--now list the merchant items at x+10+townframe_x+10
 end
 function add_merchant_inventory()
