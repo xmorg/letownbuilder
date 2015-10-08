@@ -43,11 +43,12 @@ function show_transaction_menu() --allows you to choose what you are selling.
 	love.graphics.setColor(255,255,255,255)
 	love.graphics.rectangle("fill", tx, ty, tsx, tsy ) --make a white rectangle
 	love.graphics.setColor(80,80,80,255)
-	love.graphics.rectangle("fill", tx+2, ty+2, tsx-2, tsy-2 ) --make a grey rectangle
+	love.graphics.rectangle("fill", tx+2, ty+2, tsx-5, tsy-5 ) --make a grey rectangle
 	love.graphics.setColor(255,255,255,255)
 	love.graphics.rectangle("fill", tx+10, ty+10, townframe_x, townframe_y) --town window
 	love.graphics.rectangle("fill", tx+10+townframe_x+10, ty+10, townframe_x, townframe_y) --merchants window
 	--now list the town items at tx+10
+	love.graphics.setColor(0,0,0,0)
 	for i,v in ipairs(lookup_table) do
 		love.graphics.print(lookup_table[i].." (", --..kingdom_inventory[i]..")",
 			tx+10,ty+10)
