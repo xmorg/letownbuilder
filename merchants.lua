@@ -43,7 +43,7 @@ function show_transaction_menu() --allows you to choose what you are selling.
 	love.graphics.setColor(255,255,255,255)
 	love.graphics.rectangle("fill", tx, ty, tsx, tsy ) --make a white rectangle
 	love.graphics.setColor(80,80,80,255)
-	love.graphics.rectangle("fill", tx+2, ty+2 tsx-2, tsy-2 ) --make a grey rectangle
+	love.graphics.rectangle("fill", tx+2, ty+2, tsx-2, tsy-2 ) --make a grey rectangle
 	love.graphics.setColor(255,255,255,255)
 	love.graphics.rectangle("fill", tx+10, ty+10, townframe_x, town_frame_y) --town window
 	love.graphics.rectangle("fill", tx+10+townframe_x+10, ty+10, townframe_x, town_frame_y) --merchants window
