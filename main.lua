@@ -610,7 +610,7 @@ function love.keypressed(key)
 	 go_fullscreen()
      elseif key == "m" then 
       	if game.show_menu == "trading" then game.show_menu = 1
-      	else game.show_menu = "trading" end
+      	else add_merchant_inventory() game.show_menu = "trading" end
       elseif key == "a" then
 	 if game.show_menu == 7 and game.started == 0 then
 	    game.show_menu = 1 --back to first menu
