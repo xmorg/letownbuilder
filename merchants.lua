@@ -56,11 +56,7 @@ kingdom_inventory_forsale =  { --only includes tradeable items.
 0,--women = 0,
 0--men = 0
 }
-function set_active_merchant_window()
-	if merchant_window.active_inventory = "kingdom" then
-		
-	
-end
+
 function show_transaction_menu() --allows you to choose what you are selling.
 	local tx = 64	local ty = 64
 	local tsx = 500	local tsy = 480
