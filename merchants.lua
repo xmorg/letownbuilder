@@ -72,52 +72,38 @@ function show_transaction_menu() --allows you to choose what you are selling.
 	end	--now list the merchant items at x+10+townframe_x+10
 end
 function add_merchant_inventory()
-   merchant_inventory.wood = math.random(0,50) --wood
-   merchant_inventory.sakura = math.random(0,50) --sakura
-   merchant_inventory.bamboo = math.random(0,50) --bamboo
-   merchant_inventory.carrots = math.random(0,50)
-   merchant_inventory.sansai = math.random(0,50)
-   merchant_inventory.raw_meat = math.random(0,50)
-   merchant_inventory.smoked_meat = math.random(0,50)
-   merchant_inventory.tomatoes = math.random(0,50)
-   merchant_inventory.mushrooms = math.random(0,50)
-   merchant_inventory.fish = math.random(0,50)
-   merchant_inventory.smoked_fish = math.random(0,50)
-   merchant_inventory.grain = math.random(0,50)
-   merchant_inventory.cherries = math.random(0,50)
-   merchant_inventory.fishwine = math.random(0,50)
-   merchant_inventory.paleale=math.random(0,50)
-   merchant_inventory.rocks = math.random(0,50)
-   merchant_inventory.iron_ore = math.random(0,50)
-   merchant_inventory.iron_ingots = math.random(0,50)
-   merchant_inventory.gold_ore = math.random(0,50)
-   merchant_inventory.gold_ingots = math.random(0,50)
-   merchant_inventory.women = math.random(0,50)
-   merchant_inventory.men = math.random(0,50)
+	for i,v in ipairs(merchant_inventory) do
+		merchant_inventory[i] = math.random(0,50)
+	end
+	
+   kingdom_inventory_forsale[i] = kingdom_inventory.wood -- math.random(0,50) --wood
+   kingdom_inventory_forsale[i] = kingdom_inventory.sakura --= math.random(0,50) --sakura
+   kingdom_inventory_forsale[i] = kingdom_inventory.bamboo --= math.random(0,50) --bamboo
+   kingdom_inventory_forsale[i] = kingdom_inventory.carrots --= math.random(0,50)
+   kingdom_inventory_forsale[i] = kingdom_inventory.sansai --= math.random(0,50)
+   kingdom_inventory_forsale[i] = kingdom_inventory.raw_meat --= math.random(0,50)
+   kingdom_inventory_forsale[i] = kingdom_inventory.smoked_meat --= math.random(0,50)
+   kingdom_inventory_forsale[i] = kingdom_inventory.tomatoes --= math.random(0,50)
+   kingdom_inventory_forsale[i] = kingdom_inventory.mushrooms --= math.random(0,50)
+   kingdom_inventory_forsale[i] = kingdom_inventory.fish --= math.random(0,50)
+   kingdom_inventory_forsale[i] = kingdom_inventory.smoked_fish --= math.random(0,50)
+   kingdom_inventory_forsale[i] = kingdom_inventory.grain --= math.random(0,50)
+   kingdom_inventory_forsale[i] = kingdom_inventory.cherries --= math.random(0,50)
+   kingdom_inventory_forsale[i] = kingdom_inventory.fishwine --= math.random(0,50)
+   kingdom_inventory_forsale[i] = kingdom_inventory.paleale--=math.random(0,50)
+   kingdom_inventory_forsale[i] = kingdom_inventory.rocks --= math.random(0,50)
+   kingdom_inventory_forsale[i] = kingdom_inventory.iron_ore --= math.random(0,50)
+   kingdom_inventory_forsale[i] = kingdom_inventory.iron_ingots --= math.random(0,50)
+   kingdom_inventory_forsale[i] = kingdom_inventory.gold_ore --= math.random(0,50)
+   kingdom_inventory_forsale[i] = kingdom_inventory.gold_ingots --= math.random(0,50)
+   kingdom_inventory_forsale[i] = 0 --kingdom_inventory.women --= math.random(0,50)
+   kingdom_inventory_forsale[i] = 0 --kingdom_inventory.men --= math.random(0,50)
+
 end
 function remove_merchant_inventory()
-   merchant_inventory.wood = 0
-   merchant_inventory.sakura = 0
-   merchant_inventory.bamboo = 0
-   merchant_inventory.carrots = 0
-   merchant_inventory.sansai = 0
-   merchant_inventory.raw_meat = 0
-   merchant_inventory.smoked_meat = 0
-   merchant_inventory.tomatoes = 0
-   merchant_inventory.mushrooms = 0
-   merchant_inventory.fish = 0
-   merchant_inventory.smoked_fish = 0
-   merchant_inventory.grain = 0
-   merchant_inventory.cherries = 0
-   merchant_inventory.fishwine = 0
-   merchant_inventory.paleale=0
-   merchant_inventory.rocks = 0
-   merchant_inventory.iron_ore = 0
-   merchant_inventory.iron_ingots = 0
-   merchant_inventory.gold_ore = 0
-   merchant_inventory.gold_ingots = 0
-   merchant_inventory.women = 0
-   merchant_inventory.men = 0
+   for i,v in ipairs(merchant_inventory) do
+		merchant_inventory[i] = 0 --math.random(0,50)
+	end
 end
 
 function report_trading_done()
