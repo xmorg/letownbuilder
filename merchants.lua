@@ -46,7 +46,7 @@ merchant_inventory = { --only includes tradeable items.
 0, 0, 0,
 0,
 0
---}
+}
 function show_transaction_menu() --allows you to choose what you are selling.
 	local tx = 64	local ty = 64
 	local tsx = 500	local tsy = 480
