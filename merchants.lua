@@ -60,11 +60,11 @@ function show_transaction_menu() --allows you to choose what you are selling.
 	local tsx = 500	local tsy = 480
 	local townframe_x = 200 local townframe_y = 450
 	local merchantframe_x = 200 local merchantframe_y = 450
-	love.graphics.setColor(255,255,255,255)
+	love.graphics.setColor(70,70,70,255)
 	love.graphics.rectangle("fill", tx, ty, tsx, tsy ) --make a white rectangle
 	love.graphics.setColor(80,80,80,255)
 	love.graphics.rectangle("fill", tx+2, ty+2, tsx-5, tsy-5 ) --make a grey rectangle
-	love.graphics.setColor(70,70,70,255)
+	love.graphics.setColor(255,255,255,255)
 	love.graphics.rectangle("fill", tx+10, ty+10, townframe_x, townframe_y) --town window
 	love.graphics.rectangle("fill", tx+10+townframe_x+10, ty+10, townframe_x, townframe_y) --merchants window
 	--now list the town items at tx+10
