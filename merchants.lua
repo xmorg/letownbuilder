@@ -27,6 +27,7 @@ price_table = {1, 1, 1, 1, 1,
 merchant_window = {
 	merchants_name = "merchants",
 	scroll_offset = 0,
+	active_inventory = "kingdom",
 	scroll_offset_max_items = 30,
 	merchant_scroll_offset = 0
 }
