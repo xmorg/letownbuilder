@@ -27,7 +27,8 @@ price_table = {1, 1, 1, 1, 1,
 merchant_window = {
 	merchants_name = "merchants",
 	scroll_offset = 0,
-	scroll_offset_max_items = 30
+	scroll_offset_max_items = 30,
+	merchant_scroll_offset = 0
 }
 
 merchant_inventory = { --only includes tradeable items.
