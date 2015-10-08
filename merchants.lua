@@ -54,7 +54,7 @@ function show_transaction_menu() --allows you to choose what you are selling.
 			tx+10,  ty+10-5+(15*i))
 	end
 	for i,v in ipairs(lookup_table) do
-		love.graphics.print(lookup_table[i], " ()",--..merchant_inventory[i]..")",
+		love.graphics.print(lookup_table[i].." ()",--..merchant_inventory[i]..")",
 			tx+10+townframe_x+10, ty+10-5+(15*i)) --merchants window
 	end	--now list the merchant items at x+10+townframe_x+10
 end
