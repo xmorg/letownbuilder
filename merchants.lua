@@ -23,29 +23,30 @@ price_table = {1, 1, 1, 1, 1,
 	10, 50, 100,
 	1500,
 	2500 }
---merchant_inventory = { --only includes tradeable items.
-	--wood = 0, sakura = 0, bamboo = 0, carrots = 0, sansai = 0,
-	--raw_meat =0, smoked_meat = 0, tomatoes = 0, saltwort = 0,
-	--mushrooms = 0, fish = 0, smoked_fish = 0, grain = 0, cherries = 0,
-	--fishwine = 0, paleale=0, apples = 0, desert_onions = 0,
-	--rocks = 0, iron_ore = 0, rocksalt = 0, sandstone = 0,
-	--tools = 2, weapons = 0, pelts = 0, seeds = 0, 
-	--gold_treasures=0, iron_treasures=0, gold_coins=0, iron_coins=0,
-	--iron_ingots = 0, gold_ore = 0, gold_ingots = 0,
-   --women = 0,
-   --men = 0
---}
+
 merchant_inventory = { --only includes tradeable items.
-0, 0, 0, 0,  0,
-0, 0,  0, 0,
-0,  0,  0,  0,  0,
-0, 0, 0, 0,
-0, 0, 0, 0,
-2, 0, 0, 0, 
-0, 0, 0, 0,
-0, 0, 0,
-0,
-0
+0, 0, 0, 0,  0,	--wood = 0, sakura = 0, bamboo = 0, carrots = 0, sansai = 0,
+0, 0,  0, 0,--raw_meat =0, smoked_meat = 0, tomatoes = 0, saltwort = 0,
+0,  0,  0,  0,  0,--mushrooms = 0, fish = 0, smoked_fish = 0, grain = 0, cherries = 0,
+0, 0, 0, 0,--fishwine = 0, paleale=0, apples = 0, desert_onions = 0,
+0, 0, 0, 0,--rocks = 0, iron_ore = 0, rocksalt = 0, sandstone = 0,
+2, 0, 0, 0, --tools = 2, weapons = 0, pelts = 0, seeds = 0, 
+0, 0, 0, 0,--gold_treasures=0, iron_treasures=0, gold_coins=0, iron_coins=0,
+0, 0, 0,--iron_ingots = 0, gold_ore = 0, gold_ingots = 0,
+0,--women = 0,
+0--men = 0
+}
+kingdom_inventory_forsale =  { --only includes tradeable items.
+0, 0, 0, 0,  0,	--wood = 0, sakura = 0, bamboo = 0, carrots = 0, sansai = 0,
+0, 0,  0, 0,--raw_meat =0, smoked_meat = 0, tomatoes = 0, saltwort = 0,
+0,  0,  0,  0,  0,--mushrooms = 0, fish = 0, smoked_fish = 0, grain = 0, cherries = 0,
+0, 0, 0, 0,--fishwine = 0, paleale=0, apples = 0, desert_onions = 0,
+0, 0, 0, 0,--rocks = 0, iron_ore = 0, rocksalt = 0, sandstone = 0,
+2, 0, 0, 0, --tools = 2, weapons = 0, pelts = 0, seeds = 0, 
+0, 0, 0, 0,--gold_treasures=0, iron_treasures=0, gold_coins=0, iron_coins=0,
+0, 0, 0,--iron_ingots = 0, gold_ore = 0, gold_ingots = 0,
+0,--women = 0,
+0--men = 0
 }
 function show_transaction_menu() --allows you to choose what you are selling.
 	local tx = 64	local ty = 64
@@ -71,9 +72,9 @@ function show_transaction_menu() --allows you to choose what you are selling.
 	end	--now list the merchant items at x+10+townframe_x+10
 end
 function add_merchant_inventory()
-   merchant_inventory.wood = math.random(0,50)
-   merchant_inventory.sakura = math.random(0,50)
-   merchant_inventory.bamboo = math.random(0,50)
+   merchant_inventory.wood = math.random(0,50) --wood
+   merchant_inventory.sakura = math.random(0,50) --sakura
+   merchant_inventory.bamboo = math.random(0,50) --bamboo
    merchant_inventory.carrots = math.random(0,50)
    merchant_inventory.sansai = math.random(0,50)
    merchant_inventory.raw_meat = math.random(0,50)
