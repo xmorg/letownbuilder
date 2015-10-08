@@ -56,6 +56,11 @@ kingdom_inventory_forsale =  { --only includes tradeable items.
 0,--women = 0,
 0--men = 0
 }
+function set_active_merchant_window()
+	if merchant_window.active_inventory = "kingdom" then
+		
+	
+end
 function show_transaction_menu() --allows you to choose what you are selling.
 	local tx = 64	local ty = 64
 	local tsx = 500	local tsy = 480
@@ -65,9 +70,13 @@ function show_transaction_menu() --allows you to choose what you are selling.
 	love.graphics.rectangle("fill", tx, ty, tsx, tsy ) --make a white rectangle
 	love.graphics.setColor(80,80,80,255)
 	love.graphics.rectangle("fill", tx+2, ty+2, tsx-5, tsy-5 ) --make a grey rectangle
-	love.graphics.setColor(255,255,255,255)
+	if merchant_window.active_inventory = "kingdom" then love.graphics.setColor(255,200,200,255) else
+	love.graphics.setColor(255,255,255,255) --active_inventory = "kingdom"
+	end
 	love.graphics.rectangle("fill", tx+10, ty+10, townframe_x, townframe_y) --town window
-	love.graphics.setColor(255,255,255,255)
+	if merchant_window.active_inventory = "merchant" then love.graphics.setColor(255,200,200,255) else
+	love.graphics.setColor(255,255,255,255) --active_inventory = "kingdom"
+	end
 	love.graphics.rectangle("fill", tx+10+townframe_x+10, ty+10, townframe_x, townframe_y) --merchants window
 	--now list the town items at tx+10
 	love.graphics.setColor(0,0,0,255)
