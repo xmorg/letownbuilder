@@ -66,11 +66,11 @@ function show_transaction_menu() --allows you to choose what you are selling.
 	love.graphics.rectangle("fill", tx, ty, tsx, tsy ) --make a white rectangle
 	love.graphics.setColor(80,80,80,255)
 	love.graphics.rectangle("fill", tx+2, ty+2, tsx-5, tsy-5 ) --make a grey rectangle
-	if merchant_window.active_inventory == "kingdom" then love.graphics.setColor(255,200,200,255) else
+	if merchant_window.active_inventory == "kingdom" then love.graphics.setColor(200,200,255,255) else
 	love.graphics.setColor(255,255,255,255) --active_inventory = "kingdom"
 	end
 	love.graphics.rectangle("fill", tx+10, ty+10, townframe_x, townframe_y) --town window
-	if merchant_window.active_inventory == "merchant" then love.graphics.setColor(255,200,200,255) else
+	if merchant_window.active_inventory == "merchant" then love.graphics.setColor(200,200,255,255) else
 	love.graphics.setColor(255,255,255,255) --active_inventory = "kingdom"
 	end
 	love.graphics.rectangle("fill", tx+10+townframe_x+10, ty+10, townframe_x, townframe_y) --merchants window
