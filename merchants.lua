@@ -24,6 +24,11 @@ price_table = {1, 1, 1, 1, 1,
 	1500,
 	2500 }
 
+merchant_window = {
+	merchants_name = "merchants"
+	scroll_offset = 0
+}
+
 merchant_inventory = { --only includes tradeable items.
 0, 0, 0, 0,  0,	--wood = 0, sakura = 0, bamboo = 0, carrots = 0, sansai = 0,
 0, 0,  0, 0,--raw_meat =0, smoked_meat = 0, tomatoes = 0, saltwort = 0,
