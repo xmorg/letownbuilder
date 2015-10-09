@@ -615,13 +615,14 @@ function love.keypressed(key)
 			end
 			go_fullscreen()
 		elseif key == "m" then 
-      	if game.merchant_menu == 1 then game.merchant_menu = 0
-      	else add_merchant_inventory() game.merchant_menu = 1 end
+      			if game.merchant_menu == 1 then game.merchant_menu = 0
+      			else add_merchant_inventory() game.merchant_menu = 1 
+      		end
       	if game.merchant_menu == 1 then
-      		if key == "up" then  end
-      		if key == "down" then end
       		if key == "left" then merchant_window.active_inventory = "kingdom" end
       		if key == "right" then merchant_window.active_inventory = "merchant" end
+      		if key == "up" then  end
+      		if key == "down" then end
       	end
       elseif key == "a" then
 	 if game.show_menu == 7 and game.started == 0 then
