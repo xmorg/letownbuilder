@@ -598,19 +598,19 @@ function love.keypressed(key)
 		if key == "left" then merchant_window.active_inventory = "kingdom" end
 		if key == "right" then merchant_window.active_inventory = "merchant" end
 		if key == "up" then --fixme come all the way up.
-			if merchant_window.active_inventory == "merchant" and merchant_window.merchant_scroll_offset > 1 then 
-				merchant_window.merchant_scroll_offset=merchant_window.merchant_scroll_offset-1
+			if merchant_window.active_inventory == "merchant" and merchant_window.merchant_scroll_offset > 0 then 
+				merchant_window.merchant_scroll_offset=merchant_window.merchant_scroll_offset+1
 			end
-			if merchant_window.active_inventory == "kingdom" and merchant_window.scroll_offset > 1 then
-				merchant_window.scroll_offset=merchant_window.scroll_offset-1
+			if merchant_window.active_inventory == "kingdom" and merchant_window.scroll_offset > 0 then
+				merchant_window.scroll_offset=merchant_window.scroll_offset+1
 			end
 		end
 		if key == "down" then --fixme, go all the way down
 			if merchant_window.active_inventory == "merchant" and merchant_window.merchant_scroll_offset < 18 then 
-				merchant_window.merchant_scroll_offset=merchant_window.merchant_scroll_offset+1
+				merchant_window.merchant_scroll_offset=merchant_window.merchant_scroll_offset-1
 			end
 			if merchant_window.active_inventory == "kingdom" and merchant_window.scroll_offset < 18 then
-				merchant_window.scroll_offset=merchant_window.scroll_offset+1
+				merchant_window.scroll_offset=merchant_window.scroll_offset-1
 			end
 		end
     end
