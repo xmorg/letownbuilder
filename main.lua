@@ -610,8 +610,8 @@ function love.keypressed(key)
 	 else game.fullscreen_mode = "No" end
 	 go_fullscreen()
      elseif key == "m" then 
-      	if game.show_menu == "trading" then game.show_menu = 1
-      	else add_merchant_inventory() game.show_menu = "trading" end
+      	if game.merchant_menu == 1 then game.merchant_menu = 0
+      	else add_merchant_inventory() game.merchant_menu = 1 end
       elseif key == "a" then
 	 if game.show_menu == 7 and game.started == 0 then
 	    game.show_menu = 1 --back to first menu
@@ -659,8 +659,6 @@ function love.draw()
       draw_biome_select() -- select which biome.
    elseif game.show_menu == 7 then --achivements
       game_achivements_draw()
-   elseif game.show_menu == "trading" then
-   	show_transaction_menu()
    else	
       game.screen_height = love.graphics.getHeight()
       game.screen_width  = love.graphics.getWidth()
@@ -693,6 +691,9 @@ function love.draw()
 	 draw_message_que()
 	end
 	show_tooltop_message()
+      if game.merchant_menu == 1 then
+   	show_transaction_menu()
+      end
       ----------------------- END TOP UI Drawing ------------------------
    end--endif
 end--end function
