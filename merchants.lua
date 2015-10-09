@@ -86,12 +86,12 @@ function show_transaction_menu() --allows you to choose what you are selling.
 				love.graphics.setColor(100,100,255,255)
 				love.graphics.rectangle("fill", tx+10, ty+10, townframe_x, 15) --town window
 				love.graphics.setColor(0,0,0,255)
-			end love.graphics.push()
+			end  love.graphics.setColor(0,0,0,255)
 			love.graphics.print(lookup_table[i].." ("..kingdom_inventory_forsale[i]..")",
-			tx+20,  ty-10+(15*i)) love.graphics.pop()
+			tx+20,  ty-10+(15*i)) 
 		end
 	end
-	for i,v in ipairs(lookup_table) do
+	for i,v in ipairs(lookup_table) do --merchant inventory
 		if i > merchant_window.scroll_offset and i < merchant_window.merchant_scroll_offset+merchant_window.scroll_offset_max_items then
 		if i == merchant_window.selected_merchant_item then 
 			love.graphics.setColor(100,100,255,255)
