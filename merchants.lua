@@ -63,7 +63,7 @@ function show_transaction_menu() --allows you to choose what you are selling.
 	local townframe_x = 200 local townframe_y = 450
 	local merchantframe_x = 200 local merchantframe_y = 450
 	love.graphics.setColor(70,70,70,255)
-	love.graphics.rectangle("fill", tx, ty, tsx, tsy ) --make a white rectangle
+	love.graphics.rectangle("fill", tx, ty, tsx+150, tsy ) --make a white rectangle
 	love.graphics.setColor(80,80,80,255)
 	love.graphics.rectangle("fill", tx+2, ty+2, tsx-5, tsy-5 ) --make a grey rectangle
 	if merchant_window.active_inventory == "kingdom" then love.graphics.setColor(200,200,255,255) else
