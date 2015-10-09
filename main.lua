@@ -44,6 +44,7 @@ game = {state = 1, give_direction = "None", day_time = 6000, day_count = 1,
 	zoom_level = 1,
 	earthquake_draw_offset = 5, earthquake_timer = 1000, earthquake_shake_timer = 0, earthquake = 0,
 	merchant_arrived = 0, --if to draw merchants
+	merchant_menu = 0,
 	trading_timer = 0, -- how long they stay at the post
 	merchant_spawn_x=0, merchant_spawn_y=0, --start location of current merchants(randomly set on arrival)
 	merchant_target_x = 0, merchant_target_y = 0,
