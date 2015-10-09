@@ -83,7 +83,7 @@ function show_transaction_menu() --allows you to choose what you are selling.
 	for i,v in ipairs(lookup_table) do
 		if i > merchant_window.scroll_offset and i < merchant_window.scroll_offset+merchant_window.scroll_offset_max_items then
 			if i == merchant_window.selected_town_item then 
-				love.graphics.setColor(255,255,255,255)
+				love.graphics.setColor(100,100,255,255)
 				love.graphics.rectangle("fill", tx+10, ty+10, townframe_x, 15) --town window
 				love.graphics.setColor(0,0,0,255)
 			end
@@ -94,7 +94,7 @@ function show_transaction_menu() --allows you to choose what you are selling.
 	for i,v in ipairs(lookup_table) do
 		if i > merchant_window.scroll_offset and i < merchant_window.merchant_scroll_offset+merchant_window.scroll_offset_max_items then
 		if i == merchant_window.selected_merchant_item then 
-			love.graphics.setColor(255,255,255,255)
+			love.graphics.setColor(100,100,255,255)
 			love.graphics.rectangle("fill", tx+10, ty+10, townframe_x, 15) --town window
 			love.graphics.setColor(0,0,0,255)
 		end
