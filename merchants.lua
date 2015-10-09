@@ -82,7 +82,7 @@ function show_transaction_menu() --allows you to choose what you are selling.
 		if i > merchant_window.scroll_offset and i < merchant_window.scroll_offset+merchant_window.scroll_offset_max_items then
 			if i == merchant_window.selected_town_item and merchant_window.active_inventory == "kingdom" then 
 				love.graphics.setColor(100,100,100,255)
-				love.graphics.rectangle("fill", tx+10, ty+10-16*i, townframe_x, 16) --town window
+				love.graphics.rectangle("fill", tx+10, ty+10+16*i, townframe_x, 16) --town window
 				love.graphics.setColor(0,0,0,255)
 			end
 			love.graphics.print(lookup_table[i].." ("..kingdom_inventory_forsale[i]..")",
@@ -93,7 +93,7 @@ function show_transaction_menu() --allows you to choose what you are selling.
 		if i > merchant_window.scroll_offset and i < merchant_window.merchant_scroll_offset+merchant_window.scroll_offset_max_items then
 		if i == merchant_window.selected_merchant_item and merchant_window.active_inventory == "merchant" then 
 			love.graphics.setColor(100,100,100,255)
-			love.graphics.rectangle("fill", tx+10+townframe_x+10, ty+10-16*i, townframe_x, 16) --town window
+			love.graphics.rectangle("fill", tx+10+townframe_x+10, ty+10+16*i, townframe_x, 16) --town window
 			love.graphics.setColor(0,0,0,255)
 		end
 		love.graphics.print(lookup_table[i].." ("..merchant_inventory[i]..")",
