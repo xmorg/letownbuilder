@@ -594,6 +594,12 @@ function get_kingdom_researchable()
 end
 ---------------------------------------
 function love.keypressed(key)
+	if game.merchant_menu == 1 then
+      		if key == "left" then merchant_window.active_inventory = "kingdom" end
+      		if key == "right" then merchant_window.active_inventory = "merchant" end
+      		if key == "up" then  end
+      		if key == "down" then end
+    end
 	if game.disablekeyboard == 0 then
 		if key == "e" then
 			screenshot = love.graphics.newScreenshot( false )
@@ -618,12 +624,6 @@ function love.keypressed(key)
       			if game.merchant_menu == 1 then game.merchant_menu = 0
       			else add_merchant_inventory() game.merchant_menu = 1 
       		end
-      	if game.merchant_menu == 1 then
-      		if key == "left" then merchant_window.active_inventory = "kingdom" end
-      		if key == "right" then merchant_window.active_inventory = "merchant" end
-      		if key == "up" then  end
-      		if key == "down" then end
-      	end
       elseif key == "a" then
 	 if game.show_menu == 7 and game.started == 0 then
 	    game.show_menu = 1 --back to first menu
