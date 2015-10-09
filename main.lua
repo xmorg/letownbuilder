@@ -594,22 +594,27 @@ function get_kingdom_researchable()
 end
 ---------------------------------------
 function love.keypressed(key)
-   if game.disablekeyboard == 0 then
-      if key == "e" then
-	 screenshot = love.graphics.newScreenshot( false )
-	 screenshot:encode("screenie"..game.lastscreenshot..".jpg")
-	 game.lastscreenshot = game.lastscreenshot+1
-      elseif key == "escape" then
-	 if game.show_menu == 0 then game.show_menu = 1 --
-	 elseif game.show_menu == 7 and game.started == 1 then game.show_menu = 0
-	 elseif game.show_menu == 7 then game.show_menu = 1
-	 elseif game.show_menu == 99 then game.show_menu = 1
-	 else if game.started == 1 then game.show_menu = 0 end end
-      elseif key == "f2" then
-	 if game.fullscreen_mode == "No" then game.fullscreen_mode = "Yes"
-	 else game.fullscreen_mode = "No" end
-	 go_fullscreen()
-     elseif key == "m" then 
+	if game.disablekeyboard == 0 then
+		if key == "e" then
+			screenshot = love.graphics.newScreenshot( false )
+			screenshot:encode("screenie"..game.lastscreenshot..".jpg")
+			game.lastscreenshot = game.lastscreenshot+1
+		elseif key == "escape" then
+			if game.show_menu == 0 then game.show_menu = 1 --
+			elseif game.show_menu == 7 and game.started == 1 then game.show_menu = 0
+			elseif game.show_menu == 7 then game.show_menu = 1
+			elseif game.show_menu == 99 then game.show_menu = 1
+			else 
+				if game.started == 1 then game.show_menu = 0 end 
+			end
+		elseif key == "f2" then
+			if game.fullscreen_mode == "No" then 
+				game.fullscreen_mode = "Yes"
+			else 
+				game.fullscreen_mode = "No" 
+			end
+			go_fullscreen()
+		elseif key == "m" then 
       	if game.merchant_menu == 1 then game.merchant_menu = 0
       	else add_merchant_inventory() game.merchant_menu = 1 end
       elseif key == "a" then
@@ -637,10 +642,10 @@ function love.keypressed(key)
 	 else 
 	    game.game_mque = 0
 	 end
-      elseif key == "l" then
-	 love_crude_load()
-	 message_que_add("Game loaded."..j.name.."!", 100, 1) -- produce message 1
-      elseif key == " " then
+	 elseif key == "l" then
+	 	love_crude_load()
+	 	message_que_add("Game loaded."..j.name.."!", 100, 1) -- produce message 1
+	 elseif key == " " then
 	 if game.game_paused == 0 then
 	    game.game_paused = 1
 	 else
