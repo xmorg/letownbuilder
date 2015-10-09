@@ -98,7 +98,6 @@ function show_transaction_menu() --allows you to choose what you are selling.
 		--end
 		love.graphics.print(lookup_table[i].." ("..merchant_inventory[i]..")",
 			tx+20+townframe_x+10, ty-10+(15*i)) --merchants window 
-			love.graphics.pop()
 		end
 	end	--now list the merchant items at x+10+townframe_x+10
 end
