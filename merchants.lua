@@ -86,9 +86,9 @@ function show_transaction_menu() --allows you to choose what you are selling.
 				love.graphics.setColor(100,100,255,255)
 				love.graphics.rectangle("fill", tx+10, ty+10, townframe_x, 15) --town window
 				love.graphics.setColor(0,0,0,255)
-			end
+			end love.graphics.push()
 			love.graphics.print(lookup_table[i].." ("..kingdom_inventory_forsale[i]..")",
-			tx+20,  ty-10+(15*i))
+			tx+20,  ty-10+(15*i)) love.graphics.pop()
 		end
 	end
 	for i,v in ipairs(lookup_table) do
@@ -97,9 +97,10 @@ function show_transaction_menu() --allows you to choose what you are selling.
 			love.graphics.setColor(100,100,255,255)
 			love.graphics.rectangle("fill", tx+10, ty+10, townframe_x, 15) --town window
 			love.graphics.setColor(0,0,0,255)
-		end
+		end love.graphics.push()
 		love.graphics.print(lookup_table[i].." ("..merchant_inventory[i]..")",
-			tx+20+townframe_x+10, ty-10+(15*i)) --merchants window
+			tx+20+townframe_x+10, ty-10+(15*i)) --merchants window 
+			love.graphics.pop()
 		end
 	end	--now list the merchant items at x+10+townframe_x+10
 end
