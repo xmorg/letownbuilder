@@ -29,7 +29,9 @@ merchant_window = {
 	scroll_offset = 0,
 	active_inventory = "kingdom",
 	scroll_offset_max_items = 30,
-	merchant_scroll_offset = 0
+	merchant_scroll_offset = 0,
+	selected_town_item = 1,
+	selected_merchant_item = 1
 }
 
 merchant_inventory = { --only includes tradeable items.
