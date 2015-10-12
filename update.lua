@@ -828,7 +828,7 @@ function love.update(dt)
       for y = 1, game.tilecount do
 	 for x = 1, game.tilecount do
 	    lx = (300+(y - x) * 32 + 64) * game.zoom_level
-	    ly = (-100+(y + x) * 32 / 2 + 50) * game.zoom_level
+	    ly = (-100+(y + x) * 32 / 2 + 50) * -game.zoom_level
 	    -- function -----  game tiles map table ---- isometric loc
 	    if(mouse_x >= lx+game.draw_x and mouse_x <= lx+game.draw_x+64 and
 		  mouse_y >= ly+game.draw_y+60 and mouse_y <= ly+game.draw_y+100) then
