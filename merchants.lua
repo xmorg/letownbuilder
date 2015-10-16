@@ -60,6 +60,7 @@ kingdom_inventory_forsale =  { --only includes tradeable items.
 }
 
 function show_transaction_menu() --allows you to choose what you are selling.
+	local text_width = 16
 	local tx = 64	local ty = 64
 	local tsx = 500	local tsy = 480
 	local townframe_x = 200 local townframe_y = 450
@@ -69,7 +70,7 @@ function show_transaction_menu() --allows you to choose what you are selling.
 	love.graphics.setColor(80,80,80,255)
 	love.graphics.rectangle("fill", tx+2, ty+2, tsx-5, tsy-5 ) --make a grey rectangle
 	if merchant_window.active_inventory == "kingdom" then love.graphics.setColor(220,220,220,255) else
-	love.graphics.setColor(255,255,255,255) --active_inventory = "kingdom"
+		love.graphics.setColor(255,255,255,255) --active_inventory = "kingdom"
 	end
 	love.graphics.rectangle("fill", tx+10, ty+10, townframe_x, townframe_y) --town window
 	if merchant_window.active_inventory == "merchant" then love.graphics.setColor(220,220,250,255) else
