@@ -1,9 +1,8 @@
---merchant_arrived = 0, --if to draw merchants
---trading_timer = 0, -- how long they stay at the post
+--merchant_arrived = 0, --if to draw merchants--trading_timer = 0, -- how long they stay at the post
 --merchant_spawn_x=0, merchant_spawn_y=0 --start location of current merchants(randomly set on arrival)
 
 game_merchants = {}
-lookup_table = {"wood", "sakura", "bamboo", "carrots", "sansai", 
+lookup_table = {"wood", "sakura", "bamboo", "carrots", "sansai",
 	"raw_meat", "smoked_meat", "tomatoes", "saltwort",
 	"mushrooms", "fish", "smoked_fish", "grain", "cherries", 
 	"fishwine", "paleale", "apples", "desert onions", 
@@ -74,7 +73,7 @@ function show_transaction_menu() --allows you to choose what you are selling.
 	end
 	love.graphics.rectangle("fill", tx+10, ty+10, townframe_x, townframe_y) --town window
 	if merchant_window.active_inventory == "merchant" then love.graphics.setColor(220,220,250,255) else
-	love.graphics.setColor(255,255,255,255) --active_inventory = "kingdom"
+		love.graphics.setColor(255,255,255,255) --active_inventory = "kingdom"
 	end
 	love.graphics.rectangle("fill", tx+10+townframe_x+10, ty+10, townframe_x, townframe_y) --merchants window
 	--now list the town items at tx+10
@@ -101,13 +100,17 @@ function show_transaction_menu() --allows you to choose what you are selling.
 			tx+20+townframe_x+10, ty-10+(text_width*i)) --merchants window 
 		end
 	end	--now list the merchant items at x+10+townframe_x+10
+	love.graphics.setColor(255,255,255,255)
+	local buysellx = tx+10+townframe_x+tsx
+	local buyselly = 200
+	love.graphics.print("Buy  +", buysellx, buyselly)
+	love.graphics.print("Sell -", buysellx, buyselly+64)
 end
 function add_merchant_inventory()
 	for i,v in ipairs(merchant_inventory) do
 		merchant_inventory[i] = math.random(0,50)
 	end
-	
-   kingdom_inventory_forsale[1] = kingdom_inventory.wood -- math.random(0,50) --wood
+	kingdom_inventory_forsale[1] = kingdom_inventory.wood -- math.random(0,50) --wood
    kingdom_inventory_forsale[2] = kingdom_inventory.sakura --= math.random(0,50) --sakura
    kingdom_inventory_forsale[3] = kingdom_inventory.bamboo --= math.random(0,50) --bamboo
    kingdom_inventory_forsale[4] = kingdom_inventory.carrots --= math.random(0,50)
