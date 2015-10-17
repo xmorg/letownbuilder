@@ -64,6 +64,8 @@ function show_transaction_menu() --allows you to choose what you are selling.
 	local tsx = 500	local tsy = 480
 	local townframe_x = 200 local townframe_y = 450
 	local merchantframe_x = 200 local merchantframe_y = 450
+	local buysellx = tx+10+townframe_x+tsx
+	local buyselly = 200
 	love.graphics.setColor(70,70,70,255)
 	love.graphics.rectangle("fill", tx, ty, tsx+150, tsy ) --make a white rectangle
 	love.graphics.setColor(80,80,80,255)
@@ -88,7 +90,7 @@ function show_transaction_menu() --allows you to choose what you are selling.
 			love.graphics.print(lookup_table[i].." ("..kingdom_inventory_forsale[i]..")",
 			tx+20,  ty-10+(text_width*i)) 
 		end
-	end --show_transaction_menu()
+	end 
 	for i,v in ipairs(lookup_table) do --merchant inventory
 		if i > merchant_window.scroll_offset and i < merchant_window.merchant_scroll_offset+merchant_window.scroll_offset_max_items then
 		if i == merchant_window.selected_merchant_item and merchant_window.active_inventory == "merchant" then 
@@ -101,11 +103,10 @@ function show_transaction_menu() --allows you to choose what you are selling.
 		end
 	end	--now list the merchant items at x+10+townframe_x+10
 	love.graphics.setColor(255,255,255,255)
-	local buysellx = tx+10+townframe_x+tsx
-	local buyselly = 200
 	love.graphics.print("Buy  +", buysellx, buyselly)
 	love.graphics.print("Sell -", buysellx, buyselly+64)
-end
+end --show_transaction_menu()
+
 function add_merchant_inventory()
 	for i,v in ipairs(merchant_inventory) do
 		merchant_inventory[i] = math.random(0,50)
