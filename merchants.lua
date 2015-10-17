@@ -30,7 +30,9 @@ merchant_window = {
 	scroll_offset_max_items = 30,
 	merchant_scroll_offset = 0,
 	selected_town_item = 1,
-	selected_merchant_item = 1
+	selected_merchant_item = 1,
+	town_transactions = 0,
+	merchant_transaction = 0
 }
 
 merchant_inventory = { --only includes tradeable items.
