@@ -104,7 +104,9 @@ function show_transaction_menu() --allows you to choose what you are selling.
 	end	--now list the merchant items at x+10+townframe_x+10
 	love.graphics.setColor(255,255,255,255)
 	love.graphics.print("Buy  +", buysellx, buyselly)
-	love.graphics.print("Sell -", buysellx, buyselly+32)
+	love.graphics.print("Sell -", buysellx, buyselly+16)
+	love.graphics.print("Town:      ", buysellx, buyselly+32)
+	love.graphics.print("Merchants: ", buysellx, buyselly+48)
 end --show_transaction_menu()
 
 function add_merchant_inventory()
