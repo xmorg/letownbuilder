@@ -64,7 +64,7 @@ function show_transaction_menu() --allows you to choose what you are selling.
 	local tsx = 500	local tsy = 480
 	local townframe_x = 200 local townframe_y = 450
 	local merchantframe_x = 200 local merchantframe_y = 450
-	local buysellx = tx+10+townframe_x+tsx
+	local buysellx = tx+10+tsx
 	local buyselly = 200
 	love.graphics.setColor(70,70,70,255)
 	love.graphics.rectangle("fill", tx, ty, tsx+150, tsy ) --make a white rectangle
