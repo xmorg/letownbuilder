@@ -25,10 +25,10 @@ price_table = {1, 1, 1, 1, 1,
 
 merchant_window = {
 	merchants_name = "merchants",
-	scroll_offset = 0,
+	scroll_offset = 1,
 	active_inventory = "merchant",
 	scroll_offset_max_items = 30,
-	merchant_scroll_offset = 0,
+	merchant_scroll_offset = 1,
 	selected_town_item = 1,
 	selected_merchant_item = 1,
 	town_transactions = 0,
