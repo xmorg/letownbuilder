@@ -36,28 +36,28 @@ merchant_window = {
 }
 
 merchant_inventory = { --only includes tradeable items.
-0, 0, 0, 0,  0,	--wood = 0, sakura = 0, bamboo = 0, carrots = 0, sansai = 0,
-0, 0,  0, 0,--raw_meat =0, smoked_meat = 0, tomatoes = 0, saltwort = 0,
-0,  0,  0,  0,  0,--mushrooms = 0, fish = 0, smoked_fish = 0, grain = 0, cherries = 0,
-0, 0, 0, 0,--fishwine = 0, paleale=0, apples = 0, desert_onions = 0,
-0, 0, 0, 0,--rocks = 0, iron_ore = 0, rocksalt = 0, sandstone = 0,
-2, 0, 0, 0, --tools = 2, weapons = 0, pelts = 0, seeds = 0, 
-0, 0, 0, 0,--gold_treasures=0, iron_treasures=0, gold_coins=0, iron_coins=0,
-0, 0, 0,--iron_ingots = 0, gold_ore = 0, gold_ingots = 0,
-0,--women = 0,
-0--men = 0
+	0, 0, 0, 0,  0,	--wood = 0, sakura = 0, bamboo = 0, carrots = 0, sansai = 0,
+	0, 0,  0, 0,--raw_meat =0, smoked_meat = 0, tomatoes = 0, saltwort = 0,
+	0,  0,  0,  0,  0,--mushrooms = 0, fish = 0, smoked_fish = 0, grain = 0, cherries = 0,
+	0, 0, 0, 0,--fishwine = 0, paleale=0, apples = 0, desert_onions = 0,
+	0, 0, 0, 0,--rocks = 0, iron_ore = 0, rocksalt = 0, sandstone = 0,
+	2, 0, 0, 0, --tools = 2, weapons = 0, pelts = 0, seeds = 0, 
+	0, 0, 0, 0,--gold_treasures=0, iron_treasures=0, gold_coins=0, iron_coins=0,
+	0, 0, 0,--iron_ingots = 0, gold_ore = 0, gold_ingots = 0,
+	0,--women = 0,
+	0--men = 0
 }
 postsale_merchant_inventory = { --only includes tradeable items.
-0, 0, 0, 0,  0,	--wood = 0, sakura = 0, bamboo = 0, carrots = 0, sansai = 0,
-0, 0,  0, 0,--raw_meat =0, smoked_meat = 0, tomatoes = 0, saltwort = 0,
-0,  0,  0,  0,  0,--mushrooms = 0, fish = 0, smoked_fish = 0, grain = 0, cherries = 0,
-0, 0, 0, 0,--fishwine = 0, paleale=0, apples = 0, desert_onions = 0,
-0, 0, 0, 0,--rocks = 0, iron_ore = 0, rocksalt = 0, sandstone = 0,
-2, 0, 0, 0, --tools = 2, weapons = 0, pelts = 0, seeds = 0, 
-0, 0, 0, 0,--gold_treasures=0, iron_treasures=0, gold_coins=0, iron_coins=0,
-0, 0, 0,--iron_ingots = 0, gold_ore = 0, gold_ingots = 0,
-0,--women = 0,
-0--men = 0
+	0, 0, 0, 0,  0,	--wood = 0, sakura = 0, bamboo = 0, carrots = 0, sansai = 0,
+	0, 0,  0, 0,--raw_meat =0, smoked_meat = 0, tomatoes = 0, saltwort = 0,
+	0,  0,  0,  0,  0,--mushrooms = 0, fish = 0, smoked_fish = 0, grain = 0, cherries = 0,
+	0, 0, 0, 0,--fishwine = 0, paleale=0, apples = 0, desert_onions = 0,
+	0, 0, 0, 0,--rocks = 0, iron_ore = 0, rocksalt = 0, sandstone = 0,
+	2, 0, 0, 0, --tools = 2, weapons = 0, pelts = 0, seeds = 0, 
+	0, 0, 0, 0,--gold_treasures=0, iron_treasures=0, gold_coins=0, iron_coins=0,
+	0, 0, 0,--iron_ingots = 0, gold_ore = 0, gold_ingots = 0,
+	0,--women = 0,
+	0--men = 0
 }
 postsale_town_inventory = { --only includes tradeable items.
 0, 0, 0, 0,  0,	--wood = 0, sakura = 0, bamboo = 0, carrots = 0, sansai = 0,
