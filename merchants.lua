@@ -93,7 +93,7 @@ function show_transaction_menu() --allows you to choose what you are selling.
 		end
 	end 
 	for i,v in ipairs(lookup_table) do --merchant inventory
-		if i > merchant_window.scroll_offset and i < merchant_window.merchant_scroll_offset+merchant_window.scroll_offset_max_items then
+		if i >= merchant_window.scroll_offset and i <= merchant_window.merchant_scroll_offset+merchant_window.scroll_offset_max_items then
 		if i == merchant_window.selected_merchant_item and merchant_window.active_inventory == "merchant" then 
 			love.graphics.setColor(100,100,100,255)
 			love.graphics.rectangle("fill", tx+10+townframe_x+10, ty+10+text_width*i, townframe_x, text_width) --town window
