@@ -80,8 +80,7 @@ function show_transaction_menu() --allows you to choose what you are selling.
 		love.graphics.setColor(255,255,255,255) --active_inventory = "kingdom"
 	end
 	love.graphics.rectangle("fill", tx+10+townframe_x+10, ty+10, townframe_x, townframe_y) --merchants window
-	--now list the town items at tx+10
-	love.graphics.setColor(0,0,0,255)
+	love.graphics.setColor(0,0,0,255) --now list the town items at tx+10
 	for i,v in ipairs(lookup_table) do
 		if i > merchant_window.scroll_offset and i < merchant_window.scroll_offset+merchant_window.scroll_offset_max_items then
 			if i == merchant_window.selected_town_item and merchant_window.active_inventory == "kingdom" then 
@@ -116,27 +115,27 @@ function add_merchant_inventory()
 		merchant_inventory[i] = math.random(0,50)
 	end
 	kingdom_inventory_forsale[1] = kingdom_inventory.wood -- math.random(0,50) --wood
-   kingdom_inventory_forsale[2] = kingdom_inventory.sakura --= math.random(0,50) --sakura
-   kingdom_inventory_forsale[3] = kingdom_inventory.bamboo --= math.random(0,50) --bamboo
-   kingdom_inventory_forsale[4] = kingdom_inventory.carrots --= math.random(0,50)
-   kingdom_inventory_forsale[5] = kingdom_inventory.sansai --= math.random(0,50)
-   kingdom_inventory_forsale[6] = kingdom_inventory.raw_meat --= math.random(0,50)
-   kingdom_inventory_forsale[7] = kingdom_inventory.smoked_meat --= math.random(0,50)
-   kingdom_inventory_forsale[8] = kingdom_inventory.tomatoes --= math.random(0,50)
-   kingdom_inventory_forsale[9] = kingdom_inventory.mushrooms --= math.random(0,50)
-   kingdom_inventory_forsale[10] = kingdom_inventory.fish --= math.random(0,50)
-   kingdom_inventory_forsale[11] = kingdom_inventory.smoked_fish --= math.random(0,50)
-   kingdom_inventory_forsale[12] = kingdom_inventory.grain --= math.random(0,50)
-   kingdom_inventory_forsale[13] = kingdom_inventory.cherries --= math.random(0,50)
-   kingdom_inventory_forsale[14] = kingdom_inventory.fishwine --= math.random(0,50)
-   kingdom_inventory_forsale[15] = kingdom_inventory.paleale--=math.random(0,50)
-   kingdom_inventory_forsale[16] = kingdom_inventory.rocks --= math.random(0,50)
-   kingdom_inventory_forsale[17] = kingdom_inventory.iron_ore --= math.random(0,50)
-   kingdom_inventory_forsale[18] = kingdom_inventory.iron_ingots --= math.random(0,50)
-   kingdom_inventory_forsale[19] = kingdom_inventory.gold_ore --= math.random(0,50)
-   kingdom_inventory_forsale[20] = kingdom_inventory.gold_ingots --= math.random(0,50)
-   kingdom_inventory_forsale[21] = 0 --kingdom_inventory.women --= math.random(0,50)
-   kingdom_inventory_forsale[22] = 0 --kingdom_inventory.men --= math.random(0,50)
+   	kingdom_inventory_forsale[2] = kingdom_inventory.sakura --= math.random(0,50) --sakura
+   	kingdom_inventory_forsale[3] = kingdom_inventory.bamboo --= math.random(0,50) --bamboo
+   	kingdom_inventory_forsale[4] = kingdom_inventory.carrots --= math.random(0,50)
+   	kingdom_inventory_forsale[5] = kingdom_inventory.sansai --= math.random(0,50)
+   	kingdom_inventory_forsale[6] = kingdom_inventory.raw_meat --= math.random(0,50)
+   	kingdom_inventory_forsale[7] = kingdom_inventory.smoked_meat --= math.random(0,50)
+   	kingdom_inventory_forsale[8] = kingdom_inventory.tomatoes --= math.random(0,50)
+   	kingdom_inventory_forsale[9] = kingdom_inventory.mushrooms --= math.random(0,50)
+   	kingdom_inventory_forsale[10] = kingdom_inventory.fish --= math.random(0,50)
+   	kingdom_inventory_forsale[11] = kingdom_inventory.smoked_fish --= math.random(0,50)
+   	kingdom_inventory_forsale[12] = kingdom_inventory.grain --= math.random(0,50)
+   	kingdom_inventory_forsale[13] = kingdom_inventory.cherries --= math.random(0,50)
+   	kingdom_inventory_forsale[14] = kingdom_inventory.fishwine --= math.random(0,50)
+   	kingdom_inventory_forsale[15] = kingdom_inventory.paleale--=math.random(0,50)
+   	kingdom_inventory_forsale[16] = kingdom_inventory.rocks --= math.random(0,50)
+   	kingdom_inventory_forsale[17] = kingdom_inventory.iron_ore --= math.random(0,50)
+   	kingdom_inventory_forsale[18] = kingdom_inventory.iron_ingots --= math.random(0,50)
+   	kingdom_inventory_forsale[19] = kingdom_inventory.gold_ore --= math.random(0,50)
+   	kingdom_inventory_forsale[20] = kingdom_inventory.gold_ingots --= math.random(0,50)
+   	kingdom_inventory_forsale[21] = 0 --kingdom_inventory.women --= math.random(0,50)
+   	kingdom_inventory_forsale[22] = 0 --kingdom_inventory.men --= math.random(0,50)
 
 end
 function remove_merchant_inventory()
@@ -306,22 +305,22 @@ function merchants_leave() -- merchants left
 end
 
 function merchants_arrive() -- done every 3rd day
-   local arrive = math.random(1,10)
-   if game.merchant_arrived == 0 then
-      if game.day_count % 3 == 0 then
-	 if kingdom_inventory.unrest > 60 then
-	    --tales of your riotous villagers have scared away merchants
-	    message_que_add("tales of your riotous villagers have scared away merchants!".."("..x.."X"..y..")", 300, 1)
-	 elseif arrive < 2 then
-	    message_que_add("no merchants arrived today", 300, 1) --merchants arrive on 3rd day, 80% chance.
-	 else
-	    game.merchant_arrived = 1 --set merchants arrived flag = 1
-	    spawn_merchants()
-	 end--endif
-      end--endif
-   else -- merchant already arrived, update location
-      update_merchant_location()
-   end--endif
+	local arrive = math.random(1,10)
+	if game.merchant_arrived == 0 then
+		if game.day_count % 3 == 0 then
+			if kingdom_inventory.unrest > 60 then
+				--tales of your riotous villagers have scared away merchants
+				message_que_add("tales of your riotous villagers have scared away merchants!".."("..x.."X"..y..")", 300, 1)
+			elseif arrive < 2 then
+				message_que_add("no merchants arrived today", 300, 1) --merchants arrive on 3rd day, 80% chance.
+			else
+				game.merchant_arrived = 1 --set merchants arrived flag = 1
+				spawn_merchants()
+			end--endif
+		end--endif
+	else -- merchant already arrived, update location
+		update_merchant_location()
+   	end--endif
 end
 function draw_merchants()
    for i,v in ipairs(game_merchants) do
