@@ -609,10 +609,10 @@ function love.keypressed(key)
 			end
 		end
 		if key == "down" then --fixme, go all the way down
-			if merchant_window.active_inventory == "merchant" and merchant_window.selected_merchant_item < 18 then 
+			if merchant_window.active_inventory == "merchant" and merchant_window.selected_merchant_item < 28 then 
 				merchant_window.selected_merchant_item=merchant_window.selected_merchant_item+1
 			end
-			if merchant_window.active_inventory == "kingdom" and merchant_window.selected_town_item < 18 then
+			if merchant_window.active_inventory == "kingdom" and merchant_window.selected_town_item < 28 then
 				merchant_window.selected_town_item=merchant_window.selected_town_item+1
 			end
 		end
