@@ -89,7 +89,7 @@ function show_transaction_menu() --allows you to choose what you are selling.
 				love.graphics.setColor(0,0,0,255)
 			end
 			love.graphics.print(lookup_table[i].." ("..kingdom_inventory_forsale[i]..")",
-			tx+20,  ty-10+(text_width*i)) 
+			tx+20,  ty-10+(text_width*i)+text_width) 
 		end
 	end 
 	for i,v in ipairs(lookup_table) do --merchant inventory
