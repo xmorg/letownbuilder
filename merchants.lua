@@ -63,7 +63,7 @@ kingdom_inventory_forsale =  { --only includes tradeable items.
 function show_transaction_menu() --allows you to choose what you are selling.
 	local text_width = 16
 	local tx = 64	local ty = 64
-	local tsx = 500	local tsy = 532
+	local tsx = 500	local tsy = 562
 	local townframe_x = 200 local townframe_y = 512
 	local merchantframe_x = 200 local merchantframe_y = 512
 	local buysellx = tsx
