@@ -104,6 +104,15 @@ function input_merchant_sale_keyes(key)
 			merchant_window.selected_town_item=merchant_window.selected_town_item+1
 		end
 	end
+	if key == "+" then -- bought something
+		postsale_merchant_inventory[selected_merchant_item] = postsale_merchant_inventory[selected_merchant_item]-1
+		postsale_town_inventory[selected_merchant_item] = postsale_town_inventory[selected_merchant_item]+1
+	end
+	if key == "-" then -- sold something
+		postsale_town_inventory[selected_town_item] = postsale_town_inventory[selected_town_item]-1
+		postsale_merchant_inventory[selected_town_item] = postsale_merchant_inventory[selected_town_item]+1
+		--what about cost?
+	end
 end
 
 
