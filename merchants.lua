@@ -84,6 +84,29 @@ kingdom_inventory_forsale =  { --only includes tradeable items.
 0--men = 0
 }
 
+
+function input_merchant_sale_keyes(key)
+	if key == "left" then merchant_window.active_inventory = "kingdom" end
+	if key == "right" then merchant_window.active_inventory = "merchant" end
+	if key == "up" then --fixme come all the way up.
+		if merchant_window.active_inventory == "merchant" and merchant_window.selected_merchant_item > 0 then 
+			merchant_window.selected_merchant_item=merchant_window.selected_merchant_item-1
+		end
+		if merchant_window.active_inventory == "kingdom" and merchant_window.selected_town_item > 0 then
+			merchant_window.selected_town_item=merchant_window.selected_town_item-1
+		end
+	end
+	if key == "down" then --fixme, go all the way down
+		if merchant_window.active_inventory == "merchant" and merchant_window.selected_merchant_item < 28 then 
+			merchant_window.selected_merchant_item=merchant_window.selected_merchant_item+1
+		end
+		if merchant_window.active_inventory == "kingdom" and merchant_window.selected_town_item < 28 then
+			merchant_window.selected_town_item=merchant_window.selected_town_item+1
+		end
+	end
+end
+
+
 function show_transaction_menu() --allows you to choose what you are selling.
 	local text_width = 16
 	local tx = 64	local ty = 64
