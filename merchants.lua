@@ -53,7 +53,7 @@ postsale_merchant_inventory = { --only includes tradeable items.
 	0,  0,  0,  0,  0,--mushrooms = 0, fish = 0, smoked_fish = 0, grain = 0, cherries = 0,
 	0, 0, 0, 0,--fishwine = 0, paleale=0, apples = 0, desert_onions = 0,
 	0, 0, 0, 0,--rocks = 0, iron_ore = 0, rocksalt = 0, sandstone = 0,
-	2, 0, 0, 0, --tools = 2, weapons = 0, pelts = 0, seeds = 0, 
+	0, 0, 0, 0, --tools = 2, weapons = 0, pelts = 0, seeds = 0, 
 	0, 0, 0, 0,--gold_treasures=0, iron_treasures=0, gold_coins=0, iron_coins=0,
 	0, 0, 0,--iron_ingots = 0, gold_ore = 0, gold_ingots = 0,
 	0,--women = 0,
@@ -65,7 +65,7 @@ postsale_town_inventory = { --only includes tradeable items.
 0,  0,  0,  0,  0,--mushrooms = 0, fish = 0, smoked_fish = 0, grain = 0, cherries = 0,
 0, 0, 0, 0,--fishwine = 0, paleale=0, apples = 0, desert_onions = 0,
 0, 0, 0, 0,--rocks = 0, iron_ore = 0, rocksalt = 0, sandstone = 0,
-2, 0, 0, 0, --tools = 2, weapons = 0, pelts = 0, seeds = 0, 
+0, 0, 0, 0, --tools = 2, weapons = 0, pelts = 0, seeds = 0, 
 0, 0, 0, 0,--gold_treasures=0, iron_treasures=0, gold_coins=0, iron_coins=0,
 0, 0, 0,--iron_ingots = 0, gold_ore = 0, gold_ingots = 0,
 0,--women = 0,
@@ -113,7 +113,7 @@ function show_transaction_menu() --allows you to choose what you are selling.
 				love.graphics.rectangle("fill", tx+10, ty+10+text_width*i, townframe_x, text_width) --selection 
 				love.graphics.setColor(0,0,0,255)
 			end
-			love.graphics.print(lookup_table[i].." ("..kingdom_inventory_forsale[i]..")",
+			love.graphics.print(lookup_table[i].." ("..kingdom_inventory_forsale[i]+postsale_town_inventory[i]..")",
 			tx+20,  ty-10+(text_width*i)+text_width) 
 		end
 	end
@@ -125,7 +125,7 @@ function show_transaction_menu() --allows you to choose what you are selling.
 			love.graphics.rectangle("fill", tx+10+townframe_x+10, ty+10+text_width*i, townframe_x, text_width) --town window
 			love.graphics.setColor(0,0,0,255)
 		end
-		love.graphics.print(lookup_table[i].." ("..merchant_inventory[i]..")",
+		love.graphics.print(lookup_table[i].." ("..merchant_inventory[i]+postsale_merchant_inventory..")",
 			tx+20+townframe_x+10, ty-10+(text_width*i)+text_width) --merchants window 
 		end
 	end	--now list the merchant items at x+10+townframe_x+10
