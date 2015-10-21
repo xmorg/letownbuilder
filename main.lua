@@ -599,14 +599,6 @@ end
 function love.keypressed(key)
 	if game.merchant_menu == 1 then
 		input_merchant_sale_keyes(key)
-		if key == "down" then --fixme, go all the way down
-			if merchant_window.active_inventory == "merchant" and merchant_window.selected_merchant_item < 28 then 
-				merchant_window.selected_merchant_item=merchant_window.selected_merchant_item+1
-			end
-			if merchant_window.active_inventory == "kingdom" and merchant_window.selected_town_item < 28 then
-				merchant_window.selected_town_item=merchant_window.selected_town_item+1
-			end
-		end
     end
 	if game.disablekeyboard == 0 then
 		if key == "e" then
