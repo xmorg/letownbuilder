@@ -105,16 +105,19 @@ function input_merchant_sale_keyes(key)
 		end
 	end
 	if key == "+" then -- bought something
-		postsale_merchant_inventory[merchant_window.selected_merchant_item] = postsale_merchant_inventory[merchant_window.selected_merchant_item]-1
-		postsale_town_inventory[merchant_window.selected_merchant_item] = postsale_town_inventory[merchant_window.selected_merchant_item]+1
-		merchant_window.merchant_transactions = merchant_window.merchant_transactions+price_table[merchant_window.selected_merchant_item]
+		if merchant_inventory[merchant_window.selected_town_item] + postsale_merchant_inventory[merchant_window.selected_merchant_item] > 0 then
+			postsale_merchant_inventory[merchant_window.selected_merchant_item] = postsale_merchant_inventory[merchant_window.selected_merchant_item]-1
+			postsale_town_inventory[merchant_window.selected_merchant_item] = postsale_town_inventory[merchant_window.selected_merchant_item]+1
+			merchant_window.merchant_transactions = merchant_window.merchant_transactions+price_table[merchant_window.selected_merchant_item]
+			merchant_window.town_transactions = merchant_window.town_transactions-price_table[merchant_window.selected_town_item] 
+		end
 	end
 	if key == "-" then -- town sold something
 		if kingdom_inventory_forsale[merchant_window.selected_town_item] + postsale_town_inventory[merchant_window.selected_town_item] > 0 then
 			postsale_town_inventory[merchant_window.selected_town_item] = postsale_town_inventory[merchant_window.selected_town_item]-1 --remove item from town
 			postsale_merchant_inventory[merchant_window.selected_town_item] = postsale_merchant_inventory[merchant_window.selected_town_item]+1 --add item to merchant
 			merchant_window.town_transactions = merchant_window.town_transactions+price_table[merchant_window.selected_town_item] --add town transaction to trade
-			--merchant_window.
+			merchant_window.merchant_transactions = merchant_window.merchant_transactions-price_table[merchant_window.selected_merchant_item]
 		end
 	end
 end
