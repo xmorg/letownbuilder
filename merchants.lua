@@ -32,7 +32,7 @@ merchant_window = {
 	selected_town_item = 1,
 	selected_merchant_item = 1,
 	town_transactions = 0,
-	merchant_transaction = 0
+	merchant_transactions = 0
 }
 
 merchant_inventory = { --only includes tradeable items.
