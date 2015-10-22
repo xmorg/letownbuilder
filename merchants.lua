@@ -84,7 +84,7 @@ kingdom_inventory_forsale =  { --only includes tradeable items.
 0--men = 0
 }
 
-function on_trade_complete()
+function on_trade_complete() --completed trade, assign all resource back to town
 	kingdom_inventory.wood = kingdom_inventory_forsale[1] + postsale_town_inventory[1] -- math.random(0,50) --wood
 	kingdom_inventory.sakura = kingdom_inventory_forsale[2] + postsale_town_inventory[2] --= math.random(0,50) --sakura
 	kingdom_inventory.bamboo = kingdom_inventory_forsale[3] +  postsale_town_inventory[3]--= math.random(0,50) --bamboo
@@ -92,19 +92,19 @@ function on_trade_complete()
 	kingdom_inventory.sansai = kingdom_inventory_forsale[5] + postsale_town_inventory[5] --= math.random(0,50)
 	kingdom_inventory.raw_meat = kingdom_inventory_forsale[6] + postsale_town_inventory[6] --= math.random(0,50)
    	kingdom_inventory.smoked_meat = kingdom_inventory_forsale[7] + postsale_town_inventory[7]  --= math.random(0,50)
-   	kingdom_inventory_forsale[8] = kingdom_inventory.tomatoes --= math.random(0,50)
-   	kingdom_inventory_forsale[9] = kingdom_inventory.mushrooms --= math.random(0,50)
-   	kingdom_inventory_forsale[10] = kingdom_inventory.fish --= math.random(0,50)
-   	kingdom_inventory_forsale[11] = kingdom_inventory.smoked_fish --= math.random(0,50)
-   	kingdom_inventory_forsale[12] = kingdom_inventory.grain --= math.random(0,50)
-   	kingdom_inventory_forsale[13] = kingdom_inventory.cherries --= math.random(0,50)
-   	kingdom_inventory_forsale[14] = kingdom_inventory.fishwine --= math.random(0,50)
-   	kingdom_inventory_forsale[15] = kingdom_inventory.paleale--=math.random(0,50)
-   	kingdom_inventory_forsale[16] = kingdom_inventory.rocks --= math.random(0,50)
-   	kingdom_inventory_forsale[17] = kingdom_inventory.iron_ore --= math.random(0,50)
-   	kingdom_inventory_forsale[18] = kingdom_inventory.iron_ingots --= math.random(0,50)
-   	kingdom_inventory_forsale[19] = kingdom_inventory.gold_ore --= math.random(0,50)
-   	kingdom_inventory_forsale[20] = kingdom_inventory.gold_ingots --= math.random(0,50)
+   	kingdom_inventory.tomatoes = kingdom_inventory_forsale[8] + postsale_town_inventory[8] --= math.random(0,50)
+   	kingdom_inventory.mushrooms = kingdom_inventory_forsale[9] + postsale_town_inventory[9] --= math.random(0,50)
+   	kingdom_inventory.fish = kingdom_inventory_forsale[10] + postsale_town_inventory[10] --= math.random(0,50)
+   	kingdom_inventory.smoked_fish = kingdom_inventory_forsale[11] + postsale_town_inventory[11] --= math.random(0,50)
+   	kingdom_inventory.grain = kingdom_inventory_forsale[12] + postsale_town_inventory[12] --= math.random(0,50)
+   	kingdom_inventory.cherries = kingdom_inventory_forsale[13] + postsale_town_inventory[13]--= math.random(0,50)
+   	kingdom_inventory.fishwine = kingdom_inventory_forsale[14] + postsale_town_inventory[14] --= math.random(0,50)
+   	kingdom_inventory.paleale = kingdom_inventory_forsale[15] + postsale_town_inventory[15] --=math.random(0,50)
+   	kingdom_inventory.rocks = kingdom_inventory_forsale[16]  + postsale_town_inventory[16]  --= math.random(0,50)
+   	kingdom_inventory.iron_ore = kingdom_inventory_forsale[17] + postsale_town_inventory[17]  --= math.random(0,50)
+   	kingdom_inventory.iron_ingots = kingdom_inventory_forsale[18] +postsale_town_inventory[18]  --= math.random(0,50)
+   	kingdom_inventory.gold_ore = kingdom_inventory_forsale[19] +postsale_town_inventory[19]  --= math.random(0,50)
+   	kingdom_inventory.gold_ingots = kingdom_inventory_forsale[20] +postsale_town_inventory[20]  --= math.random(0,50)
 	end
 	--transfer the items to merchant(not required)
 	merchant_menu = 0 --close menu
