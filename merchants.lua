@@ -164,7 +164,7 @@ function show_transaction_menu() --allows you to choose what you are selling.
 			love.graphics.rectangle("fill", tx+10+townframe_x+10, ty+10+text_width*i, townframe_x, text_width) --town window
 			love.graphics.setColor(0,0,0,255)
 		end
-		love.graphics.print(lookup_table[i].." ("..merchant_inventory[i]+postsale_merchant_inventory..")",
+		love.graphics.print(lookup_table[i].." ("..merchant_inventory[i]+postsale_merchant_inventory[i]..")",
 			tx+20+townframe_x+10, ty-10+(text_width*i)+text_width) --merchants window 
 		end
 	end	--now list the merchant items at x+10+townframe_x+10
