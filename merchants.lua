@@ -85,7 +85,28 @@ kingdom_inventory_forsale =  { --only includes tradeable items.
 }
 
 function on_trade_complete()
-	--transfer the items to town
+	for for i,v in ipairs(lookup_table) do--transfer the items to town
+		kingdom_inventory.wood = kingdom_inventory_forsale[1] + postsale_town_inventory[1] -- math.random(0,50) --wood
+		kingdom_inventory.sakura = kingdom_inventory_forsale[2] + postsale_town_inventory[2] --= math.random(0,50) --sakura
+		kingdom_inventory_forsale[3] = kingdom_inventory.bamboo --= math.random(0,50) --bamboo
+		kingdom_inventory_forsale[4] = kingdom_inventory.carrots --= math.random(0,50)
+		kingdom_inventory_forsale[5] = kingdom_inventory.sansai --= math.random(0,50)
+		kingdom_inventory_forsale[6] = kingdom_inventory.raw_meat --= math.random(0,50)
+   	kingdom_inventory_forsale[7] = kingdom_inventory.smoked_meat --= math.random(0,50)
+   	kingdom_inventory_forsale[8] = kingdom_inventory.tomatoes --= math.random(0,50)
+   	kingdom_inventory_forsale[9] = kingdom_inventory.mushrooms --= math.random(0,50)
+   	kingdom_inventory_forsale[10] = kingdom_inventory.fish --= math.random(0,50)
+   	kingdom_inventory_forsale[11] = kingdom_inventory.smoked_fish --= math.random(0,50)
+   	kingdom_inventory_forsale[12] = kingdom_inventory.grain --= math.random(0,50)
+   	kingdom_inventory_forsale[13] = kingdom_inventory.cherries --= math.random(0,50)
+   	kingdom_inventory_forsale[14] = kingdom_inventory.fishwine --= math.random(0,50)
+   	kingdom_inventory_forsale[15] = kingdom_inventory.paleale--=math.random(0,50)
+   	kingdom_inventory_forsale[16] = kingdom_inventory.rocks --= math.random(0,50)
+   	kingdom_inventory_forsale[17] = kingdom_inventory.iron_ore --= math.random(0,50)
+   	kingdom_inventory_forsale[18] = kingdom_inventory.iron_ingots --= math.random(0,50)
+   	kingdom_inventory_forsale[19] = kingdom_inventory.gold_ore --= math.random(0,50)
+   	kingdom_inventory_forsale[20] = kingdom_inventory.gold_ingots --= math.random(0,50)
+	end
 	--transfer the items to merchant(not required)
 	merchant_menu = 0 --close menu
 end
