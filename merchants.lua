@@ -104,7 +104,7 @@ function input_merchant_sale_keyes(key)
 			merchant_window.selected_town_item=merchant_window.selected_town_item+1
 		end
 	end
-	if key == "+" then -- bought something
+	if key == "+" or key == "=" then -- bought something
 		if merchant_inventory[merchant_window.selected_town_item] + postsale_merchant_inventory[merchant_window.selected_merchant_item] > 0 then
 			postsale_merchant_inventory[merchant_window.selected_merchant_item] = postsale_merchant_inventory[merchant_window.selected_merchant_item]-1
 			postsale_town_inventory[merchant_window.selected_merchant_item] = postsale_town_inventory[merchant_window.selected_merchant_item]+1
