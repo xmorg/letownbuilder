@@ -84,7 +84,11 @@ kingdom_inventory_forsale =  { --only includes tradeable items.
 0--men = 0
 }
 
-
+function on_trade_complete()
+	--transfer the items to town
+	--transfer the items to merchant(not required)
+	--close menu
+end
 function input_merchant_sale_keyes(key)
 	if key == "left" then merchant_window.active_inventory = "kingdom" end
 	if key == "right" then merchant_window.active_inventory = "merchant" end
@@ -118,6 +122,11 @@ function input_merchant_sale_keyes(key)
 			postsale_merchant_inventory[merchant_window.selected_town_item] = postsale_merchant_inventory[merchant_window.selected_town_item]+1 --add item to merchant
 			merchant_window.town_transactions = merchant_window.town_transactions+price_table[merchant_window.selected_town_item] --add town transaction to trade
 			merchant_window.merchant_transactions = merchant_window.merchant_transactions-price_table[merchant_window.selected_merchant_item]
+		end
+	end
+	if key == "t" then --complete trade
+		if merchant_window.merchant_transactions >= 0 then --merchant profited
+			on_trade_complete()
 		end
 	end
 end
