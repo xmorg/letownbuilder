@@ -87,7 +87,7 @@ kingdom_inventory_forsale =  { --only includes tradeable items.
 function on_trade_complete()
 	--transfer the items to town
 	--transfer the items to merchant(not required)
-	--close menu
+	merchant_menu = 0 --close menu
 end
 function input_merchant_sale_keyes(key)
 	if key == "left" then merchant_window.active_inventory = "kingdom" end
