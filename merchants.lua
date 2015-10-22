@@ -85,14 +85,13 @@ kingdom_inventory_forsale =  { --only includes tradeable items.
 }
 
 function on_trade_complete()
-	for for i,v in ipairs(lookup_table) do--transfer the items to town
-		kingdom_inventory.wood = kingdom_inventory_forsale[1] + postsale_town_inventory[1] -- math.random(0,50) --wood
-		kingdom_inventory.sakura = kingdom_inventory_forsale[2] + postsale_town_inventory[2] --= math.random(0,50) --sakura
-		kingdom_inventory_forsale[3] = kingdom_inventory.bamboo --= math.random(0,50) --bamboo
-		kingdom_inventory_forsale[4] = kingdom_inventory.carrots --= math.random(0,50)
-		kingdom_inventory_forsale[5] = kingdom_inventory.sansai --= math.random(0,50)
-		kingdom_inventory_forsale[6] = kingdom_inventory.raw_meat --= math.random(0,50)
-   	kingdom_inventory_forsale[7] = kingdom_inventory.smoked_meat --= math.random(0,50)
+	kingdom_inventory.wood = kingdom_inventory_forsale[1] + postsale_town_inventory[1] -- math.random(0,50) --wood
+	kingdom_inventory.sakura = kingdom_inventory_forsale[2] + postsale_town_inventory[2] --= math.random(0,50) --sakura
+	kingdom_inventory.bamboo = kingdom_inventory_forsale[3] +  postsale_town_inventory[3]--= math.random(0,50) --bamboo
+	kingdom_inventory.carrots = kingdom_inventory_forsale[4] +  postsale_town_inventory[4] --= math.random(0,50)
+	kingdom_inventory.sansai = kingdom_inventory_forsale[5] + postsale_town_inventory[5] --= math.random(0,50)
+	kingdom_inventory.raw_meat = kingdom_inventory_forsale[6] + postsale_town_inventory[6] --= math.random(0,50)
+   	kingdom_inventory.smoked_meat = kingdom_inventory_forsale[7] + postsale_town_inventory[7]  --= math.random(0,50)
    	kingdom_inventory_forsale[8] = kingdom_inventory.tomatoes --= math.random(0,50)
    	kingdom_inventory_forsale[9] = kingdom_inventory.mushrooms --= math.random(0,50)
    	kingdom_inventory_forsale[10] = kingdom_inventory.fish --= math.random(0,50)
