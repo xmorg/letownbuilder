@@ -105,7 +105,6 @@ function on_trade_complete() --completed trade, assign all resource back to town
    	kingdom_inventory.iron_ingots = kingdom_inventory_forsale[18] +postsale_town_inventory[18]  --= math.random(0,50)
    	kingdom_inventory.gold_ore = kingdom_inventory_forsale[19] +postsale_town_inventory[19]  --= math.random(0,50)
    	kingdom_inventory.gold_ingots = kingdom_inventory_forsale[20] +postsale_town_inventory[20]  --= math.random(0,50)
-	end
 	--transfer the items to merchant(not required)
 	merchant_menu = 0 --close menu
 end
