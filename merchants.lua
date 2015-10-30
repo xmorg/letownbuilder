@@ -127,11 +127,11 @@ function input_merchant_sale_keyes(key)
 			merchant_window.selected_town_item=merchant_window.selected_town_item+1
 		end
 	end
-	if key == "+" or key == "=" then -- bought something
+	if key == "+" or key == "=" then -- bought something, your $ down merchant $ up?
 		if merchant_inventory[merchant_window.selected_town_item] + postsale_merchant_inventory[merchant_window.selected_merchant_item] > 0 then
 			postsale_merchant_inventory[merchant_window.selected_merchant_item] = postsale_merchant_inventory[merchant_window.selected_merchant_item]-1
 			postsale_town_inventory[merchant_window.selected_merchant_item] = postsale_town_inventory[merchant_window.selected_merchant_item]+1
-			merchant_window.merchant_transactions = merchant_window.merchant_transactions+price_table[merchant_window.selected_merchant_item]
+			--merchant_window.merchant_transactions = merchant_window.merchant_transactions+price_table[merchant_window.selected_merchant_item]
 			merchant_window.town_transactions = merchant_window.town_transactions-price_table[merchant_window.selected_town_item] 
 		end
 	end
@@ -140,7 +140,7 @@ function input_merchant_sale_keyes(key)
 			postsale_town_inventory[merchant_window.selected_town_item] = postsale_town_inventory[merchant_window.selected_town_item]-1 --remove item from town
 			postsale_merchant_inventory[merchant_window.selected_town_item] = postsale_merchant_inventory[merchant_window.selected_town_item]+1 --add item to merchant
 			merchant_window.town_transactions = merchant_window.town_transactions+price_table[merchant_window.selected_town_item] --add town transaction to trade
-			merchant_window.merchant_transactions = merchant_window.merchant_transactions-price_table[merchant_window.selected_merchant_item]
+			--merchant_window.merchant_transactions = merchant_window.merchant_transactions-price_table[merchant_window.selected_merchant_item]
 		end
 	end
 	if key == "t" then --complete trade
