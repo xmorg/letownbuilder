@@ -621,21 +621,21 @@ function love.keypressed(key)
 			end
 			go_fullscreen()
 		elseif key == "m" then  --disabled trading because its buggy.
-      			--if game.merchant_menu == 1 then game.merchant_menu = 0
-      			--else add_merchant_inventory() game.merchant_menu = 1 
-      		end
-      elseif key == "a" then
-	 if game.show_menu == 7 and game.started == 0 then
-	    game.show_menu = 1 --back to first menu
-	 elseif game.showmenu == 7 and game.started == 1 then
-	    game.show_menu = 0 -- back to the game.
-	 elseif game.show_menu == 1 and game.started == 0 then
-	    game.show_menu = 7
-	 elseif game.show_menu == 0 and game.started == 1 then
-	    game.show_menu = 7
-	 end
-      elseif key == "s" then
-	 love_crude_save() -- crude saving
+			--if game.merchant_menu == 1 then game.merchant_menu = 0
+			--else add_merchant_inventory() game.merchant_menu = 1
+			--end
+		elseif key == "a" then
+			if game.show_menu == 7 and game.started == 0 then
+				game.show_menu = 1 --back to first menu
+			elseif game.showmenu == 7 and game.started == 1 then
+				game.show_menu = 0 -- back to the game.
+			elseif game.show_menu == 1 and game.started == 0 then
+				game.show_menu = 7
+			elseif game.show_menu == 0 and game.started == 1 then
+				game.show_menu = 7
+			end
+		elseif key == "s" then
+			love_crude_save() -- crude saving
       elseif key == "c" then
 	 game.draw_x = 0--center the field of view
 	 game.draw_y = 0
@@ -661,6 +661,8 @@ function love.keypressed(key)
       end
    end--endif
 end
+
+
 
 ---------------------------------------
 function love.draw()
