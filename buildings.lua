@@ -518,12 +518,12 @@ function on_build_garden(garden_type)
       game_directives.job_type = "Cant build on water"
       game_directives.active = 0
       game.give_direction = "None"
-   elseif kingdom_inventory.seeds < 1 then
+   elseif kingdom_inventory.seeds < 3 then
       game_directives.job_type = "Not enough seeds(3)"
       game_directives.active = 0
       game.give_direction = "None"
    else
-      kingdom_inventory.wood = kingdom_inventory.seeds -3
+      kingdom_inventory.seeds = kingdom_inventory.seeds -3
       update_directives_loc(300, 1)
       game_directives.job_type = game.give_direction
       --do tomatoes here.
