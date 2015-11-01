@@ -110,7 +110,7 @@ function love.mousereleased(x, y, button)
 end
 
 
-function on_plow_where_click(garden_type)
+function on_plow_where_click()
    if game_map[game.tile_selected_y][game.tile_selected_x] > 2 then
       game_directives.job_type = "None."
       game_directives.active = 0
@@ -125,11 +125,11 @@ function on_plow_where_click(garden_type)
       game_directives.job_type = "Make garden"
       game.give_direction = "Plow where?"  --"None"
       villagers_do_job(game_directives.location_x, game_directives.location_y, "farmer")
-      if garden_type == "wheat" then
-	 game.house_to_build = 42
-      elseif garden_type == "tomatoes" then
-	 game.house_to_build = 1042 --are we using 1000?
-      end
+      --if garden_type == "wheat" then
+	-- game.house_to_build = 42
+      --elseif garden_type == "tomatoes" then
+	-- game.house_to_build = 1042 --are we using 1000?
+      --end
       create_job_forque()
       play_sound(sound_click)
       kingdom_inventory.seeds = kingdom_inventory.seeds-3
@@ -153,6 +153,7 @@ function on_tomatoes_where_click()
       villagers_do_job(game_directives.location_x, game_directives.location_y, "farmer")
       create_job_forque()
       play_sound(sound_click)
+      kingdom_inventory.seeds = kingdom_inventory.seeds-5
    end -- game_map[game.tile_selected_y][game.tile_selected_x] > 2 then
 end
 
