@@ -523,10 +523,8 @@ function on_build_garden(garden_type)
       game_directives.active = 0
       game.give_direction = "None"
    else
-      kingdom_inventory.seeds = kingdom_inventory.seeds -3
       update_directives_loc(300, 1)
       game_directives.job_type = game.give_direction
-      --do tomatoes here.
       if garden_type == "wheat" then
 	 game.house_to_build = 42
       elseif garden_type == "tomatoes" then
@@ -536,6 +534,7 @@ function on_build_garden(garden_type)
       villagers_do_job(game_directives.location_x, game_directives.location_y, "farmer")
       create_job_forque()
       play_sound(sound_build_house)
+      kingdom_inventory.seeds = kingdom_inventory.seeds -3
    end
 end
 
