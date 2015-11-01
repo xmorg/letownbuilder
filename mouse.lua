@@ -127,6 +127,7 @@ function on_plow_where_click()
       villagers_do_job(game_directives.location_x, game_directives.location_y, "farmer")
       create_job_forque()
       play_sound(sound_click)
+      kingdom_inventory.seeds = kingdom_inventory.seeds-3
    end -- game_map[game.tile_selected_y][game.tile_selected_x] > 2 then
 end
 
