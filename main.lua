@@ -620,9 +620,9 @@ function love.keypressed(key)
 				game.fullscreen_mode = "No" 
 			end
 			go_fullscreen()
-		elseif key == "m" then 
-      			if game.merchant_menu == 1 then game.merchant_menu = 0
-      			else add_merchant_inventory() game.merchant_menu = 1 
+		elseif key == "m" then  --disabled trading because its buggy.
+      			--if game.merchant_menu == 1 then game.merchant_menu = 0
+      			--else add_merchant_inventory() game.merchant_menu = 1 
       		end
       elseif key == "a" then
 	 if game.show_menu == 7 and game.started == 0 then
