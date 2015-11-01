@@ -513,30 +513,31 @@ function on_demolish_structure()
    end
 end
 
-function on_build_garden(garden_type)
-   if game_map[game.tile_selected_y][game.tile_selected_x] == game.water_tile then
-      game_directives.job_type = "Cant build on water"
-      game_directives.active = 0
-      game.give_direction = "None"
-   elseif kingdom_inventory.seeds < 3 then
-      game_directives.job_type = "Not enough seeds(3)"
-      game_directives.active = 0
-      game.give_direction = "None"
-   else
-      update_directives_loc(300, 1)
-      game_directives.job_type = game.give_direction
-      if garden_type == "wheat" then
-	 game.house_to_build = 42
-      elseif garden_type == "tomatoes" then
-	 game.house_to_build = 1042 --are we using 1000?
-      end
-      game.give_direction = "None"
-      villagers_do_job(game_directives.location_x, game_directives.location_y, "farmer")
-      create_job_forque()
-      play_sound(sound_build_house)
-      kingdom_inventory.seeds = kingdom_inventory.seeds -3
-   end
-end
+-- might be redundant? (mouse.lua)
+--function on_build_garden(garden_type)
+--   if game_map[game.tile_selected_y][game.tile_selected_x] == game.water_tile then
+--      game_directives.job_type = "Cant build on water"
+--      game_directives.active = 0
+--      game.give_direction = "None"
+--   elseif kingdom_inventory.seeds < 3 then
+--      game_directives.job_type = "Not enough seeds(3)"
+--      game_directives.active = 0
+--      game.give_direction = "None"
+--   else
+--      update_directives_loc(300, 1)
+--      game_directives.job_type = game.give_direction
+--      if garden_type == "wheat" then
+--	 game.house_to_build = 42
+--      elseif garden_type == "tomatoes" then
+--	 game.house_to_build = 1042 --are we using 1000?
+--      end
+--      game.give_direction = "None"
+--      villagers_do_job(game_directives.location_x, game_directives.location_y, "farmer")
+--      create_job_forque()
+--      play_sound(sound_build_house)
+--      kingdom_inventory.seeds = kingdom_inventory.seeds -3
+--   end
+--end
 
 function on_gather_food()
    if game.biome == "desert" then
