@@ -25,7 +25,8 @@ research_topics = { economy = 0,
 	smelter = 0,
 	smithy = 0,
 	militia_house = 0,
-	watchtower = 0
+	watchtower = 0,
+	church = 0
 }
 
 function update_research_directives()
