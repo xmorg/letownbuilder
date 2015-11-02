@@ -128,7 +128,7 @@ kingdom_inventory = {wood = 0, sakura = 0, bamboo = 0, carrots = 0, sansai = 0,
 	tradepost = 0, sheriff = 0, fishinghut = 0, ghosts=0,
 	villagers = 0, holyman = 0, dark_elves = 0, werewolves=0, families = 0,
 	dwarves = 0,
-	monument = 0, watchtower = 0, smelter = 0, brewery = 0, smithy = 0
+	monument = 0, watchtower = 0, smelter = 0, brewery = 0, smithy = 0, church = 0
 }
 
 require( "achivements" )
