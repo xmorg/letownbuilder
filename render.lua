@@ -748,7 +748,8 @@ function draw_select_house_to_build()
       if research_topics.smelter >= 1 then quick_task_icon64(64*7,64*4, 70, "smelter", 1, "game_tiles") end
       if research_topics.brewery >= 1 then quick_task_icon64(64*8,64*4, 71, "brewery", 1, "game_tiles") end
       --row 3 ---
-      if research_topics.smithy >= 1 then quick_task_icon64(64*1,64*5, 64, "smithy", 1, "game_tiles") end 
+      if research_topics.smithy >= 1 then quick_task_icon64(64*1,64*5, 64, "smithy", 1, "game_tiles") end
+      if research_topics.church >= 1 then quick_task_icon64(64*2,64*5, 64, "church", 1, "game_tiles") end --TODO change icon
    end
 end
 
