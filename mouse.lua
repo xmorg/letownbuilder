@@ -449,6 +449,11 @@ function love.mousepressed(x, y, button)
 	       build_house_directive("Build house", 64, 64)--smithy 
 	    end
 	 end
+	 elseif mouse_clicked_in64(x, y, 64*2, 64*5) == 1 then
+	    if research_topics.church  >= 1 then
+	       build_house_directive("Build house", 72, 72)--smithy 
+	    end
+	 end
 	 ------------------SELCT ROAD TO BUILD -------on_build_road()  buildings.lua
       elseif game.give_direction == "Select road to build" then --28,36
 	 for i = 0, 10 do
