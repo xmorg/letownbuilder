@@ -84,6 +84,8 @@ function update_add_building(y,x, strtype) -- give them by tile selected
       kingdom_inventory.fishinghut = kingdom_inventory.fishinghut+1
    elseif strtype == "smithy" then 
       kingdom_inventory.smithy = kingdom_inventory.smithy+1
+   elseif strtype == "church" then
+      kingdom_inventory.church = kingdom_inventory.church+1
    elseif strtype == "brewery" then
       kingdom_inventory.brewery = kingdom_inventory.brewery+1
    elseif strtype == "smelter" then
