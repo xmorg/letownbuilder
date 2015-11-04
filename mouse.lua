@@ -9,7 +9,7 @@ function mouse_clicked_inrect(x,y, cx, cy, cw, ch) -- clicked in a rectangle
    end
 end
 function mouse_clicked_in64(x, y, icon_x, icon_y)
-if y >= icon_y and y <= icon_y +64 and x >= icon_x and x <= icon_x+64 then
+	if y >= icon_y and y <= icon_y +64 and x >= icon_x and x <= icon_x+64 then
 		return 1
 	else
 		return 0
@@ -250,14 +250,15 @@ function love.mousepressed(x, y, button)
 	if button == "l" then -- 1 l
 		game.printx = x		--game.printx = 0 -- 0  -62
 		game.printy = y      --game.printy = 0 -- 536-600 --0, 64
-		if game.show_menu == 1 then
+		if game.show_menu == 1 then -- Title menus
 			game_menu_mouse(x,y,"l")
 		elseif game.show_menu == 2 then
 			select_biome_mouse(x,y,"l")
-      	end
+  		end
+  		---------------------QUICK BUTTONS
 		if mouse_clicked_in32(x, y, 632,0) == 1 then
 			love_crude_load()
-      		load_game_res()
+			load_game_res()
       	end
       	if mouse_clicked_in32(x, y, 664,0) == 1 then
       		love.event.quit()
@@ -266,6 +267,7 @@ function love.mousepressed(x, y, button)
       		love_crude_save() --save/quit autosave feature
       		love.event.quit()
       	end
+      	----------------------------------------------
       	if game.give_direction == "Hunt what?" then
       		on_hunt_something(x,y) --villagers.lua
       	end
@@ -322,7 +324,7 @@ function love.mousepressed(x, y, button)
 				game.records_tab = 4
 				game.roster_selected = "messages"
 			end
-      elseif game.give_direction == "Research" then
+		elseif game.give_direction == "Research" then
 	 if x >= 0 and x <= 64*1 and y >=64*5 and y <= 64*5+64 and game.give_direction == "Research" then
 	    game.give_direction = "None"
 	 elseif x >= 64*1 and x <= 64*2 and y >=64*5 and y <= 64*5+64 and game.give_direction == "Research" then
