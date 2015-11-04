@@ -254,7 +254,31 @@ function on_clicked_research(x,y)
 		end
 	end
 end
-
+function on_click_research_buttons(x,y)
+	if x >= 0 and x <= 64*1 and y >=64*5 and y <= 64*5+64 and game.give_direction == "Research" then
+		game.give_direction = "None"
+	elseif x >= 64*1 and x <= 64*2 and y >=64*5 and y <= 64*5+64 and game.give_direction == "Research" then
+		game.give_direction = "Research economy"
+		game_directives.research_type = "Research economy"
+		game.research_timer = 5000
+	elseif x >= 64*2 and x <= 64*3 and y >=64*5 and y <= 64*5+64 and game.give_direction == "Research" then
+		game.give_direction = "Research security"
+		game_directives.research_type = "Research security"
+		game.research_timer = 5000
+	elseif x >= 64*3 and x <= 64*4 and y >=64*5 and y <= 64*5+64 and game.give_direction == "Research" then
+		game.give_direction = "Research agriculture"
+		game_directives.research_type = "Research agriculture"
+		game.research_timer = 5000
+	elseif x >= 64*4 and x <= 64*5 and y >=64*5 and y <= 64*5+64 and game.give_direction == "Research" then
+		game.give_direction = "Research civics"
+		game_directives.research_type = "Research civics"
+		game.research_timer = 5000
+	elseif x >= 64*5 and x <= 64*6 and y >=64*5 and y <= 64*5+64 and game.give_direction == "Research" then
+		game.give_direction = "Research industry"
+		game_directives.research_type = "Research industry"
+		game.research_timer = 5000
+	end
+end
 function love.mousepressed(x, y, button)
 	if button == "l" then -- 1 l
 		game.printx = x		--game.printx = 0 -- 0  -62
@@ -268,70 +292,48 @@ function love.mousepressed(x, y, button)
       	on_click_jobs(y,x) -- look up jobs.
       	on_clicked_research(x,y) --research menu is up.
 		if game.give_direction == "Research" then
-			if x >= 0 and x <= 64*1 and y >=64*5 and y <= 64*5+64 and game.give_direction == "Research" then
+			on_click_research_buttons(x,y)
+			-- ************** Do Job
+		elseif game.give_direction == "Demolish what?" then
+			on_demolish_structure()
+		elseif game.give_direction == "Hunt What?" then
+			on_hunt_something(x,y)
+		elseif game.give_direction == "Gather Food" then
+			on_gather_food() --buildings.lua
+		elseif game.give_direction == "Cut where?" then
+			on_cut_where_click()
+		elseif game.give_direction == "Plow where?" then
+			on_plow_where_click()
+		elseif game.give_direction == "Plant tomatoes" then
+			on_tomatoes_where_click()
+		elseif game.give_direction == "Dig where?" then
+			on_dig_where_click()
+		elseif game.give_direction == "Select job" then
+			if  mouse_clicked_in64(x,y, 0, 64) == 1 then
 				game.give_direction = "None"
-			elseif x >= 64*1 and x <= 64*2 and y >=64*5 and y <= 64*5+64 and game.give_direction == "Research" then
-				game.give_direction = "Research economy"
-				game_directives.research_type = "Research economy"
-				game.research_timer = 5000
-			elseif x >= 64*2 and x <= 64*3 and y >=64*5 and y <= 64*5+64 and game.give_direction == "Research" then
-				game.give_direction = "Research security"
-				game_directives.research_type = "Research security"
-				game.research_timer = 5000
-			elseif x >= 64*3 and x <= 64*4 and y >=64*5 and y <= 64*5+64 and game.give_direction == "Research" then
-				game.give_direction = "Research agriculture"
-				game_directives.research_type = "Research agriculture"
-				game.research_timer = 5000
-	 elseif x >= 64*4 and x <= 64*5 and y >=64*5 and y <= 64*5+64 and game.give_direction == "Research" then
-	    game.give_direction = "Research civics"
-	    game_directives.research_type = "Research civics"
-	    game.research_timer = 5000
-	 elseif x >= 64*5 and x <= 64*6 and y >=64*5 and y <= 64*5+64 and game.give_direction == "Research" then
-	    game.give_direction = "Research industry"
-	    game_directives.research_type = "Research industry"
-	    game.research_timer = 5000
-	 end
-	 -- ************** Do Job
-      elseif game.give_direction == "Demolish what?" then
-	 on_demolish_structure()
-      elseif game.give_direction == "Hunt What?" then
-	 on_hunt_something(x,y)
-      elseif game.give_direction == "Gather Food" then
-	 on_gather_food() --buildings.lua
-      elseif game.give_direction == "Cut where?" then
-	 on_cut_where_click()
-      elseif game.give_direction == "Plow where?" then
-	 on_plow_where_click()
-      elseif game.give_direction == "Plant tomatoes" then
-         on_tomatoes_where_click()
-      elseif game.give_direction == "Dig where?" then
-      	on_dig_where_click()
-      elseif game.give_direction == "Select job" then	 
-	 if  mouse_clicked_in64(x,y, 0, 64) == 1 then 
-	    game.give_direction = "None"
-	 elseif mouse_clicked_in64(x,y, 64*1, 64) == 1 then
-	    game.give_direction = "Cut where?" --pressed axe
-	 elseif mouse_clicked_in64(x,y, 64*2, 64) == 1 then
-	    game.give_direction = "Dig where?" --spressed shovel
-	 elseif mouse_clicked_in64(x,y, 64*3, 64) == 1 then
-	    game.give_direction = "Plow where?" --farming!
-	 elseif mouse_clicked_in64(x,y, 64*4, 64) == 1 then
-	    game.give_direction = "Hunt what?" -- hunting
-	 elseif mouse_clicked_in64(x,y, 64*5, 64) == 1 then
-	    game.give_direction = "Make fire where?"
-	 elseif mouse_clicked_in64(x,y, 64*6, 64) == 1 then
-	    game.give_direction = "Demolish what?"
-	 elseif mouse_clicked_in64(x,y, 64*7, 64) == 1 then
-	    if research_topics.tomatoes == 1 then
-	       game.give_direction = "Plant tomatoes"
-	    end
-	 end --if x >= 64*0 and x <= 64*1 and y >=64 and y <= 64+64 then
-      -------------- SELECT HOUSE TO BUILD ------------------------
-      elseif game.give_direction == "Select house to build" then
-	 for i = 0, 8 do
-	    if x >= 64*i and x <= 64*(i+1) and y >=64*3 and y <= 64*3+64 then
-	       if i*64 == 0 then
-		  game.give_direction = "None"
+			elseif mouse_clicked_in64(x,y, 64*1, 64) == 1 then
+				game.give_direction = "Cut where?" --pressed axe
+			elseif mouse_clicked_in64(x,y, 64*2, 64) == 1 then
+				game.give_direction = "Dig where?" --spressed shovel
+			elseif mouse_clicked_in64(x,y, 64*3, 64) == 1 then
+				game.give_direction = "Plow where?" --farming!
+			elseif mouse_clicked_in64(x,y, 64*4, 64) == 1 then
+				game.give_direction = "Hunt what?" -- hunting
+			elseif mouse_clicked_in64(x,y, 64*5, 64) == 1 then
+				game.give_direction = "Make fire where?"
+			elseif mouse_clicked_in64(x,y, 64*6, 64) == 1 then
+				game.give_direction = "Demolish what?"
+			elseif mouse_clicked_in64(x,y, 64*7, 64) == 1 then
+				if research_topics.tomatoes == 1 then
+					game.give_direction = "Plant tomatoes"
+				end
+			end --if x >= 64*0 and x <= 64*1 and y >=64 and y <= 64+64 then
+			-------------- SELECT HOUSE TO BUILD ------------------------
+		elseif game.give_direction == "Select house to build" then
+			for i = 0, 8 do
+				if x >= 64*i and x <= 64*(i+1) and y >=64*3 and y <= 64*3+64 then
+					if i*64 == 0 then
+						game.give_direction = "None"
 	       elseif x >= 64*1 and x <= 64*(1+1) and y >=64*3 and y <= 64*3+64 then --house
 		  build_house_directive("Build house", 23, 23)
 	       elseif x >= 64*2 and x <= 64*(2+1) and y >=64*3 and y <= 64*3+64 then --house2
