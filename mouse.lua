@@ -176,6 +176,85 @@ function mouse_clicked_in32(x, y, icon_x, icon_y)
    end
 end
 
+
+function on_click_quickbuttons(x,y)---------------------QUICK BUTTONS
+	if mouse_clicked_in32(x, y, 632,0) == 1 then
+		love_crude_load()
+		load_game_res()
+    end
+    if mouse_clicked_in32(x, y, 664,0) == 1 then
+    	love.event.quit()
+    end
+    if mouse_clicked_in32(x, y, 696,0) == 1 then
+    	love_crude_save() --save/quit autosave feature
+    	love.event.quit()
+    end
+    if mouse_clicked_in32(x, y, 600,0) == 1 then  --show records
+		if game.game_roster == 0 then 
+			game.game_roster = 1
+		else 
+			game.game_roster = 0
+		end
+	end
+end
+
+function on_click_jobs(y,x) -- clicking jobs
+	if game.give_direction == "Hunt what?" then
+      	on_hunt_something(x,y) --villagers.lua
+    end
+    ------ 
+    if mouse_clicked_in64(x, y, 0, 64*1) == 1 then --Select job
+		if game.give_direction == "Select job" then
+			game.give_direction = "None" --unselect job
+		else
+			game.give_direction = "Select job" --select job
+		end --end
+	elseif mouse_clicked_in64(x, y, 0, 64*2) == 1 then --Gather Food
+		game.give_direction = "Gather Food"
+	elseif mouse_clicked_in64(x, y, 0, 64*3) == 1 then --Build House
+		if game.give_direction == "Select house to build" then
+			game.give_direction = "None"
+		else
+			game.give_direction = "Select house to build" --"Build house"
+		end
+	elseif mouse_clicked_in64(x, y, 0, 64*4) == 1 then --Build Road
+		if game.give_direction == "Select road to build"  then
+			game.give_direction = "None"
+		else
+			game.give_direction = "Select road to build"
+		end
+    elseif mouse_clicked_in64(x, y, 0, 64*5) == 1 then --and game.give_direction == "None" then
+		if get_kingdom_researchable() == 1 and game.give_direction == "Research" then
+			game.give_direction = "None" -- check for researchables
+		elseif get_kingdom_researchable() == 1 then
+			game.give_direction = "Research" -- check for researchables
+		end
+	end
+end
+function on_clicked_research(x,y)
+	if game.game_roster == 1 then
+		col_one = 80
+		col_two = 160
+		col_three = 240
+		col_four = 328
+		col_five = 428
+		row_num = 1
+		if mouse_clicked_inrect(x,y, col_one-3, 20+68, 60, 23) == 1 then
+			game.records_tab = 1
+			game.roster_selected = "villagers"
+		elseif mouse_clicked_inrect(x,y, col_two-3, 20+68, 60, 23) == 1 then  -- food?
+			game.records_tab = 2
+			game.roster_selected = "food"
+		elseif mouse_clicked_inrect(x,y, col_three-3, 20+68, 60, 23) == 1 then  -- resources?
+			game.records_tab = 3
+			game.roster_selected = "resources"
+		elseif mouse_clicked_inrect(x,y, col_four-3, 20+68, 60, 23) == 1 then
+			game.records_tab = 4
+			game.roster_selected = "messages"
+		end
+	end
+end
+
 function love.mousepressed(x, y, button)
 	if button == "l" then -- 1 l
 		game.printx = x		--game.printx = 0 -- 0  -62
@@ -184,91 +263,25 @@ function love.mousepressed(x, y, button)
 			game_menu_mouse(x,y,"l")
 		elseif game.show_menu == 2 then
 			select_biome_mouse(x,y,"l")
-  		end
-  		---------------------QUICK BUTTONS
-		if mouse_clicked_in32(x, y, 632,0) == 1 then
-			love_crude_load()
-			load_game_res()
-      	end
-      	if mouse_clicked_in32(x, y, 664,0) == 1 then
-      		love.event.quit()
-      	end
-      	if mouse_clicked_in32(x, y, 696,0) == 1 then
-      		love_crude_save() --save/quit autosave feature
-      		love.event.quit()
-      	end
-      	----------------------------------------------
-      	if game.give_direction == "Hunt what?" then
-      		on_hunt_something(x,y) --villagers.lua
-      	end
-    	if mouse_clicked_in32(x, y, 600,0) == 1 then  --show records
-			if game.game_roster == 0 then 
-				game.game_roster = 1
-			else 
-				game.game_roster = 0
-			end
 		end
-		if mouse_clicked_in64(x, y, 0, 64*1) == 1 then --Select job
-			if game.give_direction == "Select job" then
-			game.give_direction = "None"
-		else
-			game.give_direction = "Select job"
-		end
-    	if mouse_clicked_in64(x, y, 0, 64*2) == 1 then --Gather Food
-			game.give_direction = "Gather Food"
-		elseif mouse_clicked_in64(x, y, 0, 64*3) == 1 then --Build House
-			if game.give_direction == "Select house to build" then
-			game.give_direction = "None"
-		else
-			game.give_direction = "Select house to build" --"Build house"
-		end
-		elseif mouse_clicked_in64(x, y, 0, 64*4) == 1 then --Build Road
-			if game.give_direction == "Select road to build"  then
+		on_click_quickbuttons(x,y) --quick buttons
+      	on_click_jobs(y,x) -- look up jobs.
+      	on_clicked_research(x,y) --research menu is up.
+		if game.give_direction == "Research" then
+			if x >= 0 and x <= 64*1 and y >=64*5 and y <= 64*5+64 and game.give_direction == "Research" then
 				game.give_direction = "None"
-			else
-				game.give_direction = "Select road to build"
-			end
-    	elseif mouse_clicked_in64(x, y, 0, 64*5) == 1 then --and game.give_direction == "None" then
-			if get_kingdom_researchable() == 1 and game.give_direction == "Research" then
-				game.give_direction = "None" -- check for researchables
-			elseif get_kingdom_researchable() == 1 then
-				game.give_direction = "Research" -- check for researchables
-			end
-		elseif game.game_roster == 1 then
-			col_one = 80
-			col_two = 160
-			col_three = 240
-			col_four = 328
-			col_five = 428
-			row_num = 1
-			if mouse_clicked_inrect(x,y, col_one-3, 20+68, 60, 23) == 1 then
-				game.records_tab = 1
-				game.roster_selected = "villagers"
-			elseif mouse_clicked_inrect(x,y, col_two-3, 20+68, 60, 23) == 1 then  -- food?
-				game.records_tab = 2
-				game.roster_selected = "food"
-			elseif mouse_clicked_inrect(x,y, col_three-3, 20+68, 60, 23) == 1 then  -- resources?
-				game.records_tab = 3
-				game.roster_selected = "resources"
-			elseif mouse_clicked_inrect(x,y, col_four-3, 20+68, 60, 23) == 1 then
-				game.records_tab = 4
-				game.roster_selected = "messages"
-			end
-		elseif game.give_direction == "Research" then
-	 if x >= 0 and x <= 64*1 and y >=64*5 and y <= 64*5+64 and game.give_direction == "Research" then
-	    game.give_direction = "None"
-	 elseif x >= 64*1 and x <= 64*2 and y >=64*5 and y <= 64*5+64 and game.give_direction == "Research" then
-	    game.give_direction = "Research economy"
-	    game_directives.research_type = "Research economy"
-	    game.research_timer = 5000
-	 elseif x >= 64*2 and x <= 64*3 and y >=64*5 and y <= 64*5+64 and game.give_direction == "Research" then
-	    game.give_direction = "Research security"
-	    game_directives.research_type = "Research security"
-	    game.research_timer = 5000
-	 elseif x >= 64*3 and x <= 64*4 and y >=64*5 and y <= 64*5+64 and game.give_direction == "Research" then
-	    game.give_direction = "Research agriculture"
-	    game_directives.research_type = "Research agriculture"
-	    game.research_timer = 5000
+			elseif x >= 64*1 and x <= 64*2 and y >=64*5 and y <= 64*5+64 and game.give_direction == "Research" then
+				game.give_direction = "Research economy"
+				game_directives.research_type = "Research economy"
+				game.research_timer = 5000
+			elseif x >= 64*2 and x <= 64*3 and y >=64*5 and y <= 64*5+64 and game.give_direction == "Research" then
+				game.give_direction = "Research security"
+				game_directives.research_type = "Research security"
+				game.research_timer = 5000
+			elseif x >= 64*3 and x <= 64*4 and y >=64*5 and y <= 64*5+64 and game.give_direction == "Research" then
+				game.give_direction = "Research agriculture"
+				game_directives.research_type = "Research agriculture"
+				game.research_timer = 5000
 	 elseif x >= 64*4 and x <= 64*5 and y >=64*5 and y <= 64*5+64 and game.give_direction == "Research" then
 	    game.give_direction = "Research civics"
 	    game_directives.research_type = "Research civics"
