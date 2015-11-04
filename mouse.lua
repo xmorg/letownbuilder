@@ -8,6 +8,13 @@ function mouse_clicked_inrect(x,y, cx, cy, cw, ch) -- clicked in a rectangle
       return 0
    end
 end
+function mouse_clicked_in64(x, y, icon_x, icon_y)
+	if y >= icon_y and y <= icon_y +64 and x >= icon_x and x <= icon_x+64 then
+		return 1
+	else
+		return 0
+	end
+end
 
 function get_tooltip_info_from_item() --ran in update?
 	mx = love.mouse.getX() --mouse x coord
@@ -261,16 +268,10 @@ function love.mousepressed(x, y, button)
       		love_crude_save() --save/quit autosave feature
       		love.event.quit()
       	end
-      if game.give_direction == "Hunt what?" then
-	 on_hunt_something(x,y) --villagers.lua
-      end
-      function mouse_clicked_in64(x, y, icon_x, icon_y)
-	 if y >= icon_y and y <= icon_y +64 and x >= icon_x and x <= icon_x+64 then
-	    return 1
-	 else 
-	    return 0
-	 end
-      end
+      	if game.give_direction == "Hunt what?" then
+      		on_hunt_something(x,y) --villagers.lua
+      	end
+    end
       if mouse_clicked_in32(x, y, 600,0) == 1 then  --show records
 	 if game.game_roster == 0 then 
 	    game.game_roster = 1
