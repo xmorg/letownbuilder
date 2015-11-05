@@ -181,21 +181,25 @@ function on_click_quickbuttons(x,y)---------------------QUICK BUTTONS
 	if mouse_clicked_in32(x, y, 632,0) == 1 then
 		love_crude_load()
 		load_game_res()
-    end
-    if mouse_clicked_in32(x, y, 664,0) == 1 then
-    	love.event.quit()
-    end
-    if mouse_clicked_in32(x, y, 696,0) == 1 then
-    	love_crude_save() --save/quit autosave feature
-    	love.event.quit()
-    end
-    if mouse_clicked_in32(x, y, 600,0) == 1 then  --show records
+		return 1
+	elseif mouse_clicked_in32(x, y, 664,0) == 1 then
+    		love.event.quit()
+    		return 1
+    	elseif mouse_clicked_in32(x, y, 696,0) == 1 then
+    		love_crude_save() --save/quit autosave feature
+    		love.event.quit()
+    		return 1
+    	elseif mouse_clicked_in32(x, y, 600,0) == 1 then  --show records
 		if game.game_roster == 0 then 
 			game.game_roster = 1
 		else 
 			game.game_roster = 0
 		end
+		return 1
+	else
+		return 0
 	end
+	return 0
 end
 
 function on_click_jobs(x,y) -- clicking jobs
@@ -205,27 +209,34 @@ function on_click_jobs(x,y) -- clicking jobs
 		else
 			game.give_direction = "Select job" --select job
 		end --end
+		return 1
 	elseif mouse_clicked_in64(x, y, 0, 64*2) == 1 then --Gather Food
 		game.give_direction = "Gather Food"
+		return 1
 	elseif mouse_clicked_in64(x, y, 0, 64*3) == 1 then --Build House
 		if game.give_direction == "Select house to build" then
 			game.give_direction = "None"
 		else
 			game.give_direction = "Select house to build" --"Build house"
 		end
+		return 1
 	elseif mouse_clicked_in64(x, y, 0, 64*4) == 1 then --Build Road
 		if game.give_direction == "Select road to build"  then
 			game.give_direction = "None"
 		else
 			game.give_direction = "Select road to build"
 		end
-    elseif mouse_clicked_in64(x, y, 0, 64*5) == 1 then --and game.give_direction == "None" then
+		return 1
+	elseif mouse_clicked_in64(x, y, 0, 64*5) == 1 then --and game.give_direction == "None" then
 		if get_kingdom_researchable() == 1 and game.give_direction == "Research" then
 			game.give_direction = "None" -- check for researchables
 		elseif get_kingdom_researchable() == 1 then
 			game.give_direction = "Research" -- check for researchables
 		end
-	end
+		return 1
+	else
+		return 0
+	end return 0
 end
 function on_clicked_research(x,y)
 	if game.game_roster == 1 then
@@ -398,7 +409,7 @@ function love.mousepressed(x, y, button)
 		elseif game.show_menu == 2 then
 			select_biome_mouse(x,y,"l")
 		end
-		on_click_quickbuttons(x,y) --quick buttons
+		on_click_quickbuttons(x,y)
 		on_click_jobs(x,y) -- look up jobs.
 		on_clicked_research(x,y) --research menu is up.
 		click_on_gamegivedirection(x,y)
@@ -444,10 +455,10 @@ function love.mousepressed(x, y, button)
 			on_build_bridge() --buildings.lua
 		elseif game.give_direction == "Build road" then
 			on_build_road()   --buildings.lua
-		else
-			game.mouse_last_x =  love.mouse.getX()
-			game.mouse_last_y =  love.mouse.getY()
-			game.give_direction = "Scrolling" 
+		--else
+		--	game.mouse_last_x =  love.mouse.getX()
+		--	game.mouse_last_y =  love.mouse.getY()
+		--	game.give_direction = "Scrolling" 
 		end
 		for i,v in ipairs(game_villagers) do
 			if mouse_clicked_inrect(x,y,game_villagers[i].x+game.draw_x, 
