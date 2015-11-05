@@ -8,13 +8,7 @@ function mouse_clicked_inrect(x,y, cx, cy, cw, ch) -- clicked in a rectangle
       return 0
    end
 end
-function mouse_clicked_in64(x, y, icon_x, icon_y)
-	if y >= icon_y and y <= icon_y +64 and x >= icon_x and x <= icon_x+64 then
-		return 1
-	else
-		return 0
-	end
-end
+
 
 function update_checkscrolling(mx, my)
    if game.mouse_last_x > mx and love.mouse.isDown("l") and game.give_direction == "Scrolling" then
@@ -200,6 +194,14 @@ function on_click_quickbuttons(x,y)---------------------QUICK BUTTONS
 		return 0
 	end
 	return 0
+end
+
+function mouse_clicked_in64(x, y, icon_x, icon_y)
+	if y >= icon_y and y <= icon_y +64 and x >= icon_x and x <= icon_x+64 then
+		return 1
+	else
+		return 0
+	end
 end
 
 function on_click_jobs(x,y) -- clicking jobs
