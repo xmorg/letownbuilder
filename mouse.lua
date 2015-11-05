@@ -399,13 +399,14 @@ function love.mousepressed(x, y, button)
 	if button == "l" then -- 1 l
 		game.printx = x		--game.printx = 0 -- 0  -62
 		game.printy = y      --game.printy = 0 -- 536-600 --0, 64
+		on_click_jobs(x,y) -- look up jobs.
 		if game.show_menu == 1 then -- Title menus
 			game_menu_mouse(x,y,"l")
 		elseif game.show_menu == 2 then
 			select_biome_mouse(x,y,"l")
 		end
 		on_click_quickbuttons(x,y)
-		on_click_jobs(x,y) -- look up jobs.
+		
 		on_clicked_research(x,y) --research menu is up.
 		click_on_gamegivedirection(x,y)
 		onclick_buildhouse_button(x,y)
