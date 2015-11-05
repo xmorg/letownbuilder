@@ -198,12 +198,11 @@ function on_click_quickbuttons(x,y)---------------------QUICK BUTTONS
 	end
 end
 
-function on_click_jobs(y,x) -- clicking jobs
+function on_click_jobs(x,y) -- clicking jobs
 	if game.give_direction == "Hunt what?" then
-      	on_hunt_something(x,y) --villagers.lua
-    end
-    ------ 
-    if mouse_clicked_in64(x, y, 0, 64*1) == 1 then --Select job
+		on_hunt_something(x,y) --villagers.lua
+	end
+	if mouse_clicked_in64(x, y, 0, 64*1) == 1 then --Select job
 		if game.give_direction == "Select job" then
 			game.give_direction = "None" --unselect job
 		else
