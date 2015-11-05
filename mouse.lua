@@ -403,95 +403,78 @@ function love.mousepressed(x, y, button)
 			select_biome_mouse(x,y,"l")
 		end
 		on_click_quickbuttons(x,y) --quick buttons
-      	on_click_jobs(y,x) -- look up jobs.
-      	on_clicked_research(x,y) --research menu is up.
+		on_click_jobs(y,x) -- look up jobs.
+		on_clicked_research(x,y) --research menu is up.
 		click_on_gamegivedirection(x,y)
 		onclick_buildhouse_button(x,y)
 		------------------SELCT ROAD TO BUILD -------on_build_road()  buildings.lua
-	elseif game.give_direction == "Select road to build" then --28,36
-		for i = 0, 10 do
-			if y >= 64*4 and y <= 64*4+64 and x >= 64*i and x <= 64*(i+1) then
-				if i*64 == 0 then
-					game.give_direction = "None"
-				else
-					game.give_direction = "Build road"
-					game.road_to_build = 27+i --1 or higher because of if
-				end
-			end--endif
-		end --endfor
-		for i = 0, 2 do
-			if y >= 64*5 and y <= 64*5+64 and x >= 64*i and x <= 64*(i+1) then
-				if i*64 == 0 then
-					game.give_direction = "None"
-				else
-					game.give_direction = "Build bridge"
-					game.house_to_build = 20+i
-				end --endif
-			end -- endif
-		end --endfor
-	 ------------------MAKE GARDEN-----------------------------
-      elseif game.give_direction == "Make garden" then --Garden
-	 on_build_garden("wheat")
-      elseif game.give_direction == "Plant tomatoes" then
-         on_build_garden("tomatoes")
-	 ------------------HUNT WHAT--------------------------------
-      elseif game.give_direction == "Hunt What?" then
-	 on_hunt_something(x,y) --villagers.lua
-	 ------------------MAKE BONFIRE-----------------------------
-      elseif game.give_direction == "Make bonfire" then
-	 on_build_bonfire()
-      elseif game.give_direction == "Make fire where?" then
-	 on_build_bonfire()
-	 ----------- PLACE HOUSE ON MAP - CHECK RESOURCES--------------
-      elseif game.give_direction == "Build house" then
-	 on_build_house()  --buildings.lua
-      elseif game.give_direction == "Build bridge" then
-	 on_build_bridge() --buildings.lua
-      elseif game.give_direction == "Build road" then
-	 on_build_road()   --buildings.lua
-	 --message_que_add("on_build_road()", 80, 41)
-      else
-	 game.mouse_last_x =  love.mouse.getX()
-	 game.mouse_last_y =  love.mouse.getY()
-	 game.give_direction = "Scrolling" 
-	end --elseif game.give_direction == "Build road" then
-	for i,v in ipairs(game_villagers) do
-		if mouse_clicked_inrect(x,y,game_villagers[i].x+game.draw_x, 
-			game_villagers[i].y+game.draw_y, 
-			10, 10) == 1 then
-			game_villagers[i].selected = 1
+		if game.give_direction == "Select road to build" then --28,36
+			for i = 0, 10 do
+				if y >= 64*4 and y <= 64*4+64 and x >= 64*i and x <= 64*(i+1) then
+					if i*64 == 0 then
+						game.give_direction = "None"
+					else
+						game.give_direction = "Build road"
+						game.road_to_build = 27+i --1 or higher because of if
+					end
+				end--endif
+			end --endfor
+			for i = 0, 2 do
+				if y >= 64*5 and y <= 64*5+64 and x >= 64*i and x <= 64*(i+1) then
+					if i*64 == 0 then
+						game.give_direction = "None"
+					else
+						game.give_direction = "Build bridge"
+						game.house_to_build = 20+i
+					end --endif
+				end -- endif
+			end --endfor
+		elseif game.give_direction == "Make garden" then --Garden
+			on_build_garden("wheat")
+		elseif game.give_direction == "Plant tomatoes" then
+			on_build_garden("tomatoes")
+		elseif game.give_direction == "Hunt What?" then
+			on_hunt_something(x,y) --villagers.lua
+		elseif game.give_direction == "Make bonfire" then
+			on_build_bonfire()
+		elseif game.give_direction == "Make fire where?" then
+			on_build_bonfire()
+		elseif game.give_direction == "Build house" then
+			on_build_house()  --buildings.lua
+		elseif game.give_direction == "Build bridge" then
+			on_build_bridge() --buildings.lua
+		elseif game.give_direction == "Build road" then
+			on_build_road()   --buildings.lua
 		else
-			--if game_villagers[i].position == "militia captain" then
-			--	game_villagers[i].dx = x
-			--	game_villagers[i].dy = y
-			--else
-				game_villagers[i].selected = 0
-			--end
+			game.mouse_last_x =  love.mouse.getX()
+			game.mouse_last_y =  love.mouse.getY()
+			game.give_direction = "Scrolling" 
 		end
-	end --end for i,v in ipairs(game_villagers) do
-elseif button == "r" then -- right mousoe button?
-	local lx = 0
-	local ly = 0
-	for y = 1, game.tilecount do --loopy
-		for x = 1, game.tilecount do --loopx
-			lx = 300+(y - x) * 32 + 64      --create isometric
-			ly = -100+(y + x) * 32 / 2 + 50  --tile blit locations
-			if x == game.tile_selected_x and y == game.tile_selected_y then
-				for i,v in ipairs(game_villagers) do
-					if game_villagers[i].position == "militia captain" and game_villagers[i].selected==1 then
-						game_villagers[i].dx = lx+16 --+game.draw_x
-						game_villagers[i].dy = ly+60 --+game.draw_y
+		for i,v in ipairs(game_villagers) do
+			if mouse_clicked_inrect(x,y,game_villagers[i].x+game.draw_x, 
+				game_villagers[i].y+game.draw_y, 10, 10) == 1 then
+				game_villagers[i].selected = 1
+			else
+				game_villagers[i].selected = 0
+			end
+		end --end for i,v in ipairs(game_villagers) do
+	elseif button == "r" then -- right mousoe button?
+		local lx = 0
+		local ly = 0
+		for y = 1, game.tilecount do --loopy
+			for x = 1, game.tilecount do --loopx
+				lx = 300+(y - x) * 32 + 64      --create isometric
+				ly = -100+(y + x) * 32 / 2 + 50  --tile blit locations
+				if x == game.tile_selected_x and y == game.tile_selected_y then
+					for i,v in ipairs(game_villagers) do
+						if game_villagers[i].position == "militia captain" and game_villagers[i].selected==1 then
+							game_villagers[i].dx = lx+16 --+game.draw_x
+							game_villagers[i].dy = ly+60 --+game.draw_y
+						end
 					end
 				end
 			end
 		end
-	end
-		--for i,v in ipairs(game_villagers) do
-		--	if game_villagers[i].position == "militia captain" and game_villagers[i].selected==1 then
-		--		game_villagers[i].dx = x+game.draw_x
-		--		game_villagers[i].dy = y+game.draw_y
-		--	end
-		--end
    	end --end left/right click
 end --end function
 
