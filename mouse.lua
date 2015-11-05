@@ -301,6 +301,98 @@ function on_click_research_buttons(x,y)
 		game.research_timer = 5000
 	end
 end
+function click_on_gamegivedirection(x,y)
+	if game.give_direction == "Research" then
+		on_click_research_buttons(x,y)
+		-- ************** Do Job
+	elseif game.give_direction == "Demolish what?" then
+		on_demolish_structure()
+	elseif game.give_direction == "Hunt What?" then
+		on_hunt_something(x,y)
+	elseif game.give_direction == "Gather Food" then
+		on_gather_food() --buildings.lua
+	elseif game.give_direction == "Cut where?" then
+		on_cut_where_click()
+	elseif game.give_direction == "Plow where?" then
+		on_plow_where_click()
+	elseif game.give_direction == "Plant tomatoes" then
+		on_tomatoes_where_click()
+	elseif game.give_direction == "Dig where?" then
+		on_dig_where_click()
+	elseif game.give_direction == "Select job" then
+		on_select_job(x,y) -- click the job you want.
+		-------------- SELECT HOUSE TO BUILD ------------------------
+	elseif game.give_direction == "Select house to build" then
+		for i = 0, 8 do
+			if x >= 64*i and x <= 64*(i+1) and y >=64*3 and y <= 64*3+64 then
+				if i*64 == 0 then
+					game.give_direction = "None"
+				elseif x >= 64*1 and x <= 64*(1+1) and y >=64*3 and y <= 64*3+64 then --house
+					build_house_directive("Build house", 23, 23)
+				elseif x >= 64*2 and x <= 64*(2+1) and y >=64*3 and y <= 64*3+64 then --house2
+					build_house_directive("Build house", 24, 24)
+				elseif x >= 64*3 and x <= 64*(3+1) and y >=64*3 and y <= 64*3+64 then --house3
+					build_house_directive("Build house", 25, 25)
+				elseif x >= 64*4 and x <= 64*(4+1) and y >=64*3 and y <= 64*3+64 then --house4
+					build_house_directive("Build house", 26, 26)
+				elseif x >= 64*5 and x <= 64*(5+1) and y >=64*3 and y <= 64*3+64 then --mine
+					build_house_directive("Build house", 27, 27)
+				elseif x >= 64*6 and x <= 64*(6+1) and y >=64*3 and y <= 64*3+64 then --school
+					build_house_directive("Build house", 51, 51)
+				elseif x >= 64*7 and x <= 64*(7+1) and y >=64*3 and y <= 64*3+64 then --barn
+					build_house_directive("Build house", 52, 52)
+				elseif x >= 64*8 and x <= 64*(8+1) and y >=64*3 and y <= 64*3+64 then --graveyard
+					build_house_directive("Build house", 53, 53)
+				end -- if i*64 == 0 then
+			end -- if x >= 64*i and x <= 64*(i+1) and y >=64*3 and y <= 64*3+64 then
+		end -- for i = 0, 7 do
+	end
+end
+function onclick_buildhouse_button(x,y)
+	if mouse_clicked_in64(x, y, 64*1, 64*4) == 1 then
+		if research_topics.economy >= 1 then
+			build_house_directive("Build house", 66, 66)--trade post
+		end
+	elseif mouse_clicked_in64(x, y, 64*2, 64*4) == 1 then
+		if research_topics.security >= 1 then
+			build_house_directive("Build house", 67, 67)--sharrifs office
+		end
+	elseif mouse_clicked_in64(x, y, 64*3, 64*4) == 1 then
+		if research_topics.industry >= 1 then
+			build_house_directive("Build house", 55, 55)--fishing hut
+		end
+	elseif mouse_clicked_in64(x, y, 64*4, 64*4) == 1 then
+		if research_topics.militia_house >= 1 then
+			build_house_directive("Build house", 60,60)--militia house (needs resource check)
+		end
+	elseif mouse_clicked_in64(x, y, 64*5, 64*4) == 1 then
+		if research_topics.mayors_monument >= 1 then
+			build_house_directive("Build house", game.mayor_sex, game.mayor_sex)--mayors monument
+		end
+	elseif mouse_clicked_in64(x, y, 64*6, 64*4) == 1 then
+		if research_topics.watchtower >= 1 then
+			build_house_directive("Build house", 65, 65)--watchtower
+		end
+	elseif mouse_clicked_in64(x, y, 64*7, 64*4) == 1 then
+		if research_topics.smelter >= 1 then
+			build_house_directive("Build house", 70, 70)--smelter
+		end
+	elseif mouse_clicked_in64(x, y, 64*8, 64*4) == 1 then
+		if research_topics.brewery >= 1 then
+			build_house_directive("Build house", 71, 71)--brewery
+		end
+		---------------row 3-------------------------------
+	elseif mouse_clicked_in64(x, y, 64*1, 64*5) == 1 then
+		if research_topics.smithy  >= 1 then
+			build_house_directive("Build house", 64, 64)--smithy
+		end
+	elseif mouse_clicked_in64(x, y, 64*2, 64*5) == 1 then
+		if research_topics.church  >= 1 then
+			build_house_directive("Build house", 72, 72)--smithy
+		end
+	end
+end
+
 function love.mousepressed(x, y, button)
 	if button == "l" then -- 1 l
 		game.printx = x		--game.printx = 0 -- 0  -62
@@ -313,118 +405,30 @@ function love.mousepressed(x, y, button)
 		on_click_quickbuttons(x,y) --quick buttons
       	on_click_jobs(y,x) -- look up jobs.
       	on_clicked_research(x,y) --research menu is up.
-		if game.give_direction == "Research" then
-			on_click_research_buttons(x,y)
-			-- ************** Do Job
-		elseif game.give_direction == "Demolish what?" then
-			on_demolish_structure()
-		elseif game.give_direction == "Hunt What?" then
-			on_hunt_something(x,y)
-		elseif game.give_direction == "Gather Food" then
-			on_gather_food() --buildings.lua
-		elseif game.give_direction == "Cut where?" then
-			on_cut_where_click()
-		elseif game.give_direction == "Plow where?" then
-			on_plow_where_click()
-		elseif game.give_direction == "Plant tomatoes" then
-			on_tomatoes_where_click()
-		elseif game.give_direction == "Dig where?" then
-			on_dig_where_click()
-		elseif game.give_direction == "Select job" then
-			on_select_job(x,y) -- click the job you want.
-			-------------- SELECT HOUSE TO BUILD ------------------------
-		elseif game.give_direction == "Select house to build" then
-			for i = 0, 8 do
-				if x >= 64*i and x <= 64*(i+1) and y >=64*3 and y <= 64*3+64 then
-					if i*64 == 0 then
-						game.give_direction = "None"
-					elseif x >= 64*1 and x <= 64*(1+1) and y >=64*3 and y <= 64*3+64 then --house
-						build_house_directive("Build house", 23, 23)
-					elseif x >= 64*2 and x <= 64*(2+1) and y >=64*3 and y <= 64*3+64 then --house2
-						build_house_directive("Build house", 24, 24)
-					elseif x >= 64*3 and x <= 64*(3+1) and y >=64*3 and y <= 64*3+64 then --house3
-						build_house_directive("Build house", 25, 25)
-					elseif x >= 64*4 and x <= 64*(4+1) and y >=64*3 and y <= 64*3+64 then --house4
-						build_house_directive("Build house", 26, 26)
-					elseif x >= 64*5 and x <= 64*(5+1) and y >=64*3 and y <= 64*3+64 then --mine
-						build_house_directive("Build house", 27, 27)
-					elseif x >= 64*6 and x <= 64*(6+1) and y >=64*3 and y <= 64*3+64 then --school
-						build_house_directive("Build house", 51, 51)
-					elseif x >= 64*7 and x <= 64*(7+1) and y >=64*3 and y <= 64*3+64 then --barn
-						build_house_directive("Build house", 52, 52)
-					elseif x >= 64*8 and x <= 64*(8+1) and y >=64*3 and y <= 64*3+64 then --graveyard
-		  build_house_directive("Build house", 53, 53)
-		  --else
-		  --build_house_directive("Build house", 60+i, 22+i)
-	       end -- if i*64 == 0 then
-	    end -- if x >= 64*i and x <= 64*(i+1) and y >=64*3 and y <= 64*3+64 then
-	 end -- for i = 0, 7 do
-	 
-	 if mouse_clicked_in64(x, y, 64*1, 64*4) == 1 then
-	    if research_topics.economy >= 1 then
-	       build_house_directive("Build house", 66, 66)--trade post
-	    end
-	 elseif mouse_clicked_in64(x, y, 64*2, 64*4) == 1 then
-	    if research_topics.security >= 1 then
-	       build_house_directive("Build house", 67, 67)--sharrifs office
-	    end
-	 elseif mouse_clicked_in64(x, y, 64*3, 64*4) == 1 then
-	    if research_topics.industry >= 1 then
-	       build_house_directive("Build house", 55, 55)--fishing hut
-	    end
-	 elseif mouse_clicked_in64(x, y, 64*4, 64*4) == 1 then
-	    if research_topics.militia_house >= 1 then
-	       build_house_directive("Build house", 60,60)--militia house (needs resource check)
-	    end
-	 elseif mouse_clicked_in64(x, y, 64*5, 64*4) == 1 then
-	    if research_topics.mayors_monument >= 1 then
-	       build_house_directive("Build house", game.mayor_sex, game.mayor_sex)--mayors monument
-	    end
-	 elseif mouse_clicked_in64(x, y, 64*6, 64*4) == 1 then
-	    if research_topics.watchtower >= 1 then
-	       build_house_directive("Build house", 65, 65)--watchtower
-	    end
-	 elseif mouse_clicked_in64(x, y, 64*7, 64*4) == 1 then
-	    if research_topics.smelter >= 1 then
-	       build_house_directive("Build house", 70, 70)--smelter
-	    end
-	 elseif mouse_clicked_in64(x, y, 64*8, 64*4) == 1 then
-	    if research_topics.brewery >= 1 then
-	       build_house_directive("Build house", 71, 71)--brewery
-	    end
-	    ---------------row 3-------------------------------
-	 elseif mouse_clicked_in64(x, y, 64*1, 64*5) == 1 then
-	    if research_topics.smithy  >= 1 then
-	       build_house_directive("Build house", 64, 64)--smithy 
-	    end
-	 end
-	 elseif mouse_clicked_in64(x, y, 64*2, 64*5) == 1 then
-	    if research_topics.church  >= 1 then
-	       build_house_directive("Build house", 72, 72)--smithy 
-	    end
-	 end
-	 ------------------SELCT ROAD TO BUILD -------on_build_road()  buildings.lua
-      elseif game.give_direction == "Select road to build" then --28,36
-	 for i = 0, 10 do
-	    if y >= 64*4 and y <= 64*4+64 and x >= 64*i and x <= 64*(i+1) then
-	       if i*64 == 0 then
-		  game.give_direction = "None"
-	       else
-		  game.give_direction = "Build road"
-		  game.road_to_build = 27+i --1 or higher because of if
-	       end
-	    end--endif
-	 end --endfor
-	 for i = 0, 2 do
-	    if y >= 64*5 and y <= 64*5+64 and x >= 64*i and x <= 64*(i+1) then
-	       if i*64 == 0 then
-		  game.give_direction = "None"
-	       else
-		  game.give_direction = "Build bridge"
-		  game.house_to_build = 20+i
-	       end --endif
-	    end -- endif
-	 end --endfor
+		click_on_gamegivedirection(x,y)
+		onclick_buildhouse_button(x,y)
+		------------------SELCT ROAD TO BUILD -------on_build_road()  buildings.lua
+	elseif game.give_direction == "Select road to build" then --28,36
+		for i = 0, 10 do
+			if y >= 64*4 and y <= 64*4+64 and x >= 64*i and x <= 64*(i+1) then
+				if i*64 == 0 then
+					game.give_direction = "None"
+				else
+					game.give_direction = "Build road"
+					game.road_to_build = 27+i --1 or higher because of if
+				end
+			end--endif
+		end --endfor
+		for i = 0, 2 do
+			if y >= 64*5 and y <= 64*5+64 and x >= 64*i and x <= 64*(i+1) then
+				if i*64 == 0 then
+					game.give_direction = "None"
+				else
+					game.give_direction = "Build bridge"
+					game.house_to_build = 20+i
+				end --endif
+			end -- endif
+		end --endfor
 	 ------------------MAKE GARDEN-----------------------------
       elseif game.give_direction == "Make garden" then --Garden
 	 on_build_garden("wheat")
