@@ -403,7 +403,7 @@ function love.mousepressed(x, y, button)
 			select_biome_mouse(x,y,"l")
 		end
 		on_click_quickbuttons(x,y) --quick buttons
-		on_click_jobs(y,x) -- look up jobs.
+		on_click_jobs(x,y) -- look up jobs.
 		on_clicked_research(x,y) --research menu is up.
 		click_on_gamegivedirection(x,y)
 		onclick_buildhouse_button(x,y)
