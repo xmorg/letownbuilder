@@ -170,32 +170,6 @@ function mouse_clicked_in32(x, y, icon_x, icon_y)
    end
 end
 
-
-function on_click_quickbuttons(x,y)---------------------QUICK BUTTONS
-	if mouse_clicked_in32(x, y, 632,0) == 1 then
-		love_crude_load()
-		load_game_res()
-		return 1
-	elseif mouse_clicked_in32(x, y, 664,0) == 1 then
-    		love.event.quit()
-    		return 1
-    	elseif mouse_clicked_in32(x, y, 696,0) == 1 then
-    		love_crude_save() --save/quit autosave feature
-    		love.event.quit()
-    		return 1
-    	elseif mouse_clicked_in32(x, y, 600,0) == 1 then  --show records
-		if game.game_roster == 0 then 
-			game.game_roster = 1
-		else 
-			game.game_roster = 0
-		end
-		return 1
-	else
-		return 0
-	end
-	return 0
-end
-
 function mouse_clicked_in64(x, y, icon_x, icon_y)
 	if y >= icon_y and y <= icon_y +64 and x >= icon_x and x <= icon_x+64 then
 		return 1
@@ -204,8 +178,22 @@ function mouse_clicked_in64(x, y, icon_x, icon_y)
 	end
 end
 
-function on_click_jobs(x,y) -- clicking jobs
-	if mouse_clicked_in64(x, y, 0, 64*1) == 1 then --Select job
+function on_clicked_buttons(x,y)---------------------QUICK BUTTONS
+	if mouse_clicked_in32(x, y, 632,0) == 1 then
+		love_crude_load()
+		load_game_res()
+	elseif mouse_clicked_in32(x, y, 664,0) == 1 then
+    		love.event.quit()
+    	elseif mouse_clicked_in32(x, y, 696,0) == 1 then
+    		love_crude_save() --save/quit autosave feature
+    		love.event.quit()
+    	elseif mouse_clicked_in32(x, y, 600,0) == 1 then  --show records
+		if game.game_roster == 0 then 
+			game.game_roster = 1
+		else 
+			game.game_roster = 0
+		end
+	elseif mouse_clicked_in64(x, y, 0, 64*1) == 1 then --Select job
 		if game.give_direction == "Select job" then
 			game.give_direction = "None" --unselect job
 		else
@@ -231,10 +219,7 @@ function on_click_jobs(x,y) -- clicking jobs
 		elseif get_kingdom_researchable() == 1 then
 			game.give_direction = "Research" -- check for researchables
 		end
-	end
-end
-function on_clicked_research(x,y)
-	if game.game_roster == 1 then
+	elseif game.game_roster == 1 then
 		col_one = 80
 		col_two = 160
 		col_three = 240
@@ -254,10 +239,7 @@ function on_clicked_research(x,y)
 			game.records_tab = 4
 			game.roster_selected = "messages"
 		end
-	end
-end
-function on_select_job(x,y) -- clicked jobs, and then select a job.
-	if  mouse_clicked_in64(x,y, 0, 64) == 1 then
+	elseif  mouse_clicked_in64(x,y, 0, 64) == 1 then
 		game.give_direction = "None"
 	elseif mouse_clicked_in64(x,y, 64*1, 64) == 1 then
 		game.give_direction = "Cut where?" --pressed axe
@@ -275,11 +257,7 @@ function on_select_job(x,y) -- clicked jobs, and then select a job.
 		if research_topics.tomatoes == 1 then
 			game.give_direction = "Plant tomatoes"
 		end
-	end --if x >= 64*0 and x <= 64*1 and y >=64 and y <= 64+64 then
-	return 1
-end
-function on_click_research_buttons(x,y)
-	if x >= 0 and x <= 64*1 and y >=64*5 and y <= 64*5+64 and game.give_direction == "Research" then
+	elseif x >= 0 and x <= 64*1 and y >=64*5 and y <= 64*5+64 and game.give_direction == "Research" then
 		game.give_direction = "None"
 	elseif x >= 64*1 and x <= 64*2 and y >=64*5 and y <= 64*5+64 and game.give_direction == "Research" then
 		game.give_direction = "Research economy"
@@ -301,10 +279,7 @@ function on_click_research_buttons(x,y)
 		game.give_direction = "Research industry"
 		game_directives.research_type = "Research industry"
 		game.research_timer = 5000
-	end
-end
-function click_on_gamegivedirection(x,y)
-	if game.give_direction == "Research" then
+	elseif game.give_direction == "Research" then
 		on_click_research_buttons(x,y)
 		-- ************** Do Job
 	elseif game.give_direction == "Demolish what?" then
@@ -348,10 +323,7 @@ function click_on_gamegivedirection(x,y)
 				end -- if i*64 == 0 then
 			end -- if x >= 64*i and x <= 64*(i+1) and y >=64*3 and y <= 64*3+64 then
 		end -- for i = 0, 7 do
-	end
-end
-function onclick_buildhouse_button(x,y)
-	if mouse_clicked_in64(x, y, 64*1, 64*4) == 1 then
+	elseif mouse_clicked_in64(x, y, 64*1, 64*4) == 1 then
 		if research_topics.economy >= 1 then
 			build_house_directive("Build house", 66, 66)--trade post
 		end
@@ -405,11 +377,7 @@ function love.mousepressed(x, y, button)
 		elseif game.show_menu == 2 then
 			select_biome_mouse(x,y,"l")
 		else
-			on_click_quickbuttons(x,y)
-			on_click_jobs(x,y) -- look up jobs.
-			on_clicked_research(x,y) --research menu is up.
-			click_on_gamegivedirection(x,y)
-			onclick_buildhouse_button(x,y)
+			on_clicked_buttons(x,y)
 			if game.give_direction == "Select road to build" then --28,36
 				for i = 0, 10 do
 					if y >= 64*4 and y <= 64*4+64 and x >= 64*i and x <= 64*(i+1) then
