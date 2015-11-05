@@ -211,34 +211,27 @@ function on_click_jobs(x,y) -- clicking jobs
 		else
 			game.give_direction = "Select job" --select job
 		end --end
-		return 1
 	elseif mouse_clicked_in64(x, y, 0, 64*2) == 1 then --Gather Food
 		game.give_direction = "Gather Food"
-		return 1
 	elseif mouse_clicked_in64(x, y, 0, 64*3) == 1 then --Build House
 		if game.give_direction == "Select house to build" then
 			game.give_direction = "None"
 		else
 			game.give_direction = "Select house to build" --"Build house"
 		end
-		return 1
 	elseif mouse_clicked_in64(x, y, 0, 64*4) == 1 then --Build Road
 		if game.give_direction == "Select road to build"  then
 			game.give_direction = "None"
 		else
 			game.give_direction = "Select road to build"
 		end
-		return 1
 	elseif mouse_clicked_in64(x, y, 0, 64*5) == 1 then --and game.give_direction == "None" then
 		if get_kingdom_researchable() == 1 and game.give_direction == "Research" then
 			game.give_direction = "None" -- check for researchables
 		elseif get_kingdom_researchable() == 1 then
 			game.give_direction = "Research" -- check for researchables
 		end
-		return 1
-	else
-		return 0
-	end return 0
+	end
 end
 function on_clicked_research(x,y)
 	if game.game_roster == 1 then
