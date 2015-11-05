@@ -199,9 +199,6 @@ function on_click_quickbuttons(x,y)---------------------QUICK BUTTONS
 end
 
 function on_click_jobs(x,y) -- clicking jobs
-	if game.give_direction == "Hunt what?" then
-		on_hunt_something(x,y) --villagers.lua
-	end
 	if mouse_clicked_in64(x, y, 0, 64*1) == 1 then --Select job
 		if game.give_direction == "Select job" then
 			game.give_direction = "None" --unselect job
@@ -407,7 +404,10 @@ function love.mousepressed(x, y, button)
 		click_on_gamegivedirection(x,y)
 		onclick_buildhouse_button(x,y)
 		------------------SELCT ROAD TO BUILD -------on_build_road()  buildings.lua
-		if game.give_direction == "Select road to build" then --28,36
+		if game.give_direction == "Hunt what?" then
+			on_hunt_something(x,y) --villagers.lua
+		end
+		elseif game.give_direction == "Select road to build" then --28,36
 			for i = 0, 10 do
 				if y >= 64*4 and y <= 64*4+64 and x >= 64*i and x <= 64*(i+1) then
 					if i*64 == 0 then
