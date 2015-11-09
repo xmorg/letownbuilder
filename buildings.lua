@@ -11,7 +11,6 @@ end
 function build_house_directive(adirection, jhouse_to_build, house_to_build)
    game.give_direction = adirection
    game.house_to_build = house_to_build
-   
 end
 
 function update_destroy_building(y,x) --if house is destroyed or deconstructed
