@@ -9,29 +9,6 @@ function mouse_clicked_inrect(x,y, cx, cy, cw, ch) -- clicked in a rectangle
    end
 end
 
-
-function update_checkscrolling(mx, my)
-   if game.mouse_last_x > mx and love.mouse.isDown("l") and game.give_direction == "Scrolling" then
-      game.draw_x = game.draw_x-game.scroll_speed
-   elseif game.mouse_last_x < mx and love.mouse.isDown("l") and game.give_direction == "Scrolling" then
-      game.draw_x = game.draw_x+game.scroll_speed
-   end
-   if game.mouse_last_y >  my and love.mouse.isDown("l") and game.give_direction == "Scrolling" then
-      game.draw_y = game.draw_y-game.scroll_speed
-   elseif game.mouse_last_y <  my and love.mouse.isDown("l") and game.give_direction == "Scrolling" then
-      game.draw_y = game.draw_y+game.scroll_speed
-   end
-   if love.keyboard.isDown("up") then
-      game.draw_y = game.draw_y+game.scroll_speed
-   elseif love.keyboard.isDown("down") then
-      game.draw_y = game.draw_y-game.scroll_speed
-   elseif love.keyboard.isDown("left") then
-      game.draw_x = game.draw_x+game.scroll_speed
-   elseif love.keyboard.isDown("right") then
-      game.draw_x = game.draw_x-game.scroll_speed
-   end
-end
-
 function love.mousereleased(x, y, button)
    if button == "l" then
       if game.give_direction == "Scrolling" then
@@ -42,72 +19,72 @@ end
 
 
 function on_plow_where_click()
-   if game_map[game.tile_selected_y][game.tile_selected_x] > 2 then
-      game_directives.job_type = "None."
-      game_directives.active = 0
-      game.give_direction = "Clear this area first"
- 	elseif kingdom_inventory.seeds < 3 then
+	if game_map[game.tile_selected_y][game.tile_selected_x] > 2 then
+		game_directives.job_type = "None."
+		game_directives.active = 0
+		game.give_direction = "Clear this area first"
+	elseif kingdom_inventory.seeds < 3 then
 		game_directives.job_type = "None"
 		game_directives.active = 0
 		game.give_direction = "Not enough seeds"
 		message_que_add("Not enough seeds (Seeds: 3)", 80, 41)
-   else
-      update_directives_loc(300, 1)
-      game_directives.job_type = "Make garden"
-      game.give_direction = "Plow where?"  --"None"
-      villagers_do_job(game_directives.location_x, game_directives.location_y, "farmer")
-      --if garden_type == "wheat" then
-	-- game.house_to_build = 42
-      --elseif garden_type == "tomatoes" then
-	-- game.house_to_build = 1042 --are we using 1000?
-      --end
-      create_job_forque()
-      play_sound(sound_click)
-      kingdom_inventory.seeds = kingdom_inventory.seeds-3
-   end -- game_map[game.tile_selected_y][game.tile_selected_x] > 2 then
+	else
+		update_directives_loc(300, 1)
+		game_directives.job_type = "Make garden"
+		game.give_direction = "Plow where?"  --"None"
+		villagers_do_job(game_directives.location_x, game_directives.location_y, "farmer")
+		--if garden_type == "wheat" then
+		-- game.house_to_build = 42
+		--elseif garden_type == "tomatoes" then
+		-- game.house_to_build = 1042 --are we using 1000?
+		--end
+		create_job_forque()
+		play_sound(sound_click)
+		kingdom_inventory.seeds = kingdom_inventory.seeds-3
+	end -- game_map[game.tile_selected_y][game.tile_selected_x] > 2 then
 end
 
 function on_tomatoes_where_click()
-   if game_map[game.tile_selected_y][game.tile_selected_x] > 2 then
-      game_directives.job_type = "None."
-      game_directives.active = 0
-      game.give_direction = "Clear this area first"
-   elseif kingdom_inventory.seeds < 5 then
+	if game_map[game.tile_selected_y][game.tile_selected_x] > 2 then
+		game_directives.job_type = "None."
+		game_directives.active = 0
+		game.give_direction = "Clear this area first"
+	elseif kingdom_inventory.seeds < 5 then
 		game_directives.job_type = "None"
 		game_directives.active = 0
 		game.give_direction = "Not enough seeds"
 		message_que_add("Not enough seeds (Seeds: 5)", 80, 41)
-   else
-      update_directives_loc(300, 1)
-      game_directives.job_type = "Plant tomatoes"
-      game.give_direction = "Tomatoes where?"  --"None"
-      villagers_do_job(game_directives.location_x, game_directives.location_y, "farmer")
-      create_job_forque()
-      play_sound(sound_click)
-      kingdom_inventory.seeds = kingdom_inventory.seeds-5
-   end -- game_map[game.tile_selected_y][game.tile_selected_x] > 2 then
+	else
+		update_directives_loc(300, 1)
+		game_directives.job_type = "Plant tomatoes"
+		game.give_direction = "Tomatoes where?"  --"None"
+		villagers_do_job(game_directives.location_x, game_directives.location_y, "farmer")
+		create_job_forque()
+		play_sound(sound_click)
+		kingdom_inventory.seeds = kingdom_inventory.seeds-5
+	end -- game_map[game.tile_selected_y][game.tile_selected_x] > 2 then
 end
 
 function on_cut_where_click()
-   if (game.biome == "forest" or game.biome == "frost") and
-      game_map[game.tile_selected_y][game.tile_selected_x] >= 3 and
-   game_map[game.tile_selected_y][game.tile_selected_x] <= 20 then
-      update_directives_loc(300, 1)
-      game_directives.job_type = "Cut trees"
-      game.give_direction = "Cut where?"
-      villagers_do_job(game_directives.location_x, game_directives.location_y , "woodcutter")
-      create_job_forque()
-      play_sound(sound_treecutting)
-      --17-20 desert, has limited "trees"
-   elseif game.biome == "desert" and game_map[game.tile_selected_y][game.tile_selected_x] >= 17 and
-   	game_map[game.tile_selected_y][game.tile_selected_x] <= 20 then
-      update_directives_loc(300, 1)
-      game_directives.job_type = "Cut trees"
-      game.give_direction = "Cut where?"
-      villagers_do_job(game_directives.location_x, game_directives.location_y , "woodcutter")
-      create_job_forque()
-      play_sound(sound_treecutting)
-   elseif game.biome == "japan" and game_map[game.tile_selected_y][game.tile_selected_x] >= 3 and
+	if (game.biome == "forest" or game.biome == "frost") and
+		game_map[game.tile_selected_y][game.tile_selected_x] >= 3 and
+		game_map[game.tile_selected_y][game.tile_selected_x] <= 20 then
+		update_directives_loc(300, 1)
+		game_directives.job_type = "Cut trees"
+		game.give_direction = "Cut where?"
+		villagers_do_job(game_directives.location_x, game_directives.location_y , "woodcutter")
+		create_job_forque()
+		play_sound(sound_treecutting)
+		--17-20 desert, has limited "trees"
+	elseif game.biome == "desert" and game_map[game.tile_selected_y][game.tile_selected_x] >= 17 and
+		game_map[game.tile_selected_y][game.tile_selected_x] <= 20 then
+		update_directives_loc(300, 1)
+		game_directives.job_type = "Cut trees"
+		game.give_direction = "Cut where?"
+		villagers_do_job(game_directives.location_x, game_directives.location_y , "woodcutter")
+		create_job_forque()
+		play_sound(sound_treecutting)
+	elseif game.biome == "japan" and game_map[game.tile_selected_y][game.tile_selected_x] >= 3 and
    game_map[game.tile_selected_y][game.tile_selected_x] <= 9 then
       --japan 3-9 sakura, 10-20 bamboo
       update_directives_loc(300, 1)
@@ -513,4 +490,26 @@ function get_tooltip_info_from_item() --ran in update?
 	else 
 		game.tooltip_text = "NONE"
 	end
+end
+
+function update_checkscrolling(mx, my)
+   if game.mouse_last_x > mx and love.mouse.isDown("l") and game.give_direction == "Scrolling" then
+      game.draw_x = game.draw_x-game.scroll_speed
+   elseif game.mouse_last_x < mx and love.mouse.isDown("l") and game.give_direction == "Scrolling" then
+      game.draw_x = game.draw_x+game.scroll_speed
+   end
+   if game.mouse_last_y >  my and love.mouse.isDown("l") and game.give_direction == "Scrolling" then
+      game.draw_y = game.draw_y-game.scroll_speed
+   elseif game.mouse_last_y <  my and love.mouse.isDown("l") and game.give_direction == "Scrolling" then
+      game.draw_y = game.draw_y+game.scroll_speed
+   end
+   if love.keyboard.isDown("up") then
+      game.draw_y = game.draw_y+game.scroll_speed
+   elseif love.keyboard.isDown("down") then
+      game.draw_y = game.draw_y-game.scroll_speed
+   elseif love.keyboard.isDown("left") then
+      game.draw_x = game.draw_x+game.scroll_speed
+   elseif love.keyboard.isDown("right") then
+      game.draw_x = game.draw_x-game.scroll_speed
+   end
 end
