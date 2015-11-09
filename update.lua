@@ -732,7 +732,7 @@ function on_update_fires(x,y) -- per tile do a fire update.
 	 end
       end
    end--endif
-   if kingdom_inventory.unrest >= 70 then --rioting, randomly set fire to a building.
+   if get_town_unrest() >= 70 then --rioting, randomly set fire to a building.
       if game_road_map[y][x] >= 23 and game_road_map[y][x] <=27 then
 	 riot_fire_chance = math.random(1,15)
 	 if on_fire(game_fire_map[y][x]) == false and riot_fire_chance == 1 then
