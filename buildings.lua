@@ -23,6 +23,7 @@ function update_destroy_building(y,x) --if house is destroyed or deconstructed
    local sheriff   = 67
    local fishinghut = 55
    local watchtower = 65
+   local church = 72
    function unassign_house()
       kingdom_inventory.homes = kingdom_inventory.homes -1
       for i2,v2 in ipairs(game_villagers) do
@@ -53,6 +54,8 @@ function update_destroy_building(y,x) --if house is destroyed or deconstructed
       kingdom_inventory.fishinghut = kingdom_inventory.fishinghut-1
    elseif game_road_map[y][x] == watchtower then
       kingdom_inventory.watchtower = kingdom_inventory.watchtower-1
+   elseif game_road_map[y][x] == church then
+      kingdom_inventort.church = kingdom_inventory.church-1
    end
    game_road_map[y][x] = 0 -- make building disappear
 end
@@ -209,9 +212,19 @@ function build_house_complete(i) -- house is complete, remove resources used, an
       update_add_building(game_job_que[i].location_y, game_job_que[i].location_x, "smelter")
    elseif game.house_to_build == 71 then --brewery
       if game.biome == "forest" then
-	 kingdom_inventory.rocks = kingdom_inventory.wood -15
+	 kingdom_inventory.wood = kingdom_inventory.wood -15
       elseif game.biome == "japan" then
 	 kingdom_inventory.sakura = kingdom_inventory.sakura -15
+      end
+      villagers_do_job(game_directives.location_x, game_directives.location_y, "brewer")
+      update_add_building(game_job_que[i].location_y, game_job_que[i].location_x, "brewery")
+   elseif game.house_to_build == 72 then --church
+      if game.biome == "forest" then
+	 kingdom_inventory.wood = kingdom_inventory.wood -30
+	 kingdom_inventory.rocks = kingdom_inventory.rocks -30
+      elseif game.biome == "japan" then
+	 kingdom_inventory.sakura = kingdom_inventory.sakura -30
+	 kingdom_inventory.rocks = kingdom_inventory.rocks -30
       end
       villagers_do_job(game_directives.location_x, game_directives.location_y, "brewer")
       update_add_building(game_job_que[i].location_y, game_job_que[i].location_x, "brewery")
@@ -388,16 +401,23 @@ function on_build_house() --check for resources and conditions, if ok start buil
       else
 	 start_build_house_job() 
       end
+   elseif game.house_to_build == 72 then
+      if (game.biome == "forest" and kingdom_inventory.rocks < 30 ) or
+	 (game.biome == "japan" and (kingdom_inventory.rocks < 30)) or
+      (game.biome == "desert" and (kingdom_inventory.sandstone < 30)) then
+	 game_directives.job_type = "Not Resources(stone 10)"
+	 game_directives.active = 0
+	 game.give_direction = "None"
+	 message_que_add("Not Resources for a Church (stone 10)", 80, 9)
+      else
+	 start_build_house_job() 
+      end
    elseif game.house_to_build == game.mayor_sex then
       if kingdom_inventory.rocks >= 20 then
 	 start_build_house_job()
       elseif kingdom_inventory.sandstone >= 20 then
 	 start_build_house_job()
       else
-	 --(game.biome == "forest" and kingdom_inventory.rocks < 20 ) or
-	 --(game.biome == "japan" and (kingdom_inventory.rocks < 20)) or
-	 --(game.biome == "desert" and (kingdom_inventory.sandstone < 20)) then 
-	 --and kingdom_inventory.rocks < 20 then
 	 game_directives.job_type = "Not Resources(stone 20)"
 	 game_directives.active = 0
 	 game.give_direction = "None"
@@ -513,32 +533,6 @@ function on_demolish_structure()
       create_job_forque()
    end
 end
-
--- might be redundant? (mouse.lua)
---function on_build_garden(garden_type)
---   if game_map[game.tile_selected_y][game.tile_selected_x] == game.water_tile then
---      game_directives.job_type = "Cant build on water"
---      game_directives.active = 0
---      game.give_direction = "None"
---   elseif kingdom_inventory.seeds < 3 then
---      game_directives.job_type = "Not enough seeds(3)"
---      game_directives.active = 0
---      game.give_direction = "None"
---   else
---      update_directives_loc(300, 1)
---      game_directives.job_type = game.give_direction
---      if garden_type == "wheat" then
---	 game.house_to_build = 42
---      elseif garden_type == "tomatoes" then
---	 game.house_to_build = 1042 --are we using 1000?
---      end
---      game.give_direction = "None"
---      villagers_do_job(game_directives.location_x, game_directives.location_y, "farmer")
---      create_job_forque()
---      play_sound(sound_build_house)
---      kingdom_inventory.seeds = kingdom_inventory.seeds -3
---   end
---end
 
 function on_gather_food()
    if game.biome == "desert" then
