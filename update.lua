@@ -1,8 +1,17 @@
 --main update functions, 
 --increment day time and
 
-
 require( "achivements")
+
+function get_town_unrest() --returns an adjusted unrest variable.
+	local unrest = 0
+	local mod = 0
+	if kingdom_inventory.church >= 1 then
+		mod = mod -10
+	end
+	unrest = kingdom_inventory.unrest + mod
+	return unrest
+end
 
 function spread_fires(x,y)
    if game_fire_map[y][x] == 1 then
@@ -84,13 +93,13 @@ function daily_update_map() --happens at 11 oclock
    --kingdom_inventory.homeless = (kingdom_inventory.villagers - kingdom_inventory.homes)
    --game.message_box_timer = 300
    if kingdom_inventory.monument >= 1 then
-      if kingdom_inventory.unrest < 60 then
+      if get_town_unrest() < 60 then
 	 kingdom_inventory.unrest = kingdom_inventory.unrest - kingdom_inventory.monument --monuments
 	 local vandalism = math.random(1,300)
 	 if vandalism ==1 then
 	    vandalize_monument()
 	 end--endif
-      elseif kingdom_inventory.unrest > 60 then
+      elseif get_town_unrest() > 60 then
 	 kingdom_inventory.unrest = kingdom_inventory.unrest + kingdom_inventory.monument --monuments
 	 local vandalism = math.random(1,3)
 	 if vandalism ==1 then
@@ -98,13 +107,13 @@ function daily_update_map() --happens at 11 oclock
 	 end
       end
    end
-   if kingdom_inventory.holyman > 0 and kingdom_inventory.unrest < 60 then
+   if kingdom_inventory.holyman > 0 and get_town_unrest() < 60 then
       kingdom_inventory.unrest = kingdom_inventory.unrest - (kingdom_inventory.holyman*5)
       message_que_add("The people are encouraged by the holyman's sermon" , 90, 1)
       if kingdom_inventory.unrest < 0 then
 	 kingdom_inventory.unrest = 0
       end
-   elseif kingdom_inventory.unrest >= 60 then
+   elseif get_town_unrest() >= 60 then
       kingdom_inventory.unrest = kingdom_inventory.unrest + (kingdom_inventory.holyman*5)
       message_que_add("The people are outraged by the holyman's sermon" , 90, 1)
    end
@@ -247,13 +256,13 @@ end
 function check_for_events_in_timer()
    local nightwolves_night = math.random(1,20)
    --update_achivements("The howling", 1)
-   if kingdom_inventory.unrest >= 70 then
+   if get_town_unrest() >= 70 then
    	update_achivements("Now you make me mad", 1)
    end
    
    if game.day_time == 12000 then
       villagers_eat_food(table.getn(game_villagers))
-      if kingdom_inventory.unrest >= 70 then
+      if get_town_unrest() >= 70 then
 	 villagers_rioting_report(game_villagers)
       end
    elseif game.day_time == 11000 then
@@ -723,9 +732,6 @@ function on_update_fires(x,y) -- per tile do a fire update.
 	 end
       end
    end--endif
-   --do rioting
-   --homes & mines(23-27) school,barn 51,52, 61-68 buildings, 70 fishing hut, 
-   --75 militia house, 80 smelter
    if kingdom_inventory.unrest >= 70 then --rioting, randomly set fire to a building.
       if game_road_map[y][x] >= 23 and game_road_map[y][x] <=27 then
 	 riot_fire_chance = math.random(1,15)
