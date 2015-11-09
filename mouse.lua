@@ -277,12 +277,12 @@ function on_clicked_buttons(x,y)---------------------QUICK BUTTONS
 		on_select_job(x,y) -- click the job you want.
 		-------------- SELECT HOUSE TO BUILD ------------------------
 	elseif game.give_direction == "Select house to build" then
-		for i = 0, 8 do
-			if x >= 64*i and x <= 64*(i+1) and y >=64*3 and y <= 64*3+64 then
-				if i*64 == 0 then
-					game.give_direction = "None"
-				elseif x >= 64*1 and x <= 64*(1+1) and y >=64*3 and y <= 64*3+64 then --house
-					build_house_directive("Build house", 23, 23)
+		--if mouse_clicked_in64(x,y, 64*6, 64) == 1 then
+		--for i = 0, 8 do
+		if mouse_clicked_in64(x,y, 64*0, 64*3) == 1 then
+			game.give_direction = "None"
+		elseif mouse_clicked_in64(x,y, 64*1, 64*3) == 1 then
+			build_house_directive("Build house", 23, 23)
 				elseif x >= 64*2 and x <= 64*(2+1) and y >=64*3 and y <= 64*3+64 then --house2
 					build_house_directive("Build house", 24, 24)
 				elseif x >= 64*3 and x <= 64*(3+1) and y >=64*3 and y <= 64*3+64 then --house3
