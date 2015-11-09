@@ -67,22 +67,22 @@ function display_game_event(mque) --puts a messagebox with a game event of "text
 end
 
 function set_villager_unrest()
-   if kingdom_inventory.unrest < 10 then vunrest = "very happy"
+   if get_town_unrest() < 10 then vunrest = "very happy"
       love.graphics.setColor(255,255,255,255)
-   elseif kingdom_inventory.unrest < 20 then 
+   elseif get_town_unrest() < 20 then 
       vunrest = "happy"
-   elseif kingdom_inventory.unrest < 30 then 
+   elseif get_town_unrest() < 30 then 
       vunrest = "ok"
       love.graphics.setColor(255, 255, 0, 255)
-   elseif kingdom_inventory.unrest < 40 then 
+   elseif get_town_unrest() < 40 then 
       vunrest = "grumbling"
-   elseif kingdom_inventory.unrest < 50 then 
+   elseif get_town_unrest() < 50 then 
       vunrest = "angry"
       love.graphics.setColor(180, 0, 0, 255)
-   elseif kingdom_inventory.unrest < 69 then 
+   elseif get_town_unrest() < 69 then 
       vunrest = "enraged!"
       love.graphics.setColor(255, 0, 0, 255)
-   elseif kingdom_inventory.unrest >= 70 then 
+   elseif get_town_unrest() >= 70 then 
       love.graphics.setColor(255, 0, 0, 255) 
       vunrest = "rioting!"
    end
@@ -135,7 +135,7 @@ function draw_game_ui()
    love.graphics.print(game.printx.."X"..game.printy, 10, font_row_1)--legacy printxy
    vunrest = set_villager_unrest()
    love.graphics.print("Population: "..table.getn(game_villagers).."/"..kingdom_inventory.families..
-   	"   Village Happiness: "..vunrest.."("..(kingdom_inventory.unrest*-1)..")", 10, font_row_2) 
+   	"   Village Happiness: "..vunrest.."("..(get_town_unrest()*-1)..")", 10, font_row_2) 
    love.graphics.setColor(255, 255, 255, 255)
    love.graphics.print(get_discription_by_directive(), 10, 37)
    if kingdom_inventory.hunger > 0 then  love.graphics.setColor(255, 255, 0, 255)
@@ -687,21 +687,21 @@ function draw_villagers()
 	    print_talk_text("Sheriff "..game_villagers[i].name..": "..sheriff_topics_allday[game_villagers[i].speak], game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
 	 elseif game_villagers[i].villager_type == "holyman" then
 	    print_talk_text("Holyman "..game_villagers[i].name..": "..talk_topics_holyman[game_villagers[i].speak], game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -2)
-	 elseif kingdom_inventory.unrest < 10 and is_night() == 0 then 
+	 elseif get_town_unrest() < 10 and is_night() == 0 then 
 	    print_talk_text(game_villagers[i].name..": "..talk_topics_happy[game_villagers[i].speak], game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
-	 elseif kingdom_inventory.unrest < 10 and is_night() == 1 then
+	 elseif get_town_unrest() < 10 and is_night() == 1 then
 	    print_talk_text(game_villagers[i].name..": "..talk_topics_happynight[game_villagers[i].speak], game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -2)
-	 elseif kingdom_inventory.unrest < 20 then
+	 elseif get_town_unrest() < 20 then
 	    print_talk_text(game_villagers[i].name..": "..talk_topics_happy[game_villagers[i].speak], game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
-	 elseif kingdom_inventory.unrest < 30 then
+	 elseif get_town_unrest() < 30 then
 	    print_talk_text(game_villagers[i].name..": "..talk_topics_ok[game_villagers[i].speak], game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
-	 elseif kingdom_inventory.unrest < 40 then
+	 elseif get_town_unrest() < 40 then
 	    print_talk_text(game_villagers[i].name..": "..talk_topics_grumbling[game_villagers[i].speak], game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
-	 elseif kingdom_inventory.unrest < 50 then
+	 elseif get_town_unrest() < 50 then
 	    print_talk_text(game_villagers[i].name..": "..talk_topics_angry[game_villagers[i].speak], game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20 -20)
-	 elseif kingdom_inventory.unrest < 69 then
+	 elseif get_town_unrest() < 69 then
 	    print_talk_text(game_villagers[i].name..": "..talk_topics_angry[game_villagers[i].speak], game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
-	 elseif kingdom_inventory.unrest >= 70 then
+	 elseif get_town_unrest() >= 70 then
 	    print_talk_text(game_villagers[i].name..": "..talk_topics_riot[game_villagers[i].speak], game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
 	 end
       elseif kingdom_inventory.watchtower > 0 then
