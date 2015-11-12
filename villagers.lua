@@ -9,6 +9,7 @@ function new_villager(migration)
 	speak = 0, 
 	speed = 3,
 	talk_timer = 0, alive=1, --always start alive 
+	nodie_timer = 0,
 	name = crude_names_front[math.random(1,26)]..crude_names_back[math.random(1,26)],  
 	sex = math.random(0,1), --1 male, 0 female
 	age = nil, --math.random 18,65
