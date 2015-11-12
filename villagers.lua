@@ -739,6 +739,9 @@ function update_villager_jobs(dt) -- here is where timers should go down?
 	 if game_villagers[i].alive == 0 then 
 	    game_villagers[i].talk_timer = 0 -- stop dead villagers from talking 
 	 end -- endif
+	 if game_villagers[i].nodie_timer > 0 then
+	 	game_villagers[i].nodie_timer = game_villagers[i].nodie_timer-1
+	 end
 	 update_villager_new_destination(game_villagers[i], dt, game_villagers[i].speed) --why are they moving so fast?	
       end-- for j, w in ipairs(game_villagers) do
    end--for i, v in ipairs(game_villagers) do
