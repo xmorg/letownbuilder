@@ -651,6 +651,7 @@ function update_villager_killedby_werewolf(i, j)
 				if i.alive == 1 then
 					i.alive = 0
 					j.opinion = "Survived a werewolf attack."
+					j.nodie_timer = 30
 					i.died_x = i.x
 					i.died_y = i.y
 					message_que_add(j.name.." has fought a werewolf and lived!", 100, 1)
