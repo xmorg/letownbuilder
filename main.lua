@@ -51,7 +51,8 @@ game = {state = 1, give_direction = "None", day_time = 6000, day_count = 1,
 	tooltip_text = "NONE",
 	game_pricetag = "drm free", -- free, drm free, if you bought the game, you have access to more maps, and content that is
 	rotate = 1, started = 0,
-	smithing_production = "auto" -- weapons, tools, treasures, coins
+	smithing_production = "auto", -- weapons, tools, treasures, coins
+	invasion_action = "none"  
 	--custom made and not featured on opengameart.
 }
 
