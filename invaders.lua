@@ -30,12 +30,15 @@ function trigger_invasion(invasiontype) --love.update
 	--game.invasion_action = "none" 
 	game.invasion_action = invasiontype
 	--game_invaders = {}
-	--if game.invasion_action == "goblins" then
+	if game.invasion_action == "goblins" then
 		--add goblins and orcs
-	--elseif game.invasion_action == "skeletons" then
-	--elseif game.invasion_action == "pirates" then
-	--elseif game.invasion_action == ""
-	--end
+	elseif game.invasion_action == "skeletons" then
+		--add skeletons
+	elseif game.invasion_action == "pirates" then
+		--add pirates (no graphics yet)
+	elseif game.invasion_action == "slavers" then
+		--add slavers (no graphics yet)
+	end
 end
 function on_update_invasion() --love.update
 	--check collions with villagers, 
