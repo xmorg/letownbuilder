@@ -26,8 +26,16 @@ function new_invader(ttype)
    return a
 end
 function trigger_invasion(invasiontype) --love.update
-	--set invasion flag on, populate invaders
-	--note, a merchant coming can also be "an invasion"
+	--set invasion flag on, populate invaders note, a merchant coming can also be "an invasion"
+	--game.invasion_action = "none" 
+	game.invasion_action = invasiontype
+	--game_invaders = {}
+	--if game.invasion_action == "goblins" then
+		--add goblins and orcs
+	--elseif game.invasion_action == "skeletons" then
+	--elseif game.invasion_action == "pirates" then
+	--elseif game.invasion_action == ""
+	--end
 end
 function on_update_invasion() --love.update
 	--check collions with villagers, 
