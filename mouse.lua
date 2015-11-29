@@ -336,7 +336,7 @@ function on_clicked_buttons(x,y)---------------------QUICK BUTTONS
       -- ************** Do Job
    elseif game.give_direction == "Demolish what?" then
       on_demolish_structure()
-   elseif game.give_direction == "Hunt What?" then
+   elseif game.give_direction == "Hunt what?" then
       on_hunt_something(x,y)
    elseif game.give_direction == "Gather Food" then
       on_gather_food() --buildings.lua
