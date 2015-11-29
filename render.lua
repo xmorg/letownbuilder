@@ -483,6 +483,12 @@ function draw_inventory_numbers() --erased lot of code
    love.graphics.print(kingdom_inventory.tools, love.graphics.getWidth()-50, 256+16+64+32)
    love.graphics.print(kingdom_inventory.weapons, love.graphics.getWidth()-24, 256+16+64+32)
    
+   love.graphics.print(kingdom_inventory.treasures, love.graphics.getWidth()-50, 256+16+64+64)
+   love.graphics.print(kingdom_inventory.coinds, love.graphics.getWidth()-24, 256+16+64+64)
+   
+   love.graphics.print(kingdom_inventory.mushrooms, love.graphics.getWidth()-50, 256+16+64+64+32)
+   --love.graphics.print(kingdom_inventory.coinds, love.graphics.getWidth()-24, 256+16+64+64)
+   
 end--draw_inventory_icons()
 function draw_resource_bar() --replace draw_inventory_icons()
    love.graphics.draw(resource_bar, love.graphics.getWidth()-64, 0)
