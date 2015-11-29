@@ -265,7 +265,9 @@ function on_clicked_rosterbutton(x,y)
    elseif mouse_clicked_inrect(x,y, col_four-3, 20+68, 60, 23) == 1 then
       game.records_tab = 4
       game.roster_selected = "messages"
+   else return 0
    end
+   return 1
 end
 
 function on_clicked_buttons(x,y)---------------------QUICK BUTTONS
@@ -310,7 +312,7 @@ function on_clicked_buttons(x,y)---------------------QUICK BUTTONS
 	 game.give_direction = "Research" -- check for researchables
       end
    elseif game.game_roster == 1 then
-      
+      on_clicked_rosterbutton(x,y)
    elseif  mouse_clicked_in64(x,y, 0, 64) == 1 then
       game.give_direction = "None"
    elseif mouse_clicked_in64(x,y, 64*1, 64) == 1 then
