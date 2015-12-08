@@ -28,10 +28,12 @@ end
 function trigger_invasion(invasiontype) --love.update
 	--set invasion flag on, populate invaders note, a merchant coming can also be "an invasion"
 	--game.invasion_action = "none" 
+	--spawn nightwolves in animals.lua
 	game.invasion_action = invasiontype
 	--game_invaders = {}
 	if game.invasion_action == "goblins" then
 		--add goblins and orcs
+		
 	elseif game.invasion_action == "skeletons" then
 		--add skeletons
 	elseif game.invasion_action == "pirates" then
@@ -39,6 +41,7 @@ function trigger_invasion(invasiontype) --love.update
 	elseif game.invasion_action == "slavers" then
 		--add slavers (no graphics yet)
 	end
+	--notify town that X has been spotted.
 end
 function on_update_invasion() --love.update
 	--check collions with villagers, 
