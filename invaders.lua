@@ -1,5 +1,22 @@
 --game_invaders = {} --bandits, armies, vikings, zombies, etc.
-
+function set_invader_sprites(ttype)
+   local sprite = 0 
+   local dead_sprite = 0
+   if ttype == "goblin" then
+      sprite = 43 
+      dead_sprite = 44
+   elseif ttype == "orc" then
+      sprite = 45 
+      dead_sprite = 46
+   elseif ttype == "skeleton" then
+      sprite = 47
+      dead_sprite = 48
+   else
+      sprite = 42
+      dead_sprite = 29
+   end
+   return sprite, dead_sprite
+end
 function new_invader(ttype)
    local start_x = math.random(400,600)
    local start_y = math.random(400,600)
@@ -21,7 +38,8 @@ function new_invader(ttype)
 	mood = "very happy",
 	opinion = "Excited about invading your town!",
 	disease = "healthy",
-	disease_timer = 0
+	disease_timer = 0,
+	sprite, dead_sprite = set_invader_sprites(ttype)
    } 
    return a
 end
@@ -32,10 +50,13 @@ function trigger_invasion(invasiontype) --love.update
 	game.invasion_action = invasiontype
 	--game_invaders = {}
 	if game.invasion_action == "goblins" then
-		--add goblins and orcs
-		
+		--add goblins and orcs   table.insert(game_nightwolves, new_wildlife(0, "night wolf") )
+	   table.insert(game_invaders, new_invader("goblin"))
+	   table.insert(game_invaders, new_invader("orc"))
 	elseif game.invasion_action == "skeletons" then
 		--add skeletons
+	   table.insert(game_invaders, new_invader("skeleton"))
+	   table.insert(game_invaders, new_invader("skeleton"))
 	elseif game.invasion_action == "pirates" then
 		--add pirates (no graphics yet)
 	elseif game.invasion_action == "slavers" then
