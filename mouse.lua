@@ -19,50 +19,50 @@ end
 
 
 function on_plow_where_click()
-	if game_map[game.tile_selected_y][game.tile_selected_x] > 2 then
-		game_directives.job_type = "None."
-		game_directives.active = 0
-		game.give_direction = "Clear this area first"
-	elseif kingdom_inventory.seeds < 3 then
-		game_directives.job_type = "None"
-		game_directives.active = 0
-		game.give_direction = "Not enough seeds"
-		message_que_add("Not enough seeds (Seeds: 3)", 80, 41)
-	else
-		update_directives_loc(300, 1)
-		game_directives.job_type = "Make garden"
-		game.give_direction = "Plow where?"  --"None"
-		villagers_do_job(game_directives.location_x, game_directives.location_y, "farmer")
-		--if garden_type == "wheat" then
-		-- game.house_to_build = 42
-		--elseif garden_type == "tomatoes" then
-		-- game.house_to_build = 1042 --are we using 1000?
-		--end
-		create_job_forque()
-		play_sound(sound_click)
-		kingdom_inventory.seeds = kingdom_inventory.seeds-3
-	end -- game_map[game.tile_selected_y][game.tile_selected_x] > 2 then
+   if game_map[game.tile_selected_y][game.tile_selected_x] > 2 then
+      game_directives.job_type = "None."
+      game_directives.active = 0
+      game.give_direction = "Clear this area first"
+   elseif kingdom_inventory.seeds < 3 then
+      game_directives.job_type = "None"
+      game_directives.active = 0
+      game.give_direction = "Not enough seeds"
+      message_que_add("Not enough seeds (Seeds: 3)", 80, 41)
+   else
+      update_directives_loc(300, 1)
+      game_directives.job_type = "Make garden"
+      game.give_direction = "Plow where?"  --"None"
+      villagers_do_job(game_directives.location_x, game_directives.location_y, "farmer")
+      --if garden_type == "wheat" then
+      -- game.house_to_build = 42
+      --elseif garden_type == "tomatoes" then
+      -- game.house_to_build = 1042 --are we using 1000?
+      --end
+      create_job_forque()
+      play_sound(sound_click)
+      kingdom_inventory.seeds = kingdom_inventory.seeds-3
+   end -- game_map[game.tile_selected_y][game.tile_selected_x] > 2 then
 end
 
 function on_tomatoes_where_click()
-	if game_map[game.tile_selected_y][game.tile_selected_x] > 2 then
-		game_directives.job_type = "None."
-		game_directives.active = 0
-		game.give_direction = "Clear this area first"
-	elseif kingdom_inventory.seeds < 5 then
-		game_directives.job_type = "None"
-		game_directives.active = 0
-		game.give_direction = "Not enough seeds"
-		message_que_add("Not enough seeds (Seeds: 5)", 80, 41)
-	else
-		update_directives_loc(300, 1)
-		game_directives.job_type = "Plant tomatoes"
-		game.give_direction = "Tomatoes where?"  --"None"
-		villagers_do_job(game_directives.location_x, game_directives.location_y, "farmer")
-		create_job_forque()
-		play_sound(sound_click)
-		kingdom_inventory.seeds = kingdom_inventory.seeds-5
-	end -- game_map[game.tile_selected_y][game.tile_selected_x] > 2 then
+   if game_map[game.tile_selected_y][game.tile_selected_x] > 2 then
+      game_directives.job_type = "None."
+      game_directives.active = 0
+      game.give_direction = "Clear this area first"
+   elseif kingdom_inventory.seeds < 5 then
+      game_directives.job_type = "None"
+      game_directives.active = 0
+      game.give_direction = "Not enough seeds"
+      message_que_add("Not enough seeds (Seeds: 5)", 80, 41)
+   else
+      update_directives_loc(300, 1)
+      game_directives.job_type = "Plant tomatoes"
+      game.give_direction = "Tomatoes where?"  --"None"
+      villagers_do_job(game_directives.location_x, game_directives.location_y, "farmer")
+      create_job_forque()
+      play_sound(sound_click)
+      kingdom_inventory.seeds = kingdom_inventory.seeds-5
+   end -- game_map[game.tile_selected_y][game.tile_selected_x] > 2 then
 end
 
 function on_cut_where_click()
@@ -359,6 +359,12 @@ function on_clicked_buttons(x,y)---------------------QUICK BUTTONS
    return 1 -- a button was probably clicked?
 end --on clicked buttons
 
+function love.mousereleased(x,y,button)
+   if button == "l" then
+      game.scroll_direction = "none"
+   end
+end
+
 function love.mousepressed(x, y, button)
    if button == "l" then -- 1 l
       game.printx = x		--game.printx = 0 -- 0  -62
@@ -368,6 +374,18 @@ function love.mousepressed(x, y, button)
       elseif game.show_menu == 2 then
 	 select_biome_mouse(x,y,"l")
       else --no menus are up
+	 --mouse_clicked_in32(x, y, icon_x, icon_y)
+	 if mouse_clicked_in32(x, y, game.screen_width-64-128, game.screen_height-70)==1 then
+	    game.scroll_direction = "left"
+	 elseif mouse_clicked_in32(x, y, game.screen_width-64-88, game.screen_height-42)==1 then
+	    game.scroll_direction = "down"
+	 elseif mouse_clicked_in32(x, y, game.screen_width-64-80,game.screen_height-128) == 1 then
+	    game.scroll_direction = "up"
+	 elseif mouse_clicked_in32(x, y, game.screen_width-64-40, game.screen_height-80) ==1 then
+	    game.scroll_direction = "right"
+	 else
+	    game.scroll_direction = "none"
+	 end
 	 if on_clicked_buttons(x,y) == 1 then --you clicked a button, but other code will run after?
 	    --nothing, just testing that it was done
 	 elseif game.give_direction == "Select road to build" then --28,36
@@ -520,13 +538,13 @@ function update_checkscrolling(mx, my)
    elseif game.mouse_last_y <  my and love.mouse.isDown("l") and game.give_direction == "Scrolling" then
       game.draw_y = game.draw_y+game.scroll_speed
    end
-   if love.keyboard.isDown("up") then
+   if love.keyboard.isDown("up") or game.scroll_direction == "up" then
       game.draw_y = game.draw_y+game.scroll_speed
-   elseif love.keyboard.isDown("down") then
+   elseif love.keyboard.isDown("down") or game.scroll_direction == "down"  then
       game.draw_y = game.draw_y-game.scroll_speed
-   elseif love.keyboard.isDown("left") then
+   elseif love.keyboard.isDown("left") or game.scroll_direction == "left" then
       game.draw_x = game.draw_x+game.scroll_speed
-   elseif love.keyboard.isDown("right") then
+   elseif love.keyboard.isDown("right") or game.scroll_direction == "right" then
       game.draw_x = game.draw_x-game.scroll_speed
    end
 end

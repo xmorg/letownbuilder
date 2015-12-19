@@ -21,8 +21,8 @@ game = {state = 1, give_direction = "None", day_time = 6000, day_count = 1,
 	fullscreen_mode = "No",
 	tilewidth_fx = 64,  --ground tile width/height, not actual height of tile in pixels
 	tileheight_fx = 32, --but the w/h from tip to tip
-	draw_x=-100, draw_y=-100, screen_width = love.graphics.getWidth(), love.graphics.getHeight(),
-	scroll_speed=3, loc_selected_x = 0, loc_selected_y = 0, --lx+ 32 --ly+ 16
+	draw_x=-100, draw_y=-100, screen_width = love.graphics.getWidth(), screen_height = love.graphics.getHeight(),
+	scroll_speed=3, scroll_direction = "none", loc_selected_x = 0, loc_selected_y = 0, --lx+ 32 --ly+ 16
 	tilecount = 32, actor_speed = 2, printx = 0, printy = 0, -- 0  -62-- 536-600
 	water_tile = 38, hole_tile = 37, fish_icon = 16, bridge_tile1 = 21,
 	bridge_tile2 = 22, axe_icon = 52, shovel_icon = 15, green_selected = 39, 
@@ -52,7 +52,7 @@ game = {state = 1, give_direction = "None", day_time = 6000, day_count = 1,
 	game_pricetag = "drm free", -- free, drm free, if you bought the game, you have access to more maps, and content that is
 	rotate = 1, started = 0,
 	smithing_production = "auto", -- weapons, tools, treasures, coins
-	invasion_action = "none"  
+	invasion_action = "none", game_mobile = 1  
 	--custom made and not featured on opengameart.
 }
 
@@ -578,7 +578,7 @@ function love.load()
    music_townbg1:setLooping( true )
    music_nightbg1 = love.audio.newSource("data/sounds/un_com_night.ogg")
    music_nightbg1:setLooping( true )
-
+   game_pad = love.graphics.newImage("data/gpad.png") --game pad
    icon_files = love.filesystem.getDirectoryItems(icon_dir) --0.9
 
    for k, file in ipairs(icon_files) do
@@ -598,45 +598,45 @@ end
 --selected_merchant_item = 1
 
 function love.keypressed(key)
-	if game.merchant_menu == 1 then
-		input_merchant_sale_keyes(key)
-    end
-	if game.disablekeyboard == 0 then
-		if key == "e" then
-			screenshot = love.graphics.newScreenshot( false )
-			screenshot:encode("screenie"..game.lastscreenshot..".jpg")
-			game.lastscreenshot = game.lastscreenshot+1
-		elseif key == "escape" then
-			if game.show_menu == 0 then game.show_menu = 1 --
-			elseif game.show_menu == 7 and game.started == 1 then game.show_menu = 0
-			elseif game.show_menu == 7 then game.show_menu = 1
-			elseif game.show_menu == 99 then game.show_menu = 1
-			else 
-				if game.started == 1 then game.show_menu = 0 end 
-			end
-		elseif key == "f2" then
-			if game.fullscreen_mode == "No" then 
-				game.fullscreen_mode = "Yes"
-			else 
-				game.fullscreen_mode = "No" 
-			end
-			go_fullscreen()
-		elseif key == "m" then  --disabled trading because its buggy.
-			--if game.merchant_menu == 1 then game.merchant_menu = 0
-			--else add_merchant_inventory() game.merchant_menu = 1
-			--end
-		elseif key == "a" then
-			if game.show_menu == 7 and game.started == 0 then
-				game.show_menu = 1 --back to first menu
-			elseif game.showmenu == 7 and game.started == 1 then
-				game.show_menu = 0 -- back to the game.
-			elseif game.show_menu == 1 and game.started == 0 then
-				game.show_menu = 7
-			elseif game.show_menu == 0 and game.started == 1 then
-				game.show_menu = 7
-			end
-		elseif key == "s" then
-			love_crude_save() -- crude saving
+   if game.merchant_menu == 1 then
+      input_merchant_sale_keyes(key)
+   end
+   if game.disablekeyboard == 0 then
+      if key == "e" then
+	 screenshot = love.graphics.newScreenshot( false )
+	 screenshot:encode("screenie"..game.lastscreenshot..".jpg")
+	 game.lastscreenshot = game.lastscreenshot+1
+      elseif key == "escape" then
+	 if game.show_menu == 0 then game.show_menu = 1 --
+	 elseif game.show_menu == 7 and game.started == 1 then game.show_menu = 0
+	 elseif game.show_menu == 7 then game.show_menu = 1
+	 elseif game.show_menu == 99 then game.show_menu = 1
+	 else 
+	    if game.started == 1 then game.show_menu = 0 end 
+	 end
+      elseif key == "f2" then
+	 if game.fullscreen_mode == "No" then 
+	    game.fullscreen_mode = "Yes"
+	 else 
+	    game.fullscreen_mode = "No" 
+	 end
+	 go_fullscreen()
+      elseif key == "m" then  --disabled trading because its buggy.
+	 --if game.merchant_menu == 1 then game.merchant_menu = 0
+	 --else add_merchant_inventory() game.merchant_menu = 1
+	 --end
+      elseif key == "a" then
+	 if game.show_menu == 7 and game.started == 0 then
+	    game.show_menu = 1 --back to first menu
+	 elseif game.showmenu == 7 and game.started == 1 then
+	    game.show_menu = 0 -- back to the game.
+	 elseif game.show_menu == 1 and game.started == 0 then
+	    game.show_menu = 7
+	 elseif game.show_menu == 0 and game.started == 1 then
+	    game.show_menu = 7
+	 end
+      elseif key == "s" then
+	 love_crude_save() -- crude saving
       elseif key == "c" then
 	 game.draw_x = 0--center the field of view
 	 game.draw_y = 0
@@ -683,7 +683,6 @@ function love.draw()
       end
       love.graphics.push()	love.graphics.scale(game.zoom_level)
       draw_game_tiles()
-      
       ----------------------------------- END DRAWING TILES
       draw_villagers() -- draw villagers
       --draw wildlife
@@ -709,6 +708,10 @@ function love.draw()
       if game.merchant_menu == 1 then
    	show_transaction_menu()
       end
+      if game.game_mobile == 1 then
+	 love.graphics.draw(game_pad, game.screen_width-64-128, game.screen_height-128)
+      end
+      --love.graphics.drawq(projectile_files, game_psrites_table[spritenum], x, y)
       ----------------------- END TOP UI Drawing ------------------------
    end--endif
 end--end function

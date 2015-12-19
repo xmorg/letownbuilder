@@ -682,36 +682,51 @@ function draw_villagers()
       if game_villagers[i].talk_timer > 0 then --Need to setup this.
 	 love.graphics.setColor(255,255,255,255)
 	 if game_villagers[i].villager_type == "werewolf" and is_night() == 1 then
-	    print_talk_text("???"..": "..talk_topics_werewolf[game_villagers[i].speak], game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
+	    print_talk_text("???"..": "..talk_topics_werewolf[game_villagers[i].speak], 
+			    game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
 	 elseif game.earthquake == 1 then
-	    print_talk_text(game_villagers[i].name..": "..talk_topics_earthquake[game_villagers[i].speak], game_villagers[i].x+game.draw_x -10, game_villagers[i].y+game.draw_y -20)
+	    print_talk_text(game_villagers[i].name..": "..talk_topics_earthquake[game_villagers[i].speak], 
+			    game_villagers[i].x+game.draw_x -10, game_villagers[i].y+game.draw_y -20)
 	 elseif game_villagers[i].disease ~= "healthy" then
-	    print_talk_text(game_villagers[i].name..": "..plague_topics_allday[game_villagers[i].speak], game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
+	    print_talk_text(game_villagers[i].name..": "..plague_topics_allday[game_villagers[i].speak], 
+			    game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
 	 elseif game_villagers[i].alive == 0 and kingdom_inventory.graveyards < 1 and is_night() == 1 then
-	    print_talk_text(game_villagers[i].name..": "..ghost_topics_allnight[game_villagers[i].speak], game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
+	    print_talk_text(game_villagers[i].name..": "..ghost_topics_allnight[game_villagers[i].speak], 
+			    game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
 	 elseif game_villagers[i].position == "sheriff" then
-	    print_talk_text("Sheriff "..game_villagers[i].name..": "..sheriff_topics_allday[game_villagers[i].speak], game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
+	    print_talk_text("Sheriff "..game_villagers[i].name..": "..sheriff_topics_allday[game_villagers[i].speak], 
+			    game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
 	 elseif game_villagers[i].villager_type == "holyman" then
-	    print_talk_text("Holyman "..game_villagers[i].name..": "..talk_topics_holyman[game_villagers[i].speak], game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -2)
+	    print_talk_text("Holyman "..game_villagers[i].name..": "..talk_topics_holyman[game_villagers[i].speak], 
+			    game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -2)
 	 elseif get_town_unrest() < 10 and is_night() == 0 then 
-	    print_talk_text(game_villagers[i].name..": "..talk_topics_happy[game_villagers[i].speak], game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
+	    print_talk_text(game_villagers[i].name..": "..talk_topics_happy[game_villagers[i].speak], 
+			    game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
 	 elseif get_town_unrest() < 10 and is_night() == 1 then
-	    print_talk_text(game_villagers[i].name..": "..talk_topics_happynight[game_villagers[i].speak], game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -2)
+	    print_talk_text(game_villagers[i].name..": "..talk_topics_happynight[game_villagers[i].speak], 
+			    game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -2)
 	 elseif get_town_unrest() < 20 then
-	    print_talk_text(game_villagers[i].name..": "..talk_topics_happy[game_villagers[i].speak], game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
+	    print_talk_text(game_villagers[i].name..": "..talk_topics_happy[game_villagers[i].speak], 
+			    game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
 	 elseif get_town_unrest() < 30 then
-	    print_talk_text(game_villagers[i].name..": "..talk_topics_ok[game_villagers[i].speak], game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
+	    print_talk_text(game_villagers[i].name..": "..talk_topics_ok[game_villagers[i].speak], 
+			    game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
 	 elseif get_town_unrest() < 40 then
-	    print_talk_text(game_villagers[i].name..": "..talk_topics_grumbling[game_villagers[i].speak], game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
+	    print_talk_text(game_villagers[i].name..": "..talk_topics_grumbling[game_villagers[i].speak], 
+			    game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
 	 elseif get_town_unrest() < 50 then
-	    print_talk_text(game_villagers[i].name..": "..talk_topics_angry[game_villagers[i].speak], game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20 -20)
+	    print_talk_text(game_villagers[i].name..": "..talk_topics_angry[game_villagers[i].speak], 
+			    game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20 -20)
 	 elseif get_town_unrest() < 69 then
-	    print_talk_text(game_villagers[i].name..": "..talk_topics_angry[game_villagers[i].speak], game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
+	    print_talk_text(game_villagers[i].name..": "..talk_topics_angry[game_villagers[i].speak], 
+			    game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
 	 elseif get_town_unrest() >= 70 then
-	    print_talk_text(game_villagers[i].name..": "..talk_topics_riot[game_villagers[i].speak], game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
+	    print_talk_text(game_villagers[i].name..": "..talk_topics_riot[game_villagers[i].speak], 
+			    game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
 	 end
       elseif kingdom_inventory.watchtower > 0 then
-	 print_talk_text(">"..game_villagers[i].name.."<", game_villagers[i].x+game.draw_x- 10, game_villagers[i].y+game.draw_y -20)
+	 print_talk_text(">"..game_villagers[i].name.."<", game_villagers[i].x+game.draw_x- 10, 
+			 game_villagers[i].y+game.draw_y -20)
       end--endif
    end--endfor
 end
@@ -758,9 +773,6 @@ function draw_select_house_to_build()
       if research_topics.church >= 1 then quick_task_icon64(64*2,64*5, 72, "church", 1, "game_tiles") end --TODO change icon
    end
 end
-
-
-
 
 function draw_task_icons()
    love.graphics.setColor(255,255,255,255)
