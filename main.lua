@@ -21,8 +21,10 @@ game = {state = 1, give_direction = "None", day_time = 6000, day_count = 1,
 	fullscreen_mode = "No",
 	tilewidth_fx = 64,  --ground tile width/height, not actual height of tile in pixels
 	tileheight_fx = 32, --but the w/h from tip to tip
-	draw_x=-100, draw_y=-100, screen_width = love.graphics.getWidth(), screen_height = love.graphics.getHeight(),
-	scroll_speed=3, scroll_direction = "none", loc_selected_x = 0, loc_selected_y = 0, --lx+ 32 --ly+ 16
+	draw_x=-100, draw_y=-100, 
+	screen_width = love.graphics.getWidth(), screen_height = love.graphics.getHeight(),
+	scroll_speed=3, scroll_direction = "none", 
+	loc_selected_x = 0, loc_selected_y = 0, --lx+ 32 --ly+ 16
 	tilecount = 32, actor_speed = 2, printx = 0, printy = 0, -- 0  -62-- 536-600
 	water_tile = 38, hole_tile = 37, fish_icon = 16, bridge_tile1 = 21,
 	bridge_tile2 = 22, axe_icon = 52, shovel_icon = 15, green_selected = 39, 
@@ -30,18 +32,13 @@ game = {state = 1, give_direction = "None", day_time = 6000, day_count = 1,
 	nightwolf = 42, --night wolves!
 	current_weather = 2, days_without_rain = 0, days_rained = 0, days_snowed = 0,
 	current_catastrophy = 0, days_since_regrowth = 0,
-
 	biome = "forest", game_paused = 0, game_roster = 0, game_mque = 0,
 	show_menu = 1, version = g_version, roster_selected = "Villagers",
-	loading_res = false,
-	togglesound = "on",
-	map_generated = 0, show_tutorial = 1,
+	loading_res = false,	togglesound = "on",	map_generated = 0, show_tutorial = 1,
 	message_box_text = "None",  message_box_icon = 3, message_box_timer = 0,
-	records_tab = 1,
-	research_timer = 0, disablekeyboard = 0, disablescrolling = 0, lastscreenshot=0,
+	records_tab = 1, research_timer = 0, disablekeyboard = 0, disablescrolling = 0, lastscreenshot=0,
 	mayor_sex = 62, --62 male 63 female
-	message_num = 0,
-	zoom_level = 1,
+	message_num = 0,	zoom_level = 1,
 	earthquake_draw_offset = 5, earthquake_timer = 1000, earthquake_shake_timer = 0, earthquake = 0,
 	merchant_arrived = 0, --if to draw merchants
 	merchant_menu = 0,
