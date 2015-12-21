@@ -1,5 +1,5 @@
 -- file for animals, wildlife and pets.
-
+-- test edit
 function new_villager_pet(pet_type, pet_owner)
    local wildlife_types = {"bunny", "donkey",
 			   "llama", "sheep", 
@@ -177,4 +177,3 @@ function wildlife_proliferation() --disabled because of memory bug
    --more than  7 rabbits can devistate crops!
    --wild dogs have (1,1000) chance of biting children
 end
-
