@@ -170,9 +170,9 @@ function draw_game_ui()
    end
    love.graphics.draw(records_button, 600, 0) -- now has all buttons
    if game.game_paused == 1 then
-   	love.graphics.draw(game_icons[87], 600, 32) --, 0, 2,2)
+   	love.graphics.draw(game_icons[86], 600, 32) --, 0, 2,2)
    else
-   	love.graphics.draw(game_icons[86], 600, 32)
+   	love.graphics.draw(game_icons[87], 600, 32)
    end
    --love.graphics.draw(game_icons[59], 632, 0)--, 0, 2,2)--save/exit
    --love.graphics.draw(game_icons[58], 664, 0)--, 0, 2,2)--nosave/exit
