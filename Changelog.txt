@@ -3,6 +3,7 @@ Readme
 
 Planned features
 
+BUGS: Message "Fordic has fought a werewolf and lived!" (Fordic is dead, and the records state that he defeated a nightwolf in single combat)
 BUGS: merchants keep moving even if paused.
 BUGS: Cannot build a smithy, select house to build, choose smithy, select where, and nothing happens.
 BUGS: Scarecrows dont show up.
