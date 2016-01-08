@@ -300,6 +300,9 @@ function on_clicked_buttons(x,y)---------------------QUICK BUTTONS
    	end
    elseif mouse_clicked_in32(x, y, 664,32) == 1 then
    	--go fullscreen
+   	if game.fullscreen_mode == "No" then game.fullscreen_mode = "Yes"
+      	else game.fullscreen_mode = "No" end
+      	go_fullscreen()
    elseif mouse_clicked_in64(x, y, 0, 64*1) == 1 then --Select job
       if game.give_direction == "Select job" then
 	 game.give_direction = "None" --unselect job
