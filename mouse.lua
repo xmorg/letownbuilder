@@ -462,8 +462,12 @@ function get_tooltip_info_from_item() --ran in update?
 	scrh = love.graphics.getHeight() --screen height
 	if mouse_clicked_inrect(mx,my, 600, 1, 32, 32)== 1 then --wood
 	   game.tooltip_text = "town records"
+   	elseif mouse_clicked_inrect(mx,my, 600, 32, 32, 32)== 1 then --wood
+   		game.tooltip_text = "pause game"
 	elseif mouse_clicked_inrect(mx,my, 632, 1, 32, 32)== 1 then --wood
 	   game.tooltip_text = "load game"
+	elseif mouse_clicked_inrect(mx,my, 632, 32, 32, 32)== 1 then --wood
+   		game.tooltip_text = "mobile controller"
 	elseif mouse_clicked_inrect(mx,my, 664, 1, 32, 32)== 1 then --wood
 	   game.tooltip_text = "nosave exit"
 	elseif mouse_clicked_inrect(mx,my, 696, 1, 32, 32)== 1 then --wood
