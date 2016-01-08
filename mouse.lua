@@ -292,17 +292,24 @@ function on_clicked_buttons(x,y)---------------------QUICK BUTTONS
 	else
 		game.game_paused = 0
 	end
-   elseif mouse_clicked_in32(x, y, 632,32) == 1 then
+   elseif mouse_clicked_in32(x, y, 632,32) == 1 then --mobile controller
    	if game.game_mobile == 0 then
    		game.game_mobile = 1
    	else
    		game.game_mobile = 0
    	end
-   elseif mouse_clicked_in32(x, y, 664,32) == 1 then
-   	--go fullscreen
+   elseif mouse_clicked_in32(x, y, 664,32) == 1 then --go fullscreen
    	if game.fullscreen_mode == "No" then game.fullscreen_mode = "Yes"
       	else game.fullscreen_mode = "No" end
       	go_fullscreen()
+   elseif mouse_clicked_in32(x, y, 664+32,32) == 1 then --go open menu
+   	 if game.show_menu == 0 then game.show_menu = 1 --
+	 elseif game.show_menu == 7 and game.started == 1 then game.show_menu = 0
+	 elseif game.show_menu == 7 then game.show_menu = 1
+	 elseif game.show_menu == 99 then game.show_menu = 1
+	 else 
+	    if game.started == 1 then game.show_menu = 0 end 
+	 end
    elseif mouse_clicked_in64(x, y, 0, 64*1) == 1 then --Select job
       if game.give_direction == "Select job" then
 	 game.give_direction = "None" --unselect job
