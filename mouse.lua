@@ -480,7 +480,9 @@ function get_tooltip_info_from_item() --ran in update?
 	elseif mouse_clicked_inrect(mx,my, 632, 1, 32, 32)== 1 then --wood
 	   game.tooltip_text = "load game"
 	elseif mouse_clicked_inrect(mx,my, 632, 32, 32, 32)== 1 then --wood
-   		game.tooltip_text = "mobile controller"
+   		game.tooltip_text = "controller"
+   	elseif mouse_clicked_inrect(mx,my, 664, 32, 32, 32)== 1 then --wood
+   		game.tooltip_text = "fullscreen"
 	elseif mouse_clicked_inrect(mx,my, 664, 1, 32, 32)== 1 then --wood
 	   game.tooltip_text = "nosave exit"
 	elseif mouse_clicked_inrect(mx,my, 696, 1, 32, 32)== 1 then --wood
