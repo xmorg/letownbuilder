@@ -168,10 +168,10 @@ function draw_game_ui()
       love.graphics.setFont( big_font )
       love.graphics.print("GAME PAUSED", 350, 300)
    end
-   love.graphics.draw(records_button, 600, 0)
-   love.graphics.draw(game_icons[59], 632, 0)--, 0, 2,2)--save/exit
-   love.graphics.draw(game_icons[58], 664, 0)--, 0, 2,2)--nosave/exit
-   love.graphics.draw(game_icons[57], 696, 0)--, 0, 2,2)--loadgame
+   love.graphics.draw(records_button, 600, 0) -- now has all buttons
+   --love.graphics.draw(game_icons[59], 632, 0)--, 0, 2,2)--save/exit
+   --love.graphics.draw(game_icons[58], 664, 0)--, 0, 2,2)--nosave/exit
+   --love.graphics.draw(game_icons[57], 696, 0)--, 0, 2,2)--loadgame
 end
 
 function draw_inventory_icon_xy( item, item_name, item_xcount, icon_num, x, y)
