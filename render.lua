@@ -780,35 +780,34 @@ function draw_select_house_to_build()
 end
 
 function draw_task_icons()
-   love.graphics.setColor(255,255,255,255)
-   love.graphics.draw(game_icons[9], 0, 64) --new labor icon
-   love.graphics.draw(game_icons[40], 0, 64*2) --bag, gather food
-   love.graphics.print("Gather Food", 5, 64*2  )
-   love.graphics.draw(game_icons[2],  0, 64*3) -- build house
-   
-   if game.give_direction == "Select job" then
-      quick_task_icon64(64*1,64, game.axe_icon, "Cut trees", 0, "game_icons")
-      quick_task_icon64(64*2,64, game.shovel_icon, "Dig hole", 0, "game_icons")
-      quick_task_icon64(64*3,64, 27, "Garden", 0, "game_icons")
-      quick_task_icon64(64*4,64, 73, "Hunt", 0, "game_icons")
-      quick_task_icon64(64*5,64, 55, "Fire", 0, "game_icons")
-      quick_task_icon64(64*6,64, 69, "Demolish", 0, "game_icons")     
-      if research_topics.tomatoes == 1 then
-	 quick_task_icon64(64*7,64, 4, "Tomatoes", 0, "game_icons")    -- change mouse click.
-	 --love.graphics.draw(game_icons[4],  64*3, 64*2)--tomatoes
-	 --love.graphics.print("Tomatoes", 5+64*3, 64*2 ) --we shall use unrealistic numbers in road map!
-      end
-   else
-      love.graphics.print("Labor", 5, 64  )
-   end
-
-   love.graphics.print("Build", 5, 64*3  )
-   draw_select_house_to_build()
-   
-   
-   love.graphics.draw(game_icons[54],  0, 64*4) --build roads
-   love.graphics.print("Build Roads", 5, 64*4  )
-   if game.give_direction == "Select road to build" then
+	love.graphics.setColor(255,255,255,255)
+	love.graphics.draw(game_icons[9], 0, 64) --new labor icon
+	love.graphics.draw(game_icons[40], 0, 64*2) --bag, gather food
+	love.graphics.print("Gather Food", 5, 64*2  )
+	love.graphics.draw(game_icons[2],  0, 64*3) -- build house
+	if game.give_direction == "Select job" then
+		quick_task_icon64(64*1,64, game.axe_icon, "Cut trees", 0, "game_icons")
+		quick_task_icon64(64*2,64, game.shovel_icon, "Dig hole", 0, "game_icons")
+		quick_task_icon64(64*3,64, 27, "Garden", 0, "game_icons")
+		quick_task_icon64(64*4,64, 73, "Hunt", 0, "game_icons")
+		quick_task_icon64(64*5,64, 55, "Fire", 0, "game_icons")
+		quick_task_icon64(64*6,64, 69, "Demolish", 0, "game_icons")
+		if research_topics.militia_house > 0 then
+			quick_task_icon64(64*7,64, 88, "Militia", 0, "game_icons")
+		end
+		if research_topics.tomatoes == 1 then
+			quick_task_icon64(64*7,64, 4, "Tomatoes", 0, "game_icons")    -- change mouse click.
+			--love.graphics.draw(game_icons[4],  64*3, 64*2)--tomatoes
+			--love.graphics.print("Tomatoes", 5+64*3, 64*2 ) --we shall use unrealistic numbers in road map!
+		end
+	else
+		love.graphics.print("Labor", 5, 64  )
+	end
+	love.graphics.print("Build", 5, 64*3  )
+	draw_select_house_to_build()
+	love.graphics.draw(game_icons[54],  0, 64*4) --build roads
+	love.graphics.print("Build Roads", 5, 64*4  )
+	if game.give_direction == "Select road to build" then
       quick_task_icon64(64*1,64*3+40, 28, "road", 1, "game_tiles")
       quick_task_icon64(64*2,64*3+40, 29, "road", 1, "game_tiles")
       quick_task_icon64(64*3,64*3+40, 30, "road", 1, "game_tiles")
