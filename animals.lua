@@ -80,7 +80,8 @@ function new_wildlife(migration, name)
    return a
 end
 
-function spawn_nightwolves() --put night wolves into game_nightwolves = {}
+--no spawn all invaders.
+function spawn_nightwolves(invader_type) --put night wolves into game_nightwolves = {}
    local nesw = math.random(1,4)
    --select a random tile on the edge of the map to place them
    --note code, try spawn offscreen.
@@ -99,11 +100,11 @@ function spawn_nightwolves() --put night wolves into game_nightwolves = {}
       wolf_spawn_y = -600 --math.random(1,game.tilecount) --math.random(1,game.tilecount) --tiles
    end
    
-   table.insert(game_nightwolves, new_wildlife(0, "night wolf") ) --need to set x,y based on screen edge.
-   table.insert(game_nightwolves, new_wildlife(0, "night wolf") )
-   table.insert(game_nightwolves, new_wildlife(0, "night wolf") )
-   table.insert(game_nightwolves, new_wildlife(0, "night wolf") )
-   table.insert(game_nightwolves, new_wildlife(0, "night wolf") )
+   table.insert(game_nightwolves, new_wildlife(0, invader_type) ) --need to set x,y based on screen edge.
+   table.insert(game_nightwolves, new_wildlife(0, invader_type) )
+   table.insert(game_nightwolves, new_wildlife(0, invader_type) )
+   table.insert(game_nightwolves, new_wildlife(0, invader_type) )
+   table.insert(game_nightwolves, new_wildlife(0, invader_type) )
    
    for i,v in ipairs(game_nightwolves) do
       game_nightwolves[i].x = wolf_spawn_x+math.random(1,64)
