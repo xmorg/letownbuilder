@@ -30,6 +30,9 @@ function new_villager_pet(pet_type, pet_owner)
    elseif a.wildlife_type == "cow" then a.speed = 4 a.sprite = 35
    elseif a.wildlife_type == "bull" then a.speed = 4 a.sprite = 35
    elseif a.wildlife_type == "parrot" then a.speed = 4 a.sprite = 17
+   elseif a.wildlife_type == "goblin" then a.speed = 3 a.sprite = 43 a.dead_sprite = 44
+   elseif a.wildlife_type == "orc" then a.sprite = 45 a.dead_sprite = 46
+   elseif a.wildlife_type == "skeleton" then a.sprite = 47 a.dead_sprite = 48
    end
    return a
 end
