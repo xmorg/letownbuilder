@@ -453,7 +453,7 @@ function load_game_res() --- load game resources after a love version has been s
    sprite_files = love.graphics.newImage("data/sprites/z_small_sprites.png")
    sprite_files_big = love.graphics.newImage("data/sprites/z_big_sprites.png")
    projectile_files = love.graphics.newImage("data/sprites/projectiles.png")
-   for x = 0,41 do -- make spritequads
+   for x = 0,47 do -- make spritequads
       x = x*10
       y = 1
       w = 10

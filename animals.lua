@@ -30,9 +30,7 @@ function new_villager_pet(pet_type, pet_owner)
    elseif a.wildlife_type == "cow" then a.speed = 4 a.sprite = 35
    elseif a.wildlife_type == "bull" then a.speed = 4 a.sprite = 35
    elseif a.wildlife_type == "parrot" then a.speed = 4 a.sprite = 17
-   elseif a.wildlife_type == "goblin" then a.speed = 3 a.sprite = 43 a.dead_sprite = 44
-   elseif a.wildlife_type == "orc" then a.sprite = 45 a.dead_sprite = 46
-   elseif a.wildlife_type == "skeleton" then a.sprite = 47 a.dead_sprite = 48
+   
    end
    return a
 end
@@ -79,6 +77,9 @@ function new_wildlife(migration, name)
    elseif a.wildlife_type == "copperhead" then a.speed = 4 a.sprite = 36 a.dead_sprite = 29
    elseif a.wildlife_type == "donkey" then a.speed = 4 a.sprite = 24 a.dead_sprite = 29
    elseif a.wildlife_type == "night wolf" then a.speed = 11 a.sprite = 42 a.dead_sprite = 29
+   elseif a.wildlife_type == "goblin" then a.speed = 8 a.sprite = 43 a.dead_sprite = 44
+   elseif a.wildlife_type == "orc" then a.speed = 8 a.sprite = 45 a.dead_sprite = 46
+   elseif a.wildlife_type == "skeleton" then a.speed = 8 a.sprite = 47 a.dead_sprite = 48 a.alive = -1
    end
    return a
 end
@@ -124,6 +125,12 @@ end
 function update_nightwolves(dt)
    for i, v in ipairs(game_nightwolves) do
       if game_nightwolves[i].job == 0 and game_nightwolves[i].alive == 1 then -- The living!
+	 game_nightwolves[i].job = math.random(1, 1000)
+	 if game_nightwolves[i].job < 10 then -- movment
+	    game_nightwolves[i].dx = game_nightwolves[i].dx + math.random(-30,30) --temp workaround
+	    game_nightwolves[i].dy = game_nightwolves[i].dy + math.random(-30,30)
+	 end--endif
+      elseif game_nightwolves[i].job == 0 and game_nightwolves[i].alive == -1 then -- The living!
 	 game_nightwolves[i].job = math.random(1, 1000)
 	 if game_nightwolves[i].job < 10 then -- movment
 	    game_nightwolves[i].dx = game_nightwolves[i].dx + math.random(-30,30) --temp workaround

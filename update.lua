@@ -290,14 +290,18 @@ function check_for_events_in_timer()
 	 update_achivements("The howling", 1)
       end
       drop_nightwolves()
-      goblinday = math.random(1,2) --change me
-      skeletonday = math.random(1,2)
-      if goblinday == 1 then
-      	spawn_nightwolves("goblin") --put goblins in town
-      end
-      if skeletonday == 1 then
-      	spawn_nightwolves("skeleton") --put goblins in town
-      end
+      
+      
+   end
+   if game.day_time == 7000 then
+      goblinday = math.random(1,1) --change me
+      skeletonday = math.random(1,1)
+      --if goblinday == 1 then
+      spawn_nightwolves("goblin") --put goblins in town
+      --end
+      --if skeletonday == 1 then
+      spawn_nightwolves("skeleton") --put skeletons in town
+      --end
    end
 end
 
