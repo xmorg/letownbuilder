@@ -411,6 +411,25 @@ function love.mousepressed(x, y, button)
 	 else
 	    game.scroll_direction = "none"
 	 end
+	 
+	 --update tile location
+	 mouse_x, mouse_y = love.mouse.getPosition()
+	 for y = 1, game.tilecount do
+	 	for x = 1, game.tilecount do
+	    	lx = (300+(y - x) * 32 + 64) * game.zoom_level
+	    	ly = (-100+(y + x) * 32 / 2 + 50) * game.zoom_level
+	    	-- function -----  game tiles map table ---- isometric loc
+	    	if(mouse_x >= lx+game.draw_x and mouse_x <= lx+game.draw_x+64 and
+		  		mouse_y >= ly+game.draw_y+60 and mouse_y <= ly+game.draw_y+100) then
+	       		--put the number of the selected tile
+	       		game.tile_selected_x = x
+	       		game.tile_selected_y = y
+	       		game.loc_selected_x = lx+game.draw_x+ 32
+	       		game.loc_selected_y = ly+game.draw_y+ 16
+	    	end--endif
+	 	end--endfor x
+      end--endfor y
+	 
 	 if on_clicked_buttons(x,y) == 1 then --you clicked a button, but other code will run after?
 	    --nothing, just testing that it was done
 	 elseif game.give_direction == "Select road to build" then --28,36
