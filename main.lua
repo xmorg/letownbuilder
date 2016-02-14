@@ -406,19 +406,20 @@ function go_fullscreen()
 	 love.graphics.setMode(0, 0, true, false)  -- 0.8.0
 	 love.graphics.setMode(love.graphics.getMode())
       else 
-	 flags = {
-	    fullscreen = true,
-	    fullscreentype = "normal",
-	    vsync = true,
+	 --flags = {
+	 --   fullscreen = true,
+	 --   fullscreentype = "normal",
+	 --   vsync = true,
 	    --fsaa = 0,
-	    resizable = false,
-	    borderless = false,
-	    centered = true,
-	    display = 1,
-	    minwidth = 1,
-	    minheight = 1 
-	 }		
-	 love.window.setMode( 0, 0, flags )
+	 --   resizable = false,
+	 --   borderless = false,
+	 --   centered = true,
+	 --   display = 1,
+	 --   minwidth = 1,
+	 --   minheight = 1 
+	 --}		
+	 --love.window.setMode( 0, 0, flags )
+	 love.window.setFullscreen( true )
 	 fullscreen_hack = "yes"
       end -- 0.9.0
    else --fullscreen_hack = "yes"
