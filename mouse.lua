@@ -10,7 +10,7 @@ function mouse_clicked_inrect(x,y, cx, cy, cw, ch) -- clicked in a rectangle
 end
 
 function love.mousereleased(x, y, button)
-   if button == "l" then
+   if button == 1 then
       if game.give_direction == "Scrolling" then
 	 game.give_direction = "None"
       end
@@ -385,13 +385,13 @@ function on_clicked_buttons(x,y)---------------------QUICK BUTTONS
 end --on clicked buttons
 
 function love.mousereleased(x,y,button)
-   if button == "l" then
+   if button == 1 then
       game.scroll_direction = "none"
    end
 end
 
 function love.mousepressed(x, y, button)
-   if button == "l" then -- 1 l
+   if button == 1 then -- 1 l
       game.printx = x		--game.printx = 0 -- 0  -62
       game.printy = y      --game.printy = 0 -- 536-600 --0, 64
       if game.show_menu == 1 then -- Title menus
