@@ -532,18 +532,19 @@ function load_game_res() --- load game resources after a love version has been s
       if game.version == "0.8.0" then 
 	 love.graphics.setMode(0, 0, true, false)  -- 0.8.0
       else 
-	 flags = {
-	    fullscreen = true,
-	    fullscreentype = "normal",
-	    vsync = true,
-	    fsaa = 0,
-	    resizable = false,
-	    borderless = false,
-	    centered = true,
-	    display = 1,
-	    minwidth = 1,
-	    minheight = 1 }
-	 love.window.setMode( 0, 0, flags ) 
+	 --flags = {
+	 --   fullscreen = true,
+	 --   fullscreentype = "normal",
+	 --   vsync = true,
+	 --   fsaa = 0,
+	 --   resizable = false,
+	 --   borderless = false,
+	 --   centered = true,
+	 --   display = 1,
+	 --   minwidth = 1,
+	 --   minheight = 1 }
+	 --love.window.setMode( 0, 0, flags ) 
+	 love.window.setFullscreen( true )
       end -- if version == "0.8.0" then love.graphics.setMode(0, 0, true, false)0.9.0
    end--fullscreen_hack == "yes" then
 end
