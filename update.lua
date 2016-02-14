@@ -293,15 +293,15 @@ function check_for_events_in_timer()
       
       
    end
-   if game.day_time == 7000 then
-      goblinday = math.random(1,1) --change me
-      skeletonday = math.random(1,1)
-      --if goblinday == 1 then
-      spawn_nightwolves("goblin") --put goblins in town
-      --end
-      --if skeletonday == 1 then
-      spawn_nightwolves("skeleton") --put skeletons in town
-      --end
+   if game.day_time == 7000 and game.day_count > 5 then
+      goblinday = math.random(1,10) --change me
+      skeletonday = math.random(1,15)
+      if goblinday == 1 then
+      	spawn_nightwolves("goblin") --put goblins in town
+      end
+      if skeletonday == 1 then
+      	spawn_nightwolves("skeleton") --put skeletons in town
+      end
    end
 end
 
