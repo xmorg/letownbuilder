@@ -410,7 +410,7 @@ function go_fullscreen()
 	    fullscreen = true,
 	    fullscreentype = "normal",
 	    vsync = true,
-	    fsaa = 0,
+	    --fsaa = 0,
 	    resizable = false,
 	    borderless = false,
 	    centered = true,
