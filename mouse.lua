@@ -578,14 +578,14 @@ function get_tooltip_info_from_item() --ran in update?
 end
 
 function update_checkscrolling(mx, my)
-   if game.mouse_last_x > mx and love.mouse.isDown("l") and game.give_direction == "Scrolling" then
+   if game.mouse_last_x > mx and love.mouse.isDown(1) and game.give_direction == "Scrolling" then
       game.draw_x = game.draw_x-game.scroll_speed
-   elseif game.mouse_last_x < mx and love.mouse.isDown("l") and game.give_direction == "Scrolling" then
+   elseif game.mouse_last_x < mx and love.mouse.isDown(1) and game.give_direction == "Scrolling" then
       game.draw_x = game.draw_x+game.scroll_speed
    end
-   if game.mouse_last_y >  my and love.mouse.isDown("l") and game.give_direction == "Scrolling" then
+   if game.mouse_last_y >  my and love.mouse.isDown(1) and game.give_direction == "Scrolling" then
       game.draw_y = game.draw_y-game.scroll_speed
-   elseif game.mouse_last_y <  my and love.mouse.isDown("l") and game.give_direction == "Scrolling" then
+   elseif game.mouse_last_y <  my and love.mouse.isDown(1) and game.give_direction == "Scrolling" then
       game.draw_y = game.draw_y+game.scroll_speed
    end
    if love.keyboard.isDown("up") or game.scroll_direction == "up" then
