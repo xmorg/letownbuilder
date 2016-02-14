@@ -375,7 +375,15 @@ function new_job()
    return a
 end
 function create_job_forque()
-   table.insert(game_job_que, new_job() )
+	job_exists = 0
+	for i,v in ipairs(game_job_que) do
+		if game_job_que[i].location_x = game_directives.location_x and game_job_que[i].location_y = game_directives.location_y then
+			job_exists = 1
+		end
+	end
+	if job_exists == 0 then
+		table.insert(game_job_que, new_job() )
+	end
 end
 
 function get_job_count()
