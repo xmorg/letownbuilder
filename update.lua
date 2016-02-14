@@ -5,11 +5,11 @@ require( "achivements")
 
 function get_town_unrest() --returns an adjusted unrest variable.
 	local unrest = 0
-	local mod = 0
+	local modu = 0
 	if kingdom_inventory.church >= 1 then
-		mod = mod -10
+		modu = modu -10
 	end
-	unrest = kingdom_inventory.unrest + mod
+	unrest = kingdom_inventory.unrest + modu
 	return unrest
 end
 
