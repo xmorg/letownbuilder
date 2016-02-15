@@ -377,7 +377,8 @@ end
 function create_job_forque()
 	job_exists = 0
 	for i,v in ipairs(game_job_que) do
-		if game_job_que[i].location_x = game_directives.location_x and game_job_que[i].location_y = game_directives.location_y then
+		if game_job_que[i].location_x == game_directives.location_x and 
+		game_job_que[i].location_y == game_directives.location_y then
 			job_exists = 1
 		end
 	end
