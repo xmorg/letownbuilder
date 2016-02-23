@@ -254,7 +254,7 @@ function set_kingdom_inventory(kindex, kvalue) -- to increment, use get_kingdom_
    	elseif kindex == 20 then kingdom_inventory.gold_ingots = kvalue --basically do nothing below here.
    	elseif kindex == 21 then return  0 --kingdom_inventory.women --= math.random(0,50)
    	elseif kindex == 22 then return  0 --kingdom_inventory.men --= math.random(0,50)
-   	else return 0
+   	else return 0 end
 end
 function get_kingdom_inventory(kindex)
 	if kindex == 1 then return kingdom_inventory.wood -- math.random(0,50) --wood
@@ -279,7 +279,7 @@ function get_kingdom_inventory(kindex)
    	elseif kindex == 20 then return  kingdom_inventory.gold_ingots --= math.random(0,50)
    	elseif kindex == 21 then return  0 --kingdom_inventory.women --= math.random(0,50)
    	elseif kindex == 22 then return  0 --kingdom_inventory.men --= math.random(0,50)
-   	else return 0
+   	else return 0 end
 end
 function remove_merchant_inventory()
    for i,v in ipairs(merchant_inventory) do
