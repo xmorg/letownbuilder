@@ -262,7 +262,8 @@ function report_trading_done()
       kingdom_inventory[merchanttrade2] = kingdom_inventory[merchanttrade2]+math.random(1,m)--add items
       message_que_add("Your merchants traded ".. k .. " units of " .. towntrade2 .. " for "..m.." units of "..merchanttrade2, 100, 1)
    end
-   if kingdom_inventory[towntrade3] > 0 and merchant_inventory[merchanttrade3] > 0 then --BUG compare number with nil
+   if kingdom_inventory[towntrade3] > 0 and 
+   	merchant_inventory[merchanttrade3] > 0 then --BUG compare number with nil
       --do a trade.
       local k = kingdom_inventory[towntrade3]
       local m = merchant_inventory[merchanttrade3]
