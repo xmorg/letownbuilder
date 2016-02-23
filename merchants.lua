@@ -231,6 +231,56 @@ function add_merchant_inventory()
    	kingdom_inventory_forsale[22] = 0 --kingdom_inventory.men --= math.random(0,50)
 
 end
+function set_kingdom_inventory(kindex, kvalue) -- to increment, use get_kingdom_inventory(kindex)
+	if kindex == 1 then kingdom_inventory.wood = kvalue 
+   	elseif kindex == 2 then kingdom_inventory.sakura = kvalue 
+   	elseif kindex == 3 then kingdom_inventory.bamboo = kvalue 
+   	elseif kindex == 4 then kingdom_inventory.carrots = kvalue 
+   	elseif kindex == 5 then kingdom_inventory.sansai = kvalue 
+   	elseif kindex == 6 then kingdom_inventory.raw_meat = kvalue 
+   	elseif kindex == 7 then kingdom_inventory.smoked_meat = kvalue 
+   	elseif kindex == 8 then kingdom_inventory.tomatoes = kvalue 
+   	elseif kindex == 9 then kingdom_inventory.mushrooms = kvalue 
+   	elseif kindex == 10 then kingdom_inventory.fish = kvalue 
+   	elseif kindex == 11 then kingdom_inventory.smoked_fish = kvalue 
+   	elseif kindex == 12 then kingdom_inventory.grain = kvalue 
+   	elseif kindex == 13 then kingdom_inventory.cherries = kvalue 
+   	elseif kindex == 14 then kingdom_inventory.fishwine = kvalue 
+   	elseif kindex == 15 then kingdom_inventory.paleale = kvalue
+   	elseif kindex == 16 then kingdom_inventory.rocks = kvalue 
+   	elseif kindex == 17 then kingdom_inventory.iron_ore = kvalue 
+   	elseif kindex == 18 then kingdom_inventory.iron_ingots = kvalue 
+   	elseif kindex == 19 then kingdom_inventory.gold_ore = kvalue 
+   	elseif kindex == 20 then kingdom_inventory.gold_ingots = kvalue --basically do nothing below here.
+   	elseif kindex == 21 then return  0 --kingdom_inventory.women --= math.random(0,50)
+   	elseif kindex == 22 then return  0 --kingdom_inventory.men --= math.random(0,50)
+   	else return 0
+end
+function get_kingdom_inventory(kindex)
+	if kindex == 1 then return kingdom_inventory.wood -- math.random(0,50) --wood
+   	elseif kindex == 2 then return  kingdom_inventory.sakura --= math.random(0,50) --sakura
+   	elseif kindex == 3 then return  kingdom_inventory.bamboo --= math.random(0,50) --bamboo
+   	elseif kindex == 4 then return  kingdom_inventory.carrots --= math.random(0,50)
+   	elseif kindex == 5 then return  kingdom_inventory.sansai --= math.random(0,50)
+   	elseif kindex == 6 then return  kingdom_inventory.raw_meat --= math.random(0,50)
+   	elseif kindex == 7 then return  kingdom_inventory.smoked_meat --= math.random(0,50)
+   	elseif kindex == 8 then return  kingdom_inventory.tomatoes --= math.random(0,50)
+   	elseif kindex == 9 then return  kingdom_inventory.mushrooms --= math.random(0,50)
+   	elseif kindex == 10 then return  kingdom_inventory.fish --= math.random(0,50)
+   	elseif kindex == 11 then return  kingdom_inventory.smoked_fish --= math.random(0,50)
+   	elseif kindex == 12 then return  kingdom_inventory.grain --= math.random(0,50)
+   	elseif kindex == 13 then return  kingdom_inventory.cherries --= math.random(0,50)
+   	elseif kindex == 14 then return  kingdom_inventory.fishwine --= math.random(0,50)
+   	elseif kindex == 15 then return  kingdom_inventory.paleale--=math.random(0,50)
+   	elseif kindex == 16 then return  kingdom_inventory.rocks --= math.random(0,50)
+   	elseif kindex == 17 then return  kingdom_inventory.iron_ore --= math.random(0,50)
+   	elseif kindex == 18 then return  kingdom_inventory.iron_ingots --= math.random(0,50)
+   	elseif kindex == 19 then return  kingdom_inventory.gold_ore --= math.random(0,50)
+   	elseif kindex == 20 then return  kingdom_inventory.gold_ingots --= math.random(0,50)
+   	elseif kindex == 21 then return  0 --kingdom_inventory.women --= math.random(0,50)
+   	elseif kindex == 22 then return  0 --kingdom_inventory.men --= math.random(0,50)
+   	else return 0
+end
 function remove_merchant_inventory()
    for i,v in ipairs(merchant_inventory) do
 		merchant_inventory[i] = 0 --math.random(0,50)
@@ -246,7 +296,7 @@ function report_trading_done()
    local merchanttrade2 = lookup_table[math.random(1,20)]
    local merchanttrade3 = lookup_table[math.random(1,20)] --Should have fixed the nil bug.
    
-   if kingdom_inventory[towntrade1] > 0 and 
+   if get_kingdom_inventory(towntrade1) > 0 and 
    	merchant_inventory[merchanttrade1] > 0 then
       --do a trade.
       local k = kingdom_inventory[towntrade1]
@@ -255,7 +305,7 @@ function report_trading_done()
       kingdom_inventory[merchanttrade1] = kingdom_inventory[merchanttrade1]+math.random(1,m)--add items
       message_que_add("Your merchants traded ".. k .. " units of " .. towntrade1 .. " for "..m.." units of "..merchanttrade1, 100, 1)
    end
-   if kingdom_inventory[towntrade2] > 0 and 
+   if get_kingdom_inventory(towntrade2) > 0 and 
    	merchant_inventory[merchanttrade2] > 0 then
       --do a trade.
       local k = kingdom_inventory[towntrade2]
@@ -264,7 +314,7 @@ function report_trading_done()
       kingdom_inventory[merchanttrade2] = kingdom_inventory[merchanttrade2]+math.random(1,m)--add items
       message_que_add("Your merchants traded ".. k .. " units of " .. towntrade2 .. " for "..m.." units of "..merchanttrade2, 100, 1)
    end
-   if kingdom_inventory[towntrade3] > 0 and 
+   if get_kingdom_inventory(towntrade3) > 0 and 
    	merchant_inventory[merchanttrade3] > 0 then --BUG compare number with nil
       --do a trade.
       local k = kingdom_inventory[towntrade3]
