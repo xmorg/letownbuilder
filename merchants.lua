@@ -246,7 +246,8 @@ function report_trading_done()
    local merchanttrade2 = lookup_table[math.random(1,20)]
    local merchanttrade3 = lookup_table[math.random(1,20)] --Should have fixed the nil bug.
    
-   if kingdom_inventory[towntrade1] > 0 and merchant_inventory[merchanttrade1] > 0 then
+   if kingdom_inventory[towntrade1] > 0 and 
+   	merchant_inventory[merchanttrade1] > 0 then
       --do a trade.
       local k = kingdom_inventory[towntrade1]
       local m = merchant_inventory[merchanttrade1]
@@ -254,7 +255,8 @@ function report_trading_done()
       kingdom_inventory[merchanttrade1] = kingdom_inventory[merchanttrade1]+math.random(1,m)--add items
       message_que_add("Your merchants traded ".. k .. " units of " .. towntrade1 .. " for "..m.." units of "..merchanttrade1, 100, 1)
    end
-   if kingdom_inventory[towntrade2] > 0 and merchant_inventory[merchanttrade2] > 0 then
+   if kingdom_inventory[towntrade2] > 0 and 
+   	merchant_inventory[merchanttrade2] > 0 then
       --do a trade.
       local k = kingdom_inventory[towntrade2]
       local m = merchant_inventory[merchanttrade2]
