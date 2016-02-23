@@ -52,10 +52,7 @@ function update_research_directives()
 	 message_que_add("You have unlocked the sheriff's office.", 100, 68)
       elseif research_topics.security == 2 then
 	 message_que_add("You have unlocked the watchtower.", 100, 68)
-	 research_topics.watchtower = 1	
-      elseif research_topics.security == 3 then
-	 message_que_add("You have unlocked the militia house.", 100, 68)
-	 research_topics.militia_house = 1
+	 research_topics.watchtower = 1
       end
    elseif game_directives.research_type == "Research agriculture" then
       research_topics.agriculture = research_topics.agriculture+1 --level up econ
@@ -117,7 +114,7 @@ function update_research_directives()
       message_que_add("You have unlocked scarecrows!", 100, 36)
       research_topics.scarecrow = 1
    elseif research_topics.civics >= 2 and research_topics.security >=2 and research_topics.militiahouse == 0 then
-      message_que_add("You have unlocked the militia house!(Not Implemented)", 100, 36)
+      message_que_add("You have unlocked the militia house!", 100, 36)
       research_topics.militiahouse = 1
    elseif research_topics.industry >= 1 and research_topics.economy >= 3 and research_topics.fisherboats == 0 then
       message_que_add("You have unlocked fisher boats!(Not Implemented)", 100, 36)
