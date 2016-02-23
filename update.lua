@@ -261,7 +261,7 @@ function check_for_events_in_timer()
    end
    
    if game.day_time == 12000 then
-      villagers_eat_food(table.getn(game_villagers))
+      villagers_eat_food(table.getn(game_villagers))  --villagers.lua
       if get_town_unrest() >= 70 then
 	 villagers_rioting_report(game_villagers)
       end
