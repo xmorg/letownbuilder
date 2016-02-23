@@ -466,7 +466,7 @@ function merchants_arrive() -- done every 3rd day
 			elseif arrive < 2 then
 				message_que_add("no merchants arrived today", 300, 1) --merchants arrive on 3rd day, 80% chance.
 			else
-				message_que_add("merchants from the oulands have arrived", 300, 1)
+				message_que_add("merchants from the outlands have arrived", 300, 1)
 				game.merchant_arrived = 1 --set merchants arrived flag = 1
 				spawn_merchants()
 			end--endif
