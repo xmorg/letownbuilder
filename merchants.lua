@@ -301,8 +301,10 @@ function report_trading_done()
       --do a trade.
       local k = kingdom_inventory[towntrade1]
       local m = merchant_inventory[merchanttrade1]
-      kingdom_inventory[towntrade1] = kingdom_inventory[towntrade1]- math.random(1,k) --remove items
-      kingdom_inventory[merchanttrade1] = kingdom_inventory[merchanttrade1]+math.random(1,m)--add items
+      set_kingdom_inventory(towntrade1, get_kingdom_inventory(towntrade1) - math.random(1,k)) --remove items
+      set_kingdom_inventory(merchanttrade1, get_kingdom_inventory(merchanttrade1) + math.random(1,k))
+      --kingdom_inventory[towntrade1] = kingdom_inventory[towntrade1]- math.random(1,k) --remove items
+      --kingdom_inventory[merchanttrade1] = kingdom_inventory[merchanttrade1]+math.random(1,m)--add items
       message_que_add("Your merchants traded ".. k .. " units of " .. towntrade1 .. " for "..m.." units of "..merchanttrade1, 100, 1)
    end
    if get_kingdom_inventory(towntrade2) > 0 and 
@@ -310,8 +312,10 @@ function report_trading_done()
       --do a trade.
       local k = kingdom_inventory[towntrade2]
       local m = merchant_inventory[merchanttrade2]
-      kingdom_inventory[towntrade2] = kingdom_inventory[towntrade2]- math.random(1,k) --remove items
-      kingdom_inventory[merchanttrade2] = kingdom_inventory[merchanttrade2]+math.random(1,m)--add items
+      set_kingdom_inventory(towntrade2, get_kingdom_inventory(towntrade2) - math.random(1,k)) --remove items
+      set_kingdom_inventory(merchanttrade2, get_kingdom_inventory(merchanttrade2) + math.random(1,k))
+      --kingdom_inventory[towntrade2] = kingdom_inventory[towntrade2]- math.random(1,k) --remove items
+      --kingdom_inventory[merchanttrade2] = kingdom_inventory[merchanttrade2]+math.random(1,m)--add items
       message_que_add("Your merchants traded ".. k .. " units of " .. towntrade2 .. " for "..m.." units of "..merchanttrade2, 100, 1)
    end
    if get_kingdom_inventory(towntrade3) > 0 and 
@@ -319,8 +323,10 @@ function report_trading_done()
       --do a trade.
       local k = kingdom_inventory[towntrade3]
       local m = merchant_inventory[merchanttrade3]
-      kingdom_inventory[towntrade3] = kingdom_inventory[towntrade3]- math.random(1,k) --remove items
-      kingdom_inventory[merchanttrade3] = kingdom_inventory[merchanttrade3]+math.random(1,m)--add items
+      --kingdom_inventory[towntrade3] = kingdom_inventory[towntrade3]- math.random(1,k) --remove items
+      --kingdom_inventory[merchanttrade3] = kingdom_inventory[merchanttrade3]+math.random(1,m)--add items
+      set_kingdom_inventory(towntrade1, get_kingdom_inventory(towntrade3) - math.random(1,k)) --remove items
+      set_kingdom_inventory(merchanttrade3, get_kingdom_inventory(merchanttrade3) + math.random(1,k))
       message_que_add("Your merchants traded ".. k .. " units of " .. towntrade3 .. " for "..m.." units of "..merchanttrade3, 100, 1)
    end
    --what do i have to trade?
