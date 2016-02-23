@@ -341,17 +341,17 @@ function spawn_merchants()
    --select a random tile on the edge of the map to place them
    --note code, try spawn offscreen.
    if nesw == 1 then --north
-      game.merchant_spawn_x = 2000 --math.random(1,game.tilecount) --tiles
-      game.merchant_spawn_y = -1000 --math.random(1,game.tilecount) --tiles
+      game.merchant_spawn_x = 1000 --math.random(1,game.tilecount) --tiles
+      game.merchant_spawn_y = -500 --math.random(1,game.tilecount) --tiles
    elseif nesw == 2 then --east
-      game.merchant_spawn_x = 2000 --game.tilecount
-      game.merchant_spawn_y = 1000 --math.random(1,game.tilecount)
+      game.merchant_spawn_x = 1000 --game.tilecount
+      game.merchant_spawn_y = 500 --math.random(1,game.tilecount)
    elseif newsw == 3 then --south
-      game.merchant_spawn_x = -2000 --math.random(1,game.tilecount) --tiles
-      game.merchant_spawn_y = 1000 --game.tilecount --math.random(1,game.tilecount) --tiles
+      game.merchant_spawn_x = -1000 --math.random(1,game.tilecount) --tiles
+      game.merchant_spawn_y = 500 --game.tilecount --math.random(1,game.tilecount) --tiles
    else --west
-      game.merchant_spawn_x = -1000 --0 --tiles
-      game.merchant_spawn_y = -2000 --math.random(1,game.tilecount) --math.random(1,game.tilecount) --tiles
+      game.merchant_spawn_x = -500 --0 --tiles
+      game.merchant_spawn_y = -1000 --math.random(1,game.tilecount) --math.random(1,game.tilecount) --tiles
    end
 
    for y = 1, game.tilecount do 
