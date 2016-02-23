@@ -465,6 +465,8 @@ function merchants_arrive() -- done every 3rd day
 				message_que_add("tales of your riotous villagers have scared away merchants!".."("..x.."X"..y..")", 300, 1)
 			elseif arrive < 2 then
 				message_que_add("no merchants arrived today", 300, 1) --merchants arrive on 3rd day, 80% chance.
+			elseif kingdom_inventory.tradepost < 1 then
+				message_que_add("merchants from the outlands passed by but you have no trade post.", 300, 1)
 			else
 				message_que_add("merchants from the outlands have arrived", 300, 1)
 				game.merchant_arrived = 1 --set merchants arrived flag = 1
