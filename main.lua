@@ -346,7 +346,9 @@ function check_fireproof(tile, firetile) --true, fireproof false burnable!   che
       return true
    elseif(tile == 61 ) then -- burned out?
       return true
-   elseif(tile == 45) then --trenches	
+   elseif(tile == 37) then --trenches	
+      return true
+   elseif(tile == 38) then -- other water
       return true
    elseif(tile == 46) then --water
       return true -- cant burn water!
