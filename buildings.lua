@@ -95,6 +95,8 @@ function update_add_building(y,x, strtype) -- give them by tile selected
    elseif strtype == "monument" then
       kingdom_inventory.monument = kingdom_inventory.monument+1
       game.house_to_build = game.mayor_sex --fix bug?x
+   elseif strtype == "militia house" then
+   	--nothing?
    end--endif
    game_road_map[y][x] = game.house_to_build
 end
@@ -389,6 +391,8 @@ function on_build_house() --check for resources and conditions, if ok start buil
 	 game.give_direction = "None"
 	 message_que_add("Not Resources for a Militia House (stone 20)", 80, 9)
 	 --go to end
+      else
+      	start_build_house_job()
       end
    elseif game.house_to_build == 64 then
       if (game.biome == "forest" and kingdom_inventory.rocks < 10 ) or
@@ -399,7 +403,7 @@ function on_build_house() --check for resources and conditions, if ok start buil
 	 game.give_direction = "None"
 	 message_que_add("Not Resources for a Smithy (stone 10)", 80, 9)
       else
-	 start_build_house_job() 
+	 start_build_house_job()  -- build if requirements are met -fixed bug where militia house wont build.
       end
    elseif game.house_to_build == 72 then
       if (game.biome == "forest" and kingdom_inventory.rocks < 30 ) or
