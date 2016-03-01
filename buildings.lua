@@ -372,7 +372,7 @@ function on_build_house() --check for resources and conditions, if ok start buil
    elseif game.house_to_build == 67 then --jail/sheriff office
       if kingdom_inventory.rocks >= 35 then
 	 start_build_house_job() 
-      elseif kingdom_inventory.sandstone < 35 then
+      elseif kingdom_inventory.sandstone >= 35 then
 	 start_build_house_job()
       else
 	 game_directives.job_type = "Not Resources(stone 35)"
