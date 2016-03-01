@@ -113,9 +113,9 @@ function update_research_directives()
    if research_topics.security >=1 and research_topics.agriculture >= 1 and research_topics.scarecrow == 0 then
       message_que_add("You have unlocked scarecrows!", 100, 36)
       research_topics.scarecrow = 1
-   elseif research_topics.civics >= 2 and research_topics.security >=2 and research_topics.militiahouse == 0 then
+   elseif research_topics.civics >= 2 and research_topics.security >=2 and research_topics.militia_house == 0 then
       message_que_add("You have unlocked the militia house!", 100, 36)
-      research_topics.militiahouse = 1
+      research_topics.militia_house = 1
    elseif research_topics.industry >= 1 and research_topics.economy >= 3 and research_topics.fisherboats == 0 then
       message_que_add("You have unlocked fisher boats!(Not Implemented)", 100, 36)
       research_topics.fisherboats = 1
