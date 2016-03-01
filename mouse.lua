@@ -403,15 +403,15 @@ function love.mousepressed(x, y, button)
       elseif game.show_menu == 2 then
 	 select_biome_mouse(x,y,"l")
       else --no menus are up
-	 --mouse_clicked_in32(x, y, icon_x, icon_y)
+	 --is this the menu for scrolling? add game.give_direction = "None" to prevent doing more clicks.
 	 if mouse_clicked_in32(x, y, game.screen_width-64-128, game.screen_height-70)==1 then
-	    game.scroll_direction = "left"
+	    game.scroll_direction = "left" game.give_direction = "None"
 	 elseif mouse_clicked_in32(x, y, game.screen_width-64-88, game.screen_height-42)==1 then
-	    game.scroll_direction = "down"
+	    game.scroll_direction = "down" game.give_direction = "None"
 	 elseif mouse_clicked_in32(x, y, game.screen_width-64-80,game.screen_height-128) == 1 then
-	    game.scroll_direction = "up"
+	    game.scroll_direction = "up" game.give_direction = "None"
 	 elseif mouse_clicked_in32(x, y, game.screen_width-64-40, game.screen_height-80) ==1 then
-	    game.scroll_direction = "right"
+	    game.scroll_direction = "right" game.give_direction = "None"
 	 else
 	    game.scroll_direction = "none"
 	 end
