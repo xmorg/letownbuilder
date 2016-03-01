@@ -317,6 +317,7 @@ function instant_update_map() -- check map after an event and update accordingly
 	    elseif y > 1 and x > 1 and game_map[y][x-1] and game_map[y][x-1] == 38 then
 	       game_map[y][x] = 38
 	    elseif y > 1 and x > 1 and game_map[y+1][x] and game_map[y+1][x] == 38 then --threw an error (was digging map edge)
+	    	--->update 506->update 625-> update 852
 	       game_map[y][x] = 38
 	    elseif y > 1 and x > 1 and game_map[y-1][x] and game_map[y-1][x] == 38 then
 	       game_map[y][x] = 38
