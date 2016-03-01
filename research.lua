@@ -17,7 +17,7 @@ research_topics = { economy = 0,
 	industry = 0,
 	scarecrow = 0,   --- 1 or 0
 	holyplace = 0,
-	militiahouse = 0,
+	--militiahouse = 0,
 	fisherboats = 0,
 	waterforming = 0,
 	restaurants = 0,
