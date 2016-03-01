@@ -17,6 +17,10 @@ function love.mousereleased(x, y, button)
    end
 end
 
+function map_edge_detect(x,y) -- detect the edge of the map altering jobs from being done there.
+	if x==1 or y==1 then 
+	end
+end
 
 function on_plow_where_click()
    if game_map[game.tile_selected_y][game.tile_selected_x] > 2 then
