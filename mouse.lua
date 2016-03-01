@@ -213,7 +213,8 @@ function mouse_clicked_on_selecthousetobuild(x, y)
    elseif mouse_clicked_in64(x, y, 64*2, 64*4) == 1 then --****** Security ******
       if research_topics.security >= 1 then
 	 build_house_directive("Build house", 67, 67)--sharrifs office
-      end
+   end
+	--quick_task_icon64(64*4,64*4, 60, "militia", 1, "game_tiles")
    elseif mouse_clicked_in64(x, y, 64*4, 64*4) == 1 then
       if research_topics.militia_house >= 1 then
 	 build_house_directive("Build house", 60,60)--militia house (needs resource check)
