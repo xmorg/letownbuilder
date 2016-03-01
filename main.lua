@@ -309,15 +309,15 @@ function new_game_map()
 end--end fucntion30
 
 function instant_update_map() -- check map after an event and update accordingly.
-   for y = 1, game.tilecount do --this updates weekly but for purposes
-      for x = 1, game.tilecount do
+   for y = 1, game.tilecount -1 do --this updates weekly but for purposes
+      for x = 1, game.tilecount -1 do -- use -1 to prevent edge crashes.
 	 if game_map[y][x] == 37 then --if its a hole 
 	    if y > 1 and x > 1 and game_map[y][x+1] and game_map[y][x+1] == 38 then
 	       game_map[y][x] = 38
 	    elseif y > 1 and x > 1 and game_map[y][x-1] and game_map[y][x-1] == 38 then
 	       game_map[y][x] = 38
 	    elseif y > 1 and x > 1 and game_map[y+1][x] and game_map[y+1][x] == 38 then --threw an error (was digging map edge)
-	    	--->update 506->update 625-> update 852
+	    	--->update 506->update 625-> update 852 -> we dont check for a tile count!
 	       game_map[y][x] = 38
 	    elseif y > 1 and x > 1 and game_map[y-1][x] and game_map[y-1][x] == 38 then
 	       game_map[y][x] = 38
