@@ -19,6 +19,7 @@ function game_achivements_draw() --draw the achivements
    --love.graphics.print("LeTown Builder", col1-2+150, 10-2 )
    love.graphics.setColor(255,255,255,255)--outside white
    love.graphics.setFont( base_font )
+   love.graphics.draw(ach_button,love.graphics.getWidth( )-64,0) --,0 )--, 0,0 ) -- achivements button
    for i,v in ipairs(achivements) do
    	if i > 7 then acol = 300 brow = -7*65 else acol = 0 brow = 0 end
       if achivements[i].score < achivements[i].win then
