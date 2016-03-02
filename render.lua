@@ -32,7 +32,7 @@ function game_achivements_draw() --draw the achivements
       love.graphics.print(achivements[i][2], 45+64+5+acol, i*65+16+brow) --achivement description
    end 
    
-   love.graphics.setColor(255,255,255,255)
+   --love.graphics.setColor(255,255,255,255)
    love.graphics.pop()
 end
 
