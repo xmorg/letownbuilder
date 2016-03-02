@@ -403,6 +403,11 @@ function love.mousepressed(x, y, button)
 	 game_menu_mouse(x,y,"l")
       elseif game.show_menu == 2 then
 	 select_biome_mouse(x,y,"l")
+      elseif game.show_menu == 7 then
+      	--64 at screen corner
+      	  if mouse_clicked_inrect(x,y, love.graphics.getWidth( )-64, 0, 64, 64) == 1 then
+      	  	game.show_menu = 1
+      	  end
       else --no menus are up
 	 --is this the menu for scrolling? add game.give_direction = "None" to prevent doing more clicks.
 	 if mouse_clicked_in32(x, y, game.screen_width-64-128, game.screen_height-70)==1 then
