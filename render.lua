@@ -9,7 +9,7 @@ function game_achivements_draw() --draw the achivements
    --big_font = love.graphics.newFont("data/newscycle-bold.ttf", 24 )
    --love.graphics.setFont( big_font )
    love.graphics.push()
-   love.graphics.setColor(0,0,0,255)--bg black
+   love.graphics.setColor(0,0,0,0)--bg black
    love.graphics.rectangle( "fill", 0, 0, love.graphics.getWidth( ), love.graphics.getHeight( ) )
    love.graphics.pop()
    love.graphics.setColor(255,255,255,255)--outside white
