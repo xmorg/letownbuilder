@@ -563,6 +563,7 @@ function love.load()
    	chunk()
    end
    title3 = love.graphics.newImage("data/images/title4.png")
+   ach_button = love.graphics.newImage("data/images/ach_button.png")
    resource_bar = love.graphics.newImage("data/images/resource_bar.png")
    records_button = love.graphics.newImage("data/images/records_button.png")
    game_menu_miniload() --miniload to add graphics to the menu before resources are loaded.
