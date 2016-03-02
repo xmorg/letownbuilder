@@ -59,6 +59,7 @@ function game_menu_draw()
    lx=0
    ly=0
    love.graphics.setColor(255,255,255,255)
+   love.graphics.draw(ach_button,love.graphics.getWidth( )-64,0,0, 0,0 ) -- achivements button
 end
 
 function game_menu_mouse(x,y,button)
