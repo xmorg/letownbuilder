@@ -101,6 +101,11 @@ function game_menu_mouse(x,y,button)
 	    love.event.quit()
 	 end
       end
+	--love.graphics.draw(ach_button,love.graphics.getWidth( )-64,0) --,0 )--, 0,0 ) -- achivements button
+	--click on the buttons
+	if x >= love.graphics.getWidth( )-64 and x <= love.graphics.getWidth( ) and y >= 0 and y <= 64 then
+		--show achivements.
+	end
    end
 end
 
