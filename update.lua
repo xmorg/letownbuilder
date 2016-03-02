@@ -159,6 +159,9 @@ function villagers_complete_jobs_by_buildings()
 	 brew_drink()
       end
    end
+   if kingdom_inventory.fishinghut  > 0 then -- do the fishing hut
+   	kingdom_inventory.fish = kingdom_inventory.fish+ ( kingdom_inventory.fishinghut * math.random(1,5) )
+   end
    if kingdom_inventory.mine > 0 then
       kingdom_inventory.rocks = kingdom_inventory.rocks +
 	 (kingdom_inventory.mine * (table.getn(game_villagers)*2))
