@@ -6,12 +6,8 @@ function game_achivements_draw() --draw the achivements
    local col1 = 100
    local acol = 0
    local brow = 0
-   --big_font = love.graphics.newFont("data/newscycle-bold.ttf", 24 )
-   --love.graphics.setFont( big_font )
-   --love.graphics.push()
-   love.graphics.setColor(0,0,0,0)--bg black
+   love.graphics.setColor(0,0,0)--bg black
    love.graphics.clear( )
-   --love.graphics.pop()
    love.graphics.setColor(255,255,255,255)--outside white
    love.graphics.rectangle( "fill", 0, 0, love.graphics.getWidth(), love.graphics.getHeight() )
    love.graphics.setColor(255,255,255,255)--inside black
