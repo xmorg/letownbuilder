@@ -8,6 +8,7 @@ function game_achivements_draw() --draw the achivements
    local brow = 0
    love.graphics.setColor(0,0,0)--bg black
    love.graphics.clear( )
+   	love.graphics.push()
    love.graphics.setColor(255,255,255,255)--outside white
    love.graphics.rectangle( "fill", 0, 0, love.graphics.getWidth(), love.graphics.getHeight() )
    love.graphics.setColor(255,255,255,255)--inside black
@@ -30,7 +31,9 @@ function game_achivements_draw() --draw the achivements
       love.graphics.print(achivements[i][1], 45+64+5+acol, i*65+brow) --achivement title
       love.graphics.print(achivements[i][2], 45+64+5+acol, i*65+16+brow) --achivement description
    end 
+   
    love.graphics.setColor(255,255,255,255)
+   love.graphics.pop()
 end
 
 function show_tooltop_message()--text, x,y) -- show text on mouseover
