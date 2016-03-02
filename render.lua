@@ -9,11 +9,6 @@ function game_achivements_draw() --draw the achivements
    love.graphics.setColor(0,0,0)--bg black
    love.graphics.clear( )
    	love.graphics.push()
-   --love.graphics.setColor(255,255,255,255)--outside white
-   --love.graphics.rectangle( "fill", 0, 0, love.graphics.getWidth(), love.graphics.getHeight() )
-   --love.graphics.setColor(255,255,255,255)--inside black
-   --love.graphics.rectangle( "fill", 5, 5, love.graphics.getWidth()-10, love.graphics.getHeight()-10 )
-   --love.graphics.draw(title3,0,0,0, love.graphics.getWidth( )/title3:getWidth(),love.graphics.getHeight( )/title3:getHeight() )
    love.graphics.setColor(0,5,5,255)--white lettering
    love.graphics.setFont( huge_font )
    --love.graphics.print("LeTown Builder", col1-2+150, 10-2 )
