@@ -410,14 +410,19 @@ function love.mousepressed(x, y, button)
       	  end
       else --no menus are up
 	 --is this the menu for scrolling? add game.give_direction = "None" to prevent doing more clicks.
+	 function set_game_dir_to_none() --stopping the moue bug where you try to move when you are on "Select job"
+	 	if game.give_direction == "Select job" then return 0
+ 		else game.give_direction = "None"
+ 		end
+ 	end
 	 if mouse_clicked_in32(x, y, game.screen_width-64-128, game.screen_height-70)==1 then
-	    game.scroll_direction = "left" game.give_direction = "None"
+	    game.scroll_direction = "left" set_game_dir_to_none()
 	 elseif mouse_clicked_in32(x, y, game.screen_width-64-88, game.screen_height-42)==1 then
-	    game.scroll_direction = "down" game.give_direction = "None"
+	    game.scroll_direction = "down" set_game_dir_to_none()
 	 elseif mouse_clicked_in32(x, y, game.screen_width-64-80,game.screen_height-128) == 1 then
-	    game.scroll_direction = "up" game.give_direction = "None"
+	    game.scroll_direction = "up" set_game_dir_to_none()
 	 elseif mouse_clicked_in32(x, y, game.screen_width-64-40, game.screen_height-80) ==1 then
-	    game.scroll_direction = "right" game.give_direction = "None"
+	    game.scroll_direction = "right" set_game_dir_to_none()
 	 else
 	    game.scroll_direction = "none"
 	 end
