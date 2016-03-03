@@ -276,6 +276,11 @@ function on_clicked_rosterbutton(x,y)
 end
 
 function on_clicked_buttons(x,y)---------------------QUICK BUTTONS
+	function on_select_job(x,y)
+	--nothing
+	return 0
+	end
+	
    if mouse_clicked_in32(x, y, 632,0) == 1 then
       love_crude_load()
       load_game_res()
