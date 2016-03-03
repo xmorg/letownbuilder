@@ -108,6 +108,7 @@ function kill_villager_by_name(name, cause) --look up villager name and slay the
 	 end
 	 game_villagers[i].villager_type = "Dead"
 	 kingdom_inventory.villagers = kingdom_inventory.villagers -1 --remove living villagers
+	 kingdom_inventory.deadvillagers = kingdom_inventory.deadvillagers+1-- add to the dead
 	 --Is it game over?
 	 if kingdom_inventory.villagers <= 0 then
 	 	--GAME OVER!
