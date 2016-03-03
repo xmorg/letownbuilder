@@ -133,7 +133,7 @@ function on_update_earthquake(shaketimer) --make the screen shake, calc chances
    end --end if
 end
 function run_catastrophies_trigger()
-  dice = math.random(1,1000)
+  local dice = math.random(1,1000)
   --roll a dice 1/1000
   if dice == 47 then  --start the zombie apacalypse!
      on_update_zombie_apacalypse()
