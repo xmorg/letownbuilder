@@ -607,7 +607,7 @@ function love.keypressed(key)
    if game.disablekeyboard == 0 then
       if key == "e" then
 	 screenshot = love.graphics.newScreenshot( false )
-	 screenshot:encode("screenie"..game.lastscreenshot..".jpg")
+	 screenshot:encode("screenie"..game.lastscreenshot..".png")
 	 game.lastscreenshot = game.lastscreenshot+1
       elseif key == "escape" then
 	 if game.show_menu == 0 then game.show_menu = 1 --
