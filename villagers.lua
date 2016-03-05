@@ -408,6 +408,22 @@ function villagers_eat_food(num_villagers) -- eat food
       message_que_add("Without proper storage, some of your food rotted!", 300, 9)
    end
 end
+function villager_goto_xy(villager, tilex,tiley)
+	local lx = 0
+	local ly = 0
+	for y = 1, game.tilecount do --loopy
+		for x = 1, game.tilecount do --loopx
+			--if game_map[y][x] == 1  then -- found a fire(the top one)
+			if x == tilex and y == tiley then --do
+				lx = 300+(y - x) * 32 + 64
+				ly = -100+(y + x) * 32 / 2 + 50
+				villager.dx = lx + math.random(30,60) --(y*  --dx = start_x, dy = start_y, 
+				villager.dy = ly + math.random(30,60)
+				villager.job = 0
+			--break
+			end
+      end	
+end
 
 function villager_goto_bonfire(villager)
    local lx = 0
