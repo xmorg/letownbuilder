@@ -74,6 +74,7 @@ function daily_update_map() --happens at 11 oclock
    end
    update_migration_relations(migrants_tab)--update their relations
    game_families = get_villager_famgroups()
+  on_update_villagers_homeless() -- recalc homeless
    if kingdom_inventory.dwarves > 0 then
    	research_topics.smelter = 1
    	research_topics.smithy = 1
