@@ -58,11 +58,13 @@ function update_destroy_building(y,x) --if house is destroyed or deconstructed
       kingdom_inventort.church = kingdom_inventory.church-1
    end
    game_road_map[y][x] = 0 -- make building disappear
+   on_update_villagers_homeless() -- recalc homeless
 end
 
 function update_add_building(y,x, strtype) -- give them by tile selected
    if strtype == "house" then
       kingdom_inventory.homes = kingdom_inventory.homes+1
+      on_update_villagers_homeless()  -- recalc homeless
       for i,v in ipairs(game_villagers) do
 	 if game_villagers[i].house_x == 0 and game_villagers[i].house_x == 0 then
 	    game_villagers[i].house_x = x
