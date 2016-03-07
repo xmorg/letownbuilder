@@ -442,40 +442,54 @@ function villager_goto_bonfire(villager)
    end
 end
 
+function on_update_villagers_homeless() --a daytime update of homeless villagers
+	local families = get_villager_families(game_villagers) --count the families
+	local housecount = 1 -- count houses
+	kingdom_inventory.families = families --update families in kingdom inventory
+	game_families = get_villager_famgroups() --update families list
+	for i,v in ipairs(game_families) do --assign a house to family
+		local f = game_families[i]
+		if housecount > kingdom_inventory.homes and game.day_count > 1 then
+			for i2,v2 in ipairs(game_families[i]) do
+				game_families[i][i2].opinion = "Upset about being homeless"
+			end --end for
+		end --endif
+		housecount = housecount+1	--BUG, if there are no homes, and no fires what happens?
+	end--endfor
+	if kingdom_inventory.homes < families then
+		kingdom_inventory.homeless = families - kingdom_inventory.homes --update the homeless count.
+	elseif kingdom_inventory.homes >= table.getn(game_villagers) then --fixed bug where there is always 1 homeless
+		kingdom_inventory.homeless = 0
+	end
+end
+
 function villagers_seek_shelter(num_villagers)--check how many homes are availible
-   local families = get_villager_families(game_villagers)
-   kingdom_inventory.families = families
-   message_que_add("It is night.", 300, 21)
-   if kingdom_inventory.bonfire < 1 then
-      message_que_add(" It is dark and cold!", 300, 21)
-      -- + unrest if there is no bonfire
-      kingdom_inventory.unrest = kingdom_inventory.unrest+ table.getn(game_villagers)
-      for i,v in ipairs(game_villagers) do
-	 game_villagers[i].opinion = "Trying to keep warm without a fire"
-      end
-   else
-      for i,v in ipairs(game_villagers) do
-	 --try to find bonfire
-	 villager_goto_bonfire(game_villagers[i])
-      end
-   end
-   --game.message_box_timer = 300
-   -- TODO: instead of each villager, check for families
-   -- TODO: now use game_families = 
-   --end
-   game_families = get_villager_famgroups() --update families list
-   --loop through families
-   local housecount = 1
-   for i,v in ipairs(game_families) do
-      --assign a house to family
-      local f = game_families[i]
-      if housecount > kingdom_inventory.homes then
-	 for i2,v2 in ipairs(game_families[i]) do
-	    game_families[i][i2].opinion = "Upset about being homeless"
-	 end
-      end
-      housecount = housecount+1	--BUG, if there are no homes, and no fires what happens?
-   end--endfor
+	local families = get_villager_families(game_villagers)
+	kingdom_inventory.families = families
+	message_que_add("It is night.", 300, 21)
+	if kingdom_inventory.bonfire < 1 then
+		message_que_add(" It is dark and cold!", 300, 21) -- + unrest if there is no bonfire
+		kingdom_inventory.unrest = kingdom_inventory.unrest+ table.getn(game_villagers)
+		for i,v in ipairs(game_villagers) do
+			game_villagers[i].opinion = "Trying to keep warm without a fire"
+		end
+	else
+		for i,v in ipairs(game_villagers) do --try to find bonfire
+			villager_goto_bonfire(game_villagers[i])
+		end
+	end
+	game_families = get_villager_famgroups() --update families list
+	--loop through families
+	local housecount = 1
+	for i,v in ipairs(game_families) do --assign a house to family
+		local f = game_families[i]
+		if housecount > kingdom_inventory.homes then
+			for i2,v2 in ipairs(game_families[i]) do
+				game_families[i][i2].opinion = "Upset about being homeless"
+			end
+		end
+		housecount = housecount+1	--BUG, if there are no homes, and no fires what happens?
+	end--endfor
    if kingdom_inventory.homes < families then
       kingdom_inventory.homeless = families - kingdom_inventory.homes
       kingdom_inventory.unrest = kingdom_inventory.unrest + kingdom_inventory.homeless
@@ -486,6 +500,7 @@ function villagers_seek_shelter(num_villagers)--check how many homes are availib
       end
    end
 end
+
 
 function villagers_do_job(x, y, specialist)
    local found_worker = "false"
