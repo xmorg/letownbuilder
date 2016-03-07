@@ -90,8 +90,6 @@ function daily_update_map() --happens at 11 oclock
    end
    kingdom_inventory.families = get_villager_families(game_villagers)
    message_que_add(migrants.." migrants have arrived.  Welcome." , 300, 7)
-   --kingdom_inventory.homeless = (kingdom_inventory.villagers - kingdom_inventory.homes)
-   --game.message_box_timer = 300
    if kingdom_inventory.monument >= 1 then
       if get_town_unrest() < 60 then
 	 kingdom_inventory.unrest = kingdom_inventory.unrest - kingdom_inventory.monument --monuments
