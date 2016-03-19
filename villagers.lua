@@ -419,11 +419,12 @@ function villager_goto_xy(villager, tilex,tiley)
 				ly = -100+(y + x) * 32 / 2 + 50
 				villager.dx = lx + math.random(30,60) --(y*  --dx = start_x, dy = start_y, 
 				villager.dy = ly + math.random(30,60)
-				villager.job = 0
-			--break
+				villager.job = 0--break
 			end
-      end	
+		end
+	end
 end
+
 
 function villager_goto_bonfire(villager)
    local lx = 0
