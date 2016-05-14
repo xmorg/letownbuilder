@@ -78,12 +78,15 @@ function update_research_directives()
 	 research_topics.elections = 1
 	 --held once a week, random new mayor, +happiness
       elseif research_topics.civics == 2 then
+	 message_que_add("You have unlocked religion!", 100, 9)
+	 research_topics.church = 1
+      elseif research_topics.civics == 3 then
 	 message_que_add("You have unlocked the town hall!", 100, 9)
 	 research_topics.townhall = 1
-      elseif research_topics.civics == 3 then
+      elseif research_topics.civics == 4 then
 	 message_que_add("You have unlocked propaganda!", 100, 9)
 	 research_topics.propaganda = 1
-      elseif research_topics.civics == 3 then
+      elseif research_topics.civics == 5 then
 	 message_que_add("You have unlocked the mayors mansion!", 100, 9)
 	 research_topics.townhall = 1
       end

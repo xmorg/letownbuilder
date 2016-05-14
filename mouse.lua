@@ -246,6 +246,16 @@ function mouse_clicked_on_selecthousetobuild(x, y)
       end
    elseif mouse_clicked_in64(x, y, 64*2, 64*5) == 1 then
       if research_topics.church  >= 1 then
+	 build_house_directive("Build house", 721 then
+	 build_house_directive("Build house", 71, 71)--brewery
+      end
+      ---------------row 3-------------------------------
+   elseif mouse_clicked_in64(x, y, 64*1, 64*5) == 1 then
+      if research_topics.smithy  >= 1 then
+	 build_house_directive("Build house", 64, 64)--smithy
+      end
+   elseif mouse_clicked_in64(x, y, 64*2, 64*5) == 1 then
+      if research_topics.church  >= 1 then
 	 build_house_directive("Build house", 72, 72)--church
       end --research_topics.church  >= 1 then
    end--mouse_clicked_in64(x, y, 64*2, 64*5) == 1 then
