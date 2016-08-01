@@ -319,9 +319,11 @@ function on_clicked_buttons(x,y)---------------------QUICK BUTTONS
    		game.game_mobile = 0
    	end
    elseif mouse_clicked_in32(x, y, 664,32) == 1 then --go fullscreen
-   	if game.fullscreen_mode == "No" then game.fullscreen_mode = "Yes"
-      	else game.fullscreen_mode = "No" end
-      	go_fullscreen()
+   	--if game.fullscreen_mode == "No" then game.fullscreen_mode = "Yes"
+      	--else game.fullscreen_mode = "No" end
+      	--go_fullscreen()
+      	if game.zoom_level == 2 then game.zoom_level = 1
+      	else game.zoom_level = 2 end
    elseif mouse_clicked_in32(x, y, 664+32,32) == 1 then --go open menu
    	 if game.show_menu == 0 then game.show_menu = 1 --
 	 elseif game.show_menu == 7 and game.started == 1 then game.show_menu = 0
