@@ -9,8 +9,8 @@
 g_version = "0.9.0" --"0.8.0"
 fullscreen_hack = "no"
 --fonts data/newscycle-regular.ttf   data/newscycle-bold.ttf
-base_font = love.graphics.newFont("data/newscycle-bold.ttf", 14 )
-big_font = love.graphics.newFont("data/newscycle-bold.ttf", 24 )
+base_font = love.graphics.newFont("data/newscycle-bold.ttf", 18 )
+big_font = love.graphics.newFont("data/newscycle-bold.ttf", 32 )
 font_row_1 = 3
 font_row_2 = 20
 font_row_3 = 37

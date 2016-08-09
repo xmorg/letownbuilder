@@ -285,54 +285,77 @@ function on_clicked_rosterbutton(x,y)
    return 1
 end
 
-function on_clicked_buttons(x,y)---------------------QUICK BUTTONS
-	function on_select_job(x,y)
-	--nothing
-	return 0
-	end
-	
-   if mouse_clicked_in32(x, y, 632,0) == 1 then
-      love_crude_load()
-      load_game_res()
-   elseif mouse_clicked_in32(x, y, 664,0) == 1 then
-      love.event.quit()
-   elseif mouse_clicked_in32(x, y, 696,0) == 1 then
-      love_crude_save() --save/quit autosave feature
-      love.event.quit()
-   elseif mouse_clicked_in32(x, y, 600,0) == 1 then  --show records
+function on_new_quickbutons(x,y) --- new QUICK BUTTONS, (android friendly)
+   if mouse_clicked_in64(x, y, 536, 0) == 1 then --records
       if game.game_roster == 0 then 
 	 game.game_roster = 1
       else 
 	 game.game_roster = 0
       end
-   elseif mouse_clicked_in32(x, y, 600,32) == 1 then  --pause game
-	--pause the game
-	if game.game_paused == 0 then
-		game.game_paused = 1
-	else
-		game.game_paused = 0
-	end
-   elseif mouse_clicked_in32(x, y, 632,32) == 1 then --mobile controller
-   	if game.game_mobile == 0 then
-   		game.game_mobile = 1
-   	else
-   		game.game_mobile = 0
-   	end
-   elseif mouse_clicked_in32(x, y, 664,32) == 1 then --go fullscreen
-   	--if game.fullscreen_mode == "No" then game.fullscreen_mode = "Yes"
-      	--else game.fullscreen_mode = "No" end
-      	--go_fullscreen()
-      	if game.zoom_level == 2 then game.zoom_level = 1
-      	else game.zoom_level = 2 end
-   elseif mouse_clicked_in32(x, y, 664+32,32) == 1 then --go open menu
-   	 if game.show_menu == 0 then game.show_menu = 1 --
-	 elseif game.show_menu == 7 and game.started == 1 then game.show_menu = 0
-	 elseif game.show_menu == 7 then game.show_menu = 1
-	 elseif game.show_menu == 99 then game.show_menu = 1
-	 else 
-	    if game.started == 1 then game.show_menu = 0 end 
-	 end
-   elseif mouse_clicked_in64(x, y, 0, 64*1) == 1 then --Select job
+   elseif mouse_clicked_in64(x, y, 536+64, 0) == 1 then --zoom
+      if game.zoom_level == 2 then game.zoom_level = 1
+      else game.zoom_level = 2 end
+   elseif mouse_clicked_in64(x, y, 536+64+64, 0) == 1 then --menu
+      if game.show_menu == 0 then game.show_menu = 1 --
+      elseif game.show_menu == 7 and game.started == 1 then game.show_menu = 0
+      elseif game.show_menu == 7 then game.show_menu = 1
+      elseif game.show_menu == 99 then game.show_menu = 1
+      else 
+	 if game.started == 1 then game.show_menu = 0 end 
+      end
+   end
+end
+
+function on_clicked_buttons(x,y)---------------------QUICK BUTTONS
+   function on_select_job(x,y)
+      --nothing
+      return 0
+   end
+   
+   --if mouse_clicked_in32(x, y, 632,0) == 1 then
+   --   love_crude_load()
+   --   load_game_res()
+   --elseif mouse_clicked_in32(x, y, 664,0) == 1 then
+   --   love.event.quit()
+   --elseif mouse_clicked_in32(x, y, 696,0) == 1 then
+   --   love_crude_save() --save/quit autosave feature
+   --   love.event.quit()
+   --elseif mouse_clicked_in32(x, y, 600,0) == 1 then  --show records
+   --   if game.game_roster == 0 then 
+   -- game.game_roster = 1
+   --else 
+   --	 game.game_roster = 0
+   --    end
+   --elseif mouse_clicked_in32(x, y, 600,32) == 1 then  --pause game
+   --pause the game
+   --	if game.game_paused == 0 then
+   --		game.game_paused = 1
+   --	else
+   --		game.game_paused = 0
+   --	end
+   -- elseif mouse_clicked_in32(x, y, 632,32) == 1 then --mobile controller
+   --	if game.game_mobile == 0 then
+   --		game.game_mobile = 1
+   --	else
+   --		game.game_mobile = 0
+   --	end
+   --elseif mouse_clicked_in32(x, y, 664,32) == 1 then --go fullscreen
+   --if game.fullscreen_mode == "No" then game.fullscreen_mode = "Yes"
+   --else game.fullscreen_mode = "No" end
+   --go_fullscreen()
+   --    	if game.zoom_level == 2 then game.zoom_level = 1
+   --    	else game.zoom_level = 2 end
+   -- elseif mouse_clicked_in32(x, y, 664+32,32) == 1 then --go open menu
+   -- 	 if game.show_menu == 0 then game.show_menu = 1 --
+   --	 elseif game.show_menu == 7 and game.started == 1 then game.show_menu = 0
+   --	 elseif game.show_menu == 7 then game.show_menu = 1
+   --	 elseif game.show_menu == 99 then game.show_menu = 1
+   --	 else 
+   --	    if game.started == 1 then game.show_menu = 0 end 
+   --	 end
+   
+   on_new_quickbutons(x,y)
+   if mouse_clicked_in64(x, y, 0, 64*1) == 1 then --Select job
       if game.give_direction == "Select job" then
 	 game.give_direction = "None" --unselect job
       else
@@ -532,81 +555,82 @@ function love.mousepressed(x, y, button)
 end --end function
 
 function get_tooltip_info_from_item() --ran in update?
-	mx = love.mouse.getX() --mouse x coord
-	my = love.mouse.getY() --mouse y coord
-	scrw = love.graphics.getWidth() --screen width
-	scrh = love.graphics.getHeight() --screen height
-	if mouse_clicked_inrect(mx,my, 600, 1, 32, 32)== 1 then --wood
-	   game.tooltip_text = "town records"
-   	elseif mouse_clicked_inrect(mx,my, 600, 32, 32, 32)== 1 then --wood
-   		game.tooltip_text = "pause game"
-	elseif mouse_clicked_inrect(mx,my, 632, 1, 32, 32)== 1 then --wood
-	   game.tooltip_text = "load game"
-	elseif mouse_clicked_inrect(mx,my, 632, 32, 32, 32)== 1 then --wood
-   		game.tooltip_text = "controller"
-   	elseif mouse_clicked_inrect(mx,my, 664, 32, 32, 32)== 1 then --wood
-   		game.tooltip_text = "fullscreen"
-	elseif mouse_clicked_inrect(mx,my, 664, 1, 32, 32)== 1 then --wood
-	   game.tooltip_text = "nosave exit"
-	elseif mouse_clicked_inrect(mx,my, 696, 1, 32, 32)== 1 then --wood
-	   game.tooltip_text = "save and exit"
-	elseif mouse_clicked_inrect(mx,my, scrw-64, 1, 32, 32)== 1 then --wood
-	   game.tooltip_text = "wood"
-	elseif mouse_clicked_inrect(mx,my, scrw-32, 1, 32,32) == 1 then --sakura
-	   game.tooltip_text = "sakura"
-	elseif mouse_clicked_inrect(mx,my, scrw-64, 32, 32,32)== 1 then --sakura
-	   game.tooltip_text = "rocks"
-	elseif mouse_clicked_inrect(mx,my, scrw-30, 32, 32,32) == 1 then --sakura
-	   game.tooltip_text = "bamboo"
-	elseif mouse_clicked_inrect(mx,my, scrw-64, 64, 32,32)== 1 then --sakura
-	   game.tooltip_text = "fish"
-	elseif mouse_clicked_inrect(mx,my, scrw-30, 64, 32,32) == 1 then --sakura
-	   game.tooltip_text = "iron ore"
-	elseif mouse_clicked_inrect(mx,my, scrw-64, 96, 32,32)== 1 then --sakura
-	   game.tooltip_text = "cherries"
-	elseif mouse_clicked_inrect(mx,my, scrw-30, 96, 32,32) == 1 then --sakura
-	   game.tooltip_text = "gold ore"
-	elseif mouse_clicked_inrect(mx,my, scrw-64, 128, 32,32)== 1 then --sakura
-	   game.tooltip_text = "carrots"
-	elseif mouse_clicked_inrect(mx,my, scrw-30, 128, 32,32) == 1 then --sakura
-	   game.tooltip_text = "iron bars"
-	elseif mouse_clicked_inrect(mx,my, scrw-64, 160, 32,32)== 1 then --sakura
-	   game.tooltip_text = "tomatoes"
-	elseif mouse_clicked_inrect(mx,my, scrw-30, 160, 32,32) == 1 then --sakura
-	   game.tooltip_text = "gold bars"
-	elseif mouse_clicked_inrect(mx,my, scrw-64, 192, 32,32)== 1 then --sakura
-	   game.tooltip_text = "meat"
-	elseif mouse_clicked_inrect(mx,my, scrw-30, 192, 32,32) == 1 then --sakura
-	   game.tooltip_text = "wheat"
-	elseif mouse_clicked_inrect(mx,my, scrw-64, 224, 32,32)== 1 then --sakura
-	   game.tooltip_text = "sansai"
-	elseif mouse_clicked_inrect(mx,my, scrw-30, 224, 32,32) == 1 then --sakura
-	   game.tooltip_text = "apples"
-	elseif mouse_clicked_inrect(mx,my, scrw-64, 256, 32,32)== 1 then --sakura
-	   game.tooltip_text = "fish wine"
-	elseif mouse_clicked_inrect(mx,my, scrw-30, 256, 32,32) == 1 then --sakura
-	   game.tooltip_text = "pale ale"
-	elseif mouse_clicked_inrect(mx,my, scrw-64, 288, 32,32)== 1 then --sandstone
-	   game.tooltip_text = "sandstone"
-	elseif mouse_clicked_inrect(mx,my, scrw-30, 288, 32,32) == 1 then --wild onions
-	   game.tooltip_text = "wild onions"
-	elseif mouse_clicked_inrect(mx,my, scrw-30, 320, 32,32) == 1 then --sakura
-	   game.tooltip_text = "pelts"
-	elseif mouse_clicked_inrect(mx,my, scrw-64, 320, 32,32) == 1 then --pelts
-	   game.tooltip_text = "seeds"
-	elseif mouse_clicked_inrect(mx,my, scrw-30, 352, 32,32) == 1 then --sakura
-	   game.tooltip_text = "weapons"
-	elseif mouse_clicked_inrect(mx,my, scrw-64, 352, 32,32) == 1 then --pelts
-	   game.tooltip_text = "tools"
-	elseif mouse_clicked_inrect(mx,my, scrw-30, 352+32, 32,32) == 1 then --sakura
-	   game.tooltip_text = "coins"
-	elseif mouse_clicked_inrect(mx,my, scrw-64, 352+32, 32,32) == 1 then --pelts
-	   game.tooltip_text = "treasures"
-	elseif mouse_clicked_inrect(mx,my, scrw-64, 352+64,32,32) == 1 then
-		game.tooltip_text = "mushrooms"
-	else 
-		game.tooltip_text = "NONE"
-	end
+   mx = love.mouse.getX() --mouse x coord
+   my = love.mouse.getY() --mouse y coord
+   scrw = love.graphics.getWidth() --screen width
+   scrh = love.graphics.getHeight() --screen height
+   --if mouse_clicked_inrect(mx,my, 600, 1, 32, 32)== 1 then --wood
+   if mouse_clicked_inrect(mx,my, 536, 1, 64, 64)== 1 then
+      game.tooltip_text = "Town records"
+      --elseif mouse_clicked_inrect(mx,my, 600, 32, 32, 32)== 1 then --wood
+      --	game.tooltip_text = "pause game"
+      --elseif mouse_clicked_inrect(mx,my, 632, 1, 32, 32)== 1 then --wood
+      --   game.tooltip_text = "load game"
+      --elseif mouse_clicked_inrect(mx,my, 632, 32, 32, 32)== 1 then --wood
+      --	game.tooltip_text = "controller"
+   elseif mouse_clicked_inrect(mx,my, 600, 1, 64, 64)== 1 then --wood
+      game.tooltip_text = "Zoom"
+   elseif mouse_clicked_inrect(mx,my, 664, 1, 64, 64)== 1 then --wood
+      game.tooltip_text = "Menu"
+      --elseif mouse_clicked_inrect(mx,my, 696, 1, 32, 32)== 1 then --wood
+      --   game.tooltip_text = "save and exit"
+   elseif mouse_clicked_inrect(mx,my, scrw-64, 1, 32, 32)== 1 then --wood
+      game.tooltip_text = "wood"
+   elseif mouse_clicked_inrect(mx,my, scrw-32, 1, 32,32) == 1 then --sakura
+      game.tooltip_text = "sakura"
+   elseif mouse_clicked_inrect(mx,my, scrw-64, 32, 32,32)== 1 then --sakura
+      game.tooltip_text = "rocks"
+   elseif mouse_clicked_inrect(mx,my, scrw-30, 32, 32,32) == 1 then --sakura
+      game.tooltip_text = "bamboo"
+   elseif mouse_clicked_inrect(mx,my, scrw-64, 64, 32,32)== 1 then --sakura
+      game.tooltip_text = "fish"
+   elseif mouse_clicked_inrect(mx,my, scrw-30, 64, 32,32) == 1 then --sakura
+      game.tooltip_text = "iron ore"
+   elseif mouse_clicked_inrect(mx,my, scrw-64, 96, 32,32)== 1 then --sakura
+      game.tooltip_text = "cherries"
+   elseif mouse_clicked_inrect(mx,my, scrw-30, 96, 32,32) == 1 then --sakura
+      game.tooltip_text = "gold ore"
+   elseif mouse_clicked_inrect(mx,my, scrw-64, 128, 32,32)== 1 then --sakura
+      game.tooltip_text = "carrots"
+   elseif mouse_clicked_inrect(mx,my, scrw-30, 128, 32,32) == 1 then --sakura
+      game.tooltip_text = "iron bars"
+   elseif mouse_clicked_inrect(mx,my, scrw-64, 160, 32,32)== 1 then --sakura
+      game.tooltip_text = "tomatoes"
+   elseif mouse_clicked_inrect(mx,my, scrw-30, 160, 32,32) == 1 then --sakura
+      game.tooltip_text = "gold bars"
+   elseif mouse_clicked_inrect(mx,my, scrw-64, 192, 32,32)== 1 then --sakura
+      game.tooltip_text = "meat"
+   elseif mouse_clicked_inrect(mx,my, scrw-30, 192, 32,32) == 1 then --sakura
+      game.tooltip_text = "wheat"
+   elseif mouse_clicked_inrect(mx,my, scrw-64, 224, 32,32)== 1 then --sakura
+      game.tooltip_text = "sansai"
+   elseif mouse_clicked_inrect(mx,my, scrw-30, 224, 32,32) == 1 then --sakura
+      game.tooltip_text = "apples"
+   elseif mouse_clicked_inrect(mx,my, scrw-64, 256, 32,32)== 1 then --sakura
+      game.tooltip_text = "fish wine"
+   elseif mouse_clicked_inrect(mx,my, scrw-30, 256, 32,32) == 1 then --sakura
+      game.tooltip_text = "pale ale"
+   elseif mouse_clicked_inrect(mx,my, scrw-64, 288, 32,32)== 1 then --sandstone
+      game.tooltip_text = "sandstone"
+   elseif mouse_clicked_inrect(mx,my, scrw-30, 288, 32,32) == 1 then --wild onions
+      game.tooltip_text = "wild onions"
+   elseif mouse_clicked_inrect(mx,my, scrw-30, 320, 32,32) == 1 then --sakura
+      game.tooltip_text = "pelts"
+   elseif mouse_clicked_inrect(mx,my, scrw-64, 320, 32,32) == 1 then --pelts
+      game.tooltip_text = "seeds"
+   elseif mouse_clicked_inrect(mx,my, scrw-30, 352, 32,32) == 1 then --sakura
+      game.tooltip_text = "weapons"
+   elseif mouse_clicked_inrect(mx,my, scrw-64, 352, 32,32) == 1 then --pelts
+      game.tooltip_text = "tools"
+   elseif mouse_clicked_inrect(mx,my, scrw-30, 352+32, 32,32) == 1 then --sakura
+      game.tooltip_text = "coins"
+   elseif mouse_clicked_inrect(mx,my, scrw-64, 352+32, 32,32) == 1 then --pelts
+      game.tooltip_text = "treasures"
+   elseif mouse_clicked_inrect(mx,my, scrw-64, 352+64,32,32) == 1 then
+      game.tooltip_text = "mushrooms"
+   else 
+      game.tooltip_text = "NONE"
+   end
 end
 
 function update_checkscrolling(mx, my)

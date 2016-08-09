@@ -145,8 +145,8 @@ function draw_game_ui()
    end
    love.graphics.print(game.give_direction, 100, font_row_1)
    love.graphics.print("Jobs".."("..get_job_count()..")", 250, font_row_1)
-   love.graphics.print("Time:"..math.floor(game.day_time/1000).." hrs", 400, font_row_1 )
-   love.graphics.print("Day "..game.day_count, 550, font_row_1 )
+   love.graphics.print("Time: "..game.day_count.." D "..math.floor(game.day_time/1000).." hrs", 400, font_row_1 )
+   --love.graphics.print("Day "..game.day_count, 550, font_row_1 )
    
    for i,v in ipairs(game_message_que) do -- play messages in order
       if game_message_que[i].mtimer > 0 then
@@ -167,12 +167,12 @@ function draw_game_ui()
       love.graphics.setFont( big_font )
       love.graphics.print("GAME PAUSED", 350, 300)
    end
-   love.graphics.draw(records_button, 600, 0) -- now has all buttons
-   if game.game_paused == 1 then
-   	love.graphics.draw(game_icons[86], 600, 32) --, 0, 2,2)
-   else
-   	love.graphics.draw(game_icons[87], 600, 32)
-   end
+   love.graphics.draw(records_button, 600-64, 0) -- QUICK BUTTONS, quick buttons
+   --if game.game_paused == 1 then
+   --	love.graphics.draw(game_icons[86], 600, 32) --, 0, 2,2)
+   --else
+   --	love.graphics.draw(game_icons[87], 600, 32)
+   --end
    --love.graphics.draw(game_icons[59], 632, 0)--, 0, 2,2)--save/exit
    --love.graphics.draw(game_icons[58], 664, 0)--, 0, 2,2)--nosave/exit
    --love.graphics.draw(game_icons[57], 696, 0)--, 0, 2,2)--loadgame

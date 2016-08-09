@@ -457,25 +457,25 @@ function merchants_leave() -- merchants left
 end
 
 function merchants_arrive() -- done every 3rd day
-	local arrive = math.random(1,10)
-	if game.merchant_arrived == 0 then
-		if game.day_count % 3 == 0 then
-			if kingdom_inventory.unrest > 60 then
-				--tales of your riotous villagers have scared away merchants
-				message_que_add("tales of your riotous villagers have scared away merchants!".."("..x.."X"..y..")", 300, 1)
-			elseif arrive < 2 then
-				message_que_add("no merchants arrived today", 300, 1) --merchants arrive on 3rd day, 80% chance.
-			elseif kingdom_inventory.tradepost < 1 then
-				message_que_add("merchants from the outlands passed by but you have no trade post.", 300, 1)
-			else
-				message_que_add("merchants from the outlands have arrived", 300, 1)
-				game.merchant_arrived = 1 --set merchants arrived flag = 1
-				spawn_merchants()
-			end--endif
-		end--endif
-	else -- merchant already arrived, update location
-		update_merchant_location()
-   	end--endif
+   local arrive = math.random(1,10)
+   if game.merchant_arrived == 0 then
+      if game.day_count % 3 == 0 then
+	 if kingdom_inventory.unrest > 60 then
+	    --tales of your riotous villagers have scared away merchants
+	    message_que_add("tales of your riotous villagers have scared away merchants!", 300, 1)
+	 elseif arrive < 2 then
+	    message_que_add("no merchants arrived today", 300, 1) --merchants arrive on 3rd day, 80% chance.
+	 elseif kingdom_inventory.tradepost < 1 then
+	    message_que_add("merchants from the outlands passed by but you have no trade post.", 300, 1)
+	 else
+	    message_que_add("merchants from the outlands have arrived", 300, 1)
+	    game.merchant_arrived = 1 --set merchants arrived flag = 1
+	    spawn_merchants()
+	 end--endif
+      end--endif
+   else -- merchant already arrived, update location
+      update_merchant_location()
+   end--endif
 end
 function draw_merchants()
    for i,v in ipairs(game_merchants) do

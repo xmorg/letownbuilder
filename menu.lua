@@ -38,7 +38,11 @@ function game_menu_draw()
    love.graphics.rectangle( "fill", 90, 140, 250, 360)
    love.graphics.setFont( big_font )
    love.graphics.setColor(255,255,255,255)
-   love.graphics.print("New Game", col1, 100 +row*1 )
+   if game.map_generated == 0 then
+      love.graphics.print("New Game", col1, 100 +row*1 )
+   else
+      love.graphics.print("Continue Game", col1, 100 +row*1 )
+   end
    love.graphics.print("Load Game", col1, 100 +row*2 )
    if game.map_generated == 0 then
       love.graphics.setColor(80,80,80,255)
@@ -67,7 +71,12 @@ function game_menu_mouse(x,y,button)
    local col1 = 100
    if button == "l" then
       if x >= col1 and x <= 500 and y >=100 +row*1 and y <= 100 +row*2 then --new game
-	game.show_menu = 2
+	 if game.map_generated == 0 then
+	    game.show_menu = 2
+	 else
+	    --play the game
+	    game.show_menu = 0
+	 end
       end
       if x >= col1 and x <= 500 and y >=100 +row*2 and y <= 100 +row*3 then --load game
 	 game.started = 1

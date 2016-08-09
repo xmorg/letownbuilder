@@ -267,6 +267,7 @@ function check_for_events_in_timer()
       if get_town_unrest() >= 70 then
 	 villagers_rioting_report(game_villagers)
       end
+      love_crude_save()
    elseif game.day_time == 11000 then
       --message_que_add("DEBUG: Daily update map", 80, 109)
       daily_update_map()
@@ -292,7 +293,7 @@ function check_for_events_in_timer()
 	 update_achivements("The howling", 1)
       end
       drop_nightwolves()
-      
+      love_crude_save()
       
    end
    if game.day_time == 7000 and game.day_count > 5 then
