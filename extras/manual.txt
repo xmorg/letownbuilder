@@ -1,0 +1,109 @@
+manual.txt
+
+
+A Fantasy Town building simulator - With no in app purchasing!
+
+Ever played an adictive online game where you build your kingdom or town and realized that it was taking too long to do anything unless you spent real money? LeTownbuilder allows you to scrach that "building and managing" itch while not burdening you with microtransations, or massive hardware requirements.
+
+Your town begins in a vacant, unsettled area. Your start location is randomized and there are different possible biomes, so no 2 times you play are the same. You start with 5 villagers. Start by collecting resources and building houses and specialized buildings. Villagers have moods, and can become happy or angry based many factors. Keep them fed, and housed. Also make sure that there is a bonfire at night, or they will get cold. You can increase happiness by always having food at lunchtime and by adding other advanced upgrades to your village.
+
+Game Basics, Day 1.
+On the first day your first priorities should be securing enough food for your villagers and anyone else who may migrate in on day 1.  Food can be gathered, hunted fished or planted depending on the environment.  A Town without food is a town header for disaster.  You will also want to make sure that you plant fields to help sustain your villagers in the long run.
+
+Your next order of business should be shelter.   Collect enough resources to build homes for your existing villagers.  Each night, villagers are counted out by families, and if there is not enought homes to go around, villagers will start to get restless for being made to sleep on the ground.  Cut wood and dig holes to provide enough wood and stone for shelters.  Some environments, like Arashi require bamboo for buildings.
+
+You may also want to build fires before it gets dark.  When darkneses falls, it gets hard to see properly, and fires will gather your villagers together, and keep them warm.  Beware! do not build a fire next to a tree, or another structure.
+
+As your village starts to take shape, you can begin to build a school and start researching out new technologies.  This will unlock new buildings, and provide security features to prevent disaster.
+
+Known Dangers: Not all is rosy and quiet in the world of Letown Builder, disasters lurk at every turn.
+---------------------------
+Wildlife: Snakes, bears, and other nasties can hurt your vilagers.
+
+Contaminated food: You're villagers could get deathly sick from food, you found just lying around.  Fish, meat, and gathered food are usually the culprets.  Build a barn, and cook your meat thoroughly!  Try to survive soling on grain and other prepared food in the long run.
+
+Bandits: The local rif/raff may mingle in with your other villagers, and even become productive members of society, but they have sticky fingers, especially at the dinner table.
+
+Fires: Fires provide warmth and light.  But, out of control, they can burn down your forrests, and homes.
+
+Earthquakes: Rare but devistating, the whole world shakes, until your houses flatten.
+
+Adverse weather:  Too much rain or snow can cause flooding, or stop crops from growing, not enough can cause drought.
+
+Crows: Birds have a nasty habit ot destroying your garden.
+
+Dark Elves: They come to your town, and give it a research boost, they might even survive a werewolf attack, but are they really all that good?
+
+Werewovles: A perfectly normal villager by day, a slavering beast by night!
+
+Nightwolves: The dreaded nightwolf!  They come in packs, and slaughter everything in sight.
+
+Zombies: It is unknown what, or how these things come into being, but they spread like the plague when they do.
+
+
+
+Jobs - Basic
+---------------------------
+Gather Food/Cleaer area - the basic emergancy food source is scouring the land for food.  Gathering produces low quality food, that fills bellys but does little else.
+Cut Wood - clear out trees
+Dig hole - Dig a hole to find stone and ore, and produce a place to put a mine.
+Plant Garden - Plow out a field for growing grain and other stuff.
+Plant Tomatoes(requires agriculture research) Plant tomatoes!
+Build Fire - Create a bonfire to create light at night, and to cook meat and fish.
+Hunt - call on your hunter to bring in the meat.
+
+Building Types
+---------------------------
+House - prevents homelessness
+Barn - Stores food, and reduces the chance of rot.
+Mine - Allows for the daily production of ore.
+Smelter - Allows you to smelt ore into bars
+Smithy - Allows a blacksmith to create tools, weapons, and other items out of bars.
+School - Start researching technology.
+Brewery - Make drinks
+Tradepost - allows for merchant trading
+Graveyard - Bury your dead and prevent ghosts
+Watchtower - Creates a lightsource and allows the watchman to watch for danger
+Fisherman's hut - allows for automatic fishing.
+Mayor's monument - Show how great your mayor is.
+Sheriff's office - Allows you to hire a shariff to catch bandits
+Militia Headquarters - Allows you to recruit a militia captain
+
+
+Workers
+----------------------------
+Towns are made by hard work.  As the town begins to take shape, people will start to take on specialized roles.  These roles are responsible for completing various assigned tasks.
+
+Mayor - Mayors are the source to blame for all things aray in your village. Often villagers will proclaim themselves to be mayor at the founding of your village. If this does not occour, you can later elect one after researching civics.
+
+Farmer - farmers are responsible for planting and caring for farm plots
+
+Fisherman - Professional food gatherer if there is a body of water nearby.  This is the only type of food gathering which requires a worker.
+
+Hunter - Hunters, hunt local wildlife.  Hunting reduces dangerous wildlife, as well as produces meat and pelts.
+
+Brewer - for those tired of drinking water.
+
+Smelter - Smelter smelts gold and iron ore, into bars.
+
+Smithy - Blacksmiths make tools, weapons, treasures and coins.
+
+Woodcutter - Cuts wood for resource gathering.
+
+Minor - Minor's dig holes in the ground and work the mines once they are built atop the holes.  They produce stone, ore and the occasional jewel.
+
+Builder - Builders build.
+
+Sheriff - The sheriff deals with riff/raff.
+
+Militia Captain - The leader of the local militia. He can be directly controlled by the player.
+
+Undertaker - Manages the graveyards.
+
+Merchant - The Merchant manages the trade of goods to traveling caravans.
+
+Watchman - Watchmen man the watchtowers and keep an eye out for danger.
+
+Holyman(not a attainable job?) Holymen, preach sermons which raise or lower the general unrest in your town, depending on how happy or angry the people already are.
+
+

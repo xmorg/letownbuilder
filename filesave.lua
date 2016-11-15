@@ -77,11 +77,20 @@ function table.show(t, name, indent)
    return cart .. autoref
 end
 
-
+function check_for_save()
+   local e = love.filesystem.exists( "game.lua" )
+   local k = love.filesystem.exists( "game_map.lua")
+   local r = love.filesystem.exists( "research_topics.lua")
+   if e == true and k == true then
+      return true
+   else
+      return false
+   end
+end
 function love_crude_load()
    --to avoid errors check to see if there are files???
-   e = love.filesystem.exists( "game.lua" )
-   if e == true then
+   
+   if check_for_save() == true then
       load_game_res() --create new scene dupes villagers and maybe other stuff.
       
       chunk = love.filesystem.load( "game.lua" )
@@ -120,10 +129,11 @@ function love_crude_load()
      -- end
       
       --now make sure that resources are properly reloaded!
-      
+      return true
    else
       game.message_box_text = "No file to load! (missing game.lua)"
       game.message_box_timer = 80
+      return false
    end
 end
 

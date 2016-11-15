@@ -152,7 +152,7 @@ function brew_drink() -- brew drinks at brewery, do in order of preference
    end
 end
 
-function villagers_complete_jobs_by_buildings()
+function villagers_complete_jobs_by_buildings() -- if a buidling exists, at the end of the day it produces
    if kingdom_inventory.brewery > 0 then
       for i=0, kingdom_inventory.brewery do
 	 brew_drink()
@@ -188,66 +188,66 @@ function villagers_complete_jobs_by_buildings()
       end --endfor
    end --endif kingdom_inventory.smelter > 0 then
    if kingdom_inventory.smithy > 0 then --multiple smithies
-   	for x=1, kingdom_inventory.smithy do --smithing_production = "auto" -- weapons, tools, treasures, coins
-   		if game.smithing_production == "auto" then
-   			autorand = math.random(1,4)
-   			if autorand == 1 then --do weapon (iron ore only.)
-   				if kingdom_inventory.iron_ingots > 0 then 
-   					kingdom_inventory.iron_ingots = kingdom_inventory.iron_ingots-1
-   					kingdom_inventory.weapons  = kingdom_inventory.weapons+1
-   				end
-   			elseif autorand == 2 then --tools (iron only)
-   				if kingdom_inventory.iron_ingots > 0 then 
-   					kingdom_inventory.iron_ingots = kingdom_inventory.iron_ingots-1
-   					kingdom_inventory.tools  = kingdom_inventory.tools+1
-   				end
-   			elseif autorand == 3 then --treasures --iron or gold
-   				if kingdom_inventory.gold_ingots > 0 then 
-   					kingdom_inventory.gold_ingots = kingdom_inventory.gold_ingots-1
-   					kingdom_inventory.gold_treasures  = kingdom_inventory.gold_treasures+1
-   				elseif kingdom_inventory.iron_ingots > 0 then 
-   					kingdom_inventory.iron_ingots = kingdom_inventory.iron_ingots-1
-   					kingdom_inventory.iron_treasures  = kingdom_inventory.iron_treasures+1
-   				end
-   			elseif autorand == 4 then --coins  --gold
-   				if kingdom_inventory.gold_ingots > 0 then 
-   					kingdom_inventory.gold_ingots = kingdom_inventory.gold_ingots-1
-   					kingdom_inventory.gold_coinds  = kingdom_inventory.gold_coins+1
-   				elseif kingdom_inventory.iron_ingots > 0 then 
-   					kingdom_inventory.iron_ingots = kingdom_inventory.iron_ingots-1
-   					kingdom_inventory.iron_coins  = kingdom_inventory.iron_coins+1
-   				end
-   			end--endif autorand
-   		elseif game.smithing_production == "weapons" then
-   			if kingdom_inventory.iron_ingots > 0 then 
-   				kingdom_inventory.iron_ingots = kingdom_inventory.iron_ingots-1
-   				kingdom_inventory.weapons  = kingdom_inventory.weapons+1
-   			end
-   		elseif game.smithing_production == "tools" then
-   			if kingdom_inventory.iron_ingots > 0 then 
-   				kingdom_inventory.iron_ingots = kingdom_inventory.iron_ingots-1
-   				kingdom_inventory.tools  = kingdom_inventory.tools+1
-   			end
-   		elseif game.smithing_production == "treasures" then
-   			if kingdom_inventory.gold_ingots > 0 then 
-   				kingdom_inventory.gold_ingots = kingdom_inventory.gold_ingots-1
-   				kingdom_inventory.gold_treasures  = kingdom_inventory.gold_treasures+1
-   			elseif kingdom_inventory.iron_ingots > 0 then 
-   				kingdom_inventory.iron_ingots = kingdom_inventory.iron_ingots-1
-   				kingdom_inventory.iron_treasures  = kingdom_inventory.iron_treasures+1
-   			end
-   		elseif game.smithing_production == "coins" then
-   			if kingdom_inventory.gold_ingots > 0 then 
-   				kingdom_inventory.gold_ingots = kingdom_inventory.gold_ingots-1
-   				kingdom_inventory.gold_coinds  = kingdom_inventory.gold_coins+1
-   			elseif kingdom_inventory.iron_ingots > 0 then 
-   				kingdom_inventory.iron_ingots = kingdom_inventory.iron_ingots-1
-   				kingdom_inventory.iron_coins  = kingdom_inventory.iron_coins+1
-   			end
-   		end--endif game.smithing_production == auto
-   	end
+      for x=1, kingdom_inventory.smithy do --smithing_production = "auto" -- weapons, tools, treasures, coins
+	 if game.smithing_production == "auto" then
+	    autorand = math.random(1,4)
+	    if autorand == 1 then --do weapon (iron ore only.)
+	       if kingdom_inventory.iron_ingots > 0 then 
+		  kingdom_inventory.iron_ingots = kingdom_inventory.iron_ingots-1
+		  kingdom_inventory.weapons  = kingdom_inventory.weapons+1
+	       end
+	    elseif autorand == 2 then --tools (iron only)
+	       if kingdom_inventory.iron_ingots > 0 then 
+		  kingdom_inventory.iron_ingots = kingdom_inventory.iron_ingots-1
+		  kingdom_inventory.tools  = kingdom_inventory.tools+1
+	       end
+	    elseif autorand == 3 then --treasures --iron or gold
+	       if kingdom_inventory.gold_ingots > 0 then 
+		  kingdom_inventory.gold_ingots = kingdom_inventory.gold_ingots-1
+		  kingdom_inventory.gold_treasures  = kingdom_inventory.gold_treasures+1
+	       elseif kingdom_inventory.iron_ingots > 0 then 
+		  kingdom_inventory.iron_ingots = kingdom_inventory.iron_ingots-1
+		  kingdom_inventory.iron_treasures  = kingdom_inventory.iron_treasures+1
+	       end
+	    elseif autorand == 4 then --coins  --gold
+	       if kingdom_inventory.gold_ingots > 0 then 
+		  kingdom_inventory.gold_ingots = kingdom_inventory.gold_ingots-1
+		  kingdom_inventory.gold_coinds  = kingdom_inventory.gold_coins+1
+	       elseif kingdom_inventory.iron_ingots > 0 then 
+		  kingdom_inventory.iron_ingots = kingdom_inventory.iron_ingots-1
+		  kingdom_inventory.iron_coins  = kingdom_inventory.iron_coins+1
+	       end
+	    end--endif autorand
+	 elseif game.smithing_production == "weapons" then
+	    if kingdom_inventory.iron_ingots > 0 then 
+	       kingdom_inventory.iron_ingots = kingdom_inventory.iron_ingots-1
+	       kingdom_inventory.weapons  = kingdom_inventory.weapons+1
+	    end
+	 elseif game.smithing_production == "tools" then
+	    if kingdom_inventory.iron_ingots > 0 then 
+	       kingdom_inventory.iron_ingots = kingdom_inventory.iron_ingots-1
+	       kingdom_inventory.tools  = kingdom_inventory.tools+1
+	    end
+	 elseif game.smithing_production == "treasures" then
+	    if kingdom_inventory.gold_ingots > 0 then 
+	       kingdom_inventory.gold_ingots = kingdom_inventory.gold_ingots-1
+	       kingdom_inventory.gold_treasures  = kingdom_inventory.gold_treasures+1
+	    elseif kingdom_inventory.iron_ingots > 0 then 
+	       kingdom_inventory.iron_ingots = kingdom_inventory.iron_ingots-1
+	       kingdom_inventory.iron_treasures  = kingdom_inventory.iron_treasures+1
+	    end
+	 elseif game.smithing_production == "coins" then
+	    if kingdom_inventory.gold_ingots > 0 then 
+	       kingdom_inventory.gold_ingots = kingdom_inventory.gold_ingots-1
+	       kingdom_inventory.gold_coinds  = kingdom_inventory.gold_coins+1
+	    elseif kingdom_inventory.iron_ingots > 0 then 
+	       kingdom_inventory.iron_ingots = kingdom_inventory.iron_ingots-1
+	       kingdom_inventory.iron_coins  = kingdom_inventory.iron_coins+1
+	    end
+	 end--endif game.smithing_production == auto
+      end
    end
-end --endfunction
+end --endfunction villagers_complete_jobs_by_buildings()
 
 function debug_negatives() --?
    if kingdom_inventory.rocks < 0 then
@@ -263,17 +263,23 @@ function check_for_events_in_timer()
    end
    
    if game.day_time == 12000 then
+      --villager_goto_barn(villager)
+      for i,v in ipairs(game_villagers) do --try to find bonfire
+	 villager_goto_barn(game_villagers[i])
+      end
       villagers_eat_food(table.getn(game_villagers))  --villagers.lua
       if get_town_unrest() >= 70 then
 	 villagers_rioting_report(game_villagers)
       end
       love_crude_save()
-   elseif game.day_time == 11000 then
-      --message_que_add("DEBUG: Daily update map", 80, 109)
+   elseif game.day_time == 11000 then --villagers arrive
       daily_update_map()
-   elseif game.day_time == 8000 then
+   elseif game.day_time == 8000 then --8am morning
       merchants_arrive()
-   elseif game.day_time % 1000 == 0 then
+      for i,v in ipairs(game_villagers) do --try to find bonfire
+	 villager_goto_school(game_villagers[i])
+      end
+   elseif game.day_time % 1000 == 0 then --the top of each hour
       hourly_update_map()
    end
 
@@ -378,16 +384,16 @@ function new_job()
    return a
 end
 function create_job_forque()
-	local job_exists = 0
-	for i,v in ipairs(game_job_que) do
-		if game_job_que[i].location_x == game_directives.location_x and 
-		game_job_que[i].location_y == game_directives.location_y then
-			job_exists = 1
-		end
-	end
-	if job_exists == 0 then
-		table.insert(game_job_que, new_job() )
-	end
+   local job_exists = 0
+   for i,v in ipairs(game_job_que) do
+      if game_job_que[i].location_x == game_directives.location_x and 
+      game_job_que[i].location_y == game_directives.location_y then
+	 job_exists = 1
+      end
+   end
+   if job_exists == 0 then
+      table.insert(game_job_que, 1,  new_job() )
+   end
 end
 
 function get_job_count()
@@ -414,6 +420,7 @@ function update_job_que()
 	 and building == 0 then
 	    on_game_directives_buildhouse(i)
 	    game_job_que[i].timer = game_job_que[i].timer -1
+	    villagers_do_job(game_job_que[i].location_x, game_job_que[i].location_y, "builder")
 	    building = 1
 	 elseif game_job_que[i].job_type == "Demolish building" and (get_availible_worker(game_job_que[i].job_type)==true) and building == 0 then
 	    game_job_que[i].timer = game_job_que[i].timer -1
@@ -425,22 +432,26 @@ function update_job_que()
 	 get_availible_worker(game_job_que[i].job_type) == true and woodcutting == 0 then
 	    on_sucessful_cut_trees(game_job_que[i].job_type, sucessful) -- trees, sakura, or bamboo
 	    game_job_que[i].timer = game_job_que[i].timer -1
+	    villagers_do_job(game_job_que[i].location_x, game_job_que[i].location_y, "woodcutter")
 	    woodcutting = 1
 	 elseif (game_job_que[i].job_type == "Cut bamboo") and
 	 get_availible_worker(game_job_que[i].job_type) == true and woodcutting == 0 then
 	    on_sucessful_cut_trees(game_job_que[i].job_type, sucessful) -- trees, sakura, or bamboo
 	    game_job_que[i].timer = game_job_que[i].timer -1
+	    villagers_do_job(game_job_que[i].location_x, game_job_que[i].location_y, "woodcutter")
 	    woodcutting = 1
 	 elseif (game_job_que[i].job_type == "Cut sakura") and
 	    get_availible_worker(game_job_que[i].job_type) == true and
 	 woodcutting == 0 then
 	    on_sucessful_cut_trees(game_job_que[i].job_type, sucessful) -- trees, sakura, or bamboo
 	    game_job_que[i].timer = game_job_que[i].timer -1
+	    villagers_do_job(game_job_que[i].location_x, game_job_que[i].location_y, "woodcutter")
 	    woodcutting = 1
 	 elseif game_job_que[i].job_type == "Dig hole" and
 	 get_availible_worker(game_job_que[i].job_type)==true and digging == 0 then
 	    on_sucessful_dig_hole(game_job_que[i].job_type, sucessful) -- check for dig hole
 	    game_job_que[i].timer = game_job_que[i].timer -1
+	    villagers_do_job(game_job_que[i].location_x, game_job_que[i].location_y, "miner")
 	    digging = 1
 	 elseif game_job_que[i].job_type == "Gather Food" and gathering == 0 then
 	    on_sucessful_gather_dojob(game.biome, game_job_que[i].job_type, game.current_weather,sucessful) -- fish, gathering
@@ -449,14 +460,17 @@ function update_job_que()
 	 elseif game_job_que[i].job_type == "Fishing" and fishing == 0 then
 	    on_sucessful_gather_dojob(game.biome, game_job_que[i].job_type, game.current_weather,sucessful) -- fish, gathering
 	    game_job_que[i].timer = game_job_que[i].timer -1
+	    villagers_do_job(game_job_que[i].location_x, game_job_que[i].location_y, "fisherman")
 	    fishing = 1
 	 elseif  game_job_que[i].job_type == "Make garden" and
 	 get_availible_worker(game_job_que[i].job_type)==true and farming == 0 then
 	    game_job_que[i].timer = game_job_que[i].timer -1
+	    villagers_do_job(game_job_que[i].location_x, game_job_que[i].location_y, "farmer")
 	    farming = 1
 	 elseif  game_job_que[i].job_type == "Plant tomatoes" and
 	 get_availible_worker(game_job_que[i].job_type)==true and farming == 0 then
 	    game_job_que[i].timer = game_job_que[i].timer -1
+	    villagers_do_job(game_job_que[i].location_x, game_job_que[i].location_y, "farmer")
 	    farming = 1
 	 elseif game_job_que[i].job_type == "Make bonfire" and firebuilding == 0 then
 	    game_job_que[i].timer = game_job_que[i].timer -1

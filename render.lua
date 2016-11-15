@@ -1,6 +1,15 @@
 --move pure drawing functions here :)
 require( "achivements" ) --stop the bugs!
 
+--function draw_buttoni(inum, x, y)   
+--   love.graphics.draw(game_icons[inum], x, y,
+--		      0,
+--		      game.button_size / 64,
+--		      game.button_size / 64
+--   )
+--end
+
+
 function game_achivements_draw() --draw the achivements
    local row = 45
    local col1 = 100
@@ -56,13 +65,13 @@ end
 function display_game_event(mque) --puts a messagebox with a game event of "text"
    --sets a game timer for the messagebox
    love.graphics.setColor(50, 50, 50, 255)
-   love.graphics.rectangle("fill", 20, love.graphics.getHeight()-160, 500, 150)
+   love.graphics.rectangle("fill", 20, love.graphics.getHeight()-120, 500, 150)
    love.graphics.setColor(150, 150, 150, 255)
-   love.graphics.rectangle("fill", 23, love.graphics.getHeight()-157, 494, 144)
+   love.graphics.rectangle("fill", 23, love.graphics.getHeight()-117, 494, 144)
    love.graphics.setColor(255, 255, 255, 255)
-   love.graphics.printf(mque.mtext, 53+64, love.graphics.getHeight()-150 +25, 380, "left")
+   love.graphics.printf(mque.mtext, 53+64, love.graphics.getHeight()-110 +25, 380, "left")
    --put an icon! (thats really a tile! because we dont know... we need tiles!
-   love.graphics.draw(game_icons[mque.micon], 45, love.graphics.getHeight()-150)
+   love.graphics.draw(game_icons[mque.micon], 45, love.graphics.getHeight()-110)
 end
 
 function set_villager_unrest()
@@ -168,14 +177,6 @@ function draw_game_ui()
       love.graphics.print("GAME PAUSED", 350, 300)
    end
    love.graphics.draw(records_button, 600-64, 0) -- QUICK BUTTONS, quick buttons
-   --if game.game_paused == 1 then
-   --	love.graphics.draw(game_icons[86], 600, 32) --, 0, 2,2)
-   --else
-   --	love.graphics.draw(game_icons[87], 600, 32)
-   --end
-   --love.graphics.draw(game_icons[59], 632, 0)--, 0, 2,2)--save/exit
-   --love.graphics.draw(game_icons[58], 664, 0)--, 0, 2,2)--nosave/exit
-   --love.graphics.draw(game_icons[57], 696, 0)--, 0, 2,2)--loadgame
 end
 
 function draw_inventory_icon_xy( item, item_name, item_xcount, icon_num, x, y)
@@ -194,6 +195,7 @@ function draw_inventory_icon_xy( item, item_name, item_xcount, icon_num, x, y)
 end
 
 function draw_message_que()
+   local mh = 128
    love.graphics.setColor(80,80,80,255)
    love.graphics.rectangle("fill", 64, 64, game.screen_width-128, game.screen_height-54 )
    love.graphics.setColor(100,100,100,255)
@@ -201,10 +203,13 @@ function draw_message_que()
    love.graphics.rectangle("fill", 64, 64, 4, game.screen_height-54 ) --leftborder
    love.graphics.rectangle("fill", game.screen_width-68, 64, 4, game.screen_height-54 )--right border
    love.graphics.rectangle("fill", 64, game.screen_height-4, game.screen_width-128, 4 )
-   love.graphics.setColor(255,255,255,255)
    --for i,v in ipairs(game_message_que) do
    for i = 1, table.getn(game_message_que) do -- in reverse!
-      love.graphics.printf(game_message_que[table.getn(game_message_que)+1-i].mtime.."      "..game_message_que[i].mtext, 73, 64+(i*30), 600, "left")
+      love.graphics.printf(game_message_que[table.getn(game_message_que)+1-i].mtime.."      "..game_message_que[i].mtext,
+			   73,
+			   64+(i*30),
+			   600,
+			   "left")
    end
 end
 
@@ -503,31 +508,37 @@ end
 
 
 function draw_research_icons()
+   local bs = 92 --game.button_size
    if get_kingdom_researchable() == 1 then
-      love.graphics.draw(game_icons[30],  0, 64*5) --research!
       if game.research_timer == 0 then
-	 love.graphics.print("Research", 5, 64*5  )
+	 quick_task_icon64(0, bs*5, 30, "Research", 0, "game_icons")
       else
-	 love.graphics.print("Researching".."("..game.research_timer..")", 5, 64*5  )
+	 love.graphics.print("Researching".."("..game.research_timer..")", 5, bs*5  )
       end
    end
+   --quick_task_icon64(x, y, icon, text, blankicon, tileset)
+   --quick_task_icon64(bs*3,bs, 27, "Garden", 0, "game_icons")
    if game.give_direction == "Research" then
-      local ybutton_level = 64*5+40
-      love.graphics.draw(game_icons[63],  0+64, 64*5) --research economy!
-      love.graphics.print("Economy", 5+64, 64*5  )
-      love.graphics.print("Lv "..research_topics.economy, 64+5, ybutton_level  )
-      love.graphics.draw(game_icons[64],  64*2, 64*5) --research Security!
-      love.graphics.print("Security", 5+64+64, 64*5  )
-      love.graphics.print("Lv "..research_topics.security, 64+64+5, ybutton_level  )
-      love.graphics.draw(game_icons[65],  64*3, 64*5) --research Agriculture!
-      love.graphics.print("Agriculture", 64*3+5, 64*5  )
-      love.graphics.print("Lv "..research_topics.agriculture, 64+64+64+5, ybutton_level  )
-      love.graphics.draw(game_icons[66], 64*4, 64*5) --research civics!		
-      love.graphics.print("Civics", 64*4+5, 64*5  )
-      love.graphics.print("Lv "..research_topics.civics, 64*4+5, ybutton_level  ) 
-      love.graphics.draw(game_icons[66], 64*5, 64*5) --research industry!		
-      love.graphics.print("Industry", 64*5+5, 64*5  )
-      love.graphics.print("Lv "..research_topics.industry, 64*5+5, ybutton_level  ) 
+      local ybutton_level = bs*5+40
+      --love.graphics.draw(game_icons[63],  0+bs, bs*5) --research economy!
+      quick_task_icon64(0+bs, bs*5, 63, "Economy("..research_topics.economy..")", 0, "game_icons")
+      quick_task_icon64(0+bs*2, bs*5, 64, "Security("..research_topics.security..")", 0, "game_icons")
+      quick_task_icon64(0+bs*3, bs*5, 65, "Agriculture("..research_topics.agriculture..")", 0, "game_icons")
+      quick_task_icon64(0+bs*4, bs*5, 66, "Civics("..research_topics.civics..")", 0, "game_icons")
+      quick_task_icon64(0+bs*5, bs*5, 28, "Industry("..research_topics.industry..")", 0, "game_icons")
+      --love.graphics.print("Lv "..research_topics.economy, bs+5, ybutton_level  )
+      --love.graphics.draw(game_icons[64],  bs*2, bs*5) --research Security!
+      --love.graphics.print("Security", 5+bs+bs, bs*5  )
+      --love.graphics.print("Lv "..research_topics.security, bs+bs+5, ybutton_level  )
+      --love.graphics.draw(game_icons[65],  bs*3, bs*5) --research Agriculture!
+      --love.graphics.print("Agriculture", bs*3+5, bs*5  )
+      --love.graphics.print("Lv "..research_topics.agriculture, bs*3+5, ybutton_level  )
+      --love.graphics.draw(game_icons[66], bs*4, bs*5) --research civics!		
+      --love.graphics.print("Civics", bs*4+5, bs*5  )
+      --love.graphics.print("Lv "..research_topics.civics, bs*4+5, ybutton_level  ) 
+      --love.graphics.draw(game_icons[66], bs*5, bs*5) --research industry!		
+      --love.graphics.print("Industry", bs*5+5, bs*5  )
+      --love.graphics.print("Lv "..research_topics.industry, bs*5+5, ybutton_level  ) 
    end
 end
 
@@ -738,87 +749,84 @@ end
 
 function quick_task_icon64(x, y, icon, text, blankicon, tileset)
    if blankicon == 1 then
-      love.graphics.draw(game_icons[blank_icon], x, y)
+      love.graphics.draw(game_icons[blank_icon], x, y, 0,game.button_size / 64, game.button_size / 64)
    end
    if tileset == "game_tiles" then
-      love.graphics.draw(tiles_image, game_tiles[icon], x, y-32)
+      love.graphics.draw(tiles_image, game_tiles[icon], x, y-32, 0,game.button_size / 64, game.button_size / 64)
    else
-      love.graphics.draw(game_icons[icon], x, y)
+      love.graphics.draw(game_icons[icon], x, y, 0, game.button_size / 64, game.button_size / 64)
    end
-   love.graphics.print(text, x+3, y+40)
+   love.graphics.print(text, x+3, y+ (game.button_size/ (game.button_size/4)))
 end
 
 function draw_select_house_to_build()
+   local bs = game.button_size
    if game.give_direction == "Select house to build" then
       local xi = 1
-      local row_2 = 64*4
-      local row_3 = 64*5
+      local row_2 = bs * 4 --game.button_size*4
+      local row_3 = bs * 5 --game.button_size*5
       local row_2_xi = 1
       
-      quick_task_icon64(64*1,64*3, 23, "house", 1, "game_tiles")
-      quick_task_icon64(64*2,64*3, 24, "house", 1, "game_tiles")
-      quick_task_icon64(64*3,64*3, 25, "house", 1, "game_tiles")
-      quick_task_icon64(64*4,64*3, 26, "house", 1, "game_tiles")
-      quick_task_icon64(64*5,64*3, 27, "mine", 1, "game_tiles")
-      quick_task_icon64(64*6,64*3, 51, "school", 1, "game_tiles")
-      quick_task_icon64(64*7,64*3, 52, "barn", 1, "game_tiles")
-      quick_task_icon64(64*8,64*3, 53, "graveyard", 1, "game_tiles")
+      quick_task_icon64(bs*1,bs*3, 23, "house", 1, "game_tiles")
+      quick_task_icon64(bs*2,bs*3, 24, "house", 1, "game_tiles")
+      quick_task_icon64(bs*3,bs*3, 25, "house", 1, "game_tiles")
+      quick_task_icon64(bs*4,bs*3, 26, "house", 1, "game_tiles")
+      quick_task_icon64(bs*5,bs*3, 27, "mine", 1, "game_tiles")
+      quick_task_icon64(bs*6,bs*3, 51, "school", 1, "game_tiles")
+      quick_task_icon64(bs*7,bs*3, 52, "barn", 1, "game_tiles")
+      quick_task_icon64(bs*8,bs*3, 53, "graveyard", 1, "game_tiles")
       
       --row 2
-      if research_topics.economy >= 1 then quick_task_icon64(64*1,64*4, 66, "trade post", 1, "game_tiles") end
-      if research_topics.security >= 1 then quick_task_icon64(64*2,64*4, 67, "sheriff", 1, "game_tiles") end
-      if research_topics.industry >= 1 then quick_task_icon64(64*3,64*4, 55, "fish hut", 1, "game_tiles") end
-      if research_topics.militia_house >= 1 then quick_task_icon64(64*4,64*4, 60, "militia", 1, "game_tiles") end
-      if research_topics.mayors_monument >= 1 then quick_task_icon64(64*5,64*4, game.mayor_sex, "monument", 1, "game_tiles") end
-      if research_topics.watchtower >= 1 then quick_task_icon64(64*6,64*4, 65, "watchtower", 1, "game_tiles") end
-      if research_topics.smelter >= 1 then quick_task_icon64(64*7,64*4, 70, "smelter", 1, "game_tiles") end
-      if research_topics.brewery >= 1 then quick_task_icon64(64*8,64*4, 71, "brewery", 1, "game_tiles") end
+      if research_topics.economy >= 1 then quick_task_icon64(         bs*1,bs*4, 66, "trade post", 1, "game_tiles") end
+      if research_topics.security >= 1 then quick_task_icon64(        bs*2,bs*4, 67, "sheriff", 1, "game_tiles") end
+      if research_topics.industry >= 1 then quick_task_icon64(        bs*3,bs*4, 55, "fish hut", 1, "game_tiles") end
+      if research_topics.militia_house >= 1 then quick_task_icon64(   bs*4,bs*4, 60, "militia", 1, "game_tiles") end
+      if research_topics.mayors_monument >= 1 then quick_task_icon64( bs*5,bs*4, game.mayor_sex, "monument", 1, "game_tiles") end
+      if research_topics.watchtower >= 1 then quick_task_icon64(      bs*6,bs*4, 65, "watchtower", 1, "game_tiles") end
+      if research_topics.smelter >= 1 then quick_task_icon64(         bs*7,bs*4, 70, "smelter", 1, "game_tiles") end
+      if research_topics.brewery >= 1 then quick_task_icon64(         bs*8,bs*4, 71, "brewery", 1, "game_tiles") end
       --row 3 ---
-      if research_topics.smithy >= 1 then quick_task_icon64(64*1,64*5, 64, "smithy", 1, "game_tiles") end
-      if research_topics.church >= 1 then quick_task_icon64(64*2,64*5, 72, "church", 1, "game_tiles") end --TODO change icon
+      if research_topics.smithy >= 1 then quick_task_icon64(          bs*1,bs*5, 64, "smithy", 1, "game_tiles") end
+      if research_topics.church >= 1 then quick_task_icon64(          bs*2,bs*5, 72, "church", 1, "game_tiles") end --TODO change icon
    end
 end
 
 function draw_task_icons()
-	love.graphics.setColor(255,255,255,255)
-	love.graphics.draw(game_icons[9], 0, 64) --new labor icon
-	love.graphics.draw(game_icons[40], 0, 64*2) --bag, gather food
-	love.graphics.print("Gather Food", 5, 64*2  )
-	love.graphics.draw(game_icons[2],  0, 64*3) -- build house
-	if game.give_direction == "Select job" then
-		quick_task_icon64(64*1,64, game.axe_icon, "Cut trees", 0, "game_icons")
-		quick_task_icon64(64*2,64, game.shovel_icon, "Dig hole", 0, "game_icons")
-		quick_task_icon64(64*3,64, 27, "Garden", 0, "game_icons")
-		quick_task_icon64(64*4,64, 73, "Hunt", 0, "game_icons")
-		quick_task_icon64(64*5,64, 55, "Fire", 0, "game_icons")
-		quick_task_icon64(64*6,64, 69, "Demolish", 0, "game_icons")
-		if research_topics.militia_house > 0 then
-			quick_task_icon64(64*7,64, 88, "Militia", 0, "game_icons")
-		end
-		if research_topics.tomatoes == 1 then
-			quick_task_icon64(64*7,64, 4, "Tomatoes", 0, "game_icons")    -- change mouse click.
-			--love.graphics.draw(game_icons[4],  64*3, 64*2)--tomatoes
-			--love.graphics.print("Tomatoes", 5+64*3, 64*2 ) --we shall use unrealistic numbers in road map!
-		end
-	else
-		love.graphics.print("Labor", 5, 64  )
-	end
-	love.graphics.print("Build", 5, 64*3  )
-	draw_select_house_to_build()
-	love.graphics.draw(game_icons[54],  0, 64*4) --build roads
-	love.graphics.print("Build Roads", 5, 64*4  )
-	if game.give_direction == "Select road to build" then
-      quick_task_icon64(64*1,64*3+40, 28, "road", 1, "game_tiles")
-      quick_task_icon64(64*2,64*3+40, 29, "road", 1, "game_tiles")
-      quick_task_icon64(64*3,64*3+40, 30, "road", 1, "game_tiles")
-      quick_task_icon64(64*4,64*3+40, 31, "road", 1, "game_tiles")
-      quick_task_icon64(64*5,64*3+40, 32, "road", 1, "game_tiles")
-      quick_task_icon64(64*6,64*3+40, 33, "road", 1, "game_tiles")
-      quick_task_icon64(64*7,64*3+40, 34, "road", 1, "game_tiles")
-      quick_task_icon64(64*8,64*3+40, 35, "road", 1, "game_tiles")
-      quick_task_icon64(64*9,64*3+40, 36, "road", 1, "game_tiles")
-      quick_task_icon64(64*1,64*4+40, 21, "road", 1, "game_tiles")
-      quick_task_icon64(64*2,64*4+40, 22, "road", 1, "game_tiles")
+   bs = game.button_size
+   love.graphics.setColor(255,255,255,255)
+   quick_task_icon64(0,bs*1, 9, "Labor", 0, "game_icons")
+   quick_task_icon64(0,bs*2, 40, "Gather Food", 40, "game_icons")
+   quick_task_icon64(0,bs*3,  2, "Build", 0, "game_icons")
+   if game.give_direction == "Select job" then
+      quick_task_icon64(bs*1,bs, game.axe_icon, "Cut trees", 0, "game_icons")
+      quick_task_icon64(bs*2,bs, game.shovel_icon, "Dig hole", 0, "game_icons")
+      quick_task_icon64(bs*3,bs, 27, "Garden", 0, "game_icons")
+      quick_task_icon64(bs*4,bs, 73, "Hunt", 0, "game_icons")
+      quick_task_icon64(bs*5,bs, 55, "Fire", 0, "game_icons")
+      quick_task_icon64(bs*6,bs, 69, "Demolish", 0, "game_icons")
+      if research_topics.militia_house > 0 then
+	 quick_task_icon64(bs*7,bs, 88, "Militia", 0, "game_icons")
+      end
+      if research_topics.tomatoes == 1 then
+	 quick_task_icon64(bs*7,bs, 4, "Tomatoes", 0, "game_icons")    -- change mouse click.
+      end
+   end
+   --love.graphics.print("Build", 5, bs*3  )
+   draw_select_house_to_build()
+   quick_task_icon64(0, bs*4, 54, "Build Roads", 0, "game_icons")--love.graphics.draw(game_icons[54],  0, bs*4) --build roads
+   --love.graphics.print("Build Roads", 5, bs*4  )
+   if game.give_direction == "Select road to build" then
+      quick_task_icon64(bs*1,bs*3+40, 28, "road", 1, "game_tiles")
+      quick_task_icon64(bs*2,bs*3+40, 29, "road", 1, "game_tiles")
+      quick_task_icon64(bs*3,bs*3+40, 30, "road", 1, "game_tiles")
+      quick_task_icon64(bs*4,bs*3+40, 31, "road", 1, "game_tiles")
+      quick_task_icon64(bs*5,bs*3+40, 32, "road", 1, "game_tiles")
+      quick_task_icon64(bs*6,bs*3+40, 33, "road", 1, "game_tiles")
+      quick_task_icon64(bs*7,bs*3+40, 34, "road", 1, "game_tiles")
+      quick_task_icon64(bs*8,bs*3+40, 35, "road", 1, "game_tiles")
+      quick_task_icon64(bs*9,bs*3+40, 36, "road", 1, "game_tiles")
+      quick_task_icon64(bs*1,bs*4+40, 21, "road", 1, "game_tiles")
+      quick_task_icon64(bs*2,bs*4+40, 22, "road", 1, "game_tiles")
    end
 end
 

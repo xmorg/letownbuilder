@@ -9,6 +9,10 @@ function mouse_clicked_inrect(x,y, cx, cy, cw, ch) -- clicked in a rectangle
    end
 end
 
+function mouse_clicked_inphonerect(x,y, cx,cy)
+   
+end
+
 function love.mousereleased(x, y, button)
    if button == 1 then
       if game.give_direction == "Scrolling" then
@@ -152,7 +156,8 @@ function mouse_clicked_in32(x, y, icon_x, icon_y)
 end
 
 function mouse_clicked_in64(x, y, icon_x, icon_y)
-   if y >= icon_y and y <= icon_y +64 and x >= icon_x and x <= icon_x+64 then
+   local bs = game.button_size
+   if y >= icon_y and y <= icon_y +bs and x >= icon_x and x <= icon_x+bs then
       return 1
    else
       return 0
@@ -160,25 +165,28 @@ function mouse_clicked_in64(x, y, icon_x, icon_y)
 end
 
 function mouse_clicked_on_selectresearch(x,y)
-   if x >= 0 and x <= 64*1 and y >=64*5 and y <= 64*5+64 then 
+   local bs = game.button_size
+   --if x >= 0 and x <= 64*1 and y >=64*5 and y <= 64*5+64 then
+   if mouse_clicked_in64(x, y, 0, bs*5) == 1 then
       game.give_direction = "None"
-   elseif x >= 64*1 and x <= 64*2 and y >=64*5 and y <= 64*5+64 then
+      --elseif x >= 64*1 and x <= 64*2 and y >=64*5 and y <= 64*5+64 then
+   elseif mouse_clicked_in64(x, y, bs*1, bs*5) == 1 then
       game.give_direction = "Research economy"
       game_directives.research_type = "Research economy"
       game.research_timer = 5000
-   elseif x >= 64*2 and x <= 64*3 and y >=64*5 and y <= 64*5+64 then
+   elseif mouse_clicked_in64(x,y, bs*2, bs*5) == 1 then --x >= 64*2 and x <= 64*3 and y >=64*5 and y <= 64*5+64 then
       game.give_direction = "Research security"
       game_directives.research_type = "Research security"
       game.research_timer = 5000
-   elseif x >= 64*3 and x <= 64*4 and y >=64*5 and y <= 64*5+64 then
+   elseif mouse_clicked_in64(x,y,bs*3, bs*5) == 1 then --x >= 64*3 and x <= 64*4 and y >=64*5 and y <= 64*5+64 then
       game.give_direction = "Research agriculture"
       game_directives.research_type = "Research agriculture"
       game.research_timer = 5000
-   elseif x >= 64*4 and x <= 64*5 and y >=64*5 and y <= 64*5+64 then
+   elseif mouse_clicked_in64(x,y,bs*4, bs*5) == 1 then --x >= 64*4 and x <= 64*5 and y >=64*5 and y <= 64*5+64 then
       game.give_direction = "Research civics"
       game_directives.research_type = "Research civics"
       game.research_timer = 5000
-   elseif x >= 64*5 and x <= 64*6 and y >=64*5 and y <= 64*5+64 then
+   elseif mouse_clicked_in64(x,y,bs*5, bs*5) == 1 then --x >= 64*5 and x <= 64*6 and y >=64*5 and y <= 64*5+64 then
       game.give_direction = "Research industry"
       game_directives.research_type = "Research industry"
       game.research_timer = 5000
@@ -188,73 +196,74 @@ function mouse_clicked_on_selectresearch(x,y)
 end
 
 function mouse_clicked_on_selecthousetobuild(x, y)
-   if mouse_clicked_in64(x,y, 64*0, 64*3) == 1 then
+   local bs = game.button_size
+   if mouse_clicked_in64(x,y, bs*0, bs*3) == 1 then
       game.give_direction = "None"
-   elseif mouse_clicked_in64(x,y, 64*1, 64*3) == 1 then
+   elseif mouse_clicked_in64(x,y, bs*1, bs*3) == 1 then
       build_house_directive("Build house", 23, 23)
-   elseif mouse_clicked_in64(x,y, 64*2, 64*3) == 1 then --x >= 64*2 and x <= 64*(2+1) and y >=64*3 and y <= 64*3+64 then --house2
+   elseif mouse_clicked_in64(x,y, bs*2, bs*3) == 1 then --x >= 64*2 and x <= 64*(2+1) and y >=64*3 and y <= 64*3+64 then --house2
       build_house_directive("Build house", 24, 24)
-   elseif mouse_clicked_in64(x,y, 64*3, 64*3) == 1 then --x >= 64*3 and x <= 64*(3+1) and y >=64*3 and y <= 64*3+64 then --house3
+   elseif mouse_clicked_in64(x,y, bs*3, bs*3) == 1 then --x >= 64*3 and x <= 64*(3+1) and y >=64*3 and y <= 64*3+64 then --house3
       build_house_directive("Build house", 25, 25)
-   elseif mouse_clicked_in64(x,y, 64*4, 64*3) == 1 then --x >= 64*4 and x <= 64*(4+1) and y >=64*3 and y <= 64*3+64 then --house4
+   elseif mouse_clicked_in64(x,y, bs*4, bs*3) == 1 then --x >= 64*4 and x <= 64*(4+1) and y >=64*3 and y <= 64*3+64 then --house4
       build_house_directive("Build house", 26, 26)
-   elseif mouse_clicked_in64(x,y, 64*5, 64*3) == 1 then --x >= 64*5 and x <= 64*(5+1) and y >=64*3 and y <= 64*3+64 then --mine
+   elseif mouse_clicked_in64(x,y, bs*5, bs*3) == 1 then --x >= 64*5 and x <= 64*(5+1) and y >=64*3 and y <= 64*3+64 then --mine
       build_house_directive("Build house", 27, 27)
-   elseif mouse_clicked_in64(x,y, 64*6, 64*3) == 1 then --x >= 64*6 and x <= 64*(6+1) and y >=64*3 and y <= 64*3+64 then --school
+   elseif mouse_clicked_in64(x,y, bs*6, bs*3) == 1 then --x >= 64*6 and x <= 64*(6+1) and y >=64*3 and y <= 64*3+64 then --school
       build_house_directive("Build house", 51, 51)
-   elseif mouse_clicked_in64(x,y, 64*7, 64*3) == 1 then --x >= 64*7 and x <= 64*(7+1) and y >=64*3 and y <= 64*3+64 then --barn
+   elseif mouse_clicked_in64(x,y, bs*7, bs*3) == 1 then --x >= 64*7 and x <= 64*(7+1) and y >=64*3 and y <= 64*3+64 then --barn
       build_house_directive("Build house", 52, 52)
-   elseif mouse_clicked_in64(x,y, 64*8, 64*3) == 1 then --x >= 64*8 and x <= 64*(8+1) and y >=64*3 and y <= 64*3+64 then --graveyard
+   elseif mouse_clicked_in64(x,y, bs*8, bs*3) == 1 then --x >= 64*8 and x <= 64*(8+1) and y >=64*3 and y <= 64*3+64 then --graveyard
       build_house_directive("Build house", 53, 53)
-   elseif mouse_clicked_in64(x, y, 64*1, 64*4) == 1 then --***** Economy *******
+   elseif mouse_clicked_in64(x, y, bs*1, bs*4) == 1 then --***** Economy *******
       if research_topics.economy >= 1 then
 	 build_house_directive("Build house", 66, 66)--trade post
       end
-   elseif mouse_clicked_in64(x, y, 64*2, 64*4) == 1 then --****** Security ******
+   elseif mouse_clicked_in64(x, y, bs*2, bs*4) == 1 then --****** Security ******
       if research_topics.security >= 1 then
 	 build_house_directive("Build house", 67, 67)--sharrifs office
    end
 	--quick_task_icon64(64*4,64*4, 60, "militia", 1, "game_tiles")
-   elseif mouse_clicked_in64(x, y, 64*4, 64*4) == 1 then
+   elseif mouse_clicked_in64(x, y, bs*4, bs*4) == 1 then
       if research_topics.militia_house >= 1 then
 	 build_house_directive("Build house", 60,60)--militia house (needs resource check)
       end
-   elseif mouse_clicked_in64(x, y, 64*3, 64*4) == 1 then
+   elseif mouse_clicked_in64(x, y, bs*3, bs*4) == 1 then
       if research_topics.industry >= 1 then
 	 build_house_directive("Build house", 55, 55)--fishing hut
       end	 
-   elseif mouse_clicked_in64(x, y, 64*5, 64*4) == 1 then
+   elseif mouse_clicked_in64(x, y, bs*5, bs*4) == 1 then
       if research_topics.mayors_monument >= 1 then
 	 build_house_directive("Build house", game.mayor_sex, game.mayor_sex)--mayors monument
       end
-   elseif mouse_clicked_in64(x, y, 64*6, 64*4) == 1 then
+   elseif mouse_clicked_in64(x, y, bs*6, bs*4) == 1 then
       if research_topics.watchtower >= 1 then
 	 build_house_directive("Build house", 65, 65)--watchtower
       end
-   elseif mouse_clicked_in64(x, y, 64*7, 64*4) == 1 then
+   elseif mouse_clicked_in64(x, y, bs*7, bs*4) == 1 then
       if research_topics.smelter >= 1 then
 	 build_house_directive("Build house", 70, 70)--smelter
       end
-   elseif mouse_clicked_in64(x, y, 64*8, 64*4) == 1 then
+   elseif mouse_clicked_in64(x, y, bs*8, bs*4) == 1 then
       if research_topics.brewery >= 1 then
 	 build_house_directive("Build house", 71, 71)--brewery
       end
       ---------------row 3-------------------------------
-   elseif mouse_clicked_in64(x, y, 64*1, 64*5) == 1 then
+   elseif mouse_clicked_in64(x, y, bs*1, bs*5) == 1 then
       if research_topics.smithy  >= 1 then
 	 build_house_directive("Build house", 64, 64)--smithy
       end
-   elseif mouse_clicked_in64(x, y, 64*2, 64*5) == 1 then
+   elseif mouse_clicked_in64(x, y, bs*2, bs*5) == 1 then
       if research_topics.church  >= 1 then
 	 --build_house_directive("Build house", 72, 1) then
 	 build_house_directive("Build house", 71, 71)--brewery
       end
       ---------------row 3-------------------------------
-   elseif mouse_clicked_in64(x, y, 64*1, 64*5) == 1 then
+   elseif mouse_clicked_in64(x, y, bs*1, bs*5) == 1 then
       if research_topics.smithy  >= 1 then
 	 build_house_directive("Build house", 64, 64)--smithy
       end
-   elseif mouse_clicked_in64(x, y, 64*2, 64*5) == 1 then
+   elseif mouse_clicked_in64(x, y, bs*2, bs*5) == 1 then
       if research_topics.church  >= 1 then
 	 build_house_directive("Build house", 72, 72)--church
       end --research_topics.church  >= 1 then
@@ -286,16 +295,19 @@ function on_clicked_rosterbutton(x,y)
 end
 
 function on_new_quickbutons(x,y) --- new QUICK BUTTONS, (android friendly)
-   if mouse_clicked_in64(x, y, 536, 0) == 1 then --records
+   local bs = game.button_size
+   --if mouse_clicked_in64(x, y, 536, 0) == 1 then --records
+   --note! this icons are still 64x64 and could create display issues if resized
+   if x >= 536 and x <= 536+64 and y >=0 and y <= 64 then 
       if game.game_roster == 0 then 
 	 game.game_roster = 1
       else 
 	 game.game_roster = 0
       end
-   elseif mouse_clicked_in64(x, y, 536+64, 0) == 1 then --zoom
+   elseif x >= 536+64 and x <= 536+64*2 and y >=0 and y <= 64 then --mouse_clicked_in64(x, y, 536+bs, 0) == 1 then --zoom
       if game.zoom_level == 2 then game.zoom_level = 1
       else game.zoom_level = 2 end
-   elseif mouse_clicked_in64(x, y, 536+64+64, 0) == 1 then --menu
+   elseif x >= 536+64*2 and x <= 536+64*3 and y >=0 and y <= 64 then--mouse_clicked_in64(x, y, 536+bs*2, 0) == 1 then --menu
       if game.show_menu == 0 then game.show_menu = 1 --
       elseif game.show_menu == 7 and game.started == 1 then game.show_menu = 0
       elseif game.show_menu == 7 then game.show_menu = 1
@@ -307,75 +319,34 @@ function on_new_quickbutons(x,y) --- new QUICK BUTTONS, (android friendly)
 end
 
 function on_clicked_buttons(x,y)---------------------QUICK BUTTONS
+   local bs = game.button_size
    function on_select_job(x,y)
       --nothing
       return 0
    end
    
-   --if mouse_clicked_in32(x, y, 632,0) == 1 then
-   --   love_crude_load()
-   --   load_game_res()
-   --elseif mouse_clicked_in32(x, y, 664,0) == 1 then
-   --   love.event.quit()
-   --elseif mouse_clicked_in32(x, y, 696,0) == 1 then
-   --   love_crude_save() --save/quit autosave feature
-   --   love.event.quit()
-   --elseif mouse_clicked_in32(x, y, 600,0) == 1 then  --show records
-   --   if game.game_roster == 0 then 
-   -- game.game_roster = 1
-   --else 
-   --	 game.game_roster = 0
-   --    end
-   --elseif mouse_clicked_in32(x, y, 600,32) == 1 then  --pause game
-   --pause the game
-   --	if game.game_paused == 0 then
-   --		game.game_paused = 1
-   --	else
-   --		game.game_paused = 0
-   --	end
-   -- elseif mouse_clicked_in32(x, y, 632,32) == 1 then --mobile controller
-   --	if game.game_mobile == 0 then
-   --		game.game_mobile = 1
-   --	else
-   --		game.game_mobile = 0
-   --	end
-   --elseif mouse_clicked_in32(x, y, 664,32) == 1 then --go fullscreen
-   --if game.fullscreen_mode == "No" then game.fullscreen_mode = "Yes"
-   --else game.fullscreen_mode = "No" end
-   --go_fullscreen()
-   --    	if game.zoom_level == 2 then game.zoom_level = 1
-   --    	else game.zoom_level = 2 end
-   -- elseif mouse_clicked_in32(x, y, 664+32,32) == 1 then --go open menu
-   -- 	 if game.show_menu == 0 then game.show_menu = 1 --
-   --	 elseif game.show_menu == 7 and game.started == 1 then game.show_menu = 0
-   --	 elseif game.show_menu == 7 then game.show_menu = 1
-   --	 elseif game.show_menu == 99 then game.show_menu = 1
-   --	 else 
-   --	    if game.started == 1 then game.show_menu = 0 end 
-   --	 end
-   
    on_new_quickbutons(x,y)
-   if mouse_clicked_in64(x, y, 0, 64*1) == 1 then --Select job
+   if mouse_clicked_in64(x, y, 0, bs*1) == 1 then --Select job
       if game.give_direction == "Select job" then
 	 game.give_direction = "None" --unselect job
       else
 	 game.give_direction = "Select job" --select job
       end --end
-   elseif mouse_clicked_in64(x, y, 0, 64*2) == 1 then --Gather Food
+   elseif mouse_clicked_in64(x, y, 0, bs*2) == 1 then --Gather Food
       game.give_direction = "Gather Food"
-   elseif mouse_clicked_in64(x, y, 0, 64*3) == 1 then --Build House
+   elseif mouse_clicked_in64(x, y, 0, bs*3) == 1 then --Build House
       if game.give_direction == "Select house to build" then
 	 game.give_direction = "None"
       else
 	 game.give_direction = "Select house to build" --"Build house"
       end
-   elseif mouse_clicked_in64(x, y, 0, 64*4) == 1 then --Build Road
+   elseif mouse_clicked_in64(x, y, 0, bs*4) == 1 then --Build Road
       if game.give_direction == "Select road to build"  then
 	 game.give_direction = "None"
       else
 	 game.give_direction = "Select road to build"
       end
-   elseif mouse_clicked_in64(x, y, 0, 64*5) == 1 then --and game.give_direction == "None" then
+   elseif mouse_clicked_in64(x, y, 0, bs*5) == 1 then --and game.give_direction == "None" then
       if get_kingdom_researchable() == 1 and game.give_direction == "Research" then
 	 game.give_direction = "None" -- check for researchables
       elseif get_kingdom_researchable() == 1 then
@@ -383,21 +354,21 @@ function on_clicked_buttons(x,y)---------------------QUICK BUTTONS
       end
    elseif game.game_roster == 1 then
       on_clicked_rosterbutton(x,y)
-   elseif  mouse_clicked_in64(x,y, 0, 64) == 1 then
+   elseif  mouse_clicked_in64(x,y, 0, bs) == 1 then
       game.give_direction = "None"
-   elseif mouse_clicked_in64(x,y, 64*1, 64) == 1 then
+   elseif mouse_clicked_in64(x,y, bs*1, bs) == 1 then
       game.give_direction = "Cut where?" --pressed axe
-   elseif mouse_clicked_in64(x,y, 64*2, 64) == 1 then
+   elseif mouse_clicked_in64(x,y, bs*2, bs) == 1 then
       game.give_direction = "Dig where?" --spressed shovel
-   elseif mouse_clicked_in64(x,y, 64*3, 64) == 1 then
+   elseif mouse_clicked_in64(x,y, bs*3, bs) == 1 then
       game.give_direction = "Plow where?" --farming!
-   elseif mouse_clicked_in64(x,y, 64*4, 64) == 1 then
+   elseif mouse_clicked_in64(x,y, bs*4, bs) == 1 then
       game.give_direction = "Hunt what?" -- hunting
-   elseif mouse_clicked_in64(x,y, 64*5, 64) == 1 then
+   elseif mouse_clicked_in64(x,y, bs*5, bs) == 1 then
       game.give_direction = "Make fire where?"
-   elseif mouse_clicked_in64(x,y, 64*6, 64) == 1 then
+   elseif mouse_clicked_in64(x,y, bs*6, bs) == 1 then
       game.give_direction = "Demolish what?"
-   elseif mouse_clicked_in64(x,y, 64*7, 64) == 1 then
+   elseif mouse_clicked_in64(x,y, bs*7, bs) == 1 then
       if research_topics.tomatoes == 1 then
 	 game.give_direction = "Plant tomatoes"
       end
@@ -436,6 +407,7 @@ function love.mousereleased(x,y,button)
 end
 
 function love.mousepressed(x, y, button)
+   local bs = game.button_size
    if button == 1 then -- 1 l
       game.printx = x		--game.printx = 0 -- 0  -62
       game.printy = y      --game.printy = 0 -- 536-600 --0, 64
@@ -445,7 +417,7 @@ function love.mousepressed(x, y, button)
 	 select_biome_mouse(x,y,"l")
       elseif game.show_menu == 7 then
       	--64 at screen corner
-      	  if mouse_clicked_inrect(x,y, love.graphics.getWidth( )-64, 0, 64, 64) == 1 then
+      	  if mouse_clicked_inrect(x,y, love.graphics.getWidth( )-bs, 0, bs, bs) == 1 then
       	  	game.show_menu = 1
       	  end
       else --no menus are up
@@ -489,8 +461,8 @@ function love.mousepressed(x, y, button)
 	    --nothing, just testing that it was done
 	 elseif game.give_direction == "Select road to build" then --28,36
 	    for i = 0, 10 do
-	       if y >= 64*4 and y <= 64*4+64 and x >= 64*i and x <= 64*(i+1) then
-		  if i*64 == 0 then
+	       if y >= bs*4 and y <= bs*4+bs and x >= bs*i and x <= bs*(i+1) then
+		  if i*bs == 0 then
 		     game.give_direction = "None"
 		  else
 		     game.give_direction = "Build road"
@@ -499,8 +471,8 @@ function love.mousepressed(x, y, button)
 	       end--endif
 	    end --endfor
 	    for i = 0, 2 do
-	       if y >= 64*5 and y <= 64*5+64 and x >= 64*i and x <= 64*(i+1) then
-		  if i*64 == 0 then
+	       if y >= bs*5 and y <= bs*5+64 and x >= bs*i and x <= bs*(i+1) then
+		  if i*bs == 0 then
 		     game.give_direction = "None"
 		  else
 		     game.give_direction = "Build bridge"

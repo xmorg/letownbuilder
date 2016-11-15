@@ -49,7 +49,7 @@ game = {state = 1, give_direction = "None", day_time = 6000, day_count = 1,
 	game_pricetag = "drm free", -- free, drm free, if you bought the game, you have access to more maps, and content that is
 	rotate = 1, started = 0,
 	smithing_production = "auto", -- weapons, tools, treasures, coins
-	invasion_action = "none", game_mobile = 1  
+	invasion_action = "none", game_mobile = 1  , button_size = 92
 	--custom made and not featured on opengameart.
 }
 
@@ -430,10 +430,11 @@ function go_fullscreen()
 	 love.graphics.setMode(800, 600, false, false)  -- 0.8.0
 	 --love.graphics.setMode(love.graphics.getMode())
       else 
-	 flags = { fullscreen = false,	fullscreentype = "normal",	vsync = true,
-		   fsaa = 0,resizable = false,borderless = false,centered = true,	display = 1,
-		   minwidth = 1,minheight = 1 }
-	 love.window.setMode( 800, 600, flags ) 
+	 flags = { fullscreen = false,		vsync = true,
+		   resizable = false,borderless = false,centered = true,	display = 1,
+		   minwidth = 1,minheight = 1 } --fsaa = 0,invalid window setting
+	 --fullscreentype = "normal",
+	 love.window.setMode( 800, 600 )--, flags ) 
       end -- version == "0.8.0" then 
       fullscreen_hack = "no"
    end--fullscreen_hack == "no" then
@@ -695,8 +696,8 @@ function love.draw()
       --draw_night_lights()
       love.graphics.pop()
       draw_weather(game.current_weather)
-      draw_task_icons()
       
+      draw_task_icons()      
       draw_research_icons()
       ------------------- TOP UI Drawing ---------------------------------
       --draw_inventory_icons()

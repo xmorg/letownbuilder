@@ -409,22 +409,57 @@ function villagers_eat_food(num_villagers) -- eat food
    end
 end
 function villager_goto_xy(villager, tilex,tiley)
-	local lx = 0
-	local ly = 0
-	for y = 1, game.tilecount do --loopy
-		for x = 1, game.tilecount do --loopx
-			--if game_map[y][x] == 1  then -- found a fire(the top one)
-			if x == tilex and y == tiley then --do
-				lx = 300+(y - x) * 32 + 64
-				ly = -100+(y + x) * 32 / 2 + 50
-				villager.dx = lx + math.random(30,60) --(y*  --dx = start_x, dy = start_y, 
-				villager.dy = ly + math.random(30,60)
-				villager.job = 0--break
-			end
-		end
-	end
+   local lx = 0
+   local ly = 0
+   for y = 1, game.tilecount do --loopy
+      for x = 1, game.tilecount do --loopx
+	 --if game_map[y][x] == 1  then -- found a fire(the top one)
+	 if x == tilex and y == tiley then --do
+	    lx = 300+(y - x) * 32 + 64
+	    ly = -100+(y + x) * 32 / 2 + 50
+	    villager.dx = lx + math.random(30,60) --(y*  --dx = start_x, dy = start_y, 
+	    villager.dy = ly + math.random(30,60)
+	    villager.job = 0--break
+	 end
+      end
+   end
 end
 
+
+function villager_goto_school(child)
+   local lx = 0
+   local ly = 0
+   for y = 1, game.tilecount do --loopy
+      for x = 1, game.tilecount do --loopx
+	 if game_road_map[y][x] == 51 then--52 game
+	    lx = 300+(y - x) * 32 + 64
+	    ly = -100+(y + x) * 32 / 2 + 50
+	    if villager.age < 17 then --16 or less you go to school
+	       villager.dx = lx + math.random(30,60) --(y*  --dx = start_x, dy = start_y, 
+	       villager.dy = ly + math.random(30,60)
+	       villager.job = 0
+	       break
+	    end
+	 end
+      end
+   end
+end
+function villager_goto_barn(villager)
+   local lx = 0
+   local ly = 0
+   for y = 1, game.tilecount do --loopy
+      for x = 1, game.tilecount do --loopx
+	 if game_road_map[y][x] == 52 then--52 game
+	    lx = 300+(y - x) * 32 + 64
+	    ly = -100+(y + x) * 32 / 2 + 50
+	    villager.dx = lx + math.random(30,60) --(y*  --dx = start_x, dy = start_y, 
+	    villager.dy = ly + math.random(30,60)
+	    villager.job = 0
+	    break
+	 end
+      end
+   end
+end
 
 function villager_goto_bonfire(villager)
    local lx = 0
@@ -465,32 +500,32 @@ function on_update_villagers_homeless() --a daytime update of homeless villagers
 end
 
 function villagers_seek_shelter(num_villagers)--check how many homes are availible
-	local families = get_villager_families(game_villagers)
-	kingdom_inventory.families = families
-	message_que_add("It is night.", 300, 21)
-	if kingdom_inventory.bonfire < 1 then
-		message_que_add(" It is dark and cold!", 300, 21) -- + unrest if there is no bonfire
-		kingdom_inventory.unrest = kingdom_inventory.unrest+ table.getn(game_villagers)
-		for i,v in ipairs(game_villagers) do
-			game_villagers[i].opinion = "Trying to keep warm without a fire"
-		end
-	else
-		for i,v in ipairs(game_villagers) do --try to find bonfire
-			villager_goto_bonfire(game_villagers[i])
-		end
-	end
-	game_families = get_villager_famgroups() --update families list
-	--loop through families
-	local housecount = 1
-	for i,v in ipairs(game_families) do --assign a house to family
-		local f = game_families[i]
-		if housecount > kingdom_inventory.homes then
-			for i2,v2 in ipairs(game_families[i]) do
-				game_families[i][i2].opinion = "Upset about being homeless"
-			end
-		end
-		housecount = housecount+1	--BUG, if there are no homes, and no fires what happens?
-	end--endfor
+   local families = get_villager_families(game_villagers)
+   kingdom_inventory.families = families
+   message_que_add("It is night.", 300, 21)
+   if kingdom_inventory.bonfire < 1 then
+      message_que_add(" It is dark and cold!", 300, 21) -- + unrest if there is no bonfire
+      kingdom_inventory.unrest = kingdom_inventory.unrest+ table.getn(game_villagers)
+      for i,v in ipairs(game_villagers) do
+	 game_villagers[i].opinion = "Trying to keep warm without a fire"
+      end
+   else
+      for i,v in ipairs(game_villagers) do --try to find bonfire
+	 villager_goto_bonfire(game_villagers[i])
+      end
+   end
+   game_families = get_villager_famgroups() --update families list
+   --loop through families
+   local housecount = 1
+   for i,v in ipairs(game_families) do --assign a house to family
+      local f = game_families[i]
+      if housecount > kingdom_inventory.homes then
+	 for i2,v2 in ipairs(game_families[i]) do
+	    game_families[i][i2].opinion = "Upset about being homeless"
+	 end
+      end
+      housecount = housecount+1	--BUG, if there are no homes, and no fires what happens?
+   end--endfor
    if kingdom_inventory.homes < families then
       kingdom_inventory.homeless = families - kingdom_inventory.homes
       kingdom_inventory.unrest = kingdom_inventory.unrest + kingdom_inventory.homeless
@@ -512,6 +547,7 @@ function villagers_do_job(x, y, specialist)
 	 game_villagers[i].position == specialist and
       game_villagers[i].alive == 1 then --can work
 	 -------------------------
+	 --is the villager currently engaged?
 	 lx = 300+(y - x) * 32 + 64
 	 ly = -100+(y + x) * 32 / 2 + 50
 	 game_villagers[i].dx = lx+30
@@ -611,87 +647,87 @@ function update_villager_poisonedby_snake(i, j)
 end --function
 
 function villager_combat(mob, villager)
-	villager_dice = math.random(1,6)
-	mob_dice = math.random(1,6)
-	if villager.position == "militia captain" or villager.position =="militia" then
-		if villager_dice >mob_dice then
-			return 1
-		else
-			return 0
-		end
-	elseif villager.position == "dark elf" or villager.position == "dwarf" then
-		if villager_dice >mob_dice then
-			return 1
-		else
-			return 0
-		end
-	else
-		return 0
-	end
+   villager_dice = math.random(1,6)
+   mob_dice = math.random(1,6)
+   if villager.position == "militia captain" or villager.position =="militia" then
+      if villager_dice >mob_dice then
+	 return 1
+      else
+	 return 0
+      end
+   elseif villager.position == "dark elf" or villager.position == "dwarf" then
+      if villager_dice >mob_dice then
+	 return 1
+      else
+	 return 0
+      end
+   else
+      return 0
+   end
 end
 
 function update_villager_killedby_nightwolf(nightwolf, villager)
-	if villager_touched(nightwolf, villager) == 1 and nightwolf.wildlife_type == "night wolf" and is_night()==1 then
-		if villager.alive == 1 and villager_combat(nightwolf, villager) == 0 then
-			villager.alive = 0 -- Just got killed by a werewolf init death sequence
-			villager.villager_type = "Dead"
-			villager.opinion = "Died on Day"..game.day_count.." at "..game.day_time
-			villager.died_x = villager.x
-			villager.died_y = villager.y
-			game.message_box_icons = 19
-			set_family_opionions(villager) --not yet tested
-			if villager.sex == 0 then
-				message_que_add("You hear a blood curtling scream..."..villager.name.."!", 100, 1)
-				kingdom_inventory.unrest = kingdom_inventory.unrest+6 --girls dying unerves us more!
-			else
-				message_que_add("You hear a horrible scream..."..villager.name.."!", 100, 1)
-				kingdom_inventory.unrest = kingdom_inventory.unrest+5
-			end
-		else
-			if nightwolf.alive == 1 then
-				nightwolf.alive = 0
-				villager.opinion = "Defeated a nightwolf in single combat"
-				nightwolf.died_x = nightwolf.x
-				nightwolf.died_y = nightwolf.y
-				message_que_add(villager.name.." has fought a nightwolf and lived!", 100, 1)
-			end
-		end --game_villagers[j].alive == 1 then
-	end--end if villager_touched(game_villagers[i], game_villagers[j]) 
+   if villager_touched(nightwolf, villager) == 1 and nightwolf.wildlife_type == "night wolf" and is_night()==1 then
+      if villager.alive == 1 and villager_combat(nightwolf, villager) == 0 then
+	 villager.alive = 0 -- Just got killed by a werewolf init death sequence
+	 villager.villager_type = "Dead"
+	 villager.opinion = "Died on Day"..game.day_count.." at "..game.day_time
+	 villager.died_x = villager.x
+	 villager.died_y = villager.y
+	 game.message_box_icons = 19
+	 set_family_opionions(villager) --not yet tested
+	 if villager.sex == 0 then
+	    message_que_add("You hear a blood curtling scream..."..villager.name.."!", 100, 1)
+	    kingdom_inventory.unrest = kingdom_inventory.unrest+6 --girls dying unerves us more!
+	 else
+	    message_que_add("You hear a horrible scream..."..villager.name.."!", 100, 1)
+	    kingdom_inventory.unrest = kingdom_inventory.unrest+5
+	 end
+      else
+	 if nightwolf.alive == 1 then
+	    nightwolf.alive = 0
+	    villager.opinion = "Defeated a nightwolf in single combat"
+	    nightwolf.died_x = nightwolf.x
+	    nightwolf.died_y = nightwolf.y
+	    message_que_add(villager.name.." has fought a nightwolf and lived!", 100, 1)
+	 end
+      end --game_villagers[j].alive == 1 then
+   end--end if villager_touched(game_villagers[i], game_villagers[j]) 
 end
 
 function update_villager_killedby_werewolf(i, j)
-	if villager_touched(i, j) == 1 and i.villager_type == "werewolf" and is_night()==1 then
-		if i.villager_type == "werewolf" and j.villager_type == "werewolf" then
-			i.alive = 1
-			i.alive = 1
-		elseif i.villager_type == "werewolf" and j.villager_type ~= "werewolf" then
-			if j.alive == 1 and villager_combat(i, j) == 0 then
-				j.alive = 0 -- Just got killed by a werewolf init death sequence
-				j.villager_type = "Dead"
-				j.opinion = "Died on Day"..game.day_count.." at "..game.day_time
-				j.died_x = j.x
-				j.died_y = j.y
-				game.message_box_icons = 19
-				set_family_opionions(j) --not yet tested
-				if j.sex == 0 then
-					message_que_add("You hear a blood curtling scream..."..j.name.."!", 100, 1)
-					kingdom_inventory.unrest = kingdom_inventory.unrest+6 --girls dying unerves us more!
-				else
-					message_que_add("You hear a horrible scream..."..j.name.."!", 100, 1)
-					kingdom_inventory.unrest = kingdom_inventory.unrest+5
-				end
-			else
-				if i.alive == 1 then
-					i.alive = 0
-					j.opinion = "Survived a werewolf attack."
-					j.nodie_timer = 30
-					i.died_x = i.x
-					i.died_y = i.y
-					message_que_add(j.name.." has fought a werewolf and lived!", 100, 1)
-				end
-			end --game_villagers[j].alive == 1 then
-		end --if game_villagers[i].villager_type == "werewolf" and game_villagers[j].villager_type == "werewolf" then
-	end--end if villager_touched(game_villagers[i], game_villagers[j]) 
+   if villager_touched(i, j) == 1 and i.villager_type == "werewolf" and is_night()==1 then
+      if i.villager_type == "werewolf" and j.villager_type == "werewolf" then
+	 i.alive = 1
+	 i.alive = 1
+      elseif i.villager_type == "werewolf" and j.villager_type ~= "werewolf" then
+	 if j.alive == 1 and villager_combat(i, j) == 0 then
+	    j.alive = 0 -- Just got killed by a werewolf init death sequence
+	    j.villager_type = "Dead"
+	    j.opinion = "Died on Day"..game.day_count.." at "..game.day_time
+	    j.died_x = j.x
+	    j.died_y = j.y
+	    game.message_box_icons = 19
+	    set_family_opionions(j) --not yet tested
+	    if j.sex == 0 then
+	       message_que_add("You hear a blood curtling scream..."..j.name.."!", 100, 1)
+	       kingdom_inventory.unrest = kingdom_inventory.unrest+6 --girls dying unerves us more!
+	    else
+	       message_que_add("You hear a horrible scream..."..j.name.."!", 100, 1)
+	       kingdom_inventory.unrest = kingdom_inventory.unrest+5
+	    end
+	 else
+	    if i.alive == 1 then
+	       i.alive = 0
+	       j.opinion = "Survived a werewolf attack."
+	       j.nodie_timer = 30
+	       i.died_x = i.x
+	       i.died_y = i.y
+	       message_que_add(j.name.." has fought a werewolf and lived!", 100, 1)
+	    end
+	 end --game_villagers[j].alive == 1 then
+      end --if game_villagers[i].villager_type == "werewolf" and game_villagers[j].villager_type == "werewolf" then
+   end--end if villager_touched(game_villagers[i], game_villagers[j]) 
 end
 
 function update_villager_talking(i)
@@ -724,8 +760,7 @@ function update_villager_jobs(dt) -- here is where timers should go down?
       if game_villagers[i].position == "militia captain" or game_villagers[i].position == "militia" then
       	game_villagers[i].speed = 8
       end
-      for n, m in ipairs(game_nightwolves) do
-      	
+      for n, m in ipairs(game_nightwolves) do      	
 	 update_villager_killedby_nightwolf(game_nightwolves[n], game_villagers[i]) --loop through nightwolves and check for colisions.
       end
       for j, w in ipairs(game_villagers) do --loop through villagers
@@ -750,13 +785,16 @@ function update_villager_jobs(dt) -- here is where timers should go down?
 	    if game_villagers[i].job < 10 then -- movment
 	       if game_directives.active == 1 then --job active BUGGED CODE?
 		  ---note only the tasked villagers should go
-		  game_villagers[i].dx = game_villagers[i].dx + math.random(-30,30) --temp workaround
-		  game_villagers[i].dy = game_villagers[i].dy + math.random(-30,30)
+		  --game_villagers[i].dx = game_villagers[i].dx + math.random(-30,30) --temp workaround
+		  --game_villagers[i].dy = game_villagers[i].dy + math.random(-30,30)
 	       elseif game.day_time >= 22000 then --Time based!
 		  update_villager_gohome(game_villagers[i])
+	       elseif game.day_time == 1200 then
+		  --send them to the barn
+		  villager_goto_barn(game_villagers[i])
 	       else
-		  game_villagers[i].dx = game_villagers[i].dx + math.random(-30,30)
-		  game_villagers[i].dy = game_villagers[i].dy + math.random(-30,30)
+		  --game_villagers[i].dx = game_villagers[i].dx + math.random(-30,30)
+		  --game_villagers[i].dy = game_villagers[i].dy + math.random(-30,30)
 	       end--endif		
 	    elseif game_villagers[i].job == 50 and game_villagers[i].alive == 1 then -- talk!
 	       update_villager_talking(i)

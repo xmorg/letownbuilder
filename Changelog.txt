@@ -1,6 +1,9 @@
 Readme
 =================================
 
+Villagers should go to the barn at noon
+Kids should go to school at 8 (and it ends when they go to the barn)
+
 Planned features
 
 BUGS: Message "Fordic has fought a werewolf and lived!" (Fordic is dead, and the records state that he defeated a nightwolf in single combat)

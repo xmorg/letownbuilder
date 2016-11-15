@@ -25,8 +25,6 @@ end
 function game_menu_draw()
    local row = 45
    local col1 = 100
-   --big_font = love.graphics.newFont("data/newscycle-bold.ttf", 24 )
-   --love.graphics.setFont( big_font )
    love.graphics.setColor(255,255,255,255)--outside white
    love.graphics.rectangle( "fill", 0, 0, love.graphics.getWidth(), love.graphics.getHeight() )
    love.graphics.setColor(255,255,255,255)--inside black
@@ -35,13 +33,18 @@ function game_menu_draw()
    love.graphics.setColor(255,255,255,255)--white lettering
    love.graphics.setFont( huge_font )
 	love.graphics.setColor(0,0,0,150)
-   love.graphics.rectangle( "fill", 90, 140, 250, 360)
+   love.graphics.rectangle( "fill", 90, 140, 280, 360)
    love.graphics.setFont( big_font )
    love.graphics.setColor(255,255,255,255)
    if game.map_generated == 0 then
       love.graphics.print("New Game", col1, 100 +row*1 )
    else
       love.graphics.print("Continue Game", col1, 100 +row*1 )
+   end
+   if check_for_save() == true then
+      love.graphics.setColor(255,255,255,255)
+   else
+      love.graphics.setColor(80,80,80,255)
    end
    love.graphics.print("Load Game", col1, 100 +row*2 )
    if game.map_generated == 0 then
@@ -53,7 +56,7 @@ function game_menu_draw()
    --love.graphics.print("Love Version  (" ..game.version..")", col1, 100 +row*4 )
    love.graphics.print("Full Screen (" ..game.fullscreen_mode..")", col1, 100 +row*4 )
    love.graphics.print("Sound  ("..game.togglesound..")", col1, 100 +row*5 )
-   love.graphics.print("Quit Game Without Save", col1, 100 +row*6 )
+   love.graphics.print("Quit Game No Save", col1, 100 +row*6 )
    if game.map_generated == 0 then
       love.graphics.setColor(80,80,80,255)
    else
@@ -80,9 +83,10 @@ function game_menu_mouse(x,y,button)
       end
       if x >= col1 and x <= 500 and y >=100 +row*2 and y <= 100 +row*3 then --load game
 	 game.started = 1
-	 love_crude_load()
-	 load_game_res()
-	 game.show_menu = 0
+	 if love_crude_load() then
+	    load_game_res()
+	    game.show_menu = 0
+	 end
       end
       if x >= col1 and x <= 500 and y >=100 +row*3 and y <= 100 +row*4 then --save game
 	 if game.map_generated == 1 then
