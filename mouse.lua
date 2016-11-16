@@ -426,7 +426,8 @@ function love.mousepressed(x, y, button)
 	 	if game.give_direction == "Select job" then return 0
  		else game.give_direction = "None"
  		end
- 	end
+	 end
+	 --scrolling
 	 if mouse_clicked_in32(x, y, game.screen_width-64-128, game.screen_height-70)==1 then
 	    game.scroll_direction = "left" set_game_dir_to_none()
 	 elseif mouse_clicked_in32(x, y, game.screen_width-64-88, game.screen_height-42)==1 then
@@ -440,22 +441,27 @@ function love.mousepressed(x, y, button)
 	 end
 	 
 	 --update tile location
-	 mouse_x, mouse_y = love.mouse.getPosition()
-	 for y = 1, game.tilecount do
-	 	for x = 1, game.tilecount do
-	    	lx = (300+(y - x) * 32 + 64) * game.zoom_level
-	    	ly = (-100+(y + x) * 32 / 2 + 50) * game.zoom_level
-	    	-- function -----  game tiles map table ---- isometric loc
-	    	if(mouse_x >= lx+game.draw_x and mouse_x <= lx+game.draw_x+64 and
-		  		mouse_y >= ly+game.draw_y+60 and mouse_y <= ly+game.draw_y+100) then
-	       		--put the number of the selected tile
-	       		game.tile_selected_x = x
-	       		game.tile_selected_y = y
-	       		game.loc_selected_x = lx+game.draw_x+ 32
-	       		game.loc_selected_y = ly+game.draw_y+ 16
-	    	end--endif
-	 	end--endfor x
-      end--endfor y
+	 --mouse_x, mouse_y = love.mouse.getPosition()
+	 --for y = 1, game.tilecount do
+	 --   for x = 1, game.tilecount do
+	       --lx = (300+(y - x) * 32 + 64) * game.zoom_level
+	       --ly = (-100+(y + x) * 32 / 2 + 50) * game.zoom_level
+	 --      local w = game.tilewidth_fx -- width and height of the tiles
+	 --      local h = 100-68	 -- minus dead air
+	 --      local lx = (x - y) * w/2 + game.draw_x
+	 --      local ly = (y + x) * h/2  + game.draw_y
+	       -- function -----  game tiles map table ---- isometric loc
+	 --      if(mouse_x >= lx and mouse_x <= lx+w and
+	--	  mouse_y >= ly and mouse_y <= ly+h) then
+		  --put the number of the selected tile
+	--	  game.tile_selected_x = x
+	--	  game.tile_selected_y = y
+	--	  game.loc_selected_x = lx+ 32
+	--	  game.loc_selected_y = ly+ 16
+	--       end--endif
+	--    end--endfor x
+	-- end--endfor y
+	 --update_mouse_to_tile(dt)
 	 
 	 if on_clicked_buttons(x,y) == 1 then --you clicked a button, but other code will run after?
 	    --nothing, just testing that it was done
@@ -511,8 +517,12 @@ function love.mousepressed(x, y, button)
       local ly = 0
       for y = 1, game.tilecount do --loopy
 	 for x = 1, game.tilecount do --loopx
-	    lx = 300+(y - x) * 32 + 64      --create isometric
-	    ly = -100+(y + x) * 32 / 2 + 50  --tile blit locations
+	    --lx = 300+(y - x) * 32 + 64      --create isometric
+	    --ly = -100+(y + x) * 32 / 2 + 50  --tile blit locations
+	    local w = game.tilewidth_fx -- width and height of the tiles
+	    local h = 100-68	 -- minus dead air
+	    local lx = (x - y) * w/2 + game.draw_x
+	    local ly = (y + x) * h/2  + game.draw_y
 	    if x == game.tile_selected_x and y == game.tile_selected_y then
 	       for i,v in ipairs(game_villagers) do
 		  if game_villagers[i].position == "militia captain" and game_villagers[i].selected==1 then

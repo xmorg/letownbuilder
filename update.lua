@@ -3,6 +3,30 @@
 
 require( "achivements")
 
+
+--mouse 443
+function update_mouse_to_tile(dt)
+   mouse_x, mouse_y = love.mouse.getPosition()
+   for y = 1, game.tilecount do --updaet
+      for x = 1, game.tilecount do   
+	 local w = game.tilewidth_fx
+	 local h = 100-32--68	    
+	 local lx = (x - y) * w/2 + game.draw_x
+	 local ly = (y + x) * h/2 + game.draw_y
+	 if(mouse_x >= lx
+	       and mouse_x <= lx+w
+	       and mouse_y >= ly
+	       and mouse_y <= ly+h)
+	 then
+	    game.tile_selected_x = x
+	    game.tile_selected_y = y
+	    game.loc_selected_x = lx  --+game.draw_x+ 32
+	    game.loc_selected_y = ly  --+game.draw_y+ 16
+	 end--endif
+      end--endfor x
+   end--endfor y
+end
+
 function get_town_unrest() --returns an adjusted unrest variable.
 	local unrest = 0
 	local modu = 0
@@ -580,26 +604,26 @@ function on_sucessful_cut_trees(woodtype, sucessrate)
 end
 
 function on_sucessful_dig_hole(job_type, sucessrate)
-	if sucessrate == 1 and job_type == "Dig hole" then
-		if game.biome == "desert" then
-			kingdom_inventory.sandstone = kingdom_inventory.sandstone+1
-		else
-	 		kingdom_inventory.rocks = kingdom_inventory.rocks+1
-      	end
-    elseif sucessrate == 2 and job_type == "Dig hole" then
-   		if game.biome == "forest" then --only forests have carrots laying around!
-      		kingdom_inventory.carrots = kingdom_inventory.carrots+1
-      	end
-   	elseif sucessrate == 3 and job_type == "Dig hole" then
-    	local found_iore = math.random(1,3)
-    	local found_gore = math.random(1,100)
-    	if found_iore == 1 and job_type == "Dig hole"  then
-			kingdom_inventory.iron_ore = kingdom_inventory.iron_ore+1
-    	end
-    	if found_gore == 1 and job_type == "Dig hole" then
-			kingdom_inventory.gold_ore = kingdom_inventory.gold_ore+1
-    	end
-    end
+   if sucessrate == 1 and job_type == "Dig hole" then
+      if game.biome == "desert" then
+	 kingdom_inventory.sandstone = kingdom_inventory.sandstone+1
+      else
+	 kingdom_inventory.rocks = kingdom_inventory.rocks+1
+      end
+   elseif sucessrate == 2 and job_type == "Dig hole" then
+      if game.biome == "forest" then --only forests have carrots laying around!
+	 kingdom_inventory.carrots = kingdom_inventory.carrots+1
+      end
+   elseif sucessrate == 3 and job_type == "Dig hole" then
+      local found_iore = math.random(1,3)
+      local found_gore = math.random(1,100)
+      if found_iore == 1 and job_type == "Dig hole"  then
+	 kingdom_inventory.iron_ore = kingdom_inventory.iron_ore+1
+      end
+      if found_gore == 1 and job_type == "Dig hole" then
+	 kingdom_inventory.gold_ore = kingdom_inventory.gold_ore+1
+      end
+   end
 end
 
 function on_sucessful_gather_dojob(biome, job_type, weather,sucessrate)
@@ -843,6 +867,7 @@ function update_villager_new_destination(i, dt, custom_speed)
    end
 end
 
+
 function love.update(dt)
    --lets try some map dragging
    local mx = love.mouse.getX()
@@ -863,27 +888,14 @@ function love.update(dt)
 	    break
 	 end
       end
+
       mouse_x, mouse_y = love.mouse.getPosition()
       if game.show_menu ~= 1 and game.show_menu ~= 2 and game.show_menu ~= 7 then
 	 update_run_daytimer() -- run the clock
 	 update_directives()
       end
-      -- calculate tile_selected
-      for y = 1, game.tilecount do
-	 for x = 1, game.tilecount do
-	    lx = (300+(y - x) * 32 + 64) * game.zoom_level
-	    ly = (-100+(y + x) * 32 / 2 + 50) * game.zoom_level
-	    -- function -----  game tiles map table ---- isometric loc
-	    if(mouse_x >= lx+game.draw_x and mouse_x <= lx+game.draw_x+64 and
-		  mouse_y >= ly+game.draw_y+60 and mouse_y <= ly+game.draw_y+100) then
-	       --put the number of the selected tile
-	       game.tile_selected_x = x
-	       game.tile_selected_y = y
-	       game.loc_selected_x = lx+game.draw_x+ 32
-	       game.loc_selected_y = ly+game.draw_y+ 16
-	    end--endif
-	 end--endfor x
-      end--endfor y
+
+      update_mouse_to_tile(dt)
       update_villager_jobs(dt) -- code for deciding what villagers should do
       for i, v in ipairs(game_wildlife) do
 	 if game_wildlife[i].job == 0 and game_wildlife[i].alive == 1 then -- The living!

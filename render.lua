@@ -242,11 +242,20 @@ function draw_mayor_statue(x,y) --statue is 62 male and 63 female
    end
 end
 function draw_tile_selectors(x,y)
+   --CODE from HorrorTactics
+   --screen_x = (x - y) * map.TILE_WIDTH_HALF;p
+   --HERE   
+
+   --local w = game.tilewidth_fx -- width and height of the tiles
+   --local h = 100 -68	 -- minus dead air
+   --local lx = (x - y) * w/2 + game.draw_x
+   --local ly = (y + x) * h/2  + game.draw_y
+   
    if x == game.tile_selected_x and y == game.tile_selected_y then
-      love.graphics.draw(tiles_image,game_tiles[game.green_selected], lx+game.draw_x, ly+game.draw_y)
+      love.graphics.draw(tiles_image,game_tiles[game.green_selected], lx, ly)
    end --endif
    if x == game_directives.location_x and y == game_directives.location_y then
-      love.graphics.draw(tiles_image,game_tiles[game.yellow_selected],lx+game.draw_x, ly+game.draw_y)
+      love.graphics.draw(tiles_image,game_tiles[game.yellow_selected],lx, ly)
    end --endif
 end
 
@@ -257,8 +266,10 @@ function draw_game_tiles()
 	--+50 is the missing air in the tiles? how will this effect zooming?
    for y = 1, game.tilecount do       --loop y
       for x = 1, game.tilecount do     --loop x
-	 lx = 300+(y - x) * game.tileheight_fx + game.tilewidth_fx      --create isometric
-	 ly = -100+(y + x) * game.tileheight_fx / 2 + 50  --tile blit locations
+	 local w = game.tilewidth_fx -- width and height of the tiles
+	 local h = 100-68	 -- minus dead air
+	 local lx = (x - y) * w/2 + game.draw_x
+	 local ly = (y + x) * h/2  + game.draw_y
 	 ---------- DRAWING TILES ----------------------------------------------
 	 if is_night() == 1 then
 	    draw_night(y,x)
@@ -266,23 +277,25 @@ function draw_game_tiles()
 	 -- function -----  game tiles map table ---- isometric loc
 	 draw_bridge_tiles(x,y) 
 	 if game_road_map[y][x] == 1046 and game_map[y][x] == 46 then --tomatoes are full grown
-	    love.graphics.draw(tiles_image,game_tiles[ 69 ],  lx+game.draw_x, ly+game.draw_y) --draw tomatoes not wheat
+	    love.graphics.draw(tiles_image,game_tiles[ 69 ],  lx, ly) --draw tomatoes not wheat
 	 else
-	    love.graphics.draw(tiles_image,game_tiles[ game_map[y][x] ], lx+game.draw_x, ly+game.draw_y) --draw ground tiles
+	    love.graphics.draw(tiles_image,game_tiles[ game_map[y][x] ], lx, ly) --draw ground tiles
 	 end
 	 if game_road_map[y][x] > 0 then
 	    draw_mayor_statue(x,y)
 	    --draw road_map additions
 	    if game_road_map[y][x] < 999 then --unrealistic numbers!
-	       love.graphics.draw(tiles_image,game_tiles[ game_road_map[y][x] ], lx+game.draw_x, ly+game.draw_y)
+	       love.graphics.draw(tiles_image,game_tiles[ game_road_map[y][x] ], lx, ly)
 	    end
 	 end
 	 for i,v in ipairs(game_job_que) do
 	    if x == game_job_que[i].location_x and y == game_job_que[i].location_y then
-	       love.graphics.draw(tiles_image,game_tiles[game.yellow_selected],lx+game.draw_x, ly+game.draw_y)
+	       love.graphics.draw(tiles_image,game_tiles[game.yellow_selected],lx, ly)
 	    end
 	 end
+	 
 	 draw_tile_selectors(x,y)
+
 	 draw_farm_garden_additions(x,y,"wheat") --add zoom
 	 if game_fire_map[y][x] == 1 then --FIRE!
 	    love.graphics.draw(tiles_image,game_tiles[math.random(48,50)], lx+game.draw_x, ly+game.draw_y)
@@ -565,7 +578,7 @@ function draw_wildlife()
 	 dead_flag = 1
       end
       -------INSERT NEW CODE HERE.
-      draw_small_sprite(game_wildlife[i].sprite, game_wildlife[i].x +game.draw_x,game_wildlife[i].y +game.draw_y)
+      draw_small_sprite(game_wildlife[i].sprite, game_wildlife[i].x +game.draw_x, game_wildlife[i].y +game.draw_y)
       if game_wildlife[i].alive == 0 then
       	--fixed zombie bug, in the future each wl should have their own dead sprite.
 	 draw_small_sprite(game_wildlife[i].dead_sprite, game_wildlife[i].x +game.draw_x,game_wildlife[i].y +game.draw_y)
