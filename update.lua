@@ -6,22 +6,25 @@ require( "achivements")
 
 --mouse 443
 function update_mouse_to_tile(dt)
-   mouse_x, mouse_y = love.mouse.getPosition()
+   --mouse_x, mouse_y = love.mouse.getPosition()
+   local mouse_x = love.mouse.getX()
+   local mouse_y = love.mouse.getY()
    for y = 1, game.tilecount do --updaet
       for x = 1, game.tilecount do   
-	 local w = game.tilewidth_fx
-	 local h = 100-32--68	    
-	 local lx = (x - y) * w/2 + game.draw_x
-	 local ly = (y + x) * h/2 + game.draw_y
-	 if(mouse_x >= lx
-	       and mouse_x <= lx+w
-	       and mouse_y >= ly
-	       and mouse_y <= ly+h)
-	 then
+	 local w = game.tilewidth_fx -- tile width
+	 local h = 100-68        -- tile height is 100 but only 32 is the group isometric
+	 --screen_x = (x - y) * map.TILE_WIDTH_HALF;
+         --screen_y = (x + y) * map.TILE_HEIGHT_HALF;
+	 local screen_x = (x - y) * w/2 --+ game.draw_x
+	 local screen_y = (y + x) * h/2 --+ game.draw_y
+	 local sx = (screen_x  *  game.zoom_level  ) + game.draw_x
+	 local sy = (screen_y  *  game.zoom_level + (48 )) + game.draw_y
+	 --if (mouse_x >= sx && mouse_x <= sx + 250 - 30 && mouse_y >= sy && mouse_y <= sy + 130 - 30) {
+	 if(mouse_x >= sx and mouse_x <= sx+w and mouse_y >= sy and mouse_y <= sy+h) then
 	    game.tile_selected_x = x
 	    game.tile_selected_y = y
-	    game.loc_selected_x = lx  --+game.draw_x+ 32
-	    game.loc_selected_y = ly  --+game.draw_y+ 16
+	    game.loc_selected_x = sx  --+game.draw_x+ 32
+	    game.loc_selected_y = sy  --+game.draw_y+ 16
 	 end--endif
       end--endfor x
    end--endfor y
@@ -111,7 +114,7 @@ function daily_update_map() --happens at 11 oclock
    end
    --look for vacant positions
    if kingdom_inventory.sheriff > 0 then
-      villagers_do_job(400, 400, "sheriff")
+      villagers_do_job(400, 400, "sheriff") --villager.lua
    end
    kingdom_inventory.families = get_villager_families(game_villagers)
    message_que_add(migrants.." migrants have arrived.  Welcome." , 300, 7)
@@ -403,6 +406,8 @@ function new_job()
       location_y = game_directives.location_y,
       draw_x = 0,
       draw_y = 0,
+      mx = love.mouse.getX(),
+      my = love.mouse.getY(),
       job_type = game_directives.job_type
    }
    return a
@@ -444,7 +449,7 @@ function update_job_que()
 	 and building == 0 then
 	    on_game_directives_buildhouse(i)
 	    game_job_que[i].timer = game_job_que[i].timer -1
-	    villagers_do_job(game_job_que[i].location_x, game_job_que[i].location_y, "builder")
+	    villagers_do_job(game_job_que[i].location_x, game_job_que[i].location_y, "builder") --villager.lua
 	    building = 1
 	 elseif game_job_que[i].job_type == "Demolish building" and (get_availible_worker(game_job_que[i].job_type)==true) and building == 0 then
 	    game_job_que[i].timer = game_job_que[i].timer -1
@@ -456,13 +461,13 @@ function update_job_que()
 	 get_availible_worker(game_job_que[i].job_type) == true and woodcutting == 0 then
 	    on_sucessful_cut_trees(game_job_que[i].job_type, sucessful) -- trees, sakura, or bamboo
 	    game_job_que[i].timer = game_job_que[i].timer -1
-	    villagers_do_job(game_job_que[i].location_x, game_job_que[i].location_y, "woodcutter")
+	    villagers_do_job(game_job_que[i].location_x, game_job_que[i].location_y, "woodcutter") --villager.lua
 	    woodcutting = 1
 	 elseif (game_job_que[i].job_type == "Cut bamboo") and
 	 get_availible_worker(game_job_que[i].job_type) == true and woodcutting == 0 then
 	    on_sucessful_cut_trees(game_job_que[i].job_type, sucessful) -- trees, sakura, or bamboo
 	    game_job_que[i].timer = game_job_que[i].timer -1
-	    villagers_do_job(game_job_que[i].location_x, game_job_que[i].location_y, "woodcutter")
+	    villagers_do_job(game_job_que[i].location_x, game_job_que[i].location_y, "woodcutter") --villager.lua
 	    woodcutting = 1
 	 elseif (game_job_que[i].job_type == "Cut sakura") and
 	    get_availible_worker(game_job_que[i].job_type) == true and
@@ -888,7 +893,6 @@ function love.update(dt)
 	    break
 	 end
       end
-
       mouse_x, mouse_y = love.mouse.getPosition()
       if game.show_menu ~= 1 and game.show_menu ~= 2 and game.show_menu ~= 7 then
 	 update_run_daytimer() -- run the clock

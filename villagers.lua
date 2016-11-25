@@ -1,8 +1,8 @@
 --file with villager functions
 
 function new_villager(migration)
-   local start_x = math.random(400,600)
-   local start_y = math.random(400,600)
+   local start_x = math.random(-200,100)
+   local start_y = math.random(400,500)
    a = {x = start_x, y = start_y, dx = start_x, dy = start_y, 
 	died_x = 0, died_y = 0, direction = 0, 
 	job = "idle", 
@@ -408,17 +408,28 @@ function villagers_eat_food(num_villagers) -- eat food
       message_que_add("Without proper storage, some of your food rotted!", 300, 9)
    end
 end
+
+function villager_goto_mxy(villager, x, y)
+   villager.dx = x +game.draw_x --lx + math.random(30,60) 
+   villager.dy = y +game.draw_y --ly + math.random(30,60)
+   villager.job = 0--break
+end
+
 function villager_goto_xy(villager, tilex,tiley)
-   local lx = 0
-   local ly = 0
+   --given a tile on screen, get the screen coords of the tile
+   --and assign those coords as the destination of the villager
+   local w = game.tilewidth_fx
+   local h = 100 --/ game.tileheight_fx --100-68q
    for y = 1, game.tilecount do --loopy
       for x = 1, game.tilecount do --loopx
-	 --if game_map[y][x] == 1  then -- found a fire(the top one)
-	 if x == tilex and y == tiley then --do
-	    lx = 300+(y - x) * 32 + 64
-	    ly = -100+(y + x) * 32 / 2 + 50
-	    villager.dx = lx + math.random(30,60) --(y*  --dx = start_x, dy = start_y, 
-	    villager.dy = ly + math.random(30,60)
+	 if x == tilex and y == tiley then --we have the tile provided by args
+	    --now where is this tile on the screen?
+	    local lx = (x - y) * w/2 -- + game.draw_x 
+	    local ly = (y + x) * h/2 -- + game.draw_y
+	    local sx = lx + game.draw_x
+	    local sy = ly + game.draw_y
+	    villager.dx = sx + math.random(30,60) 
+	    villager.dy = sy + math.random(30,60)
 	    villager.job = 0--break
 	 end
       end
@@ -429,11 +440,21 @@ end
 function villager_goto_school(child)
    local lx = 0
    local ly = 0
+
+   --for y = 1, game.tilecount do       --loop y
+   --   for x = 1, game.tilecount do     --loop x
+   --local w = game.tilewidth_fx -- width and height of the tiles
+   --local h = 100-68	 -- minus dead air
+   --local lx = (x - y) * w/2 + game.draw_x
+   --local ly = (y + x) * h/2  + game.draw_y
+   
    for y = 1, game.tilecount do --loopy
       for x = 1, game.tilecount do --loopx
 	 if game_road_map[y][x] == 51 then--52 game
-	    lx = 300+(y - x) * 32 + 64
-	    ly = -100+(y + x) * 32 / 2 + 50
+	    local w = game.tilewidth_fx
+	    local h = 100-68
+	    local lx = (x - y) * w/2 + game.draw_x --300+(y - x) * 32 + 64
+	    local ly = (y + x) * h/2  + game.draw_y ---100+(y + x) * 32 / 2 + 50
 	    if villager.age < 17 then --16 or less you go to school
 	       villager.dx = lx + math.random(30,60) --(y*  --dx = start_x, dy = start_y, 
 	       villager.dy = ly + math.random(30,60)
@@ -450,8 +471,12 @@ function villager_goto_barn(villager)
    for y = 1, game.tilecount do --loopy
       for x = 1, game.tilecount do --loopx
 	 if game_road_map[y][x] == 52 then--52 game
-	    lx = 300+(y - x) * 32 + 64
-	    ly = -100+(y + x) * 32 / 2 + 50
+	    --lx = 300+(y - x) * 32 + 64
+	    --ly = -100+(y + x) * 32 / 2 + 50
+	    local w = game.tilewidth_fx
+	    local h = 100-68
+	    local lx = (x - y) * w/2 + game.draw_x --300+(y - x) * 32 + 64
+	    local ly = (y + x) * h/2  + game.draw_y ---100+(y + x) * 32 / 2 + 50
 	    villager.dx = lx + math.random(30,60) --(y*  --dx = start_x, dy = start_y, 
 	    villager.dy = ly + math.random(30,60)
 	    villager.job = 0
@@ -467,8 +492,12 @@ function villager_goto_bonfire(villager)
    for y = 1, game.tilecount do --loopy
       for x = 1, game.tilecount do --loopx
 	 if game_fire_map[y][x] == 1 and game_map[y][x] == 47 then -- found a fire(the top one)
-	    lx = 300+(y - x) * 32 + 64
-	    ly = -100+(y + x) * 32 / 2 + 50
+	    --lx = 300+(y - x) * 32 + 64
+	    --ly = -100+(y + x) * 32 / 2 + 50
+	    local w = game.tilewidth_fx
+	    local h = 100-68
+	    local lx = (x - y) * w/2 + game.draw_x --300+(y - x) * 32 + 64
+	    local ly = (y + x) * h/2  + game.draw_y ---100+(y + x) * 32 / 2 + 50
 	    villager.dx = lx + math.random(30,60) --(y*  --dx = start_x, dy = start_y, 
 	    villager.dy = ly + math.random(30,60)
 	    villager.job = 0
@@ -479,24 +508,24 @@ function villager_goto_bonfire(villager)
 end
 
 function on_update_villagers_homeless() --a daytime update of homeless villagers
-	local families = get_villager_families(game_villagers) --count the families
-	local housecount = 1 -- count houses
-	kingdom_inventory.families = families --update families in kingdom inventory
-	game_families = get_villager_famgroups() --update families list
-	for i,v in ipairs(game_families) do --assign a house to family
-		local f = game_families[i]
-		if housecount > kingdom_inventory.homes and game.day_count > 1 then
-			for i2,v2 in ipairs(game_families[i]) do
-				game_families[i][i2].opinion = "Upset about being homeless"
-			end --end for
-		end --endif
-		housecount = housecount+1	--BUG, if there are no homes, and no fires what happens?
-	end--endfor
-	if kingdom_inventory.homes < families then
-		kingdom_inventory.homeless = families - kingdom_inventory.homes --update the homeless count.
-	elseif kingdom_inventory.homes >= table.getn(game_villagers) then --fixed bug where there is always 1 homeless
-		kingdom_inventory.homeless = 0
-	end
+   local families = get_villager_families(game_villagers) --count the families
+   local housecount = 1 -- count houses
+   kingdom_inventory.families = families --update families in kingdom inventory
+   game_families = get_villager_famgroups() --update families list
+   for i,v in ipairs(game_families) do --assign a house to family
+      local f = game_families[i]
+      if housecount > kingdom_inventory.homes and game.day_count > 1 then
+	 for i2,v2 in ipairs(game_families[i]) do
+	    game_families[i][i2].opinion = "Upset about being homeless"
+	 end --end for
+      end --endif
+      housecount = housecount+1	--BUG, if there are no homes, and no fires what happens?
+   end--endfor
+   if kingdom_inventory.homes < families then
+      kingdom_inventory.homeless = families - kingdom_inventory.homes --update the homeless count.
+   elseif kingdom_inventory.homes >= table.getn(game_villagers) then --fixed bug where there is always 1 homeless
+      kingdom_inventory.homeless = 0
+   end
 end
 
 function villagers_seek_shelter(num_villagers)--check how many homes are availible
@@ -538,20 +567,14 @@ function villagers_seek_shelter(num_villagers)--check how many homes are availib
 end
 
 
-function villagers_do_job(x, y, specialist)
+function villagers_do_job(x, y, specialist) --called by mouse.lua on each _where_click()
    local found_worker = "false"
-   local lx = 0
-   local lx = 0
+   --x,y is tilex/tiley
    for i, v in ipairs(game_villagers) do
       if game_villagers[i].age > 14 and
 	 game_villagers[i].position == specialist and
       game_villagers[i].alive == 1 then --can work
-	 -------------------------
-	 --is the villager currently engaged?
-	 lx = 300+(y - x) * 32 + 64
-	 ly = -100+(y + x) * 32 / 2 + 50
-	 game_villagers[i].dx = lx+30
-	 game_villagers[i].dy = ly+50
+	 villager_goto_mxy(game_villagers[i], love.mouse.getX(), love.mouse.getY() )
 	 found_worker = "true"
 	 return "true"
       else
@@ -563,10 +586,9 @@ function villagers_do_job(x, y, specialist)
 	 if game_villagers[i].age > 14 and
 	    game_villagers[i].position == "peasant" and
 	 game_villagers[i].alive == 1 then --can work
-	    lx = 300+(y - x) * 32 + 64
-	    ly = -100+(y + x) * 32 / 2 + 50
-	    game_villagers[i].dx = lx+30
-	    game_villagers[i].dy = ly+50
+	    --job location x/y
+	    --villagers_do_job(game_job_que[i].location_x, game_job_que[i].location_y, "woodcutter") --update.lua
+	    villager_goto_xy(game_villagers[i], x,y) --xy	    
 	    game_villagers[i].position = specialist --testing
 	    found_worker = "true"
 	    return "true"
@@ -752,7 +774,7 @@ function update_villager_talking(i)
 end
 --TODO: Here.
 
-function update_villager_jobs(dt) -- here is where timers should go down?
+function update_villager_jobs(dt) -- called by update(dt) in update.lua
    ------- Now loop through villagers
    --function villager_collision_event(game_villagers) --loop through villagers and check for collisions
    for i, v in ipairs(game_villagers) do --loop through villagers

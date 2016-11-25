@@ -241,29 +241,32 @@ function draw_mayor_statue(x,y) --statue is 62 male and 63 female
       love.graphics.draw(tiles_image,game_tiles[ game.mayor_sex ], lx+game.draw_x, ly+game.draw_y) 
    end
 end
-function draw_tile_selectors(x,y)
-   --CODE from HorrorTactics
-   --screen_x = (x - y) * map.TILE_WIDTH_HALF;p
-   --HERE   
-
-   --local w = game.tilewidth_fx -- width and height of the tiles
-   --local h = 100 -68	 -- minus dead air
-   --local lx = (x - y) * w/2 + game.draw_x
-   --local ly = (y + x) * h/2  + game.draw_y
-   
+function draw_tile_selectors(x,y, lx, ly)
    if x == game.tile_selected_x and y == game.tile_selected_y then
       love.graphics.draw(tiles_image,game_tiles[game.green_selected], lx, ly)
    end --endif
    if x == game_directives.location_x and y == game_directives.location_y then
       love.graphics.draw(tiles_image,game_tiles[game.yellow_selected],lx, ly)
    end --endif
+   for i,v in ipairs(game_job_que) do
+      if x == game_job_que[i].location_x and y == game_job_que[i].location_y then
+	 love.graphics.setColor(0,0,0,255)
+	 love.graphics.rectangle("fill",lx, ly, 52,6)
+	 love.graphics.setColor(0,255,0,255)
+	 love.graphics.rectangle("fill", lx+1, ly+1, ((game_job_que[i].timer_max-game_job_que[i].timer)/game_job_que[i].timer_max)*50, 4 )
+	 love.graphics.setColor(255,255,255,255)
+	 --love.graphics.rectangle("fill",game_job_que[i].draw_x , game_job_que[i].draw_y+20, 52, 6 )
+	 --love.graphics.setColor(0,255,0,255)
+	 --love.graphics.rectangle("fill", game_job_que[i].draw_x+1 , game_job_que[i].draw_y+1+20, 
+	 ---- lx+game.draw_x+1, ly+game.draw_y-49, 
+	 --((game_job_que[i].timer_max-game_job_que[i].timer)/game_job_que[i].timer_max)*50, 4 )
+	 --love.graphics.setColor(255,255,255,255)
+      end
+   end
 end
 
 ---------------------- DRAW GAME TILES!!!! --------------------------------------
 function draw_game_tiles()
-	--tilewidth_fx = 64,  --ground tile width/height, not actual height of tile in pixels
-	--tileheight_fx = 32, --but the w/h from tip to tip
-	--+50 is the missing air in the tiles? how will this effect zooming?
    for y = 1, game.tilecount do       --loop y
       for x = 1, game.tilecount do     --loop x
 	 local w = game.tilewidth_fx -- width and height of the tiles
@@ -294,34 +297,48 @@ function draw_game_tiles()
 	    end
 	 end
 	 
-	 draw_tile_selectors(x,y)
+	 draw_tile_selectors(x,y,lx,ly) --lx/ly
 
 	 draw_farm_garden_additions(x,y,"wheat") --add zoom
 	 if game_fire_map[y][x] == 1 then --FIRE!
 	    love.graphics.draw(tiles_image,game_tiles[math.random(48,50)], lx+game.draw_x, ly+game.draw_y)
 	 end
-	for i,v in ipairs(game_job_que) do
-	--	love.graphics.print(game_job_que[i].job_type.."("..game_job_que[i].timer..")", 5, 400 + (i*20))
-		if game_job_que[i].location_x == x and game_job_que[i].location_y == y then
-			game_job_que[i].draw_x = lx+game.draw_x
-			game_job_que[i].draw_y = ly+game.draw_y-30 --set the locs
-		end
-	end
-	
+	 for i,v in ipairs(game_job_que) do
+	    --	love.graphics.print(game_job_que[i].job_type.."("..game_job_que[i].timer..")", 5, 400 + (i*20))
+	    if game_job_que[i].location_x == x and game_job_que[i].location_y == y then
+	       game_job_que[i].draw_x = lx+game.draw_x
+	       game_job_que[i].draw_y = ly+game.draw_y-30 --set the locs
+	    end
+	 end
       end --endfor x
    end --endfor y
+
+--   function new_job()
+--      a = {
+--	 timer = game_directives.timer,
+--	 timer_max = game_directives.timer,
+--	 location_x = game_directives.location_x, --tile loc x/y
+--	 location_y = game_directives.location_y,
+--	 draw_x = 0,
+--	 draw_y = 0,
+--	 job_type = game_directives.job_type
+   --}
+   --   return a
+   --end
+   
+   
    --draw the job status bars.
-   love.graphics.push()
-   for i,v in ipairs(game_job_que) do
-   	love.graphics.setColor(0,0,0,255)
-	love.graphics.rectangle("fill",game_job_que[i].draw_x , game_job_que[i].draw_y+20, 52, 6 )
-	love.graphics.setColor(0,255,0,255)
-	love.graphics.rectangle("fill", game_job_que[i].draw_x+1 , game_job_que[i].draw_y+1+20, 
-		-- lx+game.draw_x+1, ly+game.draw_y-49, 
-		((game_job_que[i].timer_max-game_job_que[i].timer)/game_job_que[i].timer_max)*50, 4 )
-	love.graphics.setColor(255,255,255,255)
-   end
-   love.graphics.pop()
+   --love.graphics.push()
+   --for i,v in ipairs(game_job_que) do
+  -- 	love.graphics.setColor(0,0,0,255)
+--	love.graphics.rectangle("fill",game_job_que[i].draw_x , game_job_que[i].draw_y+20, 52, 6 )
+--	love.graphics.setColor(0,255,0,255)
+--	love.graphics.rectangle("fill", game_job_que[i].draw_x+1 , game_job_que[i].draw_y+1+20, 
+--		-- lx+game.draw_x+1, ly+game.draw_y-49, 
+--		((game_job_que[i].timer_max-game_job_que[i].timer)/game_job_que[i].timer_max)*50, 4 )
+--	love.graphics.setColor(255,255,255,255)
+  -- end
+   --love.graphics.pop()
 end --end draw_game_tiles()
 
 function draw_roster_list_food()

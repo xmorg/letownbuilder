@@ -17,11 +17,13 @@ font_row_3 = 37
 blank_icon = 1
 
 game = {state = 1, give_direction = "None", day_time = 6000, day_count = 1,
-	tile_selected_x = 0,tile_selected_y = 0, mouse_last_x=0, mouse_last_y=0,
+	tile_selected_x = 0,tile_selected_y = 0,
+	mouse_last_x=0, mouse_last_y=0,
 	fullscreen_mode = "No",
 	tilewidth_fx = 64,  --ground tile width/height, not actual height of tile in pixels
 	tileheight_fx = 32, --but the w/h from tip to tip
-	draw_x=-100, draw_y=-100, 
+	draw_x=400,
+	draw_y=-200, 
 	screen_width = love.graphics.getWidth(), screen_height = love.graphics.getHeight(),
 	scroll_speed=3, scroll_direction = "none", 
 	loc_selected_x = 0, loc_selected_y = 0, --lx+ 32 --ly+ 16
