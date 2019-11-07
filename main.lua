@@ -6,11 +6,14 @@
 --bugs: forward slash roads do not connect.
 --TODO: Too much talking! decrease by increasing the chance of text by random (1, table.getn(game_villagers)*100)
 
-g_version = "0.9.0" --"0.8.0"
+g_version = "0.9.1" --"0.8.0"
 fullscreen_hack = "no"
+require("techwrap")
+
 --fonts data/newscycle-regular.ttf   data/newscycle-bold.ttf
-base_font = love.graphics.newFont("data/newscycle-bold.ttf", 18 )
-big_font = love.graphics.newFont("data/newscycle-bold.ttf", 32 )
+
+base_font = load_font("data/newscycle-bold.ttf", 18 )
+big_font = load_font("data/newscycle-bold.ttf", 32 )
 font_row_1 = 3
 font_row_2 = 20
 font_row_3 = 37
@@ -145,13 +148,13 @@ require( "render" )
 require( "invaders" )
 require( "merchants")
 require( "animals")
-
+--require( "techwrap")
 
 math.randomseed(os.time())
 
 function play_sound(sound)
    if game.togglesound == "on" then
-      love.audio.play(sound)
+      love_audio_play(sound)
    end
 end
 
@@ -405,44 +408,6 @@ function create_new_scene(file)
    mouse_x, mouse_y = love.mouse.getPosition()
 end
 
-function go_fullscreen()
-   if fullscreen_hack == "no" then
-      if game.version == "0.8.0" then 
-	 love.graphics.setMode(0, 0, true, false)  -- 0.8.0
-	 love.graphics.setMode(love.graphics.getMode())
-      else 
-	 --flags = {
-	 --   fullscreen = true,
-	 --   fullscreentype = "normal",
-	 --   vsync = true,
-	    --fsaa = 0,
-	 --   resizable = false,
-	 --   borderless = false,
-	 --   centered = true,
-	 --   display = 1,
-	 --   minwidth = 1,
-	 --   minheight = 1 
-	 --}		
-	 --love.window.setMode( 0, 0, flags )
-	 love.window.setFullscreen( true )
-	 fullscreen_hack = "yes"
-      end -- 0.9.0
-   else --fullscreen_hack = "yes"
-      if game.version == "0.8.0" then 
-	 love.graphics.setMode(800, 600, false, false)  -- 0.8.0
-	 --love.graphics.setMode(love.graphics.getMode())
-      else 
-	 flags = { fullscreen = false,		vsync = true,
-		   resizable = false,borderless = false,centered = true,	display = 1,
-		   minwidth = 1,minheight = 1 } --fsaa = 0,invalid window setting
-	 --fullscreentype = "normal",
-	 love.window.setMode( 800, 600 )--, flags ) 
-      end -- version == "0.8.0" then 
-      fullscreen_hack = "no"
-   end--fullscreen_hack == "no" then
-   game.screen_height = love.graphics.getHeight()
-   game.screen_width  = love.graphics.getWidth()
-end
 
 function mouse_left_icons_pressed(x, y, button)
    return game.givedirection
@@ -578,11 +543,11 @@ function love.load()
    sound_light_breeze = love.audio.newSource("data/sounds/wind_1.ogg", "static")
    sound_daytime     = love.audio.newSource("data/sounds/wind_1.ogg", "static")
    sound_nighttime = love.audio.newSource("data/sounds/wind_2_night.ogg", "static")
-   sound_click = love.audio.newSource("data/sounds/tim_click.ogg")
-   sound_treecutting = love.audio.newSource("data/sounds/tree_cutting.ogg")
-   music_townbg1 = love.audio.newSource("data/sounds/041415calmbgm_0.ogg")
+   sound_click = love.audio.newSource("data/sounds/tim_click.ogg", "static")
+   sound_treecutting = love.audio.newSource("data/sounds/tree_cutting.ogg", "static")
+   music_townbg1 = love.audio.newSource("data/sounds/041415calmbgm_0.ogg", "static")
    music_townbg1:setLooping( true )
-   music_nightbg1 = love.audio.newSource("data/sounds/un_com_night.ogg")
+   music_nightbg1 = love.audio.newSource("data/sounds/un_com_night.ogg", "static")
    music_nightbg1:setLooping( true )
    game_pad = love.graphics.newImage("data/gpad.png") --game pad
    icon_files = love.filesystem.getDirectoryItems(icon_dir) --0.9
@@ -626,7 +591,7 @@ function love.keypressed(key)
 	 else 
 	    game.fullscreen_mode = "No" 
 	 end
-	 go_fullscreen()
+	 go_fullscreen(game)
       elseif key == "m" then  --disabled trading because its buggy.
 	 --if game.merchant_menu == 1 then game.merchant_menu = 0
 	 --else add_merchant_inventory() game.merchant_menu = 1
@@ -681,13 +646,14 @@ function love.draw()
    elseif game.show_menu == 7 then --achivements
       game_achivements_draw()
    else	
-      game.screen_height = love.graphics.getHeight()
-      game.screen_width  = love.graphics.getWidth()
+      game.screen_height = graphics_getHeight()
+      game.screen_width  = graphics_getWidth()
       local xdraw = math.random(1, 20)
-      love.graphics.setFont( base_font )
+      set_font( base_font )
       if game.show_menu == 1 then 
       end
-      love.graphics.push()	love.graphics.scale(game.zoom_level)
+      gpush()
+      gscale(game.zoom_level)  --love.graphics.scale(game.zoom_level)
       draw_game_tiles()
       ----------------------------------- END DRAWING TILES
       draw_villagers() -- draw villagers
@@ -696,7 +662,7 @@ function love.draw()
       draw_merchants()
       --draw weather
       --draw_night_lights()
-      love.graphics.pop()
+      gpop()
       draw_weather(game.current_weather)
       
       draw_task_icons()      
@@ -715,7 +681,7 @@ function love.draw()
    	show_transaction_menu()
       end
       if game.game_mobile == 1 then
-	 love.graphics.draw(game_pad, game.screen_width-64-128, game.screen_height-128)
+	 gdraw(game_pad, game.screen_width-64-128, game.screen_height-128)
       end
       --love.graphics.drawq(projectile_files, game_psrites_table[spritenum], x, y)
       ----------------------- END TOP UI Drawing ------------------------
