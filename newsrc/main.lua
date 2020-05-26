@@ -525,7 +525,8 @@ end
 function love.load()
    local icon_dir = "data/icons/"
    local icon_files = nil
-   a = love.filesystem.exists( "achivements.lua" )
+   --a = love.filesystem.exists( "achivements.lua" )
+   a = love.filesystem.getInfo( "achivements.lua" )
    if a == true then --we have a saved file
    	chunk = love.filesystem.load( "achivements.lua" )
    	chunk()

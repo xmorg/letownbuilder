@@ -78,9 +78,9 @@ function table.show(t, name, indent)
 end
 
 function check_for_save()
-   local e = love.filesystem.exists( "game.lua" )
-   local k = love.filesystem.exists( "game_map.lua")
-   local r = love.filesystem.exists( "research_topics.lua")
+   local e = love.filesystem.getInfo( "game.lua" )
+   local k = love.filesystem.getInfo( "game_map.lua")
+   local r = love.filesystem.getInfo( "research_topics.lua")
    if e == true and k == true then
       return true
    else
