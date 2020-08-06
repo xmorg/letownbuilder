@@ -2,7 +2,7 @@ function graphics_getWidth()
    return love.graphics.getWidth()
 end
 function graphics_getHeight()
-   return love.grapics.getHeight()
+   return love.graphics.getHeight()
 end
 
 function love_graphics_setMode080()
@@ -53,39 +53,10 @@ end
 
 function go_fullscreen(g) --moved from main
    if fullscreen_hack == "no" then
-      if g.version == "0.8.0" then 
-	 love.graphics.setMode(0, 0, true, false)  -- 0.8.0
-	 love.graphics.setMode(love.graphics.getMode())
-      else 
-	 --flags = {
-	 --   fullscreen = true,
-	 --   fullscreentype = "normal",
-	 --   vsync = true,
-	 --   fsaa = 0,
-	 --   resizable = false,
-	 --   borderless = false,
-	 --   centered = true,
-	 --   display = 1,
-	 --   minwidth = 1,
-	 --   minheight = 1 
-	 --}		
-	 --love.window.setMode( 0, 0, flags )
-	 love_window_setFullscreen( true )
-	 fullscreen_hack = "yes"
-      end -- 0.9.0
+      love.window.setFullscreen(true, "desktop")
    else --fullscreen_hack = "yes"
-      if g.version == "0.8.0" then 
-	 love_graphics_setMode(800, 600, false, false)  -- 0.8.0
-	 --love.graphics.setMode(love.graphics.getMode())
-      else 
-	 flags = { fullscreen = false,		vsync = true,
-		   resizable = false,borderless = false,centered = true,	display = 1,
-		   minwidth = 1,minheight = 1 } --fsaa = 0,invalid window setting
-	 --fullscreentype = "normal",
-	 love_window_setMode( 800, 600 )--, flags ) 
-      end -- version == "0.8.0" then 
-      fullscreen_hack = "no"
+      love.window.setFullscreen(false, "desktop")
    end--fullscreen_hack == "no" then
-   g.screen_height = love.graphics.getHeight()
-   g.screen_width  = love.graphics.getWidth()
+   --g.screen_height = love.graphics.getHeight()
+   --g.screen_width  = love.graphics.getWidth()
 end

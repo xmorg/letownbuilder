@@ -9,6 +9,8 @@ require( "achivements" ) --stop the bugs!
 --   )
 --end
 
+version = "11.3"
+
 
 function game_achivements_draw() --draw the achivements
    local row = 45
@@ -573,18 +575,18 @@ function draw_research_icons()
 end
 
 function draw_small_sprite(spritenum, x,y)
-   if g_version == "0.9.0" then
+   --if g_version == version then
       love.graphics.draw(sprite_files, game_sprites_table[spritenum], x, y)
-   else
-      love.graphics.drawq(sprite_files, game_sprites_table[spritenum], x, y)
-   end
+   --else
+   --   love.graphics.drawq(sprite_files, game_sprites_table[spritenum], x, y)
+   --end
 end
 function draw_projectile_sprite(spritenum, x,y)
-   if g_version == "0.9.0" then
+   --if g_version == version then
       love.graphics.draw(projectile_files, game_psrites_table[spritenum], x, y)
-   else
-      love.graphics.drawq(projectile_files, game_psrites_table[spritenum], x, y)
-   end
+   --else
+   --   love.graphics.drawq(projectile_files, game_psrites_table[spritenum], x, y)
+   --end
 end
 
 function draw_wildlife()
