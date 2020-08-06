@@ -56,6 +56,7 @@ function go_fullscreen(g) --moved from main
       love.window.setFullscreen(true, "desktop")
    else --fullscreen_hack = "yes"
       love.window.setFullscreen(false, "desktop")
+      love.window.setMode(800, 600, {resizable=true, vsync=false, minwidth=400, minheight=300})
    end--fullscreen_hack == "no" then
    --g.screen_height = love.graphics.getHeight()
    --g.screen_width  = love.graphics.getWidth()
